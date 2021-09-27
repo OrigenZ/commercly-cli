@@ -1,1 +1,1 @@
-# commercly-cli
+# commercly client side
