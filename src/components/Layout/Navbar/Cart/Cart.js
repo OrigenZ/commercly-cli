@@ -3,7 +3,7 @@ import { faShoppingCart} from '@fortawesome/free-solid-svg-icons'
 
 function Cart(){
     return(
-        <a className="nav-link" href="/shop/cart">
+        <a className="nav-link" href="/cart">
             <FontAwesomeIcon icon={faShoppingCart} className="me-3"/>
             <span id="cart-count"> {/*   {{defaultValue session.totalItemsCart '0'}} */}</span>
         </a>

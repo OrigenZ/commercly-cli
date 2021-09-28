@@ -7,7 +7,6 @@ function AccountDetails(){
     //console.log('user', user)
     return(
         <div className='section'>
-            <NavMyAccount />
             <div className="dashboard-wrapper text-muted d-flex justify-content-center">
                 <div className="d-flex flex-column justify-content-center align-items-center col-sm-12 col-md-8 col-lg-10">
                     <h3>User name: {user.username}</h3>
