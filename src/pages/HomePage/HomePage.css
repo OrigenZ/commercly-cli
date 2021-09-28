@@ -1,0 +1,26 @@
+#home {
+  background: url("../../images/home-background.jpg") top center no-repeat;
+  background-size: cover;
+  height: calc(100vh);
+}
+
+#home .call-to-action {
+  margin-top: -15rem;
+}
+
+#home .call-to-action h1 {
+  margin-bottom: 5rem;
+  font-size: 4rem;
+}
+
+#home .call-to-action a {
+  font-size: 1.3rem;
+  background-color: white;
+  border: 3px solid;
+  border-radius: 0rem;
+}
+
+#home .call-to-action a:hover {
+  background-color: #6c757d;
+  border: 3px solid #6c757d;
+}
