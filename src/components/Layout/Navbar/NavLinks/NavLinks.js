@@ -1,17 +1,42 @@
+import { NavLink } from "react-router-dom";
+import "./NavLinks.css";
+import React, { useState, useEffect } from "react";
+
 function NavLinks() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <>
-      <a class="nav-link" href="/shop">
+      <NavLink exact activeClassName="active" to="/shop" className="nav-link">
         Shop
-      </a>
-      <a class="nav-link" href="/about-us">
+      </NavLink>
+      <NavLink
+        exact
+        activeClassName="active"
+        to="/about-us"
+        className="nav-link"
+      >
         About us
-      </a>
-      <a class="nav-link" href="/login">
-        My account
-      </a>
+      </NavLink>
+      {isLoggedIn ? (
+        <NavLink
+          exact
+          activeClassName="active"
+          to="/my-account"
+          className="nav-link"
+        >
+          My account
+        </NavLink>
+      ) : (
+        <NavLink
+          activeClassName="active"
+          to="/customer"
+          className="nav-link"
+        >
+          My account
+        </NavLink>
+      )}
     </>
-  )
+  );
 }
 
-export default NavLinks
+export default NavLinks;
