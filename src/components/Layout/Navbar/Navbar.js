@@ -1,5 +1,7 @@
 import Brand from './Brand/Brand'
 import Cart from './Cart/Cart'
+import PopupCart from './Cart/PopupCart/PopupCart'
+import PopupCartP from './Cart/PopupCart/PopupCartP'
 import NavLinks from './NavLinks/NavLinks'
 
 function Navbar(){
@@ -13,6 +15,8 @@ function Navbar(){
               <div className="navbar-nav">
                 <NavLinks />
                 <Cart />
+                <PopupCart />
+                <PopupCartP />
               </div>
             </div>
           </div>

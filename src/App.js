@@ -12,6 +12,7 @@ import AnonRoute from './components/AnonRoute/AnonRoute'
 import PrivateRoute from './components/PrivateRoute/PrivateRoute'
 import MyAccountPage from './pages/MyAccount/MyAccountPage'
 import AccountDetails from './components/MyAccount/AccountDetails/AccountDetails'
+import CartPage from './pages/CartPage/CartPage'
 
 function App() {
   return (
@@ -60,13 +61,13 @@ function App() {
         <PrivateRoute
           exact
           path="/customer/account-details"
-          component={AccountDetails}
+          component={MyAccountPage}
         />
-{/*         <PrivateRoute
+        <PrivateRoute
           exact
           path="/cart"
-          component={Cart}
-        /> */}
+          component={CartPage}
+        />
 
         <AnonRoute exact path="/signup" component={SignupPage} />
         <AnonRoute exact path="/login" component={LoginPage} />
