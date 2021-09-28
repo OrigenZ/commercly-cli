@@ -29,7 +29,7 @@ function LoginPage(props) {
 
         const token = response.data.authToken
         logInUser(token)
-        props.history.push('/') // TODO: redirect dashboard customer/admin
+        props.history.push('/customer') // TODO: redirect dashboard customer/admin
       })
       .catch((error) => {
         const errorDescription = error.response.data.message
