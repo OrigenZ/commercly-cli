@@ -3,6 +3,7 @@ import Cart from './Cart/Cart'
 
 import PopupCartH from './Cart/PopupCart/PopupCartH'
 import PopupCartP from './Cart/PopupCart/PopupCartP'
+import Sidebar from './Cart/PopupCart/SideBar'
 import NavLinks from './NavLinks/NavLinks'
 
 function Navbar(){
@@ -18,6 +19,7 @@ function Navbar(){
                 <Cart />
                 <PopupCartP />
                 <PopupCartH />
+                <Sidebar />
               </div>
             </div>
           </div>
