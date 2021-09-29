@@ -10,7 +10,7 @@ function AnonRoute(props) {
   if (isLoading) return <p>Loading ...</p>
 
   // If the user is already logged in, redirect him to home page
-  if (isLoggedIn) return <Redirect to="/" />
+  if (isLoggedIn) return  <Redirect to="/customer" />
 
   // If the user is not logged in yet, allow him to see the page
   return <Route to={to} exact={exact} component={Component} {...restProps} />

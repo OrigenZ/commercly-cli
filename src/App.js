@@ -3,11 +3,16 @@ import { Switch, Route } from 'react-router-dom'
 // import './App.css';
 
 import HomePage from './pages/HomePage/HomePage'
+import ShopPage from './pages/ShopPage/ShopPage'
+import ProductDetailPage from './pages/ShopPage/ProductDetailPage'
 import AboutUsPage from './pages/AboutUsPage/AboutUsPage'
 import SignupPage from './pages/MyAccount/SignupPage'
 import LoginPage from './pages/MyAccount/LoginPage'
 import AnonRoute from './components/AnonRoute/AnonRoute'
 import PrivateRoute from './components/PrivateRoute/PrivateRoute'
+import MyAccountPage from './pages/MyAccount/MyAccountPage'
+import AccountDetails from './components/MyAccount/AccountDetails/AccountDetails'
+import CartPage from './pages/CartPage/CartPage'
 
 function App() {
   return (
@@ -20,8 +25,49 @@ function App() {
         />
         <Route
           exact
+          path="/shop"
+          render={(routeProps) => <ShopPage {...routeProps} />}
+        />
+        <Route
+          exact
+          path="/products/:id"
+          component={ProductDetailPage}
+   
+        />
+        <Route
+          exact
           path="/about-us"
           render={(routeProps) => <AboutUsPage {...routeProps} />}
+        />
+        <AnonRoute
+          exact
+          path="/my-account"
+          component={LoginPage}
+        />
+        <PrivateRoute
+          exact
+          path="/customer"
+          component={MyAccountPage}
+        />
+        <PrivateRoute
+          exact
+          path="/customer/orders"
+          component={MyAccountPage}
+        />
+        <PrivateRoute
+          exact
+          path="/customer/address-list"
+          component={MyAccountPage}
+        />
+        <PrivateRoute
+          exact
+          path="/customer/account-details"
+          component={MyAccountPage}
+        />
+        <PrivateRoute
+          exact
+          path="/cart"
+          component={CartPage}
         />
 
         <AnonRoute exact path="/signup" component={SignupPage} />
