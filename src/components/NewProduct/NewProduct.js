@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "../../common/http/index";
+import axiosInstanceInstance from "../../common/http/index";
 
 const NewProduct = () => {
   const [name, setName] = useState("");

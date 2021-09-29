@@ -1,13 +1,13 @@
 import { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../../../common/context/auth.context";
 import { Link } from "react-router-dom";
-import axios from "../../../common/http/index";
+import axiosInstance from "../../../common/http/index";
 
 function ProductList() {
   const { user } = useContext(AuthContext);
   const [products, setProducts] = useState([]);
   // const [categories, setCategories] = useState([]);
-  const [setErrorMessage] = useState(undefined);
+  const [errorMessage, setErrorMessage] = useState("");
   const storedToken = localStorage.getItem("authToken");
 
   useEffect(() => {
@@ -15,11 +15,12 @@ function ProductList() {
     // If the token exists in the localStorage
     if (storedToken) {
       console.log("token", storedToken);
-      axios
-        .get(`/products`, {
+      axiosInstance
+        .get(`/api/products`, {
           headers: { Authorization: `Bearer ${storedToken}` },
         })
         .then((response) => {
+          console.log(response);
           setProducts(response.data.products);
           // setCategories(response.categories)
           console.log("response", response);

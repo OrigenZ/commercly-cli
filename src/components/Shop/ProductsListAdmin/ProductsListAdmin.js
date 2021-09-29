@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../../../common/context/auth.context";
-import axios from "../../../common/http/index";
+import axiosInstance from "../../../common/http/index";
 
 function ProductsListAdmin() {
   // const { logInUser } = useContext(AuthContext);
@@ -15,8 +15,8 @@ function ProductsListAdmin() {
     // If the token exists in the localStorage
     if (storedToken) {
       console.log("token", storedToken);
-      axios
-        .get(`/products`, {
+      axiosInstance
+        .get(`/api/products`, {
           headers: { Authorization: `Bearer ${storedToken}` },
         })
         .then((response) => {

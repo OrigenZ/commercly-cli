@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { Link } from "react-router-dom";
 
-import axios from "../../common/http/index";
+import axiosInstance from "../../common/http/index";
 
 function SignupPage(props) {
   const [email, setEmail] = useState("");
@@ -22,7 +22,7 @@ function SignupPage(props) {
     // If POST request is successful redirect to login page
     // If the request resolves with an error, set the error message in the state
 
-    axios
+    axiosInstance
       .post(`/auth/signup`, requestBody)
       .then((_) => props.history.push("/login")) // TODO: cambiar esto
       .catch((error) => {

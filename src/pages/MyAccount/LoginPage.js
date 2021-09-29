@@ -3,7 +3,7 @@
 import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../common/context/auth.context";
-import axios from "../../common/http/index";
+import axiosInstance from "../../common/http/index";
 
 function LoginPage(props) {
   const [email, setEmail] = useState("");
@@ -20,7 +20,7 @@ function LoginPage(props) {
 
     const requestBody = { email, password };
 
-    axios
+    axiosInstance
       .post(`/auth/login`, requestBody)
       .then((response) => {
         console.log("JWT token", response.data.authToken);
