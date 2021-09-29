@@ -1,12 +1,12 @@
 import { useContext } from "react";
-import { AuthContext } from "../../context/auth.context";
+import { AuthContext } from "../../common/context/auth.context";
 import { Redirect, Route } from "react-router-dom";
 
 function PrivateRoute(props) {
   const { to, exact, component: Component, ...restProps } = props;
   const { isLoggedIn, isLoading } = useContext(AuthContext);
 
-  console.log(props)
+  console.log(props);
   // If the authentication is still loading
   if (isLoading) return <p>Loading ...</p>;
 

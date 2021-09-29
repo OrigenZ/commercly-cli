@@ -1,28 +1,26 @@
 import { useState, useContext, useEffect } from "react";
-import { AuthContext } from "../../../context/auth.context";
+import { AuthContext } from "../../../common/context/auth.context";
 import { Link } from "react-router-dom";
-import axios from "axios";
-
-const API_URL = "http://localhost:5005/api";
+import axiosInstance from "../../../common/http/index";
 
 function ProductList() {
-  const { logInUser, user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const [products, setProducts] = useState([]);
   // const [categories, setCategories] = useState([]);
-  const [errorMessage, setErrorMessage] = useState(undefined);
+  const [errorMessage, setErrorMessage] = useState("");
   const storedToken = localStorage.getItem("authToken");
 
-
   useEffect(() => {
-    console.log('user',user)
+    console.log("user", user);
     // If the token exists in the localStorage
     if (storedToken) {
       console.log("token", storedToken);
-      axios
-        .get(`${API_URL}/products`, {
+      axiosInstance
+        .get(`/api/products`, {
           headers: { Authorization: `Bearer ${storedToken}` },
         })
         .then((response) => {
+          console.log(response);
           setProducts(response.data.products);
           // setCategories(response.categories)
           console.log("response", response);
@@ -69,16 +67,12 @@ function ProductList() {
                   className="product col-sm-12 col-md-6 col-lg-3 card"
                   key={product._id}
                 >
-                  <Link
-                    to={`/products/${product._id}`}
-                    className="row list"
-                  >
+                  <Link to={`/products/${product._id}`} className="row list">
                     <img
                       src={product.imageUrl}
                       className="w-100 card-img-top"
                       alt={product.name}
                     />
-
                     <div className="card-body">
                       <h3 className="card-text text-center">{product.name}</h3>
                       <p className="description card-text text-center">
