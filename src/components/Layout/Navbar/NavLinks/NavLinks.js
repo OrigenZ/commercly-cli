@@ -1,9 +1,9 @@
 import { NavLink } from "react-router-dom";
 import "./NavLinks.css";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 function NavLinks() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn ] = useState(false);
   return (
     <>
       <NavLink exact activeClassName="active" to="/shop" className="nav-link">

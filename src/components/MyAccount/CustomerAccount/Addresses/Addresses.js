@@ -1,29 +1,29 @@
 // ¿ User data con addresses?
 // import { useContext } from "react"
-// import { AuthContext } from "../../../context/auth.context"
+// import { AuthContext } from "../../../common/context/auth.context"
 
 function Addresses() {
   // ¿ User addresses = {user.address}?
   //const { user, logOutUser } = useContext(AuthContext)
   return (
     <div className="section">
-      <section id="customer-addresses" class="container">
-        <div class="dashboard-wrapper d-flex justify-content-center text-muted ">
-          <div class="col-12 col-md-10 col-lg-8 ">
-            <p class="">
+      <section id="customer-addresses" className="container">
+        <div className="dashboard-wrapper d-flex justify-content-center text-muted ">
+          <div className="col-12 col-md-10 col-lg-8 ">
+            <p className="">
               The following addresses will be used on the checkout page by
               default.
             </p>
-            <div class="addresses row d-flex justify-content-between">
-              <div class="billing-address col-sm-12 col-md-5">
-                <div class="address-title">
+            <div className="addresses row d-flex justify-content-between">
+              <div className="billing-address col-sm-12 col-md-5">
+                <div className="address-title">
                   <h3>Billing address</h3>
                   {/*  // Si Billing //
-                  <a href="/customer/edit-address/billing/" class="add">
+                  <a href="/customer/edit-address/billing/" className="add">
                     Edit
                   </a>
                   // Si NO Billing //
-                  <a href="/customer/create-address/billing/" class="add">
+                  <a href="/customer/create-address/billing/" className="add">
                     Add
                   </a>
                   //FIN // */}
@@ -44,15 +44,15 @@ function Addresses() {
                 </address> */}
               </div>
 
-              <div class="shipping-address col-sm-12 col-md-5 ">
-                 <div class="address-title">
+              <div className="shipping-address col-sm-12 col-md-5 ">
+                <div className="address-title">
                   <h3>Shipping address</h3>
                   {/*// Si Shipping //
-                  <a href="/customer/edit-address/shipping/" class="add">
+                  <a href="/customer/edit-address/shipping/" className="add">
                     Edit
                   </a>
                   // Si NO Shipping //
-                  <a href="/customer/create-address/shipping/" class="add">
+                  <a href="/customer/create-address/shipping/" className="add">
                     Add
                   </a>
                   // FIN //*/}
