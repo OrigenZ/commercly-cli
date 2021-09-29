@@ -10,7 +10,7 @@
 
 //   axios
 //     .post(
-//       `${API_URL}/api/product/${_id}`,
+//       `/api/product/${_id}`,
 //       requestBody,
 
 //       { headers: { Authorization: `Bearer ${storedToken}` } },

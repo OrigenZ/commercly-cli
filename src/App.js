@@ -11,7 +11,6 @@ import LoginPage from './pages/MyAccount/LoginPage'
 import AnonRoute from './components/AnonRoute/AnonRoute'
 import PrivateRoute from './components/PrivateRoute/PrivateRoute'
 import MyAccountPage from './pages/MyAccount/MyAccountPage'
-import AccountDetails from './components/MyAccount/AccountDetails/AccountDetails'
 import CartPage from './pages/CartPage/CartPage'
 
 function App() {
