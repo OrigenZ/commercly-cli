@@ -1,4 +1,5 @@
 import ProductList from './ProductsList/ProductsList';
+import ProductsListAdmin from './ProductsListAdmin/ProductsListAdmin';
 import SearchProduct from './SearchProduct/SearchProduct'
 
 function Shop() {
@@ -9,7 +10,8 @@ function Shop() {
             <SearchProduct />
           </div>
           <div>
-            <ProductList />
+            <ProductList /> 
+            {/* <ProductsListAdmin /> */}
           </div>
         </section>
       </div>
