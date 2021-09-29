@@ -36,6 +36,10 @@ a {
   color: #00b7ff;
 }
 
+.section{
+  min-height: calc(100vh - 456px) 
+}
+
 header {
   position: fixed;
   top: 0;
@@ -49,3 +53,4 @@ header {
   padding: 1rem 1rem;
   text-transform: uppercase;
 }
+

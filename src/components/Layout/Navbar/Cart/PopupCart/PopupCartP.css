@@ -1,0 +1,14 @@
+#popup-cart {
+    margin-right: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.modal-content{
+    min-height: 100vh;
+    justify-content: flex-end;  
+}
+
+.modal-dialog{
+    min-width: 40vw;
+}

@@ -1,18 +1,22 @@
 import Brand from './Brand/Brand'
-import Cart from './Cart/Cart'
+/* import Cart from './Cart/Cart' */
+
+import PopupCartP from './Cart/PopupCart/PopupCartP'
 import NavLinks from './NavLinks/NavLinks'
 
 function Navbar(){
   return(
     <div>
-      <header class="border-bottom">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <div class="container">
+      <header className="border-bottom">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <div className="container">
             <Brand />
-            <div class="d-flex justify-content-end" id="navbar-menu">
-              <div class="navbar-nav">
+            <div className="d-flex justify-content-end" id="navbar-menu">
+              <div className="navbar-nav">
                 <NavLinks />
-                <Cart />
+         {/*        <Cart /> */}
+                <PopupCartP />
+      
               </div>
             </div>
           </div>
