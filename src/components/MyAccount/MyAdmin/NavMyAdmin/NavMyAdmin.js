@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import { AuthContext } from "../../../context/auth.context";
+import { AuthContext } from "../../../../common/context/auth.context";
 import { NavLink } from "react-router-dom";
-import "./NavMyAccount.css";
+import "./NavMyAdmin.css";
 
-function NavMyAccount() {
+function NavMyAdmin() {
   const { logOutUser } = useContext(AuthContext);
   return (
     <div className="border-bottom customer-menu">
@@ -26,7 +26,7 @@ function NavMyAccount() {
               to="/customer/orders"
               className="text-reset text-decoration-none text-uppercase"
             >
-              Orders
+              Manage products
             </NavLink>
           </div>
           <div className="px-3 text-muted">
@@ -36,7 +36,7 @@ function NavMyAccount() {
               to="/customer/address-list"
               className="text-reset text-decoration-none text-uppercase"
             >
-              Addresses
+              Manage categories
             </NavLink>
           </div>
           <div className="px-3 text-muted">
@@ -66,4 +66,4 @@ function NavMyAccount() {
   );
 }
 
-export default NavMyAccount;
+export default NavMyAdmin;

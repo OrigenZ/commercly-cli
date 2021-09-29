@@ -1,41 +1,39 @@
 // src/pages/LoginPage.js
 
-import { useState, useContext } from 'react'
-import { Link } from 'react-router-dom'
-import { AuthContext } from '../../context/auth.context'
-import axios from 'axios'
-
-const API_URL = 'http://localhost:5005'
+import { useState, useContext } from "react";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../../common/context/auth.context";
+import axios from "../../common/http/index";
 
 function LoginPage(props) {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [errorMessage, setErrorMessage] = useState(undefined)
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState(undefined);
 
-  const { logInUser } = useContext(AuthContext)
+  const { logInUser } = useContext(AuthContext);
 
-  const handleEmail = (e) => setEmail(e.target.value)
-  const handlePassword = (e) => setPassword(e.target.value)
+  const handleEmail = (e) => setEmail(e.target.value);
+  const handlePassword = (e) => setPassword(e.target.value);
 
   const handleLoginSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    const requestBody = { email, password }
+    const requestBody = { email, password };
 
     axios
-      .post(`${API_URL}/auth/login`, requestBody)
+      .post(`/auth/login`, requestBody)
       .then((response) => {
-        console.log('JWT token', response.data.authToken)
+        console.log("JWT token", response.data.authToken);
 
-        const token = response.data.authToken
-        logInUser(token)
-        props.history.push('/customer') // TODO: redirect dashboard customer/admin
+        const token = response.data.authToken;
+        logInUser(token);
+        props.history.push("/customer"); // TODO: redirect dashboard customer/admin
       })
       .catch((error) => {
-        const errorDescription = error.response.data.message
-        setErrorMessage(errorDescription)
-      })
-  }
+        const errorDescription = error.response.data.message;
+        setErrorMessage(errorDescription);
+      });
+  };
 
   return (
     <div className="LoginPage">
@@ -58,9 +56,9 @@ function LoginPage(props) {
       {errorMessage && <p className="error-message">{errorMessage}</p>}
 
       <p>Don't have an account yet?</p>
-      <Link to={'/signup'}> Sign Up</Link>
+      <Link to={"/signup"}> Sign Up</Link>
     </div>
-  )
+  );
 }
 
-export default LoginPage
+export default LoginPage;
