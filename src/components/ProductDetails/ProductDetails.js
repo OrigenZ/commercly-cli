@@ -4,7 +4,7 @@ import { useState, useEffect, useContext } from "react";
 import { CartContext } from "../../common/context/cart.context";
 import { useParams } from "react-router";
 
-import axios from "../../common/http/index";
+import axiosInstance from "../../common/http/index";
 
 function ProductDetails(props) {
   const [products, setProducts] = useState([]);
@@ -20,8 +20,8 @@ function ProductDetails(props) {
   useEffect(() => {
     // If the token exists in the localStorage
 
-    axios
-      .get(`/products/${id}`, {
+    axiosInstance
+      .get(`/api/products/${id}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
