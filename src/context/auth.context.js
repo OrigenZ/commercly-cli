@@ -9,6 +9,7 @@ function AuthProviderWrapper(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const [user, setUser] = useState(null)
+  const [count, setCount] = useState(0)
 
   const verifyStoredToken = () => {
     // Get the stored token from the localStorage
@@ -60,7 +61,7 @@ function AuthProviderWrapper(props) {
   }, [])
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, isLoading, user, logInUser, logOutUser }}>
+    <AuthContext.Provider value={{ isLoggedIn, isLoading, user, logInUser, logOutUser, count, setCount }}>
       {props.children}
     </AuthContext.Provider>
   )

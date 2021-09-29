@@ -9,14 +9,17 @@ import './index.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 import Layout from './components/Layout/Layout'
+import { CartProviderWrapper } from './context/cart.context'
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
       <AuthProviderWrapper>
-        <Layout>
-          <App />
-        </Layout>
+        <CartProviderWrapper>
+          <Layout>
+            <App />
+          </Layout>
+        </CartProviderWrapper>
       </AuthProviderWrapper>
     </Router>
   </React.StrictMode>,

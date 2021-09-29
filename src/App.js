@@ -31,7 +31,8 @@ function App() {
         <Route
           exact
           path="/products/:id"
-          render={(routeProps) => <ProductDetailPage {...routeProps} />}
+          component={ProductDetailPage}
+   
         />
         <Route
           exact
