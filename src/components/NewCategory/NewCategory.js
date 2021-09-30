@@ -16,8 +16,7 @@ const NewCategory = () => {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
-        console.log("response created category", response);
-        //console.log('his', props.history)
+        e.target.reset();
       })
       .catch((error) => {
         const errorDescription = error.response.data.message;

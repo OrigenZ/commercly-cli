@@ -5,7 +5,6 @@ import "./Dashboard.css";
 
 function Dashboard() {
   const { user, logOutUser } = useContext(AuthContext);
-  console.log("user", user);
   return (
     <div>
       <div className="dashboard-wrapper text-muted d-flex justify-content-center">
@@ -23,7 +22,7 @@ function Dashboard() {
             <a href="/customer/orders">recent orders</a>, manage your{" "}
             <a href="/customer/address-list">shipping and billing addresses</a>,
             and{" "}
-            <a href="customer/account-details">
+            <a href="/account-details">
               edit your password and account details
             </a>
             .

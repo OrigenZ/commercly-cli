@@ -11,19 +11,15 @@ function ProductList() {
   const storedToken = localStorage.getItem("authToken");
 
   useEffect(() => {
-    console.log("user", user);
     // If the token exists in the localStorage
     if (storedToken) {
-      console.log("token", storedToken);
       axiosInstance
         .get(`/api/products`, {
           headers: { Authorization: `Bearer ${storedToken}` },
         })
         .then((response) => {
-          console.log(response);
           setProducts(response.data.products);
           // setCategories(response.categories)
-          console.log("response", response);
         })
         .catch((error) => {
           const errorDescription = error.response.data.message;
