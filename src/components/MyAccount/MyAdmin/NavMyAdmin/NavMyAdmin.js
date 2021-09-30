@@ -13,7 +13,7 @@ function NavMyAdmin() {
             <NavLink
               exact
               activeClassName="active"
-              to="/customer"
+              to="/admin/dashboard"
               className="text-reset text-decoration-none text-uppercase"
             >
               Dashboard
@@ -23,7 +23,7 @@ function NavMyAdmin() {
             <NavLink
               exact
               activeClassName="active"
-              to="/customer/orders"
+              to="/admin/products"
               className="text-reset text-decoration-none text-uppercase"
             >
               Manage products
@@ -33,7 +33,7 @@ function NavMyAdmin() {
             <NavLink
               exact
               activeClassName="active"
-              to="/customer/address-list"
+              to="/admin/categories"
               className="text-reset text-decoration-none text-uppercase"
             >
               Manage categories
@@ -43,7 +43,7 @@ function NavMyAdmin() {
             <NavLink
               exact
               activeClassName="active"
-              to="/customer/account-details"
+              to="/admin/account-details"
               className="text-reset text-decoration-none text-uppercase"
             >
               Account details
