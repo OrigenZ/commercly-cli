@@ -12,14 +12,13 @@ function ProductDetails(props) {
   const { count, setCount } = useContext(CartContext);
 
   // Get the token from the localStorage
-  const storedToken = localStorage.getItem("authToken");
   // Send the token through the request "Authorization" Headers
   const { id } = useParams();
   //console.log('id',id)
-
+  
   useEffect(() => {
+    const storedToken = localStorage.getItem("authToken");
     // If the token exists in the localStorage
-
     axiosInstance
       .get(`/api/products/${id}`, {
         headers: { Authorization: `Bearer ${storedToken}` },

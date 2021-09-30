@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../../../../common/context/auth.context";
 import NewProduct from "../../../NewProduct/NewProduct";
+import NewCategory from "../../../NewCategory/NewCategory";
 
 import "./Dashboard.css";
 
@@ -12,6 +13,7 @@ function Dashboard() {
       <div className="dashboard-wrapper text-muted d-flex justify-content-center">
         <div className="d-flex flex-column justify-content-center align-items-center col-sm-12 col-md-8 col-lg-10">
           <NewProduct /> {/* TODO: cambiarlo de lugar */}
+          <NewCategory /> {/* TODO: cambiarlo de lugar */}
           <p>
             Hello <strong>{user.username}</strong> (not{" "}
             <strong>{user.username}</strong>?
