@@ -6,7 +6,6 @@ function PrivateRoute(props) {
   const { to, exact, component: Component, ...restProps } = props;
   const { isLoggedIn, isLoading } = useContext(AuthContext);
 
-  console.log(props);
   // If the authentication is still loading
   if (isLoading) return <p>Loading ...</p>;
 

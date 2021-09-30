@@ -12,10 +12,10 @@ const NewProduct = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [categories, setCategories] = useState([]);
 
+
   const history = useHistory();
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(name, price, brand, description, category, image);
     const body = new FormData();
     const storedToken = localStorage.getItem("authToken");
 
@@ -31,8 +31,6 @@ const NewProduct = () => {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
-        console.log("response created product", response);
-        //console.log('his', props.history)
         e.target.reset();
         history.push("/shop");
       })
@@ -44,19 +42,25 @@ const NewProduct = () => {
 
   useEffect(() => {
     const storedToken = localStorage.getItem("authToken");
-    axiosInstance
-      .get("/api/categories",
-      {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      })
-      .then((response) => {
-        setCategories(response.data);
-      })
-      .catch((error) => {
-        const errorDescription = error.response.data.message;
-        setErrorMessage(errorDescription);
-      });
-  }, [categories]);
+
+    const getCategories = ()=>{
+
+      axiosInstance
+        .get("/api/categories", {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        })
+        .then((response) => {
+          setCategories(response.data);
+          setCategory(response.data[0]._id);
+        })
+        .catch((error) => {
+          const errorDescription = error.response.data.message;
+          setErrorMessage(errorDescription);
+        });
+    }
+    getCategories()
+
+  }, []);
 
   return (
     <div>
@@ -112,7 +116,6 @@ const NewProduct = () => {
                 >
                   {categories.map((category) => (
                     <option key={category._id} value={category._id}>
-                      {" "}
                       {category.name}
                     </option>
                   ))}

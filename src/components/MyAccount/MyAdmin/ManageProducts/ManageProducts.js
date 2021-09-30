@@ -1,11 +1,19 @@
-import ProductsListAdmin from '../../../Shop/ProductsListAdmin/ProductsListAdmin'
+/* import CategoriesFilter from "../../../CategoriesFilter/CategoriesFilter"; */
+import CategoriesFilter from "../../../CategoriesFilter/CategoriesFilter";
+import NewProduct from "../../../NewProduct/NewProduct";
+import ProductsListAdmin from "./ProductsListAdmin/ProductsListAdmin";
 
 function ManageProducts() {
-    //console.log('user', user)
-    return(
-        <div className='section'>
-  <ProductsListAdmin />
-        </div>
+  return (
+         <div className="row">
+      <div className='col-12 col-md-3'>
+            <CategoriesFilter />
+      </div> 
+      <div className='col-12 col-md-9'>
+            <ProductsListAdmin />
+      </div>
+    </div> 
+
   );
 }
 

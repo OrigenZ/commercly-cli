@@ -53,8 +53,11 @@ function AuthProviderWrapper(props) {
     setUser(null);
   };
 
+  const updateUser = (user) => {
+    setUser(user)
+  }
+
   useEffect(() => {
-    // to be updated in next step
     verifyStoredToken();
   }, []);
 
@@ -64,6 +67,7 @@ function AuthProviderWrapper(props) {
         isLoggedIn,
         isLoading,
         user,
+        updateUser,
         logInUser,
         logOutUser,
         count,
