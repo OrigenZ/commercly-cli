@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import axiosInstance from '../../common/http'
 
+import './CategoriesFilter.css'
 
 const CategoriesFilter = () => {
   const [categories, setCategories] = useState([]);
@@ -31,8 +32,8 @@ const CategoriesFilter = () => {
 
         <div className="filters-wrapper">
         {categories.map((category)=> 
-            <div key={category._id} className="filter-item">
-            <Link className="product-filter" 
+            <div key={category._id}>
+            <Link className="list-cat text-muted" 
             to={`/api/products/filter/${category._id}`}>
               {category.name}
             </Link>

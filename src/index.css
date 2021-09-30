@@ -37,7 +37,9 @@ a {
 }
 
 .section{
-  min-height: calc(100vh - 456px) 
+  min-height: calc(100vh - 456px) ;
+  padding-top: 3em;
+  padding-bottom: 1em;
 }
 
 header {
@@ -53,4 +55,5 @@ header {
   padding: 1rem 1rem;
   text-transform: uppercase;
 }
+
 
