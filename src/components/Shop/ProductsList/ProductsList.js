@@ -1,14 +1,12 @@
-import { useState, useContext, useEffect } from "react";
-import { AuthContext } from "../../../common/context/auth.context";
-import { Link } from "react-router-dom";
-import axiosInstance from "../../../common/http/index";
+import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import axiosInstance from '../../../common/http/index'
 
 function ProductList() {
-  const { user } = useContext(AuthContext);
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([])
   // const [categories, setCategories] = useState([]);
-  const [errorMessage, setErrorMessage] = useState("");
-  const storedToken = localStorage.getItem("authToken");
+  const [errorMessage, setErrorMessage] = useState('')
+  const storedToken = localStorage.getItem('authToken')
 
   useEffect(() => {
     // If the token exists in the localStorage
@@ -18,15 +16,15 @@ function ProductList() {
           headers: { Authorization: `Bearer ${storedToken}` },
         })
         .then((response) => {
-          setProducts(response.data.products);
+          setProducts(response.data.products)
           // setCategories(response.categories)
         })
         .catch((error) => {
-          const errorDescription = error.response.data.message;
-          setErrorMessage(errorDescription);
-        });
+          const errorDescription = error.response.data.message
+          setErrorMessage(errorDescription)
+        })
     }
-  }, []);
+  }, [])
   return (
     <div className="d-flex flex-row justify-content-between">
       <div id="filter-container col-12 col-md-4">
@@ -80,12 +78,12 @@ function ProductList() {
                     </div>
                   </Link>
                 </div>
-              );
+              )
             })}
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default ProductList;
+export default ProductList
