@@ -1,7 +1,10 @@
 import { useState, useContext, useEffect } from "react";
-import { AuthContext } from "../../../common/context/auth.context";
 import { Link } from "react-router-dom";
+import { Card } from "react-bootstrap";
+import { AuthContext } from "../../../common/context/auth.context";
 import axiosInstance from "../../../common/http/index";
+
+import './ProductList.css'
 
 function ProductList() {
   const { user } = useContext(AuthContext);
@@ -30,27 +33,36 @@ function ProductList() {
       {products.length &&
         products.map((product) => {
           return (
-            <div
-              className="product col-sm-12 col-md-6 col-lg-3 card"
+            <Card 
+              id="card-products"
+              className="col-sm-12 col-md-6 col-lg-3"
               key={product._id}
             >
               <Link to={`/products/${product._id}`} className="row list">
-                <img
+              <div className="img-container">
+                
+                <Card.Img
+                  variant="top"
                   src={product.imageUrl}
-                  className="w-100 card-img-top"
+                  className="w-100"
                   alt={product.name}
                 />
-                <div className="card-body">
-                  <h3 className="card-text text-center">{product.name}</h3>
-                  <p className="description card-text text-center">
-                    {product.brand}
-                  </p>
-                  <p className="price card-text text-center">
-                    {product.price} €
-                  </p>
-                </div>
+              </div>
+                <Card.Body>
+                  <Card.Title className="text-center">
+                    {product.name}
+                  </Card.Title>
+                  <Card.Text>
+                    <p className="text-center">
+                      {product.brand}
+                    </p>
+                    <p className="text-center">
+                      {product.price} €
+                    </p>
+                  </Card.Text>
+                </Card.Body>
               </Link>
-            </div>
+            </Card>
           );
         })}
     </div>
