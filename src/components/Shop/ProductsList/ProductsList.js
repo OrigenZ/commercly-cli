@@ -4,7 +4,6 @@ import axiosInstance from '../../../common/http/index'
 
 function ProductList() {
   const [products, setProducts] = useState([])
-  // const [categories, setCategories] = useState([]);
   const [errorMessage, setErrorMessage] = useState('')
   const storedToken = localStorage.getItem('authToken')
 
@@ -17,7 +16,6 @@ function ProductList() {
         })
         .then((response) => {
           setProducts(response.data.products)
-          // setCategories(response.categories)
         })
         .catch((error) => {
           const errorDescription = error.response.data.message
@@ -26,62 +24,33 @@ function ProductList() {
     }
   }, [])
   return (
-    <div className="d-flex flex-row justify-content-between">
-      <div id="filter-container col-12 col-md-4">
-        <span className="filter-header text-uppercase border-bottom mb-2 d-inline-block">
-          Filter by category
-        </span>
-
-        <div className="filters-wrapper">
-          {/* Descomentar lo de abajo y arreglar*/}
-          {/* {categories.map(category => {
-              return (
-                <div className="filter-item">
-                  <a className="product-filter" href="/shop/filter/{{id}}">
-                    {category.name}
-                  </a>
-                </div>)
-            })}  */}
-          {/* Borrar lo de abajo */}
-          <div className="filter-item">
-            <a className="product-filter" href="/shop/filter/{{id}}">
-              Categories Names
-            </a>
-          </div>
-          {/* Borrar lo de arriba */}
-        </div>
-      </div>
-      <div className="products-container col-12 col-md-8">
-        <div className="products d-flex row justify-content-between gy-4 gx-5">
-          {/* Descomentar lo de abajo y arreglar*/}
-          {products.length &&
-            products.map((product) => {
-              return (
-                <div
-                  className="product col-sm-12 col-md-6 col-lg-3 card"
-                  key={product._id}
-                >
-                  <Link to={`/products/${product._id}`} className="row list">
-                    <img
-                      src={product.imageUrl}
-                      className="w-100 card-img-top"
-                      alt={product.name}
-                    />
-                    <div className="card-body">
-                      <h3 className="card-text text-center">{product.name}</h3>
-                      <p className="description card-text text-center">
-                        {product.brand}
-                      </p>
-                      <p className="price card-text text-center">
-                        {product.price} €
-                      </p>
-                    </div>
-                  </Link>
+    <div className="products d-flex row justify-content-start ">
+      {products.length &&
+        products.map((product) => {
+          return (
+            <div
+              className="product col-sm-12 col-md-6 col-lg-3 card"
+              key={product._id}
+            >
+              <Link to={`/products/${product._id}`} className="row list">
+                <img
+                  src={product.imageUrl}
+                  className="w-100 card-img-top"
+                  alt={product.name}
+                />
+                <div className="card-body">
+                  <h3 className="card-text text-center">{product.name}</h3>
+                  <p className="description card-text text-center">
+                    {product.brand}
+                  </p>
+                  <p className="price card-text text-center">
+                    {product.price} €
+                  </p>
                 </div>
-              )
-            })}
-        </div>
-      </div>
+              </Link>
+            </div>
+          )
+        })}
     </div>
   )
 }
