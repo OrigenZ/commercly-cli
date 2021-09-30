@@ -43,7 +43,17 @@ function NavMyAdmin() {
             <NavLink
               exact
               activeClassName="active"
-              to="/admin/account-details"
+              to="/admin/users"
+              className="text-reset text-decoration-none text-uppercase"
+            >
+              Manage users
+            </NavLink>
+          </div>
+          <div className="px-3 text-muted">
+            <NavLink
+              exact
+              activeClassName="active"
+              to="/account-details"
               className="text-reset text-decoration-none text-uppercase"
             >
               Account details

@@ -14,8 +14,7 @@ function ProductDetails(props) {
   // Get the token from the localStorage
   // Send the token through the request "Authorization" Headers
   const { id } = useParams();
-  //console.log('id',id)
-  
+
   useEffect(() => {
     const storedToken = localStorage.getItem("authToken");
     // If the token exists in the localStorage
@@ -26,7 +25,6 @@ function ProductDetails(props) {
       .then((response) => {
         setProducts(response.data);
         // setCategories(response.categories)
-        console.log("response", response);
       })
       .catch((error) => {
         const errorDescription = error.response.data.message;

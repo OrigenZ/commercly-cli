@@ -12,11 +12,11 @@ import AnonRoute from './components/AnonRoute/AnonRoute'
 import PrivateRoute from './components/PrivateRoute/PrivateRoute'
 import MyAccountPage from './pages/MyAccount/MyAccountPage'
 import CartPage from './pages/CartPage/CartPage'
-import ProductEdit from './components/Shop/ProductsListAdmin/ProductEdit'
+import ProductEdit from './components/MyAccount/MyAdmin/ManageProducts/ProductsListAdmin/ProductEdit/ProductEdit'
 import DashboardAdmin from './components/MyAccount/MyAdmin/Dashboard/DashboardAdmin'
 import ManageProducts from './components/MyAccount/MyAdmin/ManageProducts/ManageProducts'
 import ManageCategories from './components/MyAccount/MyAdmin/ManageCategories/ManageCategories'
-import AccountDetailsAdmin from './components/MyAccount/MyAdmin/AccountDetails/AccountDetailsAdmin'
+import AccountDetailsAdmin from './components/MyAccount/MyAdmin/ManageUsers/ManageUsers'
 
 function App() {
   return (
@@ -69,7 +69,7 @@ function App() {
         />
         <PrivateRoute
           exact
-          path="/customer/account-details"
+          path="/account-details"
           component={MyAccountPage}
         />
         <PrivateRoute
@@ -79,24 +79,30 @@ function App() {
         />
          <PrivateRoute
             exact
-            path="/admin/dashboard" //TODO: Change path a /admin
+            path="/admin/dashboard"
             component={ MyAccountPage }
           />
           <PrivateRoute
             exact
-            path="/admin/products" //TODO: Change path a /products
+            path="/admin/products" 
             component={MyAccountPage}
           />
           <PrivateRoute
             exact
-            path="/admin/categories" //TODO: Change path a /categories
+            path="/admin/product/create"
             component={MyAccountPage}
           />
           <PrivateRoute
             exact
-            path="/admin/account-details" //TODO: Change path a
+            path="/admin/categories" 
             component={MyAccountPage}
           />
+          <PrivateRoute
+            exact
+            path="/admin/users" 
+            component={MyAccountPage}
+          />
+   
 
 
         <AnonRoute exact path="/signup" component={SignupPage} />

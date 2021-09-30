@@ -10,18 +10,15 @@ const CategoriesFilter = () => {
       const storedToken = localStorage.getItem("authToken");
     // If the token exists in the localStorage
     if (storedToken) {
-      console.log("token", storedToken);
       axiosInstance
         .get(`/api/categories`, {
           headers: { Authorization: `Bearer ${storedToken}` },
         })
         .then((response) => {
           setCategories(response.data)
-          console.log("response", response);
         })
         .catch((error) => {
           const errorDescription = error.response.data.message;
-          console.log(errorDescription);
         });
     }
   }, []);

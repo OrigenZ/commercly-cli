@@ -1,9 +1,8 @@
 import { useContext } from "react";
 import { AuthContext } from "../../../../common/context/auth.context";
 
-function AccountDetails() {
+function ManageUsers() {
   const { user } = useContext(AuthContext);
-  //console.log('user', user)
   return (
     <div className="section">
       <div className="dashboard-wrapper text-muted d-flex justify-content-center">
@@ -18,4 +17,4 @@ function AccountDetails() {
   );
 }
 
-export default AccountDetails;
+export default ManageUsers;

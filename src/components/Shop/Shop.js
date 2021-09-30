@@ -1,6 +1,6 @@
 import ProductList from './ProductsList/ProductsList';
 // import ProductsListAdmin from './ProductsListAdmin/ProductsListAdmin';
-import SearchProduct from './SearchProduct/SearchProduct'
+import SearchProduct from '../SearchProduct/SearchProduct'
 
 function Shop() {
     return (
