@@ -1,6 +1,6 @@
 import { useState } from "react";
-
 import { Link } from "react-router-dom";
+import { Form, Button } from "react-bootstrap";
 
 import axiosInstance from "../../common/http/index";
 
@@ -32,31 +32,41 @@ function SignupPage(props) {
   };
 
   return (
-    <div className="SignupPage">
-      <h1>Sign Up</h1>
+    <div className="section d-flex flex-column justify-content-center align-items-center ">
+      <div className="col-sm-12 col-md-6 col-lg-4 text-muted">
+        <h1>Sign Up</h1>
 
-      <form onSubmit={handleSignupSubmit}>
-        <label>Email:</label>
+        <Form onSubmit={handleSignupSubmit}>
+          <Form.Group className="mb-3">
+            <Form.Label>Email:</Form.Label>
+            <Form.Control
+              type="text"
+              name="email"
+              value={email}
+              onChange={handleEmail}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Password:</Form.Label>
+            <Form.Control
+              type="password"
+              name="password"
+              value={password}
+              onChange={handlePassword}
+            />
+          </Form.Group>
+          <Button variant="secondary" type="submit">
+            Sign Up
+          </Button>
+        </Form>
 
-        <input type="text" name="email" value={email} onChange={handleEmail} />
-
-        <label>Password:</label>
-
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={handlePassword}
-        />
-
-        <button type="submit">Sign Up</button>
-      </form>
-
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
-
-      <p>Already have account?</p>
-
-      <Link to={"/login"}> Login</Link>
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
+        <div className="mt-3">
+          <p>
+            Already have account?<Link to={"/login"}> Login</Link>
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
