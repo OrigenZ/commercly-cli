@@ -75,7 +75,7 @@ function ProductsListAdmin() {
                     </p>
                     <div className="mb-2">
                       <Link
-                        to={`/product/edit/${product._id}`} //TODO  pasar a App.js
+                        to={`/admin/product/edit/${product._id}`} //TODO  pasar a App.js
                         className="btn btn-outline-info edit-btn w-100"
                       >
                         Edit

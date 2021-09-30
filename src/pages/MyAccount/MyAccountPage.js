@@ -13,6 +13,7 @@ import ManageCategories from "../../components/MyAccount/MyAdmin/ManageCategorie
 import ManageProducts from "../../components/MyAccount/MyAdmin/ManageProducts/ManageProducts";
 import ManageUsers from "../../components/MyAccount/MyAdmin/ManageUsers/ManageUsers";
 import NewProduct from "../../components/NewProduct/NewProduct";
+import EditProduct from "../../components/EditProduct/EditProduct";
 
 function MyAccountPage() {
   const { user } = useContext(AuthContext);
@@ -50,6 +51,11 @@ function MyAccountPage() {
             exact
             path="/admin/products" 
             component={ManageProducts}
+          />
+          <PrivateRoute
+            exact
+            path="/admin/product/edit/:id" 
+            component={EditProduct}
           />
           <PrivateRoute
             exact
