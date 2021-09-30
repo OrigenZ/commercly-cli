@@ -8,7 +8,7 @@ const NewProduct = () => {
   const [brand, setBrand] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [categories, setCategories] = useState([]);
 
@@ -126,7 +126,10 @@ const NewProduct = () => {
                   type="file"
                   name="image"
                   id="image"
-                  onChange={(e) => setImage(e.target.files[0])}
+                  onChange={(e) => {
+                    console.log(e.target.files[0])
+                    setImage(e.target.files[0])
+                  }}
                 />
 
                 <button
