@@ -2,12 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import axiosInstance from '../../common/http'
 
-
 const CategoriesFilter = () => {
-  const [categories, setCategories] = useState([]);
-  
+  const [categories, setCategories] = useState([])
+
   useEffect(() => {
-      const storedToken = localStorage.getItem("authToken");
+    const storedToken = localStorage.getItem('authToken')
     // If the token exists in the localStorage
     if (storedToken) {
       axiosInstance
@@ -17,30 +16,30 @@ const CategoriesFilter = () => {
         .then((response) => {
           setCategories(response.data)
         })
-        .catch((error) => {
-          const errorDescription = error.response.data.message;
-        });
+        .catch((error) => {})
     }
-  }, []);
+  }, [])
 
-    return (
-        <div id="filter-container col-12 col-md-4">
-        <span className="filter-header text-uppercase border-bottom mb-2 d-inline-block">
-          Filter by category
-        </span>
+  return (
+    <div id="filter-container col-12 col-md-4">
+      <span className="filter-header text-uppercase border-bottom mb-2 d-inline-block">
+        Filter by category
+      </span>
 
-        <div className="filters-wrapper">
-        {categories.map((category)=> 
-            <div key={category._id} className="filter-item">
-            <Link className="product-filter" 
-            to={`/api/products/filter/${category._id}`}>
+      <div className="filters-wrapper">
+        {categories.map((category) => (
+          <div key={category._id} className="filter-item">
+            <Link
+              className="product-filter"
+              to={`/api/products/filter/${category._id}`}
+            >
               {category.name}
             </Link>
           </div>
-          )}
-        </div>
+        ))}
       </div>
-    )
+    </div>
+  )
 }
 
 export default CategoriesFilter

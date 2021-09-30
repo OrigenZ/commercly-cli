@@ -1,19 +1,16 @@
-import React from "react";
+import React from 'react'
 
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react'
 
-import { Link } from "react-router-dom";
-// import { AuthContext } from "../../../common/context/auth.context";
-import axiosInstance from "../../../../../common/http/index";
-import CategoriesFilter from "../../../../CategoriesFilter/CategoriesFilter";
+import { Link } from 'react-router-dom'
 
-// import CategoryEdit from "./CategoryEdit";
+import axiosInstance from '../../../../../common/http/index'
 
 function CategoriesListAdmin() {
-  const [categories, setCategories] = useState([]);
-  const [setErrorMessage] = useState(undefined);
+  const [categories, setCategories] = useState([])
+  // const [setErrorMessage] = useState(undefined)
 
-  const storedToken = localStorage.getItem("authToken");
+  const storedToken = localStorage.getItem('authToken')
 
   const handleDelete = (id) => {
     axiosInstance
@@ -21,17 +18,16 @@ function CategoriesListAdmin() {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
-        const newCategories = categories.filter((category) => category._id !== id);
-        setCategories([...newCategories]);
+        const newCategories = categories.filter(
+          (category) => category._id !== id,
+        )
+        setCategories([...newCategories])
       })
-      .catch((error) => {
-        const errorDescription = error.response.data.message;
-        setErrorMessage(errorDescription);
-      });
-  };
+      .catch((err) => {})
+  }
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("authToken");
+    const storedToken = localStorage.getItem('authToken')
     // If the token exists in the localStorage
     if (storedToken) {
       axiosInstance
@@ -39,13 +35,11 @@ function CategoriesListAdmin() {
           headers: { Authorization: `Bearer ${storedToken}` },
         })
         .then((response) => {
-          setCategories(response.data);
+          setCategories(response.data)
         })
-        .catch((error) => {
-          const errorDescription = error.response.data.message;
-        });
+        .catch((err) => {})
     }
-  }, []);
+  }, [])
 
   return (
     <>
@@ -56,8 +50,7 @@ function CategoriesListAdmin() {
 
         <div className="row">
           {categories.map((category) => (
-        <div className="col-3">
-            <div key={category._id} className="filter-item">
+            <div key={category._id} className="filter-item col-3">
               <div
                 className="product-filter"
                 to={`/api/products/filter/${category._id}`}
@@ -82,9 +75,8 @@ function CategoriesListAdmin() {
                 </div>
               </div>
             </div>
-        </div>
           ))}
-      </div>
+        </div>
       </div>
       {/* <div className="mb-2">
                   <Link
@@ -102,7 +94,7 @@ function CategoriesListAdmin() {
                   </div>
               </div> */}
     </>
-  );
+  )
 }
 
-export default CategoriesListAdmin;
+export default CategoriesListAdmin

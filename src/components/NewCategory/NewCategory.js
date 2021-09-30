@@ -1,28 +1,28 @@
-import React, { useState } from "react";
-import axiosInstance from "../../common/http/index";
+import React, { useState } from 'react'
+import axiosInstance from '../../common/http/index'
 
 const NewCategory = () => {
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [name, setName] = useState('')
+  const [description, setDescription] = useState('')
+  // const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    const body = { name, description };
-    const storedToken = localStorage.getItem("authToken");
-    
+    e.preventDefault()
+    const body = { name, description }
+    const storedToken = localStorage.getItem('authToken')
+
     axiosInstance
-      .post("/api/categories/create", body, {
+      .post('/api/categories/create', body, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
-        e.target.reset();
+        e.target.reset()
       })
       .catch((error) => {
-        const errorDescription = error.response.data.message;
-        setErrorMessage(errorDescription);
-      });
-  };
+        // const errorDescription = error.response.data.message;
+        // setErrorMessage(errorDescription);
+      })
+  }
 
   return (
     <section
@@ -30,7 +30,9 @@ const NewCategory = () => {
       id="create-category"
     >
       <div className="create-category-wrapper">
-        <h2 className="text-center text-muted text-uppercase">Create category</h2>
+        <h2 className="text-center text-muted text-uppercase">
+          Create category
+        </h2>
 
         <div className="create-category-container">
           <form onSubmit={handleSubmit}>
@@ -63,7 +65,7 @@ const NewCategory = () => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default NewCategory;
+export default NewCategory

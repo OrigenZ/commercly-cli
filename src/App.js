@@ -1,18 +1,18 @@
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route } from 'react-router-dom'
 
 // import './App.css';
 
-import HomePage from "./pages/HomePage/HomePage";
-import ShopPage from "./pages/ShopPage/ShopPage";
-import ProductDetailPage from "./pages/ShopPage/ProductDetailPage";
-import AboutUsPage from "./pages/AboutUsPage/AboutUsPage";
-import SignupPage from "./pages/MyAccount/SignupPage";
-import LoginPage from "./pages/MyAccount/LoginPage";
-import AnonRoute from "./components/AnonRoute/AnonRoute";
-import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
-import MyAccountPage from "./pages/MyAccount/MyAccountPage";
-import CartPage from "./pages/CartPage/CartPage";
-import ProductEdit from "./components/MyAccount/MyAdmin/ManageProducts/ProductsListAdmin/ProductEdit/ProductEdit";
+import HomePage from './pages/HomePage/HomePage'
+import ShopPage from './pages/ShopPage/ShopPage'
+import ProductDetailPage from './pages/ShopPage/ProductDetailPage'
+import AboutUsPage from './pages/AboutUsPage/AboutUsPage'
+import SignupPage from './pages/MyAccount/SignupPage'
+import LoginPage from './pages/MyAccount/LoginPage'
+import AnonRoute from './components/AnonRoute/AnonRoute'
+import PrivateRoute from './components/PrivateRoute/PrivateRoute'
+import MyAccountPage from './pages/MyAccount/MyAccountPage'
+import CartPage from './pages/CartPage/CartPage'
+// import ProductEdit from "./components/MyAccount/MyAdmin/ManageProducts/ProductsListAdmin/ProductEdit/ProductEdit";
 
 function App() {
   return (
@@ -68,7 +68,7 @@ function App() {
         <AnonRoute exact path="/login" component={LoginPage} />
       </Switch>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
