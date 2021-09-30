@@ -1,66 +1,60 @@
-import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
-import axiosInstance from "../../common/http/index";
+import React, { useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
+import axiosInstance from '../../common/http/index'
 
 const NewProduct = () => {
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState(0);
-  const [brand, setBrand] = useState("");
-  const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
-  const [image, setImage] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
-  const [categories, setCategories] = useState([]);
+  const [name, setName] = useState('')
+  const [price, setPrice] = useState(0)
+  const [brand, setBrand] = useState('')
+  const [description, setDescription] = useState('')
+  const [category, setCategory] = useState('')
+  const [image, setImage] = useState('')
+  // const [errorMessage, setErrorMessage] = useState("");
+  const [categories, setCategories] = useState([])
 
-
-  const history = useHistory();
+  const history = useHistory()
   const handleSubmit = (e) => {
-    e.preventDefault();
-    const body = new FormData();
-    const storedToken = localStorage.getItem("authToken");
+    e.preventDefault()
+    const body = new FormData()
+    const storedToken = localStorage.getItem('authToken')
 
-    body.append("name", name);
-    body.append("price", price);
-    body.append("brand", brand);
-    body.append("description", description);
-    body.append("category", category);
-    body.append("imageUrl", image);
+    body.append('name', name)
+    body.append('price', price)
+    body.append('brand', brand)
+    body.append('description', description)
+    body.append('category', category)
+    body.append('imageUrl', image)
 
     axiosInstance
       .post(`/api/products/create`, body, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
-        e.target.reset();
-        history.push("/shop");
+        e.target.reset()
+        history.push('/shop')
       })
-      .catch((error) => {
-        const errorDescription = error.response.data.message;
-        setErrorMessage(errorDescription);
-      });
-  };
+      .catch((err) => {
+        // const errorDescription = error.response.data.message;
+        // setErrorMessage(errorDescription);
+      })
+  }
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("authToken");
+    const storedToken = localStorage.getItem('authToken')
 
-    const getCategories = ()=>{
-
+    const getCategories = () => {
       axiosInstance
-        .get("/api/categories", {
+        .get('/api/categories', {
           headers: { Authorization: `Bearer ${storedToken}` },
         })
         .then((response) => {
-          setCategories(response.data);
-          setCategory(response.data[0]._id);
+          setCategories(response.data)
+          setCategory(response.data[0]._id)
         })
-        .catch((error) => {
-          const errorDescription = error.response.data.message;
-          setErrorMessage(errorDescription);
-        });
+        .catch((err) => {})
     }
     getCategories()
-
-  }, []);
+  }, [])
 
   return (
     <div>
@@ -144,7 +138,7 @@ const NewProduct = () => {
         </div>
       </section>
     </div>
-  );
-};
+  )
+}
 
-export default NewProduct;
+export default NewProduct

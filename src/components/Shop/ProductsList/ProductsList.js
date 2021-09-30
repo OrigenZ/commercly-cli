@@ -4,7 +4,7 @@ import axiosInstance from '../../../common/http/index'
 
 function ProductList() {
   const [products, setProducts] = useState([])
-  const [errorMessage, setErrorMessage] = useState('')
+  // const [errorMessage, setErrorMessage] = useState('')
   const storedToken = localStorage.getItem('authToken')
 
   useEffect(() => {
@@ -17,11 +17,9 @@ function ProductList() {
         .then((response) => {
           setProducts(response.data.products)
         })
-        .catch((error) => {
-          const errorDescription = error.response.data.message
-          setErrorMessage(errorDescription)
-        })
+        .catch((error) => {})
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   return (
     <div className="products d-flex row justify-content-start ">

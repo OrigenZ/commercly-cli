@@ -1,36 +1,37 @@
-import React from "react";
-import { useState, useEffect, useContext } from "react";
+import React from 'react'
+import { useState, useEffect, useContext } from 'react'
 // import { AuthContext } from '../../common/context/auth.context';
-import { CartContext } from "../../common/context/cart.context";
-import { useParams } from "react-router";
+import { CartContext } from '../../common/context/cart.context'
+import { useParams } from 'react-router'
 
-import axiosInstance from "../../common/http/index";
+import axiosInstance from '../../common/http/index'
 
 function ProductDetails(props) {
-  const [products, setProducts] = useState([]);
-  const [setErrorMessage] = useState(undefined);
-  const { count, setCount } = useContext(CartContext);
+  const [products, setProducts] = useState([])
+  const [setErrorMessage] = useState(undefined)
+  const { count, setCount } = useContext(CartContext)
 
   // Get the token from the localStorage
   // Send the token through the request "Authorization" Headers
-  const { id } = useParams();
+  const { id } = useParams()
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("authToken");
+    const storedToken = localStorage.getItem('authToken')
     // If the token exists in the localStorage
     axiosInstance
       .get(`/api/products/${id}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
-        setProducts(response.data);
+        setProducts(response.data)
         // setCategories(response.categories)
       })
       .catch((error) => {
-        const errorDescription = error.response.data.message;
-        setErrorMessage(errorDescription);
-      });
-  }, []);
+        const errorDescription = error.response.data.message
+        setErrorMessage(errorDescription)
+      })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <div>
@@ -80,7 +81,7 @@ function ProductDetails(props) {
         </div>
       </section>
     </div>
-  );
+  )
 }
 
-export default ProductDetails;
+export default ProductDetails

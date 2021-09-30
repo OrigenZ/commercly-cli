@@ -8,32 +8,34 @@ function AuthProviderWrapper(props) {
   const [isLoading, setIsLoading] = useState(true)
   const [user, setUser] = useState(null)
 
-  const verifyStoredToken = () => {
-    // Get the stored token from the localStorage
+  const verifyStoredToken = async () => {
     const storedToken = localStorage.getItem('authToken')
 
-    // If the token exists in the localStorage
     if (storedToken) {
-      // We must send the JWT token in the request's "Authorization" Headers
-      axiosInstance
-        .get(`/auth/verify`, {
+      try {
+        const jwtPayload = await axiosInstance.get(`/auth/verify`, {
           headers: { Authorization: `Bearer ${storedToken}` },
         })
-        .then((response) => {
-          // If the server verifies that JWT token is valid
-          const user = response.data
-          setUser(user)
-          setIsLoggedIn(true)
-          setIsLoading(false)
-        })
-        .catch((error) => {
-          // If the server sends an error response (invalid token)
-          setIsLoggedIn(false)
-          setUser(null)
-          setIsLoading(false)
-        })
+
+        console.log(jwtPayload.data._id)
+
+        const fetchUser = await axiosInstance.get(
+          `/api/users/${jwtPayload.data._id}`,
+          {
+            headers: { Authorization: `Bearer ${storedToken}` },
+          },
+        )
+
+        console.log(fetchUser.data)
+        setUser(fetchUser.data)
+        setIsLoggedIn(true)
+        setIsLoading(false)
+      } catch (err) {
+        setIsLoggedIn(false)
+        setUser(null)
+        setIsLoading(false)
+      }
     } else {
-      // If the token is not available
       setIsLoading(false)
     }
   }
@@ -44,10 +46,8 @@ function AuthProviderWrapper(props) {
   }
 
   const logOutUser = () => {
-    // Upon logout, remove the token from the localStorage
     localStorage.removeItem('authToken')
 
-    // Update the state variables
     setIsLoggedIn(false)
     setUser(null)
   }

@@ -13,7 +13,7 @@ function AccountDetails() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [rePassword, setRePassword] = useState('')
-  const [errorMessage, setErrorMessage] = useState('')
+  // const [errorMessage, setErrorMessage] = useState('')
 
   const storedToken = localStorage.getItem('authToken')
 
@@ -26,9 +26,13 @@ function AccountDetails() {
         .patch(`/api/users/${user._id}`, body, {
           headers: { Authorization: `Bearer ${storedToken}` },
         })
+        .then((response) => {
+          setUser(response.data.user)
+          console.log(user)
+        })
         .catch((error) => {
-          const errorDescription = error.response.data.message
-          setErrorMessage(errorDescription)
+          // const errorDescription = error.response.data.message
+          // setErrorMessage(errorDescription)
         })
     } else {
       console.log('passwords do not match')
@@ -48,10 +52,11 @@ function AccountDetails() {
         setEmail(foundUser.email || '')
       })
       .catch((error) => {
-        const errorDescription = error.response.data.message
-        setErrorMessage(errorDescription)
+        // const errorDescription = error.response.data.message
+        // setErrorMessage(errorDescription)
       })
-  }, [storedToken, user._id])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   //console.log('user', user)
   return (
@@ -140,8 +145,3 @@ function AccountDetails() {
 }
 
 export default AccountDetails
-
-// response.data.forEach((category) => {
-//   if (category.products.includes(id))
-//     const productCategory = category;
-// })
