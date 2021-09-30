@@ -1,3 +1,4 @@
+// TODO: Debería mostrar lista de productos, cantidad (editable), eliminar producto y precio
 function ShoppingCart(){
     return(
         <div className='section container text-center'>

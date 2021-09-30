@@ -1,7 +1,5 @@
 import { useContext } from "react";
 import { AuthContext } from "../../../../common/context/auth.context";
-import NewProduct from "../../../NewProduct/NewProduct";
-import NewCategory from "../../../NewCategory/NewCategory";
 
 import "./Dashboard.css";
 
