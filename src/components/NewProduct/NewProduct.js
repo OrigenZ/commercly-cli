@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import axiosInstance from "../../common/http/index";
 
 const NewProduct = () => {
@@ -9,13 +10,21 @@ const NewProduct = () => {
   const [category, setCategory] = useState("");
   const [image, setImage] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
+  const [categories, setCategories] = useState([]);
 
+  const history = useHistory();
   const handleSubmit = (e) => {
     e.preventDefault();
     // console.log(name, price, brand, description, category, image);
-
+    const body = new FormData();
     const storedToken = localStorage.getItem("authToken");
-    const body = { name, price, brand, description, category, image };
+
+    body.append("name", name);
+    body.append("price", price);
+    body.append("brand", brand);
+    body.append("description", description);
+    body.append("category", category);
+    body.append("imageUrl", image);
 
     axiosInstance
       .post(`/api/products/create`, body, {
@@ -23,12 +32,31 @@ const NewProduct = () => {
       })
       .then((response) => {
         console.log("response created product", response);
+        //console.log('his', props.history)
+        e.target.reset();
+        history.push("/shop");
       })
       .catch((error) => {
         const errorDescription = error.response.data.message;
         setErrorMessage(errorDescription);
       });
   };
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem("authToken");
+    axiosInstance
+      .get("/api/categories",
+      {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      .then((response) => {
+        setCategories(response.data);
+      })
+      .catch((error) => {
+        const errorDescription = error.response.data.message;
+        setErrorMessage(errorDescription);
+      });
+  }, [categories]);
 
   return (
     <div>
@@ -40,12 +68,7 @@ const NewProduct = () => {
           <h2 className="text-center text-muted text-uppercase">New product</h2>
 
           <div className="create-product-container">
-            <form
-              // method="post"
-              // action="/products/create"
-              // enctype="multipart/form-data"
-              onSubmit={handleSubmit}
-            >
+            <form onSubmit={handleSubmit}>
               <div className="d-flex flex-column">
                 <label htmlFor="name">Name:</label>
                 <input
@@ -87,7 +110,12 @@ const NewProduct = () => {
                   id="category"
                   onChange={(e) => setCategory(e.target.value)}
                 >
-                  <option value="{{id}}">name </option>
+                  {categories.map((category) => (
+                    <option key={category._id} value={category._id}>
+                      {" "}
+                      {category.name}
+                    </option>
+                  ))}
                 </select>
 
                 <label htmlFor="image">Image:</label>
@@ -95,7 +123,7 @@ const NewProduct = () => {
                   type="file"
                   name="image"
                   id="image"
-                  onChange={(e) => setImage(e.target.value)}
+                  onChange={(e) => setImage(e.target.files[0])}
                 />
 
                 <button

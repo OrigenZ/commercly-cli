@@ -12,7 +12,7 @@ import NavMyAdmin from "../../components/MyAccount/MyAdmin/NavMyAdmin/NavMyAdmin
 import DashboardAdmin from "../../components/MyAccount/MyAdmin/Dashboard/DashboardAdmin";
 import ManageCategories from "../../components/MyAccount/MyAdmin/ManageCategories/ManageCategories";
 import ManageProducts from "../../components/MyAccount/MyAdmin/ManageProducts/ManageProducts";
-import AccountDetailsAdmin from "../../components/MyAccount/MyAdmin/AccountDetails/AccountDetails";
+import AccountDetailsAdmin from "../../components/MyAccount/MyAdmin/AccountDetails/AccountDetailsAdmin";
 
 function MyAccountPage() {
   const { user } = useContext(AuthContext);
@@ -22,7 +22,6 @@ function MyAccountPage() {
       <div className="section">
         <section id="user-dashboard" className="container">
           <NavMyAccount />
-          <Switch>
             <PrivateRoute exact path="/customer" component={Dashboard} />
             <PrivateRoute exact path="/customer/orders" component={Orders} />
             <PrivateRoute
@@ -35,7 +34,6 @@ function MyAccountPage() {
               path="/customer/account-details"
               component={AccountDetails}
             />
-          </Switch>
         </section>
       </div>
     );
@@ -44,28 +42,26 @@ function MyAccountPage() {
     <div className="section">
       <section id="user-dashboard" className="container">
         <NavMyAdmin />
-        <Switch>
           <PrivateRoute
             exact
-            path="/customer" //TODO: Change path a /admin
+            path="/admin/dashboard" 
             component={DashboardAdmin}
           />
           <PrivateRoute
             exact
-            path="/customer/orders" //TODO: Change path a /products
+            path="/admin/products" 
             component={ManageProducts}
           />
           <PrivateRoute
             exact
-            path="/customer/address-list" //TODO: Change path a /categories
+            path="/admin/categories" 
             component={ManageCategories}
           />
           <PrivateRoute
             exact
-            path="/customer/account-details" //TODO: Change path a
+            path="/admin/account-details" 
             component={AccountDetailsAdmin}
           />
-        </Switch>
       </section>
     </div>
   );
