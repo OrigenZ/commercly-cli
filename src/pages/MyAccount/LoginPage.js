@@ -23,11 +23,9 @@ function LoginPage(props) {
     axiosInstance
       .post(`/auth/login`, requestBody)
       .then((response) => {
-        console.log("JWT token", response.data.authToken);
-
         const token = response.data.authToken;
         logInUser(token);
-        props.history.push("/customer"); // TODO: redirect dashboard customer/admin
+        props.history.push("/customer"); // TODO: redirect to account-details (comun en todos los perfiles)
       })
       .catch((error) => {
         const errorDescription = error.response.data.message;

@@ -3,7 +3,6 @@ import { AuthContext } from "../../../../common/context/auth.context";
 
 function Orders() {
   const { user } = useContext(AuthContext);
-  //console.log('user', user)
   return (
     <div className="section">
       <div className="dashboard-wrapper text-muted d-flex justify-content-center">

@@ -43,7 +43,7 @@ function NavMyAccount() {
             <NavLink
               exact
               activeClassName="active"
-              to="/customer/account-details"
+              to="/account-details"
               className="text-reset text-decoration-none text-uppercase"
             >
               Account details
