@@ -1,16 +1,13 @@
-#card-products{
-
-
-    border-left: 4px solid transparent;
-    border-right: 4px solid transparent;
-    border-top: 4px solid transparent;
-    border-bottom: 1px solid #dfe2e6;
+#card-products {
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid transparent;
+  border-bottom: 1px solid #dfe2e6;
 }
-#card-products .img-container{
-    border-top: 1px solid #dfe2e6;
+#card-products .img-container {
+  border-top: 1px solid #dfe2e6;
 
-   height: 200px;
-   display: flex;
-   align-items: center;
-   
+  height: 200px;
+  display: flex;
+  align-items: center;
 }
