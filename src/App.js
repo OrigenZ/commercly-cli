@@ -12,7 +12,6 @@ import AnonRoute from "./components/AnonRoute/AnonRoute";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import MyAccountPage from "./pages/MyAccount/MyAccountPage";
 import CartPage from "./pages/CartPage/CartPage";
-import ProductEdit from "./components/MyAccount/MyAdmin/ManageProducts/ProductsListAdmin/ProductEdit/ProductEdit";
 
 function App() {
   return (
@@ -25,11 +24,7 @@ function App() {
         />
         <Route exact path="/shop" component={ShopPage} />
         <Route exact path="/products/:id" component={ProductDetailPage} />
-        {/*         <PrivateRoute
-          exact
-          path="/product/:id"
-          component={ProductEdit}
-        /> */}
+
         <Route
           exact
           path="/about-us"
@@ -60,6 +55,16 @@ function App() {
         <PrivateRoute
           exact
           path="/admin/categories"
+          component={MyAccountPage}
+        />
+        <PrivateRoute
+          exact
+          path="/admin/category/edit/:id"
+          component={MyAccountPage}
+        />
+        <PrivateRoute
+          exact
+          path="/admin/category/create"
           component={MyAccountPage}
         />
         <PrivateRoute exact path="/admin/users" component={MyAccountPage} />
