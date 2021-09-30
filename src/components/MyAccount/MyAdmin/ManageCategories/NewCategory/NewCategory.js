@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axiosInstance from "../../common/http/index";
+import axiosInstance from "../../../../../common/http";
 
 const NewCategory = () => {
   const [name, setName] = useState("");

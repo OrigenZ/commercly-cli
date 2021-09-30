@@ -11,8 +11,7 @@ import LoginPage from "./pages/MyAccount/LoginPage";
 import AnonRoute from "./components/AnonRoute/AnonRoute";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import MyAccountPage from "./pages/MyAccount/MyAccountPage";
-import CartPage from "./pages/CartPage/CartPage";
-import ProductEdit from "./components/MyAccount/MyAdmin/ManageProducts/ProductsListAdmin/ProductEdit/ProductEdit";
+import CheckOutPage from "./pages/CheckOutPage/CheckOutPage";
 
 function App() {
   return (
@@ -25,11 +24,7 @@ function App() {
         />
         <Route exact path="/shop" component={ShopPage} />
         <Route exact path="/products/:id" component={ProductDetailPage} />
-        {/*         <PrivateRoute
-          exact
-          path="/product/:id"
-          component={ProductEdit}
-        /> */}
+
         <Route
           exact
           path="/about-us"
@@ -44,7 +39,7 @@ function App() {
           component={MyAccountPage}
         />
         <PrivateRoute exact path="/account-details" component={MyAccountPage} />
-        <PrivateRoute exact path="/cart" component={CartPage} />
+        <PrivateRoute exact path="/cart" component={CheckOutPage} />
         <PrivateRoute exact path="/admin/dashboard" component={MyAccountPage} />
         <PrivateRoute exact path="/admin/products" component={MyAccountPage} />
         <PrivateRoute
@@ -60,6 +55,16 @@ function App() {
         <PrivateRoute
           exact
           path="/admin/categories"
+          component={MyAccountPage}
+        />
+        <PrivateRoute
+          exact
+          path="/admin/category/edit/:id"
+          component={MyAccountPage}
+        />
+        <PrivateRoute
+          exact
+          path="/admin/category/create"
           component={MyAccountPage}
         />
         <PrivateRoute exact path="/admin/users" component={MyAccountPage} />

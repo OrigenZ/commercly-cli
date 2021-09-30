@@ -2,7 +2,7 @@
 import { Form, Row, Col, Button } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import axiosInstance from "../../common/http/index";
+import axiosInstance from "../../../../../common/http/index";
 
 const EditProduct = (params) => {
   // const {product, setProduct}= useState([]);
