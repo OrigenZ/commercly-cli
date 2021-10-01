@@ -29,10 +29,12 @@ const CategoriesFilter = (props) => {
         Filter by category
       </span>
       <div className="clear-filters">
-        <button className=" text-muted" onClick={()=>setFilteredProducts([])}>
+        <button className=" text-muted" onClick={()=>setFilteredProducts([])}> 
           Reset Filter
         </button>
       </div>
+
+      {/* //TODO: check logic of reset button */}
 
       <div className="filters-wrapper">
         {categories.map((category) => (

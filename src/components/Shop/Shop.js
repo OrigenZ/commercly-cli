@@ -9,8 +9,7 @@ import "./Shop.css";
 
 function Shop() {
   const [products, setProducts] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState([]);
-  const [foundProducts, setFoundProducts] = useState([]);
+  const [results, setResults] = useState([]);
   const [currentCategory, setCurrentCategory] = useState("");
   const [currentSearch, setCurrentSearch] = useState("");
 
@@ -18,30 +17,28 @@ function Shop() {
 
   useEffect(() => {
     if (currentCategory) {
-      axiosInstance
-        .get(`/api/products/filter/${currentCategory}`, {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        })
-        .then((response) => {
-          setFilteredProducts(response.data);
-        })
-        .catch((error) => {});
+      const filteredByCategory = products.filter((product) => {
+        return product.category._id === currentCategory;
+      });
+      setResults(filteredByCategory);
+      setCurrentSearch("");
     }
-  }, [currentCategory, storedToken]);
 
-  useEffect(() => {
     if (currentSearch) {
-      axiosInstance
-        .get(`/api/products/search/${currentSearch}`, {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        })
-        .then((response) => {
-          console.log('response', response.data)
-          setFoundProducts(response.data);
-        })
-        .catch((error) => {});
+      const productsFound = products.filter((product) => {
+        const regex = new RegExp(currentSearch , 'i');
+        const nameFound = product.name.match(regex);
+        const brandFound = product.brand.match(regex);
+
+        return nameFound || brandFound;
+      });
+
+      console.log("productsFound", productsFound);
+
+      setResults(productsFound);
+      setCurrentCategory("");
     }
-  }, [currentSearch, storedToken]);
+  }, [currentCategory, currentSearch]);
 
   useEffect(() => {
     if (storedToken) {
@@ -61,18 +58,14 @@ function Shop() {
       <section className="container" id="shop">
         <div className="d-flex flex-row justify-content-start">
           <div className="products-container col-12 col-md-3 ">
-            <SearchProduct setCurrentSearch={setCurrentSearch}/>
+            <SearchProduct setCurrentSearch={setCurrentSearch} />
             <CategoriesFilter
               setCategory={setCurrentCategory}
-              setFilteredProducts={setFilteredProducts}
+              setFilteredProducts={setResults}
             />
           </div>
           <div className="products-container col-12 col-md-9">
-            <ProductList
-              filteredProducts={filteredProducts}
-              products={products}
-              foundProducts={foundProducts}
-            />
+            <ProductList results={results} products={products} />
           </div>
         </div>
       </section>
