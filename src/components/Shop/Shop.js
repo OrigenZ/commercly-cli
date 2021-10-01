@@ -10,7 +10,9 @@ import "./Shop.css";
 function Shop() {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [foundProducts, setFoundProducts] = useState([]);
   const [currentCategory, setCurrentCategory] = useState("");
+  const [currentSearch, setCurrentSearch] = useState("");
 
   const storedToken = localStorage.getItem("authToken");
 
@@ -25,7 +27,21 @@ function Shop() {
         })
         .catch((error) => {});
     }
-  }, [currentCategory]);
+  }, [currentCategory, storedToken]);
+
+  useEffect(() => {
+    if (currentSearch) {
+      axiosInstance
+        .get(`/api/products/search/${currentSearch}`, {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        })
+        .then((response) => {
+          console.log('response', response.data)
+          setFoundProducts(response.data);
+        })
+        .catch((error) => {});
+    }
+  }, [currentSearch, storedToken]);
 
   useEffect(() => {
     if (storedToken) {
@@ -38,20 +54,24 @@ function Shop() {
         })
         .catch((error) => {});
     }
-  },[]);
+  }, []);
 
   return (
     <div>
       <section className="container" id="shop">
         <div className="d-flex flex-row justify-content-start">
           <div className="products-container col-12 col-md-3 ">
-            <SearchProduct />
-            <CategoriesFilter setCategory={setCurrentCategory} setFilteredProducts={setFilteredProducts}/>
+            <SearchProduct setCurrentSearch={setCurrentSearch}/>
+            <CategoriesFilter
+              setCategory={setCurrentCategory}
+              setFilteredProducts={setFilteredProducts}
+            />
           </div>
           <div className="products-container col-12 col-md-9">
             <ProductList
               filteredProducts={filteredProducts}
               products={products}
+              foundProducts={foundProducts}
             />
           </div>
         </div>
