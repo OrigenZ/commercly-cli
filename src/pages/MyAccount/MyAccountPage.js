@@ -12,8 +12,10 @@ import DashboardAdmin from "../../components/MyAccount/MyAdmin/Dashboard/Dashboa
 import ManageCategories from "../../components/MyAccount/MyAdmin/ManageCategories/ManageCategories";
 import ManageProducts from "../../components/MyAccount/MyAdmin/ManageProducts/ManageProducts";
 import ManageUsers from "../../components/MyAccount/MyAdmin/ManageUsers/ManageUsers";
-import NewProduct from "../../components/NewProduct/NewProduct";
-import EditProduct from "../../components/EditProduct/EditProduct";
+import NewProduct from '../../components/MyAccount/MyAdmin/ManageProducts/NewProduct/NewProduct'
+import EditProduct from "../../components/MyAccount/MyAdmin/ManageProducts/EditProduct/EditProduct";
+import EditCategory from "../../components/MyAccount/MyAdmin/ManageCategories/EditCategory/EditCategory"
+import NewCategory from "../../components/MyAccount/MyAdmin/ManageCategories/NewCategory/NewCategory"
 
 function MyAccountPage() {
   const { user } = useContext(AuthContext);
@@ -66,6 +68,16 @@ function MyAccountPage() {
             exact
             path="/admin/categories" 
             component={ManageCategories}
+          />
+          <PrivateRoute
+            exact
+            path="/admin/category/edit/:id" 
+            component={EditCategory}
+          />
+          <PrivateRoute
+            exact
+            path="/admin/category/create" 
+            component={NewCategory}
           />
           <PrivateRoute
             exact

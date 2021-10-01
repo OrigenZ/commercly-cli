@@ -1,0 +1,7 @@
+.list-cat{
+    font-weight: 600;
+}
+a:hover.list-cat.text-muted {
+    font-weight: 600;
+    color: #181818!important;
+}
