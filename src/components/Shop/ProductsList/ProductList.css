@@ -2,12 +2,19 @@
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
   border-top: 4px solid transparent;
-  border-bottom: 1px solid #dfe2e6;
+  border-bottom: 4px solid transparent;
 }
 #card-products .img-container {
-  border-top: 1px solid #dfe2e6;
-
+  border-top: 2px solid #dfe2e6;
   height: 200px;
   display: flex;
   align-items: center;
+}
+
+.products.d-flex.row.justify-content-start {
+  border-bottom: 2px solid #dfe2e6;
+}
+
+#card-products .card-body{
+  color: #191919; 
 }

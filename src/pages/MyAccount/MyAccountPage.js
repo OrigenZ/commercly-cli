@@ -1,6 +1,6 @@
 import { useContext } from "react";
 
-import { AuthContext } from "../../common/context/auth.context";
+import { AuthContext } from "../../common/context/Auth.context";
 import PrivateRoute from "../../components/PrivateRoute/PrivateRoute";
 import NavMyAccount from "../../components/MyAccount/CustomerAccount/NavMyAccount/NavMyAccount";
 import Dashboard from "../../components/MyAccount/CustomerAccount/Dashboard/Dashboard";

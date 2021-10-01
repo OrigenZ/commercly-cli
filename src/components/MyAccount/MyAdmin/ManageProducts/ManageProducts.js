@@ -25,6 +25,7 @@ function ManageProducts() {
         })
         .catch((error) => {});
     }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentCategory]);
 
   useEffect(() => {
@@ -38,6 +39,7 @@ function ManageProducts() {
         })
         .catch((error) => {});
     }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

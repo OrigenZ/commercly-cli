@@ -4,7 +4,7 @@ import "./HomePage.css";
 
 function Homepage() {
   return (
-    <div className="section">
+    <>
       <section className="d-flex justify-content-center" id="home">
         <div className="call-to-action d-flex flex-column justify-content-center align-items-center">
           <h1 className="text-muted fw-bold text-center">
@@ -15,7 +15,7 @@ function Homepage() {
           </Link>
         </div>
       </section>
-    </div>
+    </>
   );
 }
 

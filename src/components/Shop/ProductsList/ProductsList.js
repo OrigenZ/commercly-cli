@@ -1,3 +1,4 @@
+import { Row } from "react-bootstrap";
 import ProductCard from "../../ProductCard/ProductCard";
 
 import "./ProductList.css";
@@ -5,7 +6,7 @@ import "./ProductList.css";
 function ProductList(props) {
   const { products, results } = props;
 
-  console.log("results", results);
+  // console.log("results", results);
 
   //TODO si hay 0 mostrar 0
 
@@ -14,7 +15,7 @@ function ProductList(props) {
       {(!results || !results.length)  && 
         products.map((product) => {
           return (
-            <ProductCard key={product._id} product={product} isShop={true} />
+            <ProductCard key={product._id} product={product} isShop={true} as={Row} />
           );
         })
       }
