@@ -1,6 +1,6 @@
 // ¿ User data con addresses?
 // import { useContext } from "react"
-// import { AuthContext } from "../../../common/context/auth.context"
+// import { AuthContext } from "../../../common/context/Auth.context"
 
 function Addresses() {
   // ¿ User addresses = {user.address}?

@@ -2,16 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Card, Button } from "react-bootstrap";
 import { useContext } from "react";
-import { AuthContext } from "../../common/context/auth.context";
+import { AuthContext } from "../../common/context/Auth.context";
 
 const ProductCard = (props) => {
   const { user } = useContext(AuthContext);
   const { product, handleDelete, isShop } = props;
 
   return (
-    <div>
+    <>
       <Card id="card-products" className="col-sm-12 col-md-6 col-lg-3">
-        <Link to={`/products/${product._id}`} className="row list">
+        <Link to={`/products/${product._id}`}>
           <div className="img-container">
             <Card.Img
               variant="top"
@@ -23,13 +23,13 @@ const ProductCard = (props) => {
           <Card.Body>
             <Card.Title className="text-center">{product.name}</Card.Title>
             <Card.Text>
-              <p className="text-center">{product.brand}</p>
-              <p className="text-center">{product.price} €</p>
+              <span className="text-center">{product.brand}</span>
+              <span className="text-center ">{product.price} €</span>
             </Card.Text>
           </Card.Body>
         </Link>
 
-        {user.isAdmin && !isShop && (
+        { user && user.isAdmin && !isShop && (
           <>
             <Link
               to={`/admin/product/edit/${product._id}`} //TODO  pasar a App.js
@@ -47,7 +47,7 @@ const ProductCard = (props) => {
           </>
         )}
       </Card>
-    </div>
+    </>
   );
 };
 

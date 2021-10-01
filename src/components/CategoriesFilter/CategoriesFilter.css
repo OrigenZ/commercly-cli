@@ -1,7 +1,16 @@
-.list-cat{
-    font-weight: 600;
+.list-cat {
+  font-weight: 600;
 }
-a:hover.list-cat.text-muted {
-    font-weight: 600;
-    color: #181818!important;
+
+button.d-block.p-0.pt-3.btn.btn-link {
+  text-decoration: none;
+}
+
+button.d-block.p-0.pt-3.btn.btn-link:focus,
+.btn-check:focus + .btn,
+.btn:focus,
+button.d-block.p-0.pt-3.btn.btn-link:focus-visible,
+.btn-check:focus-visible + .btn,
+.btn:focus-visible {
+  box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 0%) !important;
 }

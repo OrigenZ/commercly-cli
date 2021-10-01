@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 
-import { AuthContext } from "../../common/context/auth.context";
+import { AuthContext } from "../../common/context/Auth.context";
 import axiosInstance from "../../common/http/index";
 
 function LoginPage(props) {
