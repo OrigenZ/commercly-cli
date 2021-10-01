@@ -1,44 +1,39 @@
+import { Row } from "react-bootstrap";
 import ProductCard from "../../ProductCard/ProductCard";
 
 import "./ProductList.css";
 
 function ProductList(props) {
-  const { filteredProducts, products } = props;
+  const { products, results } = props;
 
-  console.log(
-    "filteredProducts",
-    filteredProducts.products,
-    "products",
-    products
-  );
-//TODO: Make a Card component
+  // console.log("results", results);
+
+  //TODO si hay 0 mostrar 0
+
   return (
     <div className="products d-flex row justify-content-start ">
-      {!filteredProducts.products &&
+      {(!results || !results.length)  && 
         products.map((product) => {
           return (
-            <ProductCard
-              key={product._id}
-              product={product}
-              isShop={true}
-            />
+            <ProductCard key={product._id} product={product} isShop={true} as={Row} />
           );
-        })}
-      {filteredProducts.products &&
-        filteredProducts.products.map((product) => {
+        })
+      }
+
+      {results &&
+        results.map((product) => {
           return (
-            <ProductCard
-              key={product._id}
-              product={product}
-              isShop={true}
-            />
+            <ProductCard key={product._id} product={product} isShop={true} />
           );
-        })}
-      {filteredProducts.products && filteredProducts.products.length === 0 && (
-        <p>No hay productos</p> //TODO: Message
+        })
+      }
+
+      { results.length === 0 && !results && (
+        <p>No hay productos que mostrar</p> //TODO: Message
       )}
     </div>
   );
 }
+
 
 export default ProductList;

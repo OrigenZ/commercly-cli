@@ -121,7 +121,7 @@ const NewProduct = () => {
                   name="image"
                   id="image"
                   onChange={(e) => {
-                    console.log(e.target.files[0])
+                    // console.log(e.target.files[0])
                     setImage(e.target.files[0])
                   }}
                 />

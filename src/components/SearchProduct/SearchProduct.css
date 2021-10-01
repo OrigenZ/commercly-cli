@@ -2,25 +2,6 @@
   margin-bottom: 2rem;
 }
 
-input[type="text"],
-input[type="password"],
-input[type="date"],
-input[type="email"],
-input[type="number"],
-input[type="file"],
-input[type="search"],
-select {
-  appearance: none;
-  background-color: #fff;
-  border: 2px solid #6c757d;
-  color: rgba(0, 0, 0, 0.75);
-  font-size: 0.9rem;
-  margin-bottom: 1rem;
-  padding: 0.6rem 0.5rem 0.5rem 0.5rem;
-  height: 2.6rem;
-  line-height: 0.85rem;
-}
-
 input[type="search"] {
   border: none;
   font-size: 1.2rem;
@@ -36,22 +17,18 @@ input[type="search"] {
 }
 
 .search-btn:focus,
+.search-btn:focus-visible,
 input[type="search"]:focus {
   box-shadow: none !important;
   outline: none;
+  background-color: transparent;
 }
 
-textarea {
-  appearance: none;
-  background-color: #fff;
-  border: 2px solid #6c757d;
-  color: rgba(0, 0, 0, 0.75);
-  display: block;
-  font-size: 0.9rem;
-  margin: 0 0 1rem 0;
-  padding: 0.5rem;
+.clear-filters a {
+  font-weight: 600;
 }
 
-.clear-filters a{
-    font-weight: 600;
+button.btn.btn-light.transparent {
+  background-color: transparent;
+  border: 0px;
 }
