@@ -16,17 +16,12 @@ function AuthProviderWrapper(props) {
         const jwtPayload = await axiosInstance.get(`/auth/verify`, {
           headers: { Authorization: `Bearer ${storedToken}` },
         })
-
-        console.log(jwtPayload.data._id)
-
         const fetchUser = await axiosInstance.get(
           `/api/users/${jwtPayload.data._id}`,
           {
             headers: { Authorization: `Bearer ${storedToken}` },
           },
         )
-
-        console.log(fetchUser.data)
         setUser(fetchUser.data)
         setIsLoggedIn(true)
         setIsLoading(false)

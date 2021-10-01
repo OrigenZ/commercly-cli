@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Button} from "react-bootstrap";
+
 import axiosInstance from "../../common/http";
 
 import "./CategoriesFilter.css";
 
 const CategoriesFilter = (props) => {
   const [categories, setCategories] = useState([]);
-  const {setFilteredProducts} = props
-  const {setCategory} = props
+  const { setFilteredProducts } = props;
+  const { setCategory } = props;
   const storedToken = localStorage.getItem("authToken");
 
   useEffect(() => {
@@ -21,6 +22,7 @@ const CategoriesFilter = (props) => {
         })
         .catch((error) => {});
     }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -29,18 +31,27 @@ const CategoriesFilter = (props) => {
         Filter by category
       </span>
       <div className="clear-filters">
-        <button className=" text-muted" onClick={()=>setFilteredProducts([])}> 
+        <Button
+          variant="light"
+          className=" text-muted"
+          onClick={() => setFilteredProducts([])}
+        >
           Reset Filter
-        </button>
+        </Button>
       </div>
 
       {/* //TODO: check logic of reset button */}
 
       <div className="filters-wrapper">
         {categories.map((category) => (
-          <button key={category._id}  onClick={()=>setCategory(category._id)}>
-            <div className="list-cat text-muted">{category.name}</div>
-          </button>
+          <Button
+            variant="link"
+            key={category._id}
+            className=" d-block p-0 pt-3"
+            onClick={() => setCategory(category._id)}
+          >
+            <span className="list-cat text-muted">{category.name}</span>
+          </Button>
         ))}
       </div>
     </div>

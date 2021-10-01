@@ -33,11 +33,12 @@ function Shop() {
         return nameFound || brandFound;
       });
 
-      console.log("productsFound", productsFound);
+      // console.log("productsFound", productsFound);
 
       setResults(productsFound);
       setCurrentCategory("");
     }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentCategory, currentSearch]);
 
   useEffect(() => {
@@ -51,6 +52,7 @@ function Shop() {
         })
         .catch((error) => {});
     }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

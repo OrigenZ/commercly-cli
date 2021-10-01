@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from 'react'
-import { AuthContext } from '../../../common/context/auth.context'
+import { AuthContext } from '../../../common/context/Auth.context'
 import { Form, Row, Col, Button } from 'react-bootstrap'
 import axiosInstance from '../../../common/http'
 
@@ -28,7 +28,7 @@ function AccountDetails() {
         })
         .then((response) => {
           setUser(response.data.user)
-          console.log(user)
+       
         })
         .catch((error) => {
           // const errorDescription = error.response.data.message

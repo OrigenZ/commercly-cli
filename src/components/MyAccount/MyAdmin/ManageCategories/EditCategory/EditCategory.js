@@ -1,4 +1,4 @@
-// import { AuthContext } from "../../../common/context/auth.context";
+// import { AuthContext } from "../../../common/context/Auth.context";
 import { Form, Row, Col, Button } from 'react-bootstrap'
 import React, { useState, useEffect } from 'react'
 import axiosInstance from '../../../../../common/http'
@@ -7,7 +7,7 @@ const EditCategory = (params) => {
   // const {product, setProduct}= useState([]);
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
-  const [errorMessage, setErrorMessage] = useState('')
+
 
   // console.log(params.match.params);
 
@@ -28,8 +28,7 @@ const EditCategory = (params) => {
         /* history.push("/shop"); */
       })
       .catch((error) => {
-        const errorDescription = error.response.data.message
-        setErrorMessage(errorDescription)
+
       })
   }
 
@@ -46,9 +45,9 @@ const EditCategory = (params) => {
         setDescription(foundCategory.description || '')
       })
       .catch((error) => {
-        const errorDescription = error.response.data.message
-        setErrorMessage(errorDescription)
+
       })
+        // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

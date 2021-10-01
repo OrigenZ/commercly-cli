@@ -1,12 +1,18 @@
-// TODO: Debería mostrar lista de productos, cantidad (editable), eliminar producto y precio
+// TODO: Debería mostrar lista de productos, cantidad (editable) = eliminar producto 
+
+import React, { useContext } from 'react';
+import { CartContext} from '../../common/context/Cart.context'
+
 function ShoppingCart(){
+    const { cart } = useContext(CartContext);
+    
     return(
         <div className='section container text-center'>
-            <h3>Product 1</h3>
-            <h3>Product 2</h3>
-            <h3>Product 3</h3>
-            <h3>Product 4</h3>
-
+        {cart && cart.products.map((product)=>(
+            
+            <p key={`${product._id}${Math.random()*1000}`}>id producto: {product.name}</p>
+            //TODO: for a better way to do this shit
+        ))} 
         </div>
     )
 }
