@@ -20,7 +20,7 @@ function App() {
         <Route
           exact
           path="/"
-          render={(routeProps) => <HomePage {...routeProps} />}
+          component={HomePage}
         />
         <Route exact path="/shop" component={ShopPage} />
         <Route exact path="/products/:id" component={ProductDetailPage} />
@@ -28,7 +28,7 @@ function App() {
         <Route
           exact
           path="/about-us"
-          render={(routeProps) => <AboutUsPage {...routeProps} />}
+          component={AboutUsPage}
         />
         <AnonRoute exact path="/my-account" component={LoginPage} />
         <PrivateRoute exact path="/customer" component={MyAccountPage} />
