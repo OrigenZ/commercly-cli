@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
-import axiosInstance from '../../common/http/index'
+import axiosInstance from '../../../../../common/http'
 
 const NewProduct = () => {
   const [name, setName] = useState('')
