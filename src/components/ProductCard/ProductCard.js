@@ -29,7 +29,7 @@ const ProductCard = (props) => {
           </Card.Body>
         </Link>
 
-        {user.isAdmin && !isShop && (
+        { user && user.isAdmin && !isShop && (
           <>
             <Link
               to={`/admin/product/edit/${product._id}`} //TODO  pasar a App.js
