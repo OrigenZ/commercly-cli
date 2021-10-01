@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom";
-import { Card } from "react-bootstrap";
+import ProductCard from "../../ProductCard/ProductCard";
 
 import "./ProductList.css";
 
@@ -18,61 +17,21 @@ function ProductList(props) {
       {!filteredProducts.products &&
         products.map((product) => {
           return (
-            <Card
-              id="card-products"
-              className="col-sm-12 col-md-6 col-lg-3"
+            <ProductCard
               key={product._id}
-            >
-              <Link to={`/products/${product._id}`} className="row list">
-                <div className="img-container">
-                  <Card.Img
-                    variant="top"
-                    src={product.imageUrl}
-                    className="w-100"
-                    alt={product.name}
-                  />
-                </div>
-                <Card.Body>
-                  <Card.Title className="text-center">
-                    {product.name}
-                  </Card.Title>
-                  <Card.Text>
-                    <p className="text-center">{product.brand}</p>
-                    <p className="text-center">{product.price} €</p>
-                  </Card.Text>
-                </Card.Body>
-              </Link>
-            </Card>
+              product={product}
+              isShop={true}
+            />
           );
         })}
       {filteredProducts.products &&
         filteredProducts.products.map((product) => {
           return (
-            <Card
-              id="card-products"
-              className="col-sm-12 col-md-6 col-lg-3"
+            <ProductCard
               key={product._id}
-            >
-              <Link to={`/products/${product._id}`} className="row list">
-                <div className="img-container">
-                  <Card.Img
-                    variant="top"
-                    src={product.imageUrl}
-                    className="w-100"
-                    alt={product.name}
-                  />
-                </div>
-                <Card.Body>
-                  <Card.Title className="text-center">
-                    {product.name}
-                  </Card.Title>
-                  <Card.Text>
-                    <p className="text-center">{product.brand}</p>
-                    <p className="text-center">{product.price} €</p>
-                  </Card.Text>
-                </Card.Body>
-              </Link>
-            </Card>
+              product={product}
+              isShop={true}
+            />
           );
         })}
       {filteredProducts.products && filteredProducts.products.length === 0 && (
