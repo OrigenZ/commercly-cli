@@ -35,8 +35,8 @@ const PopupCartC = () => {
           <ShoppingCart />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" href="/cart">
-            Go to cart
+          <Button variant="success" href="/cart" size="lg" className="w-100">
+            Checkout
           </Button>
         </Modal.Footer>
       </Modal>
