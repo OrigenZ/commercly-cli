@@ -12,7 +12,7 @@ function Dashboard() {
           <p>
             Hello <strong>{user.username}</strong> (not{" "}
             <strong>{user.username}</strong>?
-            <a onClick={logOutUser} href="/">
+            <a onClick={logOutUser} href="/home">
               Log out
             </a>
             )

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 import "./HomePage.css";
 
-function Homepage() {
+const Homepage = () => {
   return (
     <>
       <section className="d-flex justify-content-center" id="home">

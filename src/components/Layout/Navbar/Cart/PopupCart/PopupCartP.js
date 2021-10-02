@@ -18,8 +18,9 @@ function PopupCartC() {
   const handleShow = () => setShow(true);
 
   useEffect(() => {
-    if (cart && cart.products) setCount(cart.products.length);
-  });
+    // if (cart && cart.products) setCount(cart.products.length);
+    if (cart.products) setCount(cart.products.length);
+  },[cart.products, setCount]);
 
   return (
     <>

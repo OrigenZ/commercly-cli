@@ -1,5 +1,4 @@
 import Brand from './Brand/Brand'
-/* import Cart from './Cart/Cart' */
 
 import PopupCartP from './Cart/PopupCart/PopupCartP'
 import NavLinks from './NavLinks/NavLinks'
@@ -14,7 +13,6 @@ function Navbar(){
             <div className="d-flex justify-content-end" id="navbar-menu">
               <div className="navbar-nav">
                 <NavLinks />
-         {/*        <Cart /> */}
                 <PopupCartP />
       
               </div>

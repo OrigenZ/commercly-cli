@@ -11,21 +11,16 @@ function CartProviderWrapper(props) {
   const storedToken = localStorage.getItem('authToken')
   const { user } = useContext(AuthContext);  
 
-  const getCart = () => {
+  useEffect(() => {
+    if(user){
     axiosInstance
       .get(`/api/cart/${user._id}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => setCart(response.data))
       .catch((err) => console.log(err));
-  };
-
-  useEffect(() => {
-    if (user) {
-      getCart();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [getCart]);
+  }, [ storedToken, user]);
 
   return (
     <CartContext.Provider value={{ cart, setCart, count, setCount }}>
