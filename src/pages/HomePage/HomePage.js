@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom'
 
-import "./HomePage.css";
+import './HomePage.css'
 
 const Homepage = () => {
   return (
@@ -16,7 +16,7 @@ const Homepage = () => {
         </div>
       </section>
     </>
-  );
+  )
 }
 
-export default Homepage;
+export default Homepage
