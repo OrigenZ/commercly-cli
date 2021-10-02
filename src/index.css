@@ -30,16 +30,28 @@ body {
   padding-top: 72px;
   line-height: 2rem;
   letter-spacing: .04rem;
+  -ms-overflow-style: none; 
+  scrollbar-width: none;  
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
 
 a {
   color: #00b7ff;
 }
 
+h2.text-center.text-muted{
+  font-size: 4em;
+  margin-bottom: 0.2em;
+  text-transform: uppercase;
+}
+
 .section{
   min-height: calc(100vh - 456px) ;
-  padding-top: 3em;
-  padding-bottom: 3em;
+  padding-top: 2em;
+  padding-bottom: 2em;
 }
 
 header {
@@ -58,12 +70,5 @@ header {
 
 
 
-body::-webkit-scrollbar {
-  display: none;
-}
 
 
-body {
-  -ms-overflow-style: none; 
-  scrollbar-width: none;  
-}
