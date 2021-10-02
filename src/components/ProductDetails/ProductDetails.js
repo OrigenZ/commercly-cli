@@ -8,7 +8,7 @@ import axiosInstance from "../../common/http/index";
 const ProductDetails = (props) => {
   const [product, setProduct] = useState([]);
   const [setErrorMessage] = useState(undefined);
-  const { cart, setCart, count, setCount } = useContext(CartContext);
+  const { cart, setCart, setCount } = useContext(CartContext);
 
   const { id } = useParams();
 
