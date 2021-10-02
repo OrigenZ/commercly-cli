@@ -1,4 +1,3 @@
-// TODO: Debería mostrar lista de productos, cantidad (editable) = eliminar producto
 
 import React, { useContext } from 'react'
 import { CartContext } from '../../common/context/Cart.context'
@@ -6,14 +5,14 @@ import { CartContext } from '../../common/context/Cart.context'
 const ShoppingCart = () => {
   const { cart } = useContext(CartContext)
 
-  console.log(cart)
+  console.log('cart', cart)
 
   return (
     <div className="section container text-center">
       {cart &&
         cart.products.map((product) => (
           <p key={`${product._id}${Math.random() * 1000}`}>
-            id producto: {product.name}
+            {product.name} - cantidad modificable - {product.price}€
           </p>
           //TODO: for a better way to do this shit
         ))}

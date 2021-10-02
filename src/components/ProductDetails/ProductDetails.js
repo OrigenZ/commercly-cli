@@ -1,36 +1,40 @@
-import React from 'react'
-import { useState, useEffect, useContext } from 'react'
-import { CartContext } from '../../common/context/Cart.context'
-import { useParams } from 'react-router'
+import React from "react";
+import { useState, useEffect, useContext } from "react";
+import { CartContext } from "../../common/context/Cart.context";
+import { useParams } from "react-router";
 
-import axiosInstance from '../../common/http/index'
+import axiosInstance from "../../common/http/index";
 
 const ProductDetails = (props) => {
-  const [product, setProduct] = useState([])
-  const [setErrorMessage] = useState(undefined)
-  const { cart, setCart, count, setCount } = useContext(CartContext)
+  const [product, setProduct] = useState([]);
+  const [setErrorMessage] = useState(undefined);
+  const { cart, setCart, count, setCount } = useContext(CartContext);
 
-  const { id } = useParams()
+  const { id } = useParams();
 
-  const storedToken = localStorage.getItem('authToken')
+  const storedToken = localStorage.getItem("authToken");
+  console.log("product", product, "cart", cart);
 
   const handleCartItem = () => {
     /* id carrito y id producto */
-    const body = { productId: product._id, cartId: cart._id }
-    axiosInstance
-      .post(`/api/cart/add-item`, body, {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      })
-      .then((response) => {
-        console.log('response data', response.data)
-        setCart(response.data)
-      })
-  }
+    if (product && cart) {
+      const body = { productId: product._id, cartId: cart._id };
+      axiosInstance
+        .post(`/api/cart/add-item`, body, {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        })
+        .then((response) => {
+          setCart(response.data);
+        });
+    }
+  };
 
   useEffect(() => {
-    setCount(cart.products.length)
-    console.log('Test')
-  })
+    if (cart) {
+      setCount(cart.products.length);
+    }
+    console.log("Test");
+  });
 
   useEffect(() => {
     axiosInstance
@@ -38,15 +42,15 @@ const ProductDetails = (props) => {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
-        console.log('response', response.data)
-        setProduct(response.data)
+        console.log("response", response.data);
+        setProduct(response.data);
       })
       .catch((error) => {
-        const errorDescription = error.response.data.message
-        setErrorMessage(errorDescription)
-      })
+        const errorDescription = error.response.data.message;
+        setErrorMessage(errorDescription);
+      });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [id]);
 
   return (
     <div>
@@ -94,7 +98,7 @@ const ProductDetails = (props) => {
         </div>
       </section>
     </div>
-  )
-}
+  );
+};
 
-export default ProductDetails
+export default ProductDetails;
