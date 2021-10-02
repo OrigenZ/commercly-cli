@@ -16,7 +16,8 @@ const ManageUsers = () => {
       })
       .catch((err) => console.log(err.message));
     //TODO: set proper error handling
-  });
+    
+  }, []);
 
   return (
     <div className="section">
