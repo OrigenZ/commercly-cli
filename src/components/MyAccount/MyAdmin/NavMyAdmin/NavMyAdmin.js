@@ -64,7 +64,7 @@ function NavMyAdmin() {
               exact
               activeClassName="active"
               onClick={logOutUser}
-              to="/home"
+              to="/"
               className="text-reset text-decoration-none text-uppercase"
             >
               Logout
