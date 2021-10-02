@@ -20,10 +20,6 @@ function App() {
         <Route
           exact
           path="/"
-        />
-        <Route
-          exact
-          path="/home"
           component={HomePage}
         />
         <Route exact path="/shop" component={ShopPage} />

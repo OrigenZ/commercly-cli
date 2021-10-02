@@ -25,7 +25,7 @@ function LoginPage(props) {
       .then((response) => {
         const token = response.data.authToken;
         logInUser(token);
-        props.history.push("/home"); // TODO: redirect to account-details (comun en todos los perfiles)
+        props.history.push("/"); // TODO: redirect to account-details (comun en todos los perfiles)
       })
       .catch((error) => {
         const errorDescription = error.response.data.message;
