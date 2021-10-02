@@ -54,7 +54,7 @@ function NavMyAccount() {
               exact
               activeClassName="active"
               onClick={logOutUser}
-              to="/"
+              to="/home"
               className="text-reset text-decoration-none text-uppercase"
             >
               Logout
