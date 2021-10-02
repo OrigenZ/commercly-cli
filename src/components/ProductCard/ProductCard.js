@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Card, Button } from "react-bootstrap";
+import { Card, Button, Col } from "react-bootstrap";
 import { useContext } from "react";
 import { AuthContext } from "../../common/context/Auth.context";
 
@@ -23,13 +23,15 @@ const ProductCard = (props) => {
           <Card.Body>
             <Card.Title className="text-center">{product.name}</Card.Title>
             <Card.Text>
-              <span className="text-center">{product.brand}</span>
-              <span className="text-center ">{product.price} €</span>
+              <span className="text-center text-muted">{product.brand}</span>
+            </Card.Text>
+            <Card.Text>
+              <span className="text-center price">{product.price} €</span>
             </Card.Text>
           </Card.Body>
         </Link>
 
-        { user && user.isAdmin && !isShop && (
+        {user && user.isAdmin && !isShop && (
           <>
             <Link
               to={`/admin/product/edit/${product._id}`} //TODO  pasar a App.js
