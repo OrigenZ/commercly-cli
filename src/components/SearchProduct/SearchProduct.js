@@ -20,7 +20,6 @@ function SearchProduct(props) {
       <Form
         onSubmit={handleSubmit}
         className="search-container d-inline-block"
-        as={Row}
       >
         <Form.Group as={Row} className="p-0 m-0">
           <Col sm="10">
@@ -39,15 +38,6 @@ function SearchProduct(props) {
           </Col>
         </Form.Group>
       </Form>
-      {/* 
-        1º - Click en buscar
-        2º - onSubmit event
-        3º - Guardar el valor del input
-        4º - Pasar valor al padre 
-        5º - Padre hace una busqueda con el string
-        6º - El padre la pasa a ProductList los foundProducts
-        7º - ProductList renderiza el resultado
-       */}
     </div>
   );
 }

@@ -1,32 +1,45 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react'
 
-import CategoriesFilter from "../../../CategoriesFilter/CategoriesFilter";
-import SearchProduct from "../../../SearchProduct/SearchProduct";
-import ProductsListAdmin from "./ProductsListAdmin/ProductsListAdmin";
-import AddProductButton from "./NewProduct/AddProductButton/AddProductButton";
+import CategoriesFilter from '../../../CategoriesFilter/CategoriesFilter'
+import SearchProduct from '../../../SearchProduct/SearchProduct'
+import ProductsListAdmin from './ProductsListAdmin/ProductsListAdmin'
+import AddProductButton from './NewProduct/AddProductButton/AddProductButton'
 
-import axiosInstance from "../../../../common/http";
+import axiosInstance from '../../../../common/http'
 
 function ManageProducts() {
-  const [products, setProducts] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState([]);
-  const [currentCategory, setCurrentCategory] = useState("");
+  const [products, setProducts] = useState([])
+  const [results, setResults] = useState(null)
+  const [currentCategory, setCurrentCategory] = useState('')
+  const [currentSearch, setCurrentSearch] = useState('')
 
-  const storedToken = localStorage.getItem("authToken");
+  const storedToken = localStorage.getItem('authToken')
 
   useEffect(() => {
     if (currentCategory) {
-      axiosInstance
-        .get(`/api/products/filter/${currentCategory}`, {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        })
-        .then((response) => {
-          setFilteredProducts(response.data);
-        })
-        .catch((error) => {});
+      console.log('currCategory')
+      const filteredByCategory = products.filter((product) => {
+        return product.category._id === currentCategory
+      })
+      setResults(filteredByCategory)
+      setCurrentSearch('')
     }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentCategory]);
+
+    if (currentSearch) {
+      console.log('currSearch')
+      const productsFound = products.filter((product) => {
+        const regex = new RegExp(currentSearch, 'i')
+        const nameFound = product.name.match(regex)
+        const brandFound = product.brand.match(regex)
+
+        return nameFound || brandFound
+      })
+
+      setResults(productsFound)
+      setCurrentCategory('')
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentCategory, currentSearch])
 
   useEffect(() => {
     if (storedToken) {
@@ -35,29 +48,28 @@ function ManageProducts() {
           headers: { Authorization: `Bearer ${storedToken}` },
         })
         .then((response) => {
-          setProducts(response.data.products);
+          setProducts(response.data.products)
         })
-        .catch((error) => {});
+        .catch((err) => {})
     }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <div className="row pt-5 ">
       <div className="col-12 col-md-3">
         <AddProductButton />
-        <SearchProduct/>
-        <CategoriesFilter setCategory={setCurrentCategory}  setFilteredProducts={setFilteredProducts} />
-      </div>
-      <div className="col-12 col-md-9">
-        <ProductsListAdmin
-          filteredProducts={filteredProducts}
-          products={products}
-          setProducts={setProducts}
+        <SearchProduct setCurrentSearch={setCurrentSearch} />
+        <CategoriesFilter
+          setCategory={setCurrentCategory}
+          setResults={setResults}
         />
       </div>
+      <div className="col-12 col-md-9">
+        <ProductsListAdmin results={results} products={products} />
+      </div>
     </div>
-  );
+  )
 }
 
-export default ManageProducts;
+export default ManageProducts
