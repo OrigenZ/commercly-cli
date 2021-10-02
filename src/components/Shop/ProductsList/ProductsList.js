@@ -6,9 +6,6 @@ import "./ProductList.css";
 function ProductList(props) {
   const { products, results } = props;
 
-  // console.log("results", results);
-
-  //TODO si hay 0 mostrar 0
 
   return (
     <div className="products d-flex row justify-content-start ">
@@ -28,7 +25,7 @@ function ProductList(props) {
         })
       }
 
-      { results.length === 0 && !results && (
+      { (!results || ( results && results.length === 0)) && (
         <p>No hay productos que mostrar</p> //TODO: Message
       )}
     </div>

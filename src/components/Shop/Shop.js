@@ -1,45 +1,46 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react'
 
-import ProductList from "./ProductsList/ProductsList";
-import SearchProduct from "../SearchProduct/SearchProduct";
-import CategoriesFilter from "../CategoriesFilter/CategoriesFilter";
-import axiosInstance from "../../common/http";
+import ProductList from './ProductsList/ProductsList'
+import SearchProduct from '../SearchProduct/SearchProduct'
+import CategoriesFilter from '../CategoriesFilter/CategoriesFilter'
 
-import "./Shop.css";
+import axiosInstance from '../../common/http'
+
+import './Shop.css'
 
 function Shop() {
-  const [products, setProducts] = useState([]);
-  const [results, setResults] = useState([]);
-  const [currentCategory, setCurrentCategory] = useState("");
-  const [currentSearch, setCurrentSearch] = useState("");
+  const [products, setProducts] = useState([])
+  const [results, setResults] = useState(null)
+  const [currentCategory, setCurrentCategory] = useState('')
+  const [currentSearch, setCurrentSearch] = useState('')
 
-  const storedToken = localStorage.getItem("authToken");
+  const storedToken = localStorage.getItem('authToken')
 
   useEffect(() => {
     if (currentCategory) {
+      console.log('currCategory')
       const filteredByCategory = products.filter((product) => {
-        return product.category._id === currentCategory;
-      });
-      setResults(filteredByCategory);
-      setCurrentSearch("");
+        return product.category._id === currentCategory
+      })
+      setResults(filteredByCategory)
+      setCurrentSearch('')
     }
 
     if (currentSearch) {
+      console.log('currSearch')
       const productsFound = products.filter((product) => {
-        const regex = new RegExp(currentSearch , 'i');
-        const nameFound = product.name.match(regex);
-        const brandFound = product.brand.match(regex);
+        const regex = new RegExp(currentSearch, 'i')
+        const nameFound = product.name.match(regex)
+        const brandFound = product.brand.match(regex)
 
-        return nameFound || brandFound;
-      });
+        return nameFound || brandFound
+      })
 
-      // console.log("productsFound", productsFound);
-
-      setResults(productsFound);
-      setCurrentCategory("");
+      setResults(productsFound)
+      setCurrentCategory('')
     }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentCategory, currentSearch]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentCategory, currentSearch])
 
   useEffect(() => {
     if (storedToken) {
@@ -48,12 +49,12 @@ function Shop() {
           headers: { Authorization: `Bearer ${storedToken}` },
         })
         .then((response) => {
-          setProducts(response.data.products);
+          setProducts(response.data.products)
         })
-        .catch((error) => {});
+        .catch((err) => {})
     }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <div>
@@ -63,7 +64,7 @@ function Shop() {
             <SearchProduct setCurrentSearch={setCurrentSearch} />
             <CategoriesFilter
               setCategory={setCurrentCategory}
-              setFilteredProducts={setResults}
+              setResults={setResults}
             />
           </div>
           <div className="products-container col-12 col-md-9">
@@ -72,7 +73,7 @@ function Shop() {
         </div>
       </section>
     </div>
-  );
+  )
 }
 
-export default Shop;
+export default Shop
