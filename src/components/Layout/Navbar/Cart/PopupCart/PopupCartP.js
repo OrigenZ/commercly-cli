@@ -18,16 +18,16 @@ function PopupCartC() {
   const handleShow = () => setShow(true);
 
   useEffect(() => {
-    // if (cart && cart.products) setCount(cart.products.length);
-    if (cart.products) setCount(cart.products.length);
-  },[cart.products, setCount]);
+    if (cart && cart.products) setCount(cart.products.length);
+    console.log('memory leak')
+  },[cart, setCount]);
 
   return (
     <>
-      <a className="nav-link" href="#!" onClick={handleShow}>
+      <div className="nav-link" onClick={handleShow}>
         <FontAwesomeIcon icon={faShoppingCart} className="me-3" />
         <span id="cart-count"> {count} </span>
-      </a>
+      </div>
       <Modal id="popup-cart" show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Shopping Cart</Modal.Title>
