@@ -6,12 +6,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Sherab from "../../images/aboutUs/Sherab.jfif";
 import Laura from "../../images/aboutUs/Laura.jfif";
 
+import './AboutUsPage.css'
+
 function AboutUsPage() {
   return (
     <>
       {/*  <div className='section container text-center'> */}
-      <Container>
-        <Row xs={1} md={2} className="p-5">
+
+      <Container className="section">
+      <h2 className="text-center text-muted">Team</h2>
+        <Row xs={1} md={2} className="p-5 pt-0 pb-5">
           <Col>
             <Card className="m-5">
               <Card.Img variant="top" src={Sherab} />
