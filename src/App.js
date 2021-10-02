@@ -31,7 +31,7 @@ const App = () => {
           component={MyAccountPage}
         />
         <PrivateRoute exact path="/account-details" component={MyAccountPage} />
-        <PrivateRoute exact path="/cart" component={CheckOutPage} />
+        <PrivateRoute exact path="/checkout" component={CheckOutPage} />
         <PrivateRoute exact path="/admin/dashboard" component={MyAccountPage} />
         <PrivateRoute exact path="/admin/products" component={MyAccountPage} />
         <PrivateRoute
