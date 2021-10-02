@@ -1,20 +1,22 @@
-import { useContext, useEffect, useState } from 'react'
-import { AuthContext } from '../../../../common/context/Auth.context'
-import axiosInstance from '../../../../common/http'
+import React, { useEffect, useState } from "react";
+import axiosInstance from "../../../../common/http";
 
 const ManageUsers = () => {
-  const { users, setUsers } = useState(null)
+  const [ users, setUsers ] = useState([]);
 
-  const storedToken = localStorage.getItem('authToken')
+  const storedToken = localStorage.getItem("authToken");
 
   useEffect(() => {
-    axiosInstance('/api/users', {
+    axiosInstance("/api/users", {
       headers: { Authorization: `Bearer ${storedToken}` },
     })
-      .then((response) => setUsers(response.data))
-      .catch((err) => console.log(err.message))
+      .then((response) => {
+        console.log("response", response);
+        setUsers(response.data);
+      })
+      .catch((err) => console.log(err.message));
     //TODO: set proper error handling
-  })
+  });
 
   return (
     <div className="section">
@@ -22,7 +24,7 @@ const ManageUsers = () => {
         <div className="d-flex flex-column justify-content-center align-items-center col-sm-12 col-md-8 col-lg-10">
           {users &&
             users.map((user) => (
-              <>
+              <div key={user._id}>
                 <div>
                   <p>User id: {user._id}</p>
                   <p>Name: {user.name}</p>
@@ -30,7 +32,7 @@ const ManageUsers = () => {
                   <p>Username: {user.username}</p>
                   <p>Email: {user.email}</p>
                   <p>Phone: {user.phone}</p>
-                  <p>Created: {new Date(user.createdAt)}</p>
+                  <p>Created: {user.createdAt}</p>
 
                   {/* <div>
               <h4>Billing address:</h4>
@@ -67,12 +69,12 @@ const ManageUsers = () => {
                 <div>
                   <button>Edit</button> <button>Delete</button>
                 </div>
-              </>
+              </div>
             ))}
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ManageUsers
+export default ManageUsers;
