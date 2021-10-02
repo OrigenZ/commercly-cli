@@ -1,33 +1,28 @@
-import { useState } from "react";
-
-import axiosInstance from "../../../../../common/http/index";
-import ProductCard from "../../../../ProductCard/ProductCard";
-import "./ProductListAdmin.css";
+import axiosInstance from '../../../../../common/http/index'
+import ProductCard from '../../../../ProductCard/ProductCard'
+import './ProductListAdmin.css'
 
 function ProductsListAdmin(props) {
-  const { filteredProducts, products, setProducts } = props;
-  const [setErrorMessage] = useState(undefined);
+  const { results, products, setProducts } = props
 
-  const storedToken = localStorage.getItem("authToken");
+  const storedToken = localStorage.getItem('authToken')
 
-  const handleDelete = (id) => {
-    axiosInstance
+  const handleDelete = async (id) => {
+    await axiosInstance
       .delete(`/api/products/${id}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
-        const newProducts = products.filter((product) => product._id !== id);
-        setProducts([...newProducts]);
+        const newProducts = products.filter((product) => product._id !== id)
+        setProducts(newProducts)
       })
-      .catch((error) => {
-        const errorDescription = error.response.data.message;
-        setErrorMessage(errorDescription);
-      });
-  };
-  //TODO: Make a Card component
+      .catch((err) => {})
+    //TODO: set proper error handling
+  }
+
   return (
     <div className="row">
-      {!filteredProducts.products &&
+      {!results &&
         products.map((product) => {
           return (
             <ProductCard
@@ -36,10 +31,10 @@ function ProductsListAdmin(props) {
               handleDelete={handleDelete}
               isShop={false}
             />
-          );
+          )
         })}
-      {filteredProducts.products &&
-        filteredProducts.products.map((product) => {
+      {results &&
+        results.map((product) => {
           return (
             <ProductCard
               key={product._id}
@@ -47,13 +42,13 @@ function ProductsListAdmin(props) {
               handleDelete={handleDelete}
               isShop={false}
             />
-          );
+          )
         })}
-      {filteredProducts.products && filteredProducts.products.length === 0 && (
-        <p>No hay productos</p> //TODO: Message
+      {results && results.length === 0 && (
+        <p>No hay productos que mostrar</p> //TODO: Message
       )}
     </div>
-  );
+  )
 }
 
-export default ProductsListAdmin;
+export default ProductsListAdmin
