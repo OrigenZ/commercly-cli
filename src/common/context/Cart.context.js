@@ -14,6 +14,19 @@ const CartProviderWrapper = (props) => {
 
   useEffect(() => {
     if (user) {
+    axiosInstance
+      .get(`/api/cart/${user._id}`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      .then((response) => setCart(response.data))
+      .catch((err) => console.log(err));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
+
+  useEffect(() => {
+    console.log('hola')
+    if (user) {
       axiosInstance
         .get(`/api/cart/${user._id}`, {
           headers: { Authorization: `Bearer ${storedToken}` },
@@ -47,10 +60,10 @@ const CartProviderWrapper = (props) => {
             });
           }
 
-
-          const billing = (user.addresses && user.addresses.billing)
-            ? user.addresses.billing
-            : null;
+          const billing =
+            user.addresses && user.addresses.billing
+              ? user.addresses.billing
+              : null;
 
           const details = {
             products: productsArray,
@@ -59,7 +72,7 @@ const CartProviderWrapper = (props) => {
             billing,
           };
 
-          setCart(response.data);
+          // setCart(response.data);
           setCheckOutDetails(details);
         })
         .catch((err) => console.log(err));
@@ -67,7 +80,8 @@ const CartProviderWrapper = (props) => {
       setCount(0);
       setCart(null);
     }
-  }, [storedToken, user]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cart]);
 
   return (
     <CartContext.Provider
