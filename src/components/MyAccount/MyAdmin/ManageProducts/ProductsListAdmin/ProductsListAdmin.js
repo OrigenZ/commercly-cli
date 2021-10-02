@@ -2,7 +2,7 @@ import axiosInstance from '../../../../../common/http/index'
 import ProductCard from '../../../../ProductCard/ProductCard'
 import './ProductListAdmin.css'
 
-function ProductsListAdmin(props) {
+const ProductsListAdmin = (props) => {
   const { results, products, setProducts } = props
 
   const storedToken = localStorage.getItem('authToken')

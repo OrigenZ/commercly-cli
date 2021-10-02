@@ -13,23 +13,15 @@ import PrivateRoute from './components/PrivateRoute/PrivateRoute'
 import MyAccountPage from './pages/MyAccount/MyAccountPage'
 import CheckOutPage from './pages/CheckOutPage/CheckOutPage'
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <Switch>
-        <Route
-          exact
-          path="/"
-          component={HomePage}
-        />
+        <Route exact path="/" component={HomePage} />
         <Route exact path="/shop" component={ShopPage} />
         <Route exact path="/products/:id" component={ProductDetailPage} />
 
-        <Route
-          exact
-          path="/about-us"
-          component={AboutUsPage}
-        />
+        <Route exact path="/about-us" component={AboutUsPage} />
         <AnonRoute exact path="/my-account" component={LoginPage} />
         <PrivateRoute exact path="/customer" component={MyAccountPage} />
         <PrivateRoute exact path="/customer/orders" component={MyAccountPage} />

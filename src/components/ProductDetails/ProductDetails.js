@@ -1,36 +1,36 @@
-import React from "react";
-import { useState, useEffect, useContext } from "react";
-import { CartContext } from "../../common/context/Cart.context";
-import { useParams } from "react-router";
+import React from 'react'
+import { useState, useEffect, useContext } from 'react'
+import { CartContext } from '../../common/context/Cart.context'
+import { useParams } from 'react-router'
 
-import axiosInstance from "../../common/http/index";
+import axiosInstance from '../../common/http/index'
 
-function ProductDetails(props) {
-  const [product, setProduct] = useState([]);
-  const [setErrorMessage] = useState(undefined);
-  const { cart, setCart,count , setCount } = useContext(CartContext);
+const ProductDetails = (props) => {
+  const [product, setProduct] = useState([])
+  const [setErrorMessage] = useState(undefined)
+  const { cart, setCart, count, setCount } = useContext(CartContext)
 
-  const { id } = useParams();
+  const { id } = useParams()
 
-  const storedToken = localStorage.getItem("authToken");
+  const storedToken = localStorage.getItem('authToken')
 
   const handleCartItem = () => {
     /* id carrito y id producto */
-    const body = { productId: product._id, cartId: cart._id };
+    const body = { productId: product._id, cartId: cart._id }
     axiosInstance
       .post(`/api/cart/add-item`, body, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
-        console.log("response data", response.data);
-        setCart(response.data);
-      });
-  };
+        console.log('response data', response.data)
+        setCart(response.data)
+      })
+  }
 
   useEffect(() => {
-    setCount(cart.products.length);
+    setCount(cart.products.length)
     console.log('Test')
-  });
+  })
 
   useEffect(() => {
     axiosInstance
@@ -38,15 +38,15 @@ function ProductDetails(props) {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
-        console.log("response", response.data);
-        setProduct(response.data);
+        console.log('response', response.data)
+        setProduct(response.data)
       })
       .catch((error) => {
-        const errorDescription = error.response.data.message;
-        setErrorMessage(errorDescription);
-      });
+        const errorDescription = error.response.data.message
+        setErrorMessage(errorDescription)
+      })
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 
   return (
     <div>
@@ -94,7 +94,7 @@ function ProductDetails(props) {
         </div>
       </section>
     </div>
-  );
+  )
 }
 
-export default ProductDetails;
+export default ProductDetails

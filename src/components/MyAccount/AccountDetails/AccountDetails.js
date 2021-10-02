@@ -3,7 +3,7 @@ import { AuthContext } from '../../../common/context/Auth.context'
 import { Form, Row, Col, Button } from 'react-bootstrap'
 import axiosInstance from '../../../common/http'
 
-function AccountDetails() {
+const AccountDetails = () => {
   const { user, setUser } = useContext(AuthContext)
 
   const [name, setName] = useState('')
@@ -28,7 +28,6 @@ function AccountDetails() {
         })
         .then((response) => {
           setUser(response.data.user)
-       
         })
         .catch((error) => {
           // const errorDescription = error.response.data.message

@@ -4,7 +4,7 @@ import { Form, Button } from 'react-bootstrap'
 
 import axiosInstance from '../../common/http/index'
 
-function SignupPage(props) {
+const SignupPage = (props) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState(undefined)
@@ -19,7 +19,7 @@ function SignupPage(props) {
     //TODO: encriptar pass?
 
     axiosInstance
-      .post(`/auth/signup`, requestBody)
+      .post(`/api/auth/signup`, requestBody)
       .then((_) => props.history.push('/login')) // TODO: cambiar esto
       .catch((err) => {
         setErrorMessage(err.message)

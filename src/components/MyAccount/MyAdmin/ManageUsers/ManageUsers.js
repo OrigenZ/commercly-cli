@@ -1,8 +1,8 @@
-import { useContext } from "react";
-import { AuthContext } from "../../../../common/context/Auth.context";
+import { useContext } from 'react'
+import { AuthContext } from '../../../../common/context/Auth.context'
 
-function ManageUsers() {
-  const { user } = useContext(AuthContext);
+const ManageUsers = () => {
+  const { user } = useContext(AuthContext)
   return (
     <div className="section">
       <div className="dashboard-wrapper text-muted d-flex justify-content-center">
@@ -14,7 +14,7 @@ function ManageUsers() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default ManageUsers;
+export default ManageUsers

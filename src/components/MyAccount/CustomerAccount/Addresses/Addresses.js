@@ -2,7 +2,7 @@
 // import { useContext } from "react"
 // import { AuthContext } from "../../../common/context/Auth.context"
 
-function Addresses() {
+const Addresses = () => {
   // ¿ User addresses = {user.address}?
   //const { user, logOutUser } = useContext(AuthContext)
   return (
@@ -71,7 +71,7 @@ function Addresses() {
         </div>
       </section>
     </div>
-  );
+  )
 }
 
-export default Addresses;
+export default Addresses

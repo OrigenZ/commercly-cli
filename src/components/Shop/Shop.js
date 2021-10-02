@@ -8,17 +8,14 @@ import axiosInstance from '../../common/http'
 
 import './Shop.css'
 
-function Shop() {
+const Shop = () => {
   const [products, setProducts] = useState([])
   const [results, setResults] = useState(null)
   const [currentCategory, setCurrentCategory] = useState('')
   const [currentSearch, setCurrentSearch] = useState('')
 
-  const storedToken = localStorage.getItem('authToken')
-
   useEffect(() => {
     if (currentCategory) {
-      console.log('currCategory')
       const filteredByCategory = products.filter((product) => {
         return product.category._id === currentCategory
       })
@@ -27,7 +24,6 @@ function Shop() {
     }
 
     if (currentSearch) {
-      console.log('currSearch')
       const productsFound = products.filter((product) => {
         const regex = new RegExp(currentSearch, 'i')
         const nameFound = product.name.match(regex)
@@ -43,16 +39,13 @@ function Shop() {
   }, [currentCategory, currentSearch])
 
   useEffect(() => {
-    if (storedToken) {
-      axiosInstance
-        .get(`/api/products`, {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        })
-        .then((response) => {
-          setProducts(response.data.products)
-        })
-        .catch((err) => {})
-    }
+    axiosInstance
+      .get(`/api/products`)
+      .then((response) => {
+        setProducts(response.data.products)
+      })
+      .catch((err) => {})
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -67,6 +60,7 @@ function Shop() {
               setResults={setResults}
             />
           </div>
+          {/* TODO: check isAdmin and render ProductList / AdminProductList */}
           <div className="products-container col-12 col-md-9">
             <ProductList results={results} products={products} />
           </div>

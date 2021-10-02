@@ -1,26 +1,23 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { useState } from 'react'
 
-import "./SearchProduct.css";
-import { Form, Button, Row, Col } from "react-bootstrap";
+import './SearchProduct.css'
+import { Form, Button, Row, Col } from 'react-bootstrap'
 
-function SearchProduct(props) {
-  const [query, setQuery] = useState();
+const SearchProduct = (props) => {
+  const [query, setQuery] = useState()
 
-  const { setCurrentSearch } = props;
+  const { setCurrentSearch } = props
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    setCurrentSearch(query);
-  };
+    e.preventDefault()
+    setCurrentSearch(query)
+  }
 
   return (
     <div className="topbar">
-      <Form
-        onSubmit={handleSubmit}
-        className="search-container d-inline-block"
-      >
+      <Form onSubmit={handleSubmit} className="search-container d-inline-block">
         <Form.Group as={Row} className="p-0 m-0">
           <Col sm="10">
             <Form.Control
@@ -39,7 +36,7 @@ function SearchProduct(props) {
         </Form.Group>
       </Form>
     </div>
-  );
+  )
 }
 
-export default SearchProduct;
+export default SearchProduct

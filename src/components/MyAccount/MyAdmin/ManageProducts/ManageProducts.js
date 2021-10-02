@@ -7,7 +7,7 @@ import AddProductButton from './NewProduct/AddProductButton/AddProductButton'
 
 import axiosInstance from '../../../../common/http'
 
-function ManageProducts() {
+const ManageProducts = () => {
   const [products, setProducts] = useState([])
   const [results, setResults] = useState(null)
   const [currentCategory, setCurrentCategory] = useState('')
@@ -17,7 +17,6 @@ function ManageProducts() {
 
   useEffect(() => {
     if (currentCategory) {
-      console.log('currCategory')
       const filteredByCategory = products.filter((product) => {
         return product.category._id === currentCategory
       })
@@ -26,7 +25,6 @@ function ManageProducts() {
     }
 
     if (currentSearch) {
-      console.log('currSearch')
       const productsFound = products.filter((product) => {
         const regex = new RegExp(currentSearch, 'i')
         const nameFound = product.name.match(regex)
@@ -64,6 +62,7 @@ function ManageProducts() {
           setCategory={setCurrentCategory}
           setResults={setResults}
         />
+        {/* TODO: check isAdmin and render ProductList / AdminProductList */}
       </div>
       <div className="col-12 col-md-9">
         <ProductsListAdmin results={results} products={products} />
