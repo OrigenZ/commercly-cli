@@ -1,6 +1,6 @@
 import CategoriesListAdmin from './CategoriesListAdmin/CategoriesListAdmin'
 
-function ManageCategories() {
+const ManageCategories = () => {
   return (
     <div className="section">
       <CategoriesListAdmin />

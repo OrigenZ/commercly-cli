@@ -1,7 +1,7 @@
-import commercly from "../../../../images/logo.png";
-import { NavLink } from "react-router-dom";
+import commercly from '../../../../images/logo.png'
+import { NavLink } from 'react-router-dom'
 
-function Brand() {
+const Brand = () => {
   return (
     <NavLink exact activeClassName="active" to="/" className="navbar-brand">
       <img
@@ -15,6 +15,6 @@ function Brand() {
         Commercly
       </span>
     </NavLink>
-  );
+  )
 }
-export default Brand;
+export default Brand

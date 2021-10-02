@@ -1,8 +1,8 @@
-import { useContext } from "react";
-import { AuthContext } from "../../../../common/context/Auth.context";
+import { useContext } from 'react'
+import { AuthContext } from '../../../../common/context/Auth.context'
 
-function Orders() {
-  const { user } = useContext(AuthContext);
+const Orders = () => {
+  const { user } = useContext(AuthContext)
   return (
     <div className="section">
       <div className="dashboard-wrapper text-muted d-flex justify-content-center">
@@ -14,7 +14,7 @@ function Orders() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Orders;
+export default Orders

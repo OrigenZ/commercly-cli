@@ -3,7 +3,7 @@
 import React, { useContext } from 'react'
 import { CartContext } from '../../common/context/Cart.context'
 
-function ShoppingCart() {
+const ShoppingCart = () => {
   const { cart } = useContext(CartContext)
 
   console.log(cart)

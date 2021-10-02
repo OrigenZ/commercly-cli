@@ -9,22 +9,17 @@ const CategoriesFilter = (props) => {
   const [categories, setCategories] = useState([])
   const { setResults } = props
   const { setCategory } = props
-  const storedToken = localStorage.getItem('authToken')
 
   const getCategories = async () => {
-    if (storedToken) {
-      await axiosInstance
-        .get(`/api/categories`, {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        })
-        .then((response) => {
-          setCategories(response.data)
-        })
-        .catch((err) => {
-          console.log(err.message)
-        })
-      //TODO: proper error handling
-    }
+    await axiosInstance
+      .get(`/api/categories`)
+      .then((response) => {
+        setCategories(response.data)
+      })
+      .catch((err) => {
+        console.log(err.message)
+      })
+    //TODO: proper error handling
   }
 
   useEffect(() => {

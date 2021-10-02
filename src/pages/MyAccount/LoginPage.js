@@ -1,37 +1,37 @@
-import { useState, useContext } from "react";
-import { Link } from "react-router-dom";
-import { Form, Button } from "react-bootstrap";
+import { useState, useContext } from 'react'
+import { Link } from 'react-router-dom'
+import { Form, Button } from 'react-bootstrap'
 
-import { AuthContext } from "../../common/context/Auth.context";
-import axiosInstance from "../../common/http/index";
+import { AuthContext } from '../../common/context/Auth.context'
+import axiosInstance from '../../common/http/index'
 
-function LoginPage(props) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState(undefined);
+const LoginPage = (props) => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [errorMessage, setErrorMessage] = useState(undefined)
 
-  const { logInUser } = useContext(AuthContext);
+  const { logInUser } = useContext(AuthContext)
 
-  const handleEmail = (e) => setEmail(e.target.value);
-  const handlePassword = (e) => setPassword(e.target.value);
+  const handleEmail = (e) => setEmail(e.target.value)
+  const handlePassword = (e) => setPassword(e.target.value)
 
   const handleLoginSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    const requestBody = { email, password };
+    const requestBody = { email, password }
 
     axiosInstance
-      .post(`/auth/login`, requestBody)
+      .post(`/api/auth/login`, requestBody)
       .then((response) => {
-        const token = response.data.authToken;
-        logInUser(token);
-        props.history.push("/"); // TODO: redirect to account-details (comun en todos los perfiles)
+        const token = response.data.authToken
+        logInUser(token)
+        props.history.push('/') // TODO: redirect to account-details (comun en todos los perfiles)
       })
       .catch((error) => {
-        const errorDescription = error.response.data.message;
-        setErrorMessage(errorDescription);
-      });
-  };
+        const errorDescription = error.response.data.message
+        setErrorMessage(errorDescription)
+      })
+  }
 
   return (
     <div className="section d-flex flex-column justify-content-center align-items-center ">
@@ -58,18 +58,18 @@ function LoginPage(props) {
             />
           </Form.Group>
           <Button variant="secondary" type="submit">
-            Login{" "}
+            Login{' '}
           </Button>
         </Form>
         {errorMessage && <p className="error-message">{errorMessage}</p>}
         <div className="mt-3">
           <p>
-            Don't have an account yet? <Link to={"/signup"}> Sign Up</Link>
+            Don't have an account yet? <Link to={'/signup'}> Sign Up</Link>
           </p>
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default LoginPage;
+export default LoginPage

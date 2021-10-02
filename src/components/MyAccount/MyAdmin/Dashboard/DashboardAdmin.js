@@ -3,7 +3,7 @@ import { AuthContext } from '../../../../common/context/Auth.context'
 
 import './Dashboard.css'
 
-function Dashboard() {
+const Dashboard = () => {
   const { user, logOutUser } = useContext(AuthContext)
   return (
     <div>

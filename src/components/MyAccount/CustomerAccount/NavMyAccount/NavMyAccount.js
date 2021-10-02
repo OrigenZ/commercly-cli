@@ -1,10 +1,10 @@
-import { useContext } from "react";
-import { AuthContext } from "../../../../common/context/Auth.context";
-import { NavLink } from "react-router-dom";
-import "./NavMyAccount.css";
+import { useContext } from 'react'
+import { AuthContext } from '../../../../common/context/Auth.context'
+import { NavLink } from 'react-router-dom'
+import './NavMyAccount.css'
 
-function NavMyAccount() {
-  const { logOutUser } = useContext(AuthContext);
+const NavMyAccount = () => {
+  const { logOutUser } = useContext(AuthContext)
   return (
     <div className="border-bottom customer-menu">
       <div className="row p-5">
@@ -63,7 +63,7 @@ function NavMyAccount() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default NavMyAccount;
+export default NavMyAccount

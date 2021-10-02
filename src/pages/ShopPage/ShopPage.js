@@ -1,11 +1,11 @@
-import Shop from "../../components/Shop/Shop";
+import Shop from '../../components/Shop/Shop'
 
-function ShopPage(){
-    return(
-        <div className='section'>
-            <Shop />
-        </div>
-    )
+const ShopPage = () => {
+  return (
+    <div className="section">
+      <Shop />
+    </div>
+  )
 }
 
 export default ShopPage

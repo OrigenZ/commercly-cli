@@ -3,7 +3,7 @@ import axiosInstance from '../http/index'
 
 const AuthContext = React.createContext()
 
-function AuthProviderWrapper(props) {
+const AuthProviderWrapper = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const [user, setUser] = useState(null)
@@ -13,7 +13,7 @@ function AuthProviderWrapper(props) {
 
     if (storedToken) {
       try {
-        const jwtPayload = await axiosInstance.get(`/auth/verify`, {
+        const jwtPayload = await axiosInstance.get(`/api/auth/verify`, {
           headers: { Authorization: `Bearer ${storedToken}` },
         })
         const fetchUser = await axiosInstance.get(
