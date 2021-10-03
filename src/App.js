@@ -60,6 +60,11 @@ const App = () => {
           component={MyAccountPage}
         />
         <PrivateRoute exact path="/admin/users" component={MyAccountPage} />
+        <PrivateRoute
+          exact
+          path="/admin/user/edit/:id"
+          component={MyAccountPage}
+        />
 
         <AnonRoute exact path="/signup" component={SignupPage} />
         <AnonRoute exact path="/login" component={LoginPage} />
