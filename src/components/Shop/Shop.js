@@ -7,6 +7,7 @@ import CategoriesFilter from '../CategoriesFilter/CategoriesFilter'
 import axiosInstance from '../../common/http'
 
 import './Shop.css'
+import { Container, Row, Col } from 'react-bootstrap'
 
 const Shop = () => {
   const [products, setProducts] = useState([])
@@ -51,21 +52,21 @@ const Shop = () => {
 
   return (
     <div>
-      <section className="container" id="shop">
-        <div className="d-flex flex-row justify-content-start">
-          <div className="products-container col-12 col-md-3 ">
+      <Container>
+        <Row className="d-flex flex-row justify-content-start">
+          <Col xs={12} md={3} lg={3} className="filter-container">
             <SearchProduct setCurrentSearch={setCurrentSearch} />
             <CategoriesFilter
               setCategory={setCurrentCategory}
               setResults={setResults}
             />
-          </div>
+          </Col>
           {/* TODO: check isAdmin and render ProductList / AdminProductList */}
-          <div className="products-container col-12 col-md-9">
+          <Col xs={12} md={9} lg={9} className="products-container">
             <ProductList results={results} products={products} />
-          </div>
-        </div>
-      </section>
+          </Col>
+        </Row>
+      </Container>
     </div>
   )
 }
