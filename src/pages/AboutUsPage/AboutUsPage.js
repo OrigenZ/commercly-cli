@@ -11,7 +11,7 @@ const AboutUsPage = () => {
   return (
     <Container className="section">
       {/*  <div className='section container text-center'> */}
-      <h2 className="text-center text-muted">Team</h2>
+
       <Row xs={1} md={2} className="p-5 pt-0 pb-5">
         <Col>
           <Card className="m-5">
