@@ -1,11 +1,10 @@
 #card-products {
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  border-top: 4px solid transparent;
-  border-bottom: 4px solid transparent;
+  border-left: 0.3em solid transparent;
+  border-right: 0.3em solid transparent;
+  border-top: 0.3em solid transparent;
+  border-bottom: 0.3em solid transparent;
 }
 #card-products .img-container {
-  border-top: 2px solid #dfe2e6;
   height: 200px;
   display: flex;
   align-items: center;
@@ -18,3 +17,4 @@
 #card-products .card-body{
   color: #191919; 
 }
+

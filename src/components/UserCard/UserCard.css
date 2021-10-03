@@ -1,0 +1,8 @@
+#card-users{
+    padding: 1.5em;
+    border: 0px;
+    border-bottom: 1px solid #dfe2e6;
+}
+#card-users:last-child{
+    border-bottom: 0px solid #dfe2e6;
+}

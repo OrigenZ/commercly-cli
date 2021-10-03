@@ -1,0 +1,4 @@
+div#basic-navbar-nav{
+    display: flex;
+    justify-content: end;
+}

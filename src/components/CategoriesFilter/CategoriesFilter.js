@@ -32,15 +32,6 @@ const CategoriesFilter = (props) => {
       <span className="filter-header text-uppercase border-bottom mb-2 d-inline-block">
         Filter by category
       </span>
-      <div className="clear-filters">
-        <Button
-          variant="light"
-          className=" text-muted"
-          onClick={() => setResults(null)}
-        >
-          Reset Filter
-        </Button>
-      </div>
 
       {/* //TODO: check logic of reset button */}
 
@@ -49,13 +40,22 @@ const CategoriesFilter = (props) => {
           <Button
             variant="link"
             key={category._id}
-            className=" d-block p-0 pt-3"
+            className=" d-block p-0 pt-2"
             onClick={() => setCategory(category._id)}
           >
-            <span className="list-cat text-muted">{category.name}</span>
+            <span className="list-cat">{category.name}</span>
           </Button>
         ))}
       </div>
+
+        <Button 
+          variant="outline-danger"
+          className="reset"
+          onClick={() => setResults(null)}
+        >
+          Reset Filter
+        </Button>
+     
     </div>
   )
 }

@@ -1,26 +1,30 @@
-import Brand from './Brand/Brand'
+import Brand from "./Brand/Brand";
 
-import PopupCartP from './Cart/PopupCart/PopupCartP'
-import NavLinks from './NavLinks/NavLinks'
+import PopupCartP from "./Cart/PopupCart/PopupCartP";
+import NavLinks from "./NavLinks/NavLinks";
+import { Navbar, Nav, Container } from "react-bootstrap";
 
-const Navbar = () => {
+const MyNavbar = () => {
   return (
-    <div>
-      <header className="border-bottom">
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <div className="container">
+    <>
+      <Navbar collapseOnSelect bg="light" expand="lg" className="border-bottom">
+        <Container>
+          <Navbar.Brand>
             <Brand />
-            <div className="d-flex justify-content-end" id="navbar-menu">
-              <div className="navbar-nav">
-                <NavLinks />
-                <PopupCartP />
-              </div>
-            </div>
-          </div>
-        </nav>
-      </header>
-    </div>
-  )
-}
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto"></Nav>
+            <Nav>
+              <NavLinks />
 
-export default Navbar
+              <PopupCartP />
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+    </>
+  );
+};
+
+export default MyNavbar;

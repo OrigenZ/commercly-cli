@@ -1,13 +1,16 @@
-import React from 'react'
-import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import axiosInstance from '../../../../../common/http/index'
+import React from "react";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { Row, Col } from "react-bootstrap";
+import axiosInstance from "../../../../../common/http/index";
+
+import "./CategoriesListAdmin.css";
 
 const CategoriesListAdmin = () => {
-  const [categories, setCategories] = useState([])
+  const [categories, setCategories] = useState([]);
   // const [setErrorMessage] = useState(undefined)
 
-  const storedToken = localStorage.getItem('authToken')
+  const storedToken = localStorage.getItem("authToken");
 
   const handleDelete = (id) => {
     axiosInstance
@@ -16,15 +19,15 @@ const CategoriesListAdmin = () => {
       })
       .then((response) => {
         const newCategories = categories.filter(
-          (category) => category._id !== id,
-        )
-        setCategories([...newCategories])
+          (category) => category._id !== id
+        );
+        setCategories([...newCategories]);
       })
-      .catch((err) => {})
-  }
+      .catch((err) => {});
+  };
 
   useEffect(() => {
-    const storedToken = localStorage.getItem('authToken')
+    const storedToken = localStorage.getItem("authToken");
     // If the token exists in the localStorage
     if (storedToken) {
       axiosInstance
@@ -32,42 +35,43 @@ const CategoriesListAdmin = () => {
           headers: { Authorization: `Bearer ${storedToken}` },
         })
         .then((response) => {
-          setCategories(response.data)
+          setCategories(response.data);
         })
-        .catch((err) => {})
+        .catch((err) => {});
     }
-  }, [])
+  }, []);
 
   return (
     <>
-      <div id="filter-container col-12 col-md-4">
-        <div className="row">
-          <Link
-            to={`/admin/category/create`}
-            className="btn btn-outline-dark col-12"
-          >
-            Add Category
-          </Link>
-        </div>
-        <div className="row">
-          {categories.map((category) => (
-            <div key={category._id} className="col-3">
-              <div className="filter-item">
-                <div
-                  className="product-filter"
-                  to={`/api/products/filter/${category._id}`}
-                >
-                  <h3>{category.name}</h3>
-                  <p>{category.description}</p>
-                </div>
+      <Row>
+        <Link
+          to={`/admin/category/create`}
+          className="btn btn-outline-dark col-12"
+        >
+          Add Category
+        </Link>
+      </Row>
+      {categories.map((category) => (
+        <Row key={category._id} id="categories-list">
+          <Col xs={12} sm={4} lg={2}>
+            <h3>{category.name}</h3>
+          </Col>
+          <Col xs={12} sm={8} lg={8}>
+            <p>{category.description}</p>
+          </Col>
+          <Col xs={12} sm={12} lg={2}>
+            <Row>
+              <Col xs={6} sm={6} lg={6}>
                 <div className="mb-2">
                   <Link
                     to={`/admin/category/edit/${category._id}`} //TODO  pasar a App.js
-                    className="btn btn-outline-info edit-btn w-100"
+                    className="btn btn-outline-secondary edit-btn w-100"
                   >
                     Edit
                   </Link>
                 </div>
+              </Col>
+              <Col xs={6} sm={6} lg={6}>
                 <div className="mb-0">
                   <div
                     onClick={() => handleDelete(category._id)}
@@ -76,13 +80,13 @@ const CategoriesListAdmin = () => {
                     Delete
                   </div>
                 </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+              </Col>
+            </Row>
+          </Col>
+        </Row>
+      ))}
     </>
-  )
-}
+  );
+};
 
-export default CategoriesListAdmin
+export default CategoriesListAdmin;

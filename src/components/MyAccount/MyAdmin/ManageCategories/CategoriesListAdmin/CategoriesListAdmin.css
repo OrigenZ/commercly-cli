@@ -1,0 +1,16 @@
+#categories-list{
+    padding: 1.5em;
+    border: 0px;
+    border-bottom: 1px solid #dfe2e6;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+#categories-list:last-child{
+    border-bottom: 0px solid #dfe2e6;
+}
+a.btn.btn-outline-dark.col-12,
+.btn.btn-outline-danger.delete-btn.w-100,
+a.btn.btn-outline-secondary.edit-btn.w-100 {
+    border-radius: 0px;
+}
