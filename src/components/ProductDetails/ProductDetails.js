@@ -30,6 +30,7 @@ const ProductDetails = () => {
         })
         .then((response) => {
           setCart(response.data);
+          alert('product added')
         });
     }
   };
@@ -54,7 +55,6 @@ const ProductDetails = () => {
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
-  console.log(product);
 
   return (
     <>
@@ -80,7 +80,7 @@ const ProductDetails = () => {
                 size="lg"
               >
                 <FontAwesomeIcon icon={faShoppingCart} className="me-3" />
-                Add 1 to cart
+                Add to cart
               </Button>
               <input type="hidden" value={product.id} name="productId" />
             </Form>

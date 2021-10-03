@@ -63,7 +63,7 @@ const CategoriesListAdmin = () => {
                 <div className="mb-2">
                   <Link
                     to={`/admin/category/edit/${category._id}`} //TODO  pasar a App.js
-                    className="btn btn-outline-info edit-btn w-100"
+                    className="btn btn-outline-secondary edit-btn w-100"
                   >
                     Edit
                   </Link>

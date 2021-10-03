@@ -13,7 +13,7 @@ const NavMyAccount = () => {
             <NavLink
               exact
               activeClassName="active"
-              to="/customer"
+              to="/dashboard"
               className="text-reset text-decoration-none text-uppercase"
             >
               Dashboard
