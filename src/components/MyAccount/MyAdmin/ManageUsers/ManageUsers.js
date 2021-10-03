@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axiosInstance from "../../../../common/http";
+import UsersListAdmin from "./UsersListAdmin/UsersListAdmin"
 
 const ManageUsers = () => {
   const [users, setUsers] = useState([]);
@@ -12,6 +13,7 @@ const ManageUsers = () => {
     })
       .then((response) => {
         setUsers(response.data);
+        console.log('manage users' , response.data)
       })
       .catch((err) => console.log(err.message));
     //TODO: set proper error handling
@@ -21,7 +23,8 @@ const ManageUsers = () => {
 
   return (
     <div className="section">
-      <div className="dashboard-wrapper text-muted d-flex justify-content-center">
+       <UsersListAdmin users={users} /> 
+     {/*  <div className="dashboard-wrapper text-muted d-flex justify-content-center">
         <div className="d-flex flex-column justify-content-center align-items-center col-sm-12 col-md-8 col-lg-10">
           {users &&
             users.map((user) => (
@@ -34,7 +37,7 @@ const ManageUsers = () => {
                   <p>Email: {user.email}</p>
                   <p>Phone: {user.phone}</p>
                   <p>Created: {user.createdAt}</p>
-
+ */}
                   {/* <div>
               <h4>Billing address:</h4>
                 <p>Name: {user.addresses.billing.firstName}</p>
@@ -50,7 +53,7 @@ const ManageUsers = () => {
                 <p>Country: {user.addresses.billing.country}</p>
               </div> */}
 
-                  <div>
+                {/*   <div>
                     <h4>Shipping address:</h4>
                     <p>Name: {user.addresses.shipping.firstName}</p>
                     <p>Lastname {user.addresses.shipping.lastName}</p>
@@ -73,8 +76,9 @@ const ManageUsers = () => {
               </div>
             ))}
         </div>
-      </div>
+      </div> */}
     </div>
+    
   );
 };
 
