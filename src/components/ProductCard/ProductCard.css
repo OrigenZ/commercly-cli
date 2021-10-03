@@ -1,0 +1,20 @@
+span.text-center.price {
+  font-size: 1.5em;
+}
+
+.prod-text.card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 0px;
+}
+
+#card-products:hover{
+    background-color: #f7f9fa;
+}
+
+button.w-100.btn.btn-outline-danger ,
+a.btn.btn-outline-secondary.edit-btn.w-100.mb-2 {
+  border-radius: 0px;
+}
+

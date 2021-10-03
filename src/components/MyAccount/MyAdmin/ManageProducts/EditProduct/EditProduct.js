@@ -3,6 +3,8 @@ import { Form, Row, Col, Button } from 'react-bootstrap'
 import React, { useState, useEffect } from 'react'
 import axiosInstance from '../../../../../common/http/index'
 
+import './EditProduct.css'
+
 const EditProduct = (params) => {
   // const {product, setProduct}= useState([]);
   const [name, setName] = useState('')
@@ -64,8 +66,7 @@ const EditProduct = (params) => {
 
   return (
     <div className="section">
-      <div className="dashboard-wrapper text-muted d-flex justify-content-center">
-        <div className="d-flex flex-column justify-content-center align-items-center col-sm-12 col-md-8 col-lg-10">
+
           <Form onSubmit={handleSubmit}>
             <Row className="mb-3">
               <Form.Group as={Col}>
@@ -150,8 +151,8 @@ const EditProduct = (params) => {
             </Button>
           </Form>
         </div>
-      </div>
-    </div>
+
+
   )
 }
 
