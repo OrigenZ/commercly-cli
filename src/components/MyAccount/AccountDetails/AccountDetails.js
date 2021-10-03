@@ -1,7 +1,10 @@
 import { useContext, useState, useEffect } from "react";
+import { Form, Row, Col, Button, Container,OverlayTrigger, Popover } from "react-bootstrap";
+
 import { AuthContext } from "../../../common/context/Auth.context";
-import { Form, Row, Col, Button } from "react-bootstrap";
 import axiosInstance from "../../../common/http";
+
+import './AccountDetails.css'
 
 const AccountDetails = () => {
   const { user, setUser } = useContext(AuthContext);
@@ -16,6 +19,12 @@ const AccountDetails = () => {
   // const [errorMessage, setErrorMessage] = useState('')
 
   const storedToken = localStorage.getItem("authToken");
+
+  const popover = (
+    <Popover id="popover-basic">
+      <Popover.Header as="h3">Changes Submited</Popover.Header>
+    </Popover>
+  );
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -58,9 +67,9 @@ const AccountDetails = () => {
   }, []);
 
   return (
-    <div className="section">
-      <div className="dashboard-wrapper text-muted d-flex justify-content-center">
-        <div className="d-flex flex-column justify-content-center align-items-center col-sm-12 col-md-8 col-lg-10">
+    <Container className="section account">
+    <Col xs={12} md={6} xl={4} >
+
           <Form onSubmit={handleSubmit}>
             <Row className="mb-3">
               <Form.Group as={Col}>
@@ -131,14 +140,14 @@ const AccountDetails = () => {
                 />
               </Form.Group>
             </Row>
-
+            <OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
             <Button variant="primary" type="submit">
               Submit changes
             </Button>
+            </OverlayTrigger>
           </Form>
-        </div>
-      </div>
-    </div>
+        </Col>
+</Container>
   );
 };
 
