@@ -4,6 +4,8 @@ import { Card, Button } from "react-bootstrap";
 import { useContext } from "react";
 import { AuthContext } from "../../common/context/Auth.context";
 
+import './ProductCard.css'
+
 const ProductCard = (props) => {
   const { user } = useContext(AuthContext);
   const { product, handleDelete, isShop } = props;
@@ -20,7 +22,7 @@ const ProductCard = (props) => {
               alt={product.name}
             />
           </div>
-          <Card.Body>
+          <Card.Body className="prod-text">
             <Card.Title className="text-center">{product.name}</Card.Title>
             <Card.Text>
               <span className="text-center text-muted">{product.brand}</span>
