@@ -1,11 +1,16 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink} from 'react-router-dom'
 import './NavLinks.css'
 import React, { useState } from 'react'
+import { Navbar, Nav  } from 'react-bootstrap'
+
 
 const NavLinks = () => {
   const [isLoggedIn] = useState(false)
   return (
     <>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+    <Navbar.Collapse id="basic-navbar-nav">
+      <Nav className="me-auto">
       <NavLink exact activeClassName="active" to="/shop" className="nav-link">
         Shop
       </NavLink>
@@ -31,6 +36,8 @@ const NavLinks = () => {
           My account
         </NavLink>
       )}
+      </Nav>
+    </Navbar.Collapse>
     </>
   )
 }
