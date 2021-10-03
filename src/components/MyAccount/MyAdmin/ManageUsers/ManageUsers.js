@@ -13,7 +13,6 @@ const ManageUsers = () => {
     })
       .then((response) => {
         setUsers(response.data);
-        console.log('manage users' , response.data)
       })
       .catch((err) => console.log(err.message));
     //TODO: set proper error handling

@@ -30,9 +30,10 @@ const App = () => {
           path="/customer/address-list"
           component={MyAccountPage}
         />
+        <PrivateRoute exact path="/dashboard" component={MyAccountPage} />
         <PrivateRoute exact path="/account-details" component={MyAccountPage} />
         <PrivateRoute exact path="/checkout" component={CheckOutPage} />
-        <PrivateRoute exact path="/admin/dashboard" component={MyAccountPage} />
+ {/*        <PrivateRoute exact path="/dashboard" component={MyAccountPage} /> */}
         <PrivateRoute exact path="/admin/products" component={MyAccountPage} />
         <PrivateRoute
           exact

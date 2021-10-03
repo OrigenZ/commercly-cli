@@ -32,7 +32,7 @@ const NavLinks = () => {
           My account
         </NavLink>
       ) : (
-        <NavLink activeClassName="active" to="/customer" className="nav-link">
+        <NavLink activeClassName="active" to="/dashboard" className="nav-link">
           My account
         </NavLink>
       )}

@@ -13,7 +13,7 @@ const NavMyAdmin = () => {
             <NavLink
               exact
               activeClassName="active"
-              to="/admin/dashboard"
+              to="/dashboard"
               className="text-reset text-decoration-none text-uppercase"
             >
               Dashboard
