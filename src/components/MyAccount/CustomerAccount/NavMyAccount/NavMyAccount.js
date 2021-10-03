@@ -1,15 +1,15 @@
 import { useContext } from 'react'
 import { AuthContext } from '../../../../common/context/Auth.context'
 import { NavLink } from 'react-router-dom'
+import { Col, Container, Row } from "react-bootstrap";
 import './NavMyAccount.css'
 
 const NavMyAccount = () => {
   const { logOutUser } = useContext(AuthContext)
   return (
-    <div className="border-bottom customer-menu">
-      <div className="row p-4">
-        <div className="col-12 d-flex flex-row justify-content-center">
-          <div className="px-3 text-muted">
+    <div id="subnav" className="border-bottom customer-menu px-3 text-muted">
+      <Container as={Row}>
+        <Col xs={12} sm={4} lg={2} className="center">
             <NavLink
               exact
               activeClassName="active"
@@ -18,8 +18,8 @@ const NavMyAccount = () => {
             >
               Dashboard
             </NavLink>
-          </div>
-          <div className="px-3 text-muted">
+            </Col>
+        <Col xs={12} sm={4} lg={2} className="center">
             <NavLink
               exact
               activeClassName="active"
@@ -28,8 +28,8 @@ const NavMyAccount = () => {
             >
               Orders
             </NavLink>
-          </div>
-          <div className="px-3 text-muted">
+            </Col>
+        <Col xs={12} sm={4} lg={2} className="center">
             <NavLink
               exact
               activeClassName="active"
@@ -38,8 +38,8 @@ const NavMyAccount = () => {
             >
               Addresses
             </NavLink>
-          </div>
-          <div className="px-3 text-muted">
+            </Col>
+        <Col xs={12} sm={4} lg={2} className="center">
             <NavLink
               exact
               activeClassName="active"
@@ -48,8 +48,8 @@ const NavMyAccount = () => {
             >
               Account details
             </NavLink>
-          </div>
-          <div className="px-3 text-muted">
+            </Col>
+        <Col xs={12} sm={4} lg={2} className="center">
             <NavLink
               exact
               activeClassName="active"
@@ -59,9 +59,8 @@ const NavMyAccount = () => {
             >
               Logout
             </NavLink>
-          </div>
-        </div>
-      </div>
+            </Col>
+      </Container>
     </div>
   )
 }
