@@ -9,7 +9,6 @@ import "./ShoppingCart.css";
 const ShoppingCart = () => {
   const { checkOutDetails, cart, setCart } = useContext(CartContext);
   const storedToken = localStorage.getItem("authToken");
-  console.log("checkOutDetails", checkOutDetails);
 
   const handleEditItem = (id, operator) => {
     const param = operator === "+" ? "add-item" : "remove-item";
@@ -62,7 +61,9 @@ const ShoppingCart = () => {
           ))}
       </div>
       <div>
-        <Row className="total-price">Total: <h3>{checkOutDetails.totalPrice} €</h3></Row>
+        <Row className="total-price">
+          Total: <h3>{checkOutDetails.totalPrice} €</h3>
+        </Row>
       </div>
     </>
   );

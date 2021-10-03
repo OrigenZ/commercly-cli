@@ -21,7 +21,6 @@ const CheckOutCart = () => {
         setCart(response.data);
       });
   };
-  console.log("checkOutDetails", checkOutDetails);
 
   return (
     <>
@@ -29,7 +28,7 @@ const CheckOutCart = () => {
         <Col xs={12} md={6} lg={8}>
           <h2>Billing Address</h2>
         </Col>
-        
+
         <Col xs={12} md={6} lg={4} className="checkout-cart">
           <h2>Shopping Cart</h2>
           <div>
@@ -73,8 +72,9 @@ const CheckOutCart = () => {
           </div>
           <div>
             <Row className="total-price">
-            <div className="checkout-total">
-              <p>Total: </p><h3>{checkOutDetails && checkOutDetails.totalPrice}€</h3>
+              <div className="checkout-total">
+                <p>Total: </p>
+                <h3>{checkOutDetails && checkOutDetails.totalPrice}€</h3>
               </div>
             </Row>
           </div>

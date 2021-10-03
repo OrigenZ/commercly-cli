@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Card, Button, Col } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 import { useContext } from "react";
 import { AuthContext } from "../../common/context/Auth.context";
 
