@@ -22,79 +22,85 @@ const MyAccountPage = () => {
   const { user } = useContext(AuthContext);
   if (!user.isAdmin) {
     return (
-
-        <section id="user-dashboard" className="container">
-          <NavMyAccount />
-          <PrivateRoute exact path="/dashboard" component={Dashboard} />
-          <PrivateRoute exact path="/customer/orders" component={Orders} />
+      <section id="user-dashboard">
+        <NavMyAccount />
+        <div className="container">
           <PrivateRoute
             exact
-            path="/customer/address-list"
+            path="/my-account/dashboard"
+            component={Dashboard}
+          />
+          <PrivateRoute
+            exact
+            path="/my-account/customer/orders"
+            component={Orders}
+          />
+          <PrivateRoute
+            exact
+            path="/my-account/customer/address-list"
             component={Addresses}
           />
           <PrivateRoute
             exact
-            path="/account-details"
-            component={AccountDetails}
-          />
-        </section>
-     
-    );
-  }
-  return (
-
-      <section id="user-dashboard">
-        <NavMyAdmin />
-        <div className="container">
-          <PrivateRoute
-            exact
-            path="/dashboard"
-            component={DashboardAdmin}
-          />
-          <PrivateRoute
-            exact
-            path="/admin/products"
-            component={ManageProducts}
-          />
-          <PrivateRoute
-            exact
-            path="/admin/product/edit/:id"
-            component={EditProduct}
-          />
-          <PrivateRoute
-            exact
-            path="/admin/product/create"
-            component={NewProduct}
-          />
-          <PrivateRoute
-            exact
-            path="/admin/categories"
-            component={ManageCategories}
-          />
-          <PrivateRoute
-            exact
-            path="/admin/category/edit/:id"
-            component={EditCategory}
-          />
-          <PrivateRoute
-            exact
-            path="/admin/category/create"
-            component={NewCategory}
-          />
-          <PrivateRoute exact path="/admin/users" component={ManageUsers} />
-          <PrivateRoute
-            exact
-            path="/admin/user/edit/:id"
-            component={EditUser}
-          />
-          <PrivateRoute
-            exact
-            path="/account-details"
+            path="/my-account/account-details"
             component={AccountDetails}
           />
         </div>
       </section>
- 
+    );
+  }
+  return (
+    <section id="user-dashboard">
+      <NavMyAdmin />
+      <div className="container">
+        <PrivateRoute
+          exact
+          path="/my-account/dashboard"
+          component={DashboardAdmin}
+        />
+        <PrivateRoute
+          exact
+          path="/my-account/admin/products"
+          component={ManageProducts}
+        />
+        <PrivateRoute
+          exact
+          path="/admin/product/edit/:id"
+          component={EditProduct}
+        />
+        <PrivateRoute
+          exact
+          path="/admin/product/create"
+          component={NewProduct}
+        />
+        <PrivateRoute
+          exact
+          path="/my-account/admin/categories"
+          component={ManageCategories}
+        />
+        <PrivateRoute
+          exact
+          path="/admin/category/edit/:id"
+          component={EditCategory}
+        />
+        <PrivateRoute
+          exact
+          path="/admin/category/create"
+          component={NewCategory}
+        />
+        <PrivateRoute
+          exact
+          path="/my-account/admin/users"
+          component={ManageUsers}
+        />
+        <PrivateRoute exact path="/admin/user/edit/:id" component={EditUser} />
+        <PrivateRoute
+          exact
+          path="/my-account/account-details"
+          component={AccountDetails}
+        />
+      </div>
+    </section>
   );
 };
 

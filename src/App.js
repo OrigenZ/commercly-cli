@@ -23,18 +23,18 @@ const App = () => {
 
         <Route exact path="/about-us" component={AboutUsPage} />
         <AnonRoute exact path="/my-account" component={LoginPage} />
-        <PrivateRoute exact path="/customer" component={MyAccountPage} />
-        <PrivateRoute exact path="/customer/orders" component={MyAccountPage} />
+        <PrivateRoute exact path="/my-account/customer" component={MyAccountPage} />
+        <PrivateRoute exact path="/my-account/customer/orders" component={MyAccountPage} />
         <PrivateRoute
           exact
-          path="/customer/address-list"
+          path="/my-account/customer/address-list"
           component={MyAccountPage}
         />
-        <PrivateRoute exact path="/dashboard" component={MyAccountPage} />
-        <PrivateRoute exact path="/account-details" component={MyAccountPage} />
-        <PrivateRoute exact path="/checkout" component={CheckOutPage} />
+        <PrivateRoute exact path="/my-account/dashboard" component={MyAccountPage} />
+        <PrivateRoute exact path="/my-account/account-details" component={MyAccountPage} />
+        <PrivateRoute exact path="/my-account/checkout" component={CheckOutPage} />
  {/*        <PrivateRoute exact path="/dashboard" component={MyAccountPage} /> */}
-        <PrivateRoute exact path="/admin/products" component={MyAccountPage} />
+        <PrivateRoute exact path="/my-account/admin/products" component={MyAccountPage} />
         <PrivateRoute
           exact
           path="/admin/product/edit/:id"
@@ -47,7 +47,7 @@ const App = () => {
         />
         <PrivateRoute
           exact
-          path="/admin/categories"
+          path="/my-account/admin/categories"
           component={MyAccountPage}
         />
         <PrivateRoute
@@ -60,7 +60,7 @@ const App = () => {
           path="/admin/category/create"
           component={MyAccountPage}
         />
-        <PrivateRoute exact path="/admin/users" component={MyAccountPage} />
+        <PrivateRoute exact path="/my-account/admin/users" component={MyAccountPage} />
         <PrivateRoute
           exact
           path="/admin/user/edit/:id"
