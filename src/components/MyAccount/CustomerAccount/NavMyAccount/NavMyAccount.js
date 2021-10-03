@@ -7,13 +7,13 @@ const NavMyAccount = () => {
   const { logOutUser } = useContext(AuthContext)
   return (
     <div className="border-bottom customer-menu">
-      <div className="row p-5">
+      <div className="row p-4">
         <div className="col-12 d-flex flex-row justify-content-center">
           <div className="px-3 text-muted">
             <NavLink
               exact
               activeClassName="active"
-              to="/dashboard"
+              to="/my-account/dashboard"
               className="text-reset text-decoration-none text-uppercase"
             >
               Dashboard
@@ -23,7 +23,7 @@ const NavMyAccount = () => {
             <NavLink
               exact
               activeClassName="active"
-              to="/customer/orders"
+              to="/my-account/customer/orders"
               className="text-reset text-decoration-none text-uppercase"
             >
               Orders
@@ -33,7 +33,7 @@ const NavMyAccount = () => {
             <NavLink
               exact
               activeClassName="active"
-              to="/customer/address-list"
+              to="/my-account/customer/address-list"
               className="text-reset text-decoration-none text-uppercase"
             >
               Addresses
@@ -43,7 +43,7 @@ const NavMyAccount = () => {
             <NavLink
               exact
               activeClassName="active"
-              to="/account-details"
+              to="/my-account/account-details"
               className="text-reset text-decoration-none text-uppercase"
             >
               Account details

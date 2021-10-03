@@ -21,3 +21,6 @@
   justify-content: space-between;
 }
 
+a.w-100.btn.btn-success.btn-lg {
+  border-radius: 0px;
+}

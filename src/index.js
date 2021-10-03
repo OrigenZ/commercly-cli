@@ -8,7 +8,7 @@ import { AuthProviderWrapper } from "./common/context/Auth.context";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import Navbar from "./components/Layout/Navbar/Navbar";
+import MyNavbar from "./components/Layout/Navbar/Navbar";
 import Footer from "./components/Layout/Footer/Footer";
 import { CartProviderWrapper } from "./common/context/Cart.context";
 
@@ -17,7 +17,7 @@ ReactDOM.render(
     <Router>
       <AuthProviderWrapper>
         <CartProviderWrapper>
-          <Navbar />
+          <MyNavbar />
           <App />
           <Footer />
         </CartProviderWrapper>
