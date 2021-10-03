@@ -2,15 +2,35 @@
   font-weight: 600;
 }
 
-button.d-block.p-0.pt-3.btn.btn-link {
+button.d-block.p-0.pt-2.btn.btn-link {
   text-decoration: none;
 }
 
-button.d-block.p-0.pt-3.btn.btn-link:focus,
+button.d-block.p-0.pt-2.btn.btn-link:focus,
 .btn-check:focus + .btn,
 .btn:focus,
-button.d-block.p-0.pt-3.btn.btn-link:focus-visible,
+button.d-block.p-0.pt-2.btn.btn-link:focus-visible,
 .btn-check:focus-visible + .btn,
 .btn:focus-visible {
   box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 0%) !important;
+}
+
+
+span.list-cat{
+  color: #6d757d;
+}
+span.list-cat:hover{
+  color: #1057be;
+}
+
+.reset{
+  margin-top: 1em;
+}
+
+button.reset.btn.btn-link{
+  color:#e25765;
+
+  font-size: 1.3em;
+  padding: 0px;
+  text-decoration: none;
 }
