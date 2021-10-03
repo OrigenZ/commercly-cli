@@ -14,18 +14,17 @@ const CartProviderWrapper = (props) => {
 
   useEffect(() => {
     if (user) {
-    axiosInstance
-      .get(`/api/cart/${user._id}`, {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      })
-      .then((response) => setCart(response.data))
-      .catch((err) => console.log(err));
+      axiosInstance
+        .get(`/api/cart/${user._id}`, {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        })
+        .then((response) => setCart(response.data))
+        .catch((err) => console.log(err));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   useEffect(() => {
-    console.log('hola')
     if (user) {
       axiosInstance
         .get(`/api/cart/${user._id}`, {
@@ -36,8 +35,6 @@ const CartProviderWrapper = (props) => {
           let productsArray = [];
           let totalItems = 0;
           let totalPrice = 0;
-
-          console.log("cartContext", response.data);
 
           response.data.products.forEach((obj) => {
             const key = JSON.stringify(obj);

@@ -1,54 +1,47 @@
 // import { AuthContext } from "../../../common/context/Auth.context";
-import { Form, Row, Col, Button } from 'react-bootstrap'
-import React, { useState, useEffect } from 'react'
-import axiosInstance from '../../../../../common/http'
+import { Form, Row, Col, Button } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import axiosInstance from "../../../../../common/http";
 
 const EditCategory = (params) => {
   // const {product, setProduct}= useState([]);
-  const [name, setName] = useState('')
-  const [description, setDescription] = useState('')
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
 
+  const { id } = params.match.params;
 
-  // console.log(params.match.params);
-
-  const { id } = params.match.params
-
-  const storedToken = localStorage.getItem('authToken')
+  const storedToken = localStorage.getItem("authToken");
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    const body = { name, description }
+    e.preventDefault();
+    const body = { name, description };
 
     axiosInstance
       .patch(`/api/categories/${id}`, body, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
-        e.target.reset()
+        e.target.reset();
         /* history.push("/shop"); */
       })
-      .catch((error) => {
-
-      })
-  }
+      .catch((error) => {});
+  };
 
   useEffect(() => {
-    const storedToken = localStorage.getItem('authToken')
+    const storedToken = localStorage.getItem("authToken");
 
     axiosInstance
       .get(`/api/categories/${id}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
-        const foundCategory = response.data
-        setName(foundCategory.name || '')
-        setDescription(foundCategory.description || '')
+        const foundCategory = response.data;
+        setName(foundCategory.name || "");
+        setDescription(foundCategory.description || "");
       })
-      .catch((error) => {
-
-      })
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+      .catch((error) => {});
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="section">
@@ -84,7 +77,7 @@ const EditCategory = (params) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default EditCategory
+export default EditCategory;

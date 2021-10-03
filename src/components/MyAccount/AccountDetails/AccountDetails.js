@@ -1,63 +1,62 @@
-import { useContext, useState, useEffect } from 'react'
-import { AuthContext } from '../../../common/context/Auth.context'
-import { Form, Row, Col, Button } from 'react-bootstrap'
-import axiosInstance from '../../../common/http'
+import { useContext, useState, useEffect } from "react";
+import { AuthContext } from "../../../common/context/Auth.context";
+import { Form, Row, Col, Button } from "react-bootstrap";
+import axiosInstance from "../../../common/http";
 
 const AccountDetails = () => {
-  const { user, setUser } = useContext(AuthContext)
+  const { user, setUser } = useContext(AuthContext);
 
-  const [name, setName] = useState('')
-  const [surname, setSurname] = useState('')
-  const [username, setUsername] = useState('')
-  const [phone, setPhone] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [rePassword, setRePassword] = useState('')
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [username, setUsername] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [rePassword, setRePassword] = useState("");
   // const [errorMessage, setErrorMessage] = useState('')
 
-  const storedToken = localStorage.getItem('authToken')
+  const storedToken = localStorage.getItem("authToken");
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     if (password === rePassword) {
-      const body = { name, surname, username, email, phone, password }
+      const body = { name, surname, username, email, phone, password };
       axiosInstance
         .patch(`/api/users/${user._id}`, body, {
           headers: { Authorization: `Bearer ${storedToken}` },
         })
         .then((response) => {
-          setUser(response.data.user)
+          setUser(response.data.user);
         })
         .catch((error) => {
           // const errorDescription = error.response.data.message
           // setErrorMessage(errorDescription)
-        })
+        });
     } else {
-      console.log('passwords do not match')
+      console.log("passwords do not match");
     }
-  }
+  };
 
   useEffect(() => {
     axiosInstance(`/api/users/${user._id}`, {
       headers: { Authorization: `Bearer ${storedToken}` },
     })
       .then((response) => {
-        const foundUser = response.data
-        setName(foundUser.name || '')
-        setSurname(foundUser.surname || '')
-        setUsername(foundUser.username || '')
-        setPhone(foundUser.phone || '')
-        setEmail(foundUser.email || '')
+        const foundUser = response.data;
+        setName(foundUser.name || "");
+        setSurname(foundUser.surname || "");
+        setUsername(foundUser.username || "");
+        setPhone(foundUser.phone || "");
+        setEmail(foundUser.email || "");
       })
       .catch((error) => {
         // const errorDescription = error.response.data.message
         // setErrorMessage(errorDescription)
-      })
+      });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []);
 
-  //console.log('user', user)
   return (
     <div className="section">
       <div className="dashboard-wrapper text-muted d-flex justify-content-center">
@@ -140,7 +139,7 @@ const AccountDetails = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AccountDetails
+export default AccountDetails;

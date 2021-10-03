@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axiosInstance from "../../../../common/http";
 
 const ManageUsers = () => {
-  const [ users, setUsers ] = useState([]);
+  const [users, setUsers] = useState([]);
 
   const storedToken = localStorage.getItem("authToken");
 
@@ -11,12 +11,12 @@ const ManageUsers = () => {
       headers: { Authorization: `Bearer ${storedToken}` },
     })
       .then((response) => {
-        console.log("response", response);
         setUsers(response.data);
       })
       .catch((err) => console.log(err.message));
     //TODO: set proper error handling
-    
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
