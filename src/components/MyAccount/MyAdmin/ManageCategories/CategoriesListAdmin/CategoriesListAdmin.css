@@ -9,3 +9,8 @@
 #categories-list:last-child{
     border-bottom: 0px solid #dfe2e6;
 }
+a.btn.btn-outline-dark.col-12,
+.btn.btn-outline-danger.delete-btn.w-100,
+a.btn.btn-outline-secondary.edit-btn.w-100 {
+    border-radius: 0px;
+}
