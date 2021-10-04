@@ -24,6 +24,10 @@ const App = () => {
         <Route exact path="/about-us" component={AboutUsPage} />
         <AnonRoute exact path="/my-account" component={LoginPage} />
         <PrivateRoute exact path="/my-account/customer" component={MyAccountPage} />
+
+        <PrivateRoute exact path="/my-account/customer/edit-address/:type" component={MyAccountPage} />
+        <PrivateRoute exact path="/my-account/customer/add-address/:type" component={MyAccountPage} />
+
         <PrivateRoute exact path="/my-account/customer/orders" component={MyAccountPage} />
         <PrivateRoute
           exact

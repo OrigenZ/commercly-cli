@@ -40,21 +40,6 @@ const ProductList = (props) => {
     });
   };
 
-  /**
-   * Busco con el search:
-   * Hay resultados - Si - Muestra resultados
-   * Hay resultados - No - Muestra "There are no results for 'adfadf'"
-   * Si reset - Clear search box text and value
-   *          - Show all items
-   * Si busco por categoría - Clear search box text and value
-   *
-   * Busco por categoría
-   * Hay resultados - Si - Muestra resultados
-   * Hay resultados - No - "There are no results for the selected category"
-   * Si reset - Show all products
-   *
-   */
-
   return (
     <div className="row">
       {(reset || !results) &&
