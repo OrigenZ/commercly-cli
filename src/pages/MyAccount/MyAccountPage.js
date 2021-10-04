@@ -16,7 +16,7 @@ import NewProduct from "../../components/MyAccount/MyAdmin/ManageProducts/NewPro
 import EditProduct from "../../components/MyAccount/MyAdmin/ManageProducts/EditProduct/EditProduct";
 import EditCategory from "../../components/MyAccount/MyAdmin/ManageCategories/EditCategory/EditCategory";
 import NewCategory from "../../components/MyAccount/MyAdmin/ManageCategories/NewCategory/NewCategory";
-import EditUser from "../../components/MyAccount/MyAdmin/ManageUsers/EditUser/EditUser";
+import UserDetails from "../../components/MyAccount/MyAdmin/ManageUsers/UserDetails/UserDetails";
 
 const MyAccountPage = () => {
   const { user } = useContext(AuthContext);
@@ -93,7 +93,7 @@ const MyAccountPage = () => {
           path="/my-account/admin/users"
           component={ManageUsers}
         />
-        <PrivateRoute exact path="/admin/user/edit/:id" component={EditUser} />
+        <PrivateRoute exact path="/admin/user/edit/:id" component={UserDetails} />
         <PrivateRoute
           exact
           path="/my-account/account-details"

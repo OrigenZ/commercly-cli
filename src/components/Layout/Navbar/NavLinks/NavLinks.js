@@ -1,7 +1,6 @@
 import { NavLink } from "react-router-dom";
 import "./NavLinks.css";
 import React, { useState } from "react";
-import { Nav } from "react-bootstrap";
 
 const NavLinks = () => {
   const [isLoggedIn] = useState(false);

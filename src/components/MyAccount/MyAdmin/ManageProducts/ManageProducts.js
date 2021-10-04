@@ -65,7 +65,7 @@ const ManageProducts = () => {
         {/* TODO: check isAdmin and render ProductList / AdminProductList */}
       </div>
       <div className="col-12 col-md-9">
-        <ProductsListAdmin results={results} products={products} />
+        <ProductsListAdmin results={results} products={products} setProducts={setProducts} />
       </div>
     </div>
   )

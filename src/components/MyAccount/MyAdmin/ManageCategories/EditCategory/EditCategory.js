@@ -3,12 +3,12 @@ import { Form, Row, Col, Button } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
 import axiosInstance from "../../../../../common/http";
 
-const EditCategory = (params) => {
+const EditCategory = (props) => {
   // const {product, setProduct}= useState([]);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
 
-  const { id } = params.match.params;
+  const { id } = props.match.params;
 
   const storedToken = localStorage.getItem("authToken");
 
@@ -22,7 +22,7 @@ const EditCategory = (params) => {
       })
       .then((response) => {
         e.target.reset();
-        /* history.push("/shop"); */
+        props.history.push(`/my-account/admin/categories`)
       })
       .catch((error) => {});
   };

@@ -14,6 +14,7 @@ const UsersListAdmin = (props) => {
         .then((response) => {
             const newUsers = users.filter((user) => user._id !== id)
             setUsers(newUsers)
+            props.history.push('/my-account/admin/users') 
         })
         .catch((err) => {})
         //TODO: set proper error handling
