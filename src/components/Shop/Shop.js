@@ -1,74 +1,84 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 
-import ProductList from '../ProductsList/ProductsList'
-import SearchProduct from '../SearchProduct/SearchProduct'
-import CategoriesFilter from '../CategoriesFilter/CategoriesFilter'
+import ProductList from "../ProductsList/ProductsList";
+import SearchProduct from "../SearchProduct/SearchProduct";
+import CategoriesFilter from "../CategoriesFilter/CategoriesFilter";
 
-import axiosInstance from '../../common/http'
+import axiosInstance from "../../common/http";
 
-import './Shop.css'
-import { Container, Row, Col } from 'react-bootstrap'
+import "./Shop.css";
+import { Container, Row, Col } from "react-bootstrap";
 
 const Shop = () => {
-  const [products, setProducts] = useState([])
-  const [results, setResults] = useState(null)
-  const [currentCategory, setCurrentCategory] = useState('')
-  const [currentSearch, setCurrentSearch] = useState('')
+  const [products, setProducts] = useState([]);
+  const [results, setResults] = useState([]);
+  const [reset, setReset] = useState(true);
+  const [currentCategory, setCurrentCategory] = useState("");
+  const [currentSearch, setCurrentSearch] = useState("");
 
   useEffect(() => {
     if (currentCategory) {
       const filteredByCategory = products.filter((product) => {
-        return product.category._id === currentCategory
-      })
-      setResults(filteredByCategory)
-      setCurrentSearch('')
+        return product.category._id === currentCategory;
+      });
+      setResults(filteredByCategory);
+      setCurrentSearch("");
     }
 
     if (currentSearch) {
       const productsFound = products.filter((product) => {
-        const regex = new RegExp(currentSearch, 'i')
-        const nameFound = product.name.match(regex)
-        const brandFound = product.brand.match(regex)
+        const regex = new RegExp(currentSearch, "i");
+        const nameFound = product.name.match(regex);
+        const brandFound = product.brand.match(regex);
 
-        return nameFound || brandFound
-      })
+        return nameFound || brandFound;
+      });
 
-      setResults(productsFound)
-      setCurrentCategory('')
+      setResults(productsFound);
+      setCurrentCategory("");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentCategory, currentSearch])
+  }, [currentCategory, currentSearch]);
 
   useEffect(() => {
     axiosInstance
       .get(`/api/products`)
       .then((response) => {
-        setProducts(response.data.products)
+        setProducts(response.data.products);
       })
-      .catch((err) => {})
+      .catch((err) => {});
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []);
 
   return (
     <div>
       <Container>
         <Row className="d-flex flex-row justify-content-start">
           <Col xs={12} md={3} lg={3} className="filter-container">
-            <SearchProduct setCurrentSearch={setCurrentSearch} />
+            <SearchProduct
+              setCurrentSearch={setCurrentSearch}
+              setReset={setReset}
+            />
             <CategoriesFilter
-              setCategory={setCurrentCategory}
-              setResults={setResults}
+              setCurrentCategory={setCurrentCategory}
+              setReset={setReset}
+              reset={reset}
             />
           </Col>
           {/* TODO: check isAdmin and render ProductList / AdminProductList */}
           <Col xs={12} md={9} lg={9} className="products-container">
-            <ProductList results={results} products={products} isShop={true} />
+            <ProductList 
+              results={results} 
+              products={products} 
+              isShop={true} 
+              reset={reset}
+            />
           </Col>
         </Row>
       </Container>
     </div>
-  )
-}
+  );
+};
 
-export default Shop
+export default Shop;

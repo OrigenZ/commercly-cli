@@ -43,9 +43,7 @@ const ManageProducts = () => {
   useEffect(() => {
     if (storedToken) {
       axiosInstance
-        .get(`/api/products`, {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        })
+        .get(`/api/products`)
         .then((response) => {
           setProducts(response.data.products);
         })
