@@ -2,8 +2,9 @@ import React, { useContext, useState, useEffect } from "react";
 import { useIsMount } from "../../common/customHooks/useIsMount";
 import { AuthContext } from "../../common/context/Auth.context";
 import axiosInstance from "../../common/http/index";
+import dateFormat from "dateformat";
 
-import { Link } from "react-router-dom";
+import * as reactRouterDom from "react-router-dom";
 import { Card, Button, Row, Col, Form } from "react-bootstrap";
 
 import "./UserCard.css";
@@ -16,6 +17,18 @@ const UserCard = (props) => {
   const isMount = useIsMount();
   const storedToken = localStorage.getItem("authToken");
 
+  //2021-10-02T15:05:00.017Z
+
+  //21 Aug 2021 @ 15:05
+
+  const formatDate = () => {
+    const dateObj = new Date(userData.createdAt);
+    return dateFormat(dateObj, " mmm dd yyyy @ h:MM:ss TT");
+  }
+
+
+
+
   const handleCheckbox = (e) => {
     const isTrue = e.target.value === "true";
 
@@ -27,6 +40,7 @@ const UserCard = (props) => {
   };
 
   useEffect(() => {
+
     if (!isMount) {
       axiosInstance
         .patch(
@@ -54,7 +68,7 @@ const UserCard = (props) => {
             <Col xs={12} sm={2} lg={2}>
               <Card.Text>
                 <span className="text-center text-muted">
-                  {userData.createdAt.slice(0, 10)}
+                  {formatDate()}
                 </span>
               </Card.Text>
             </Col>
@@ -79,12 +93,12 @@ const UserCard = (props) => {
             <Col xs={12} sm={12} lg={3}>
               <Row>
                 <Col xs={12} sm={12} lg={6}>
-                  <Link
+                  <reactRouterDom.Link
                     to={`/admin/user/edit/${userData._id}`} //TODO  pasar a App.js
                     className="btn btn-outline-secondary edit-btn w-100 mb-2"
                   >
                     Details
-                  </Link>
+                  </reactRouterDom.Link>
                 </Col>{" "}
                 <Col xs={12} sm={12} lg={6}>
                   <Button

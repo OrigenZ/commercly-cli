@@ -5,6 +5,7 @@ import axiosInstance from "../../../../../common/http";
 const NewProduct = () => {
   const [sku, setSku] = useState("");
   const [name, setName] = useState("");
+  const [quantity, setQuantity] = useState("");
   const [price, setPrice] = useState(0);
   const [brand, setBrand] = useState("");
   const [description, setDescription] = useState("");
@@ -20,6 +21,7 @@ const NewProduct = () => {
     const storedToken = localStorage.getItem("authToken");
 
     body.append("sku", sku);
+    body.append("quantity", quantity);
     body.append("name", name);
     body.append("price", price);
     body.append("brand", brand);
@@ -76,6 +78,13 @@ const NewProduct = () => {
                   id="sku"
                   name="sku"
                   onChange={(e) => setSku(e.target.value)}
+                />
+                <label htmlFor="quantity">Quantity:</label>
+                <input
+                  type="text"
+                  id="quantity"
+                  name="quantity"
+                  onChange={(e) => setQuantity(e.target.value)}
                 />
                 <label htmlFor="name">Name:</label>
                 <input
