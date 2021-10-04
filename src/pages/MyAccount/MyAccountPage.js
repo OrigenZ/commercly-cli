@@ -17,6 +17,8 @@ import EditProduct from "../../components/MyAccount/MyAdmin/ManageProducts/EditP
 import EditCategory from "../../components/MyAccount/MyAdmin/ManageCategories/EditCategory/EditCategory";
 import NewCategory from "../../components/MyAccount/MyAdmin/ManageCategories/NewCategory/NewCategory";
 import UserDetails from "../../components/MyAccount/MyAdmin/ManageUsers/UserDetails/UserDetails";
+import NewAddress from "../../components/MyAccount/CustomerAccount/Addresses/NewAddress/NewAddress";
+import EditAddress from "../../components/MyAccount/CustomerAccount/Addresses/EditAddress/EditAddress";
 
 const MyAccountPage = () => {
   const { user } = useContext(AuthContext);
@@ -40,6 +42,18 @@ const MyAccountPage = () => {
             path="/my-account/customer/address-list"
             component={Addresses}
           />
+
+           <PrivateRoute
+            exact
+            path="/my-account/customer/edit-address/:type"
+            component={EditAddress}
+          /> 
+          <PrivateRoute
+            exact
+            path="/my-account/customer/add-address/:type"
+            component={NewAddress}
+          />
+
           <PrivateRoute
             exact
             path="/my-account/account-details"
