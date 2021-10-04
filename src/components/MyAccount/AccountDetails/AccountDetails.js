@@ -20,11 +20,7 @@ const AccountDetails = () => {
 
   const storedToken = localStorage.getItem("authToken");
 
-  const popover = (
-    <Popover id="popover-basic">
-      <Popover.Header as="h3">Changes Submited</Popover.Header>
-    </Popover>
-  );
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -140,11 +136,11 @@ const AccountDetails = () => {
                 />
               </Form.Group>
             </Row>
-            <OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
+
             <Button variant="primary" type="submit">
               Submit changes
             </Button>
-            </OverlayTrigger>
+     
           </Form>
         </Col>
 </Container>
