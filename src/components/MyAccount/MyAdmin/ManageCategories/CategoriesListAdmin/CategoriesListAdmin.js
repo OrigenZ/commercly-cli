@@ -2,29 +2,47 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
-import axiosInstance from "../../../../../common/http/index";
+import Swal from "sweetalert2/src/sweetalert2";
 
+import axiosInstance from "../../../../../common/http/index";
 import "./CategoriesListAdmin.css";
 
-const CategoriesListAdmin = (props) => {
+function CategoriesListAdmin(props) {
   const [categories, setCategories] = useState([]);
   // const [setErrorMessage] = useState(undefined)
-
   const storedToken = localStorage.getItem("authToken");
 
-  const handleDelete = (id) => {
-    axiosInstance
-      .delete(`/api/categories/${id}`, {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      })
-      .then((response) => {
-        const newCategories = categories.filter(
-          (category) => category._id !== id
+  const handleDelete = (id, name) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Delete",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          "Deleted!",
+          `Category ${name} has been deleted.`,
+          "success"
         );
-        setCategories([...newCategories]);
-        props.history.push('/my-account/admin/categories') 
-      })
-      .catch((err) => {});
+
+        axiosInstance
+          .delete(`/api/categories/${id}`, {
+            headers: { Authorization: `Bearer ${storedToken}` },
+          })
+          .then(() => {
+            const newCategories = categories.filter(
+              (category) => category._id !== id
+            );
+            setCategories([...newCategories]);
+            props.history.push("/my-account/admin/categories");
+          })
+          .catch((err) => {});
+      }
+    });
   };
 
   useEffect(() => {
@@ -76,7 +94,7 @@ const CategoriesListAdmin = (props) => {
               <Col xs={6} sm={6} lg={6}>
                 <div className="mb-0">
                   <div
-                    onClick={() => handleDelete(category._id)}
+                    onClick={() => handleDelete(category._id, category.name)}
                     className="btn btn-outline-danger delete-btn w-100"
                   >
                     Delete
@@ -89,6 +107,6 @@ const CategoriesListAdmin = (props) => {
       ))}
     </>
   );
-};
+}
 
 export default CategoriesListAdmin;
