@@ -1,4 +1,3 @@
-// import { AuthContext } from "../../../common/context/Auth.context";
 import { Form, Row, Col, Button } from 'react-bootstrap'
 import React, { useState, useEffect } from 'react'
 import axiosInstance from '../../../../../common/http/index'
@@ -6,7 +5,7 @@ import axiosInstance from '../../../../../common/http/index'
 import './EditProduct.css'
 
 const EditProduct = (props) => {
-  // const {product, setProduct}= useState([]);
+  const [sku, setSku] = useState('')
   const [name, setName] = useState('')
   const [price, setPrice] = useState(0)
   const [brand, setBrand] = useState('')
@@ -44,6 +43,7 @@ const EditProduct = (props) => {
       })
       .then((response) => {
         const foundProduct = response.data
+        setName(foundProduct.sku || '')
         setName(foundProduct.name || '')
         setPrice(foundProduct.price || 0)
         setBrand(foundProduct.brand || '')
@@ -65,12 +65,28 @@ const EditProduct = (props) => {
   }, [])
 
   return (
-    <div className="section">
+    <section
+      className="container d-flex flex-column justify-content-center align-items-center"
+      id="create-product"
+    >
+      <div className="create-product-wrapper">
+        <h2 className="text-center text-muted text-uppercase">Edit product</h2>
 
+        <div className="create-product-container">
           <Form onSubmit={handleSubmit}>
             <Row className="mb-3">
               <Form.Group as={Col}>
-                <Form.Label>Name</Form.Label>
+                <Form.Label>SKU</Form.Label>
+                <Form.Control
+                  type="text"
+                  onChange={(e) => setSku(e.target.value)}
+                  value={sku}
+                />
+              </Form.Group>
+            </Row>
+            <Row className="mb-3">
+              <Form.Group as={Col}>
+                <Form.Label>Title</Form.Label>
                 <Form.Control
                   type="text"
                   onChange={(e) => setName(e.target.value)}
@@ -151,8 +167,8 @@ const EditProduct = (props) => {
             </Button>
           </Form>
         </div>
-
-
+      </div>
+    </section>
   )
 }
 

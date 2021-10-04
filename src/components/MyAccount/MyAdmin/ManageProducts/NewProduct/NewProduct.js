@@ -1,161 +1,166 @@
-import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
-import axiosInstance from "../../../../../common/http";
+import React, { useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
+import { Form, Row, Col, Button } from 'react-bootstrap'
+import axiosInstance from '../../../../../common/http'
 
 const NewProduct = () => {
-  const [sku, setSku] = useState("");
-  const [name, setName] = useState("");
-  const [quantity, setQuantity] = useState("");
-  const [price, setPrice] = useState(0);
-  const [brand, setBrand] = useState("");
-  const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
-  const [image, setImage] = useState("");
+  const [sku, setSku] = useState('')
+  const [name, setName] = useState('')
+  const [quantity, setQuantity] = useState('')
+  const [price, setPrice] = useState(0)
+  const [brand, setBrand] = useState('')
+  const [description, setDescription] = useState('')
+  const [category, setCategory] = useState('')
+  const [image, setImage] = useState('')
   // const [errorMessage, setErrorMessage] = useState("");
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState([])
 
-  const history = useHistory();
+  const history = useHistory()
   const handleSubmit = (e) => {
-    e.preventDefault();
-    const body = new FormData();
-    const storedToken = localStorage.getItem("authToken");
+    e.preventDefault()
+    const body = new FormData()
+    const storedToken = localStorage.getItem('authToken')
 
-    body.append("sku", sku);
-    body.append("quantity", quantity);
-    body.append("name", name);
-    body.append("price", price);
-    body.append("brand", brand);
-    body.append("description", description);
-    body.append("category", category);
-    body.append("imageUrl", image);
+    body.append('sku', sku)
+    body.append('quantity', quantity)
+    body.append('name', name)
+    body.append('price', price)
+    body.append('brand', brand)
+    body.append('description', description)
+    body.append('category', category)
+    body.append('imageUrl', image)
 
     axiosInstance
       .post(`/api/products/create`, body, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
-        e.target.reset();
-        history.push("/shop");
+        e.target.reset()
+        history.push('/shop')
       })
       .catch((err) => {
         // const errorDescription = error.response.data.message;
         // setErrorMessage(errorDescription);
-      });
-  };
+      })
+  }
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("authToken");
+    const storedToken = localStorage.getItem('authToken')
 
     const getCategories = () => {
       axiosInstance
-        .get("/api/categories", {
+        .get('/api/categories', {
           headers: { Authorization: `Bearer ${storedToken}` },
         })
         .then((response) => {
-          setCategories(response.data);
-          setCategory(response.data[0]._id);
+          setCategories(response.data)
+          setCategory(response.data[0]._id)
         })
-        .catch((err) => {});
-    };
-    getCategories();
-  }, []);
+        .catch((err) => {})
+    }
+    getCategories()
+  }, [])
 
   return (
-    <div>
-      <section
-        className="container d-flex flex-column justify-content-center align-items-center"
-        id="create-product"
-      >
-        <div className="create-product-wrapper">
-          <h2 className="text-center text-muted text-uppercase">New product</h2>
+    <section
+      className="container d-flex flex-column justify-content-center align-items-center"
+      id="create-product"
+    >
+      <div className="create-product-wrapper">
+        <h2 className="text-center text-muted text-uppercase">New product</h2>
 
-          <div className="create-product-container">
-            <form onSubmit={handleSubmit}>
-              <div className="d-flex flex-column">
-                <label htmlFor="sku">Sku:</label>
-                <input
+        <div className="create-product-container">
+          <Form onSubmit={handleSubmit}>
+            <Row className="mb-3">
+              <Form.Group as={Col}>
+                <Form.Label>SKU</Form.Label>
+                <Form.Control
                   type="text"
-                  id="sku"
-                  name="sku"
                   onChange={(e) => setSku(e.target.value)}
+                  value={sku}
                 />
-                <label htmlFor="quantity">Quantity:</label>
-                <input
+              </Form.Group>
+            </Row>
+            <Row className="mb-3">
+              <Form.Group as={Col}>
+                <Form.Label>Title</Form.Label>
+                <Form.Control
                   type="text"
-                  id="quantity"
-                  name="quantity"
-                  onChange={(e) => setQuantity(e.target.value)}
-                />
-                <label htmlFor="name">Name:</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
                   onChange={(e) => setName(e.target.value)}
+                  value={name}
                 />
+              </Form.Group>
+            </Row>
 
-                <label htmlFor="price">Price:</label>
-                <input
+            <Row className="mb-3">
+              <Form.Group as={Col}>
+                <Form.Label>Price</Form.Label>
+                <Form.Control
                   type="number"
-                  step="any"
-                  id="price"
-                  name="price"
                   onChange={(e) => setPrice(e.target.value)}
+                  value={price}
                 />
+              </Form.Group>
+            </Row>
 
-                <label htmlFor="brand">Brand:</label>
-                <input
+            <Row className="mb-3">
+              <Form.Group as={Col}>
+                <Form.Label>Brand</Form.Label>
+                <Form.Control
                   type="text"
-                  id="brand"
-                  name="brand"
                   onChange={(e) => setBrand(e.target.value)}
+                  value={brand}
                 />
+              </Form.Group>
+            </Row>
 
-                <label htmlFor="">Description:</label>
-                <textarea
-                  name="description"
-                  id="description"
-                  cols="30"
-                  rows="5"
+            <Row className="mb-3">
+              <Form.Group as={Col}>
+                <Form.Label>Description</Form.Label>
+                <Form.Control
+                  type="text"
                   onChange={(e) => setDescription(e.target.value)}
-                ></textarea>
+                  value={description}
+                />
+              </Form.Group>
+            </Row>
 
-                <label htmlFor="category">Category:</label>
-                <select
-                  name="category"
-                  id="category"
+            <Row className="mb-3">
+              <Form.Group as={Col}>
+                <Form.Label>Category</Form.Label>
+                <Form.Select
+                  type="text"
                   onChange={(e) => setCategory(e.target.value)}
+                  value={category}
                 >
                   {categories.map((category) => (
                     <option key={category._id} value={category._id}>
                       {category.name}
                     </option>
                   ))}
-                </select>
+                </Form.Select>
+              </Form.Group>
+            </Row>
 
-                <label htmlFor="image">Image:</label>
-                <input
+            <Row className="mb-3">
+              <Form.Group as={Col}>
+                <Form.Label>Image</Form.Label>
+                <Form.Control
                   type="file"
-                  name="image"
-                  id="image"
-                  onChange={(e) => {
-                    setImage(e.target.files[0]);
-                  }}
+                  onChange={(e) => setImage(e.target.value)}
+                  // value={image}
                 />
+              </Form.Group>
+            </Row>
 
-                <button
-                  type="submit"
-                  className="btn btn-outline-secondary py-2 px-5 mt-4"
-                >
-                  Submit
-                </button>
-              </div>
-            </form>
-          </div>
+            <Button variant="primary" type="submit">
+              Submit changes
+            </Button>
+          </Form>
         </div>
-      </section>
-    </div>
-  );
-};
+      </div>
+    </section>
+  )
+}
 
-export default NewProduct;
+export default NewProduct
