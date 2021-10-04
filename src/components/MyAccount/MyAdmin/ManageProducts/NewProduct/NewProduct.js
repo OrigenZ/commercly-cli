@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import axiosInstance from "../../../../../common/http";
 
 const NewProduct = () => {
+  const [sku, setSku] = useState("");
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
   const [brand, setBrand] = useState("");
@@ -18,6 +19,7 @@ const NewProduct = () => {
     const body = new FormData();
     const storedToken = localStorage.getItem("authToken");
 
+    body.append("sku", sku);
     body.append("name", name);
     body.append("price", price);
     body.append("brand", brand);
@@ -68,6 +70,13 @@ const NewProduct = () => {
           <div className="create-product-container">
             <form onSubmit={handleSubmit}>
               <div className="d-flex flex-column">
+                <label htmlFor="sku">Sku:</label>
+                <input
+                  type="text"
+                  id="sku"
+                  name="sku"
+                  onChange={(e) => setSku(e.target.value)}
+                />
                 <label htmlFor="name">Name:</label>
                 <input
                   type="text"

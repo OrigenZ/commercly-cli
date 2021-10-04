@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import axiosInstance from '../../../../../common/http'
 
-const NewCategory = () => {
+const NewCategory = (props) => {
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
   // const [errorMessage, setErrorMessage] = useState("");
@@ -17,6 +17,7 @@ const NewCategory = () => {
       })
       .then((response) => {
         e.target.reset()
+        props.history.push(`/my-account/admin/categories`)
       })
       .catch((error) => {
         // const errorDescription = error.response.data.message;

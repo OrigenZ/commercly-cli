@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import ProductList from './ProductsList/ProductsList'
+import ProductList from '../ProductsList/ProductsList'
 import SearchProduct from '../SearchProduct/SearchProduct'
 import CategoriesFilter from '../CategoriesFilter/CategoriesFilter'
 
@@ -63,7 +63,7 @@ const Shop = () => {
           </Col>
           {/* TODO: check isAdmin and render ProductList / AdminProductList */}
           <Col xs={12} md={9} lg={9} className="products-container">
-            <ProductList results={results} products={products} />
+            <ProductList results={results} products={products} isShop={true} />
           </Col>
         </Row>
       </Container>
