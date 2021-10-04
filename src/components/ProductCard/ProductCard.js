@@ -6,6 +6,8 @@ import { AuthContext } from "../../common/context/Auth.context";
 
 import './ProductCard.css'
 
+import defaultImage from '../../images/img-default.jpg'
+
 const ProductCard = (props) => {
   const { user } = useContext(AuthContext);
   const { product, handleDelete, isShop } = props;
@@ -17,10 +19,11 @@ const ProductCard = (props) => {
           <div className="img-container">
             <Card.Img
               variant="top"
-              src={product.imageUrl}
+              src={product.imageUrl || defaultImage}
               className="w-100"
               alt={product.name}
             />
+
           </div>
           <Card.Body className="prod-text">
             <Card.Title className="text-center">{product.name}</Card.Title>
