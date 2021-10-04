@@ -1,6 +1,6 @@
 import { Switch, Route } from 'react-router-dom'
 
-// import './App.css';
+import './App.css';
 
 import HomePage from './pages/HomePage/HomePage'
 import ShopPage from './pages/ShopPage/ShopPage'

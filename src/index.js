@@ -6,7 +6,6 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { AuthProviderWrapper } from "./common/context/Auth.context";
 
 import "./index.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 import MyNavbar from "./components/Layout/Navbar/Navbar";
 import Footer from "./components/Layout/Footer/Footer";

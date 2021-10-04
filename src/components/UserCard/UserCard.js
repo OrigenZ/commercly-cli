@@ -40,6 +40,7 @@ const UserCard = (props) => {
         .catch((err) => console.log(err.message));
       //TODO: set proper error handling
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAdmin]);
 
   return (
@@ -88,7 +89,7 @@ const UserCard = (props) => {
                 <Col xs={12} sm={12} lg={6}>
                   <Button
                     variant="outline-danger"
-                    onClick={() => handleDelete(userData._id)}
+                    onClick={() => handleDelete(userData._id, userData.username)}
                     className="w-100"
                   >
                     Delete

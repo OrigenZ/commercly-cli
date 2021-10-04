@@ -43,7 +43,7 @@ const ProductCard = (props) => {
             </Link>
 
             <Button variant="outline-danger"
-              onClick={() => handleDelete(product._id)}
+              onClick={() => handleDelete(product._id, product.name)}
               className="w-100"
             >
               Delete
