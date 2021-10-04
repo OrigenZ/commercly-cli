@@ -7,14 +7,15 @@ const ProductsListAdmin = (props) => {
 
   const storedToken = localStorage.getItem('authToken')
 
-  const handleDelete = async (id) => {
-    await axiosInstance
+  const handleDelete =  (id) => {
+   axiosInstance
       .delete(`/api/products/${id}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
         const newProducts = products.filter((product) => product._id !== id)
         setProducts(newProducts)
+        props.history.push('/my-account/admin/products') 
       })
       .catch((err) => {})
     //TODO: set proper error handling

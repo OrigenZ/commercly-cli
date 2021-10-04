@@ -6,7 +6,7 @@ import axiosInstance from "../../../../../common/http/index";
 
 import "./CategoriesListAdmin.css";
 
-const CategoriesListAdmin = () => {
+const CategoriesListAdmin = (props) => {
   const [categories, setCategories] = useState([]);
   // const [setErrorMessage] = useState(undefined)
 
@@ -22,12 +22,14 @@ const CategoriesListAdmin = () => {
           (category) => category._id !== id
         );
         setCategories([...newCategories]);
+        props.history.push('/my-account/admin/categories') 
       })
       .catch((err) => {});
   };
 
   useEffect(() => {
     const storedToken = localStorage.getItem("authToken");
+
     // If the token exists in the localStorage
     if (storedToken) {
       axiosInstance

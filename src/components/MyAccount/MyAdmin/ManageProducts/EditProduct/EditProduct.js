@@ -5,7 +5,7 @@ import axiosInstance from '../../../../../common/http/index'
 
 import './EditProduct.css'
 
-const EditProduct = (params) => {
+const EditProduct = (props) => {
   // const {product, setProduct}= useState([]);
   const [name, setName] = useState('')
   const [price, setPrice] = useState(0)
@@ -16,7 +16,7 @@ const EditProduct = (params) => {
   // const [errorMessage, setErrorMessage] = useState('')
   const [categories, setCategories] = useState([])
 
-  const { id } = params.match.params
+  const { id } = props.match.params
 
   const storedToken = localStorage.getItem('authToken')
 
@@ -30,7 +30,7 @@ const EditProduct = (params) => {
       })
       .then((response) => {
         e.target.reset()
-        /* history.push("/shop"); */
+        props.history.push(`/my-account/admin/products`)
       })
       .catch((error) => {})
   }
