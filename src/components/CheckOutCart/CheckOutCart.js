@@ -24,7 +24,7 @@ const CheckOutCart = () => {
 
   return (
     <>
-      <Row>
+      <Row className="col-12">
         <Col xs={12} md={6} lg={8}>
           <h2>Billing Address</h2>
         </Col>

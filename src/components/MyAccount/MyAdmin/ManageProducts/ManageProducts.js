@@ -6,6 +6,7 @@ import ProductsList from "../../../ProductsList/ProductsList";
 import AddProductButton from "./NewProduct/AddProductButton/AddProductButton";
 
 import axiosInstance from "../../../../common/http";
+import ProductsListAdmin from "./ProductsListAdmin/ProductsListAdmin";
 
 const ManageProducts = () => {
   const [products, setProducts] = useState([]);
@@ -53,7 +54,7 @@ const ManageProducts = () => {
   }, []);
 
   return (
-    <div className="row pt-5 ">
+/*     <div className="row pt-5 ">
       <div className="col-12 col-md-3">
         <AddProductButton />
         <SearchProduct 
@@ -65,7 +66,7 @@ const ManageProducts = () => {
           setReset={setReset}
           reset={reset}
         />
-        {/* TODO: check isAdmin and render ProductList / AdminProductList */}
+      
       </div>
       <div className="col-12 col-md-9">
         <ProductsList
@@ -76,7 +77,11 @@ const ManageProducts = () => {
           reset={reset}
         />
       </div>
-    </div>
+    </div> */
+
+    <div className="section col-12">
+    <ProductsListAdmin />
+  </div>
   );
 };
 
