@@ -67,7 +67,7 @@ function CategoriesListAdmin(props) {
       const response = await axiosInstance.get(`/api/categories`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       });
-      const data = response.data.sort((a,b) => a.name.localeCompare(b.name));
+      const data = response.data.sort((a, b) => a.name.localeCompare(b.name));
 
       const slice = data.slice(offset, offset + perPage);
 
@@ -114,7 +114,7 @@ function CategoriesListAdmin(props) {
   };
 
   useEffect(() => {
-    getData()
+    getData();
   }, [offset]);
 
   useEffect(() => {
@@ -197,7 +197,6 @@ function CategoriesListAdmin(props) {
 }
 
 export default CategoriesListAdmin;
-
 
 /**
  * 
