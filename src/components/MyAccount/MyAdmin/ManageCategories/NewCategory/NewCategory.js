@@ -1,28 +1,71 @@
 import React, { useState } from 'react'
+import { Form, Row, Col, Button } from 'react-bootstrap'
 import axiosInstance from '../../../../../common/http'
+import Swal from 'sweetalert2/src/sweetalert2'
 
 const NewCategory = (props) => {
-  const [name, setName] = useState('')
-  const [description, setDescription] = useState('')
-  // const [errorMessage, setErrorMessage] = useState("");
+  const [form, setForm] = useState({})
+  const [errors, setErrors] = useState({})
+
+  const storedToken = localStorage.getItem('authToken')
+
+  const setField = (field, value) => {
+    setForm({
+      ...form,
+      [field]: value,
+    })
+
+    if (!!errors[field])
+      setErrors({
+        ...errors,
+        [field]: null,
+      })
+  }
+
+  const findFormErrors = () => {
+    const { name } = form
+    const newErrors = {}
+
+    // name errors
+    if (!name || name === '') newErrors.name = 'This field cannot be blank.'
+    else if (name.length < 3)
+      newErrors.name = 'Name cannot be less than 3 characters long.'
+    else if (name.length > 50)
+      newErrors.name = 'Name cannot be more than 50 characters long.'
+
+    return newErrors
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const body = { name, description }
-    const storedToken = localStorage.getItem('authToken')
+    const newErrors = findFormErrors()
 
-    axiosInstance
-      .post('/api/categories/create', body, {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      })
-      .then((response) => {
-        e.target.reset()
-        props.history.push(`/my-account/admin/categories`)
-      })
-      .catch((error) => {
-        // const errorDescription = error.response.data.message;
-        // setErrorMessage(errorDescription);
-      })
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors)
+    } else {
+      const body = { ...form }
+
+      axiosInstance
+        .post(`/api/categories/create`, body, {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        })
+        .then(() => {
+          e.target.reset()
+          Swal.fire({
+            icon: 'success',
+            text: 'Category edited successfully',
+            showConfirmButton: false,
+          })
+        })
+        .catch((err) => {
+          console.log(err.message)
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+          })
+        })
+    }
   }
 
   return (
@@ -36,33 +79,40 @@ const NewCategory = (props) => {
         </h2>
 
         <div className="create-category-container">
-          <form onSubmit={handleSubmit}>
-            <div className="d-flex flex-column">
-              <label htmlFor="name">Name:</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                onChange={(e) => setName(e.target.value)}
-              />
+          <Form onSubmit={handleSubmit}>
+            <Row className="mb-3">
+              <Form.Group as={Col}>
+                <Form.Label>Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  onChange={(e) => setField('name', e.target.value)}
+                  isInvalid={!!errors.name}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.name}
+                </Form.Control.Feedback>
+              </Form.Group>
+            </Row>
 
-              <label htmlFor="">Description:</label>
-              <textarea
-                name="description"
-                id="description"
-                cols="30"
-                rows="5"
-                onChange={(e) => setDescription(e.target.value)}
-              ></textarea>
+            <Row className="mb-3">
+              <Form.Group as={Col}>
+                <Form.Label>Description</Form.Label>
+                <Form.Control
+                  as="textarea"
+                  type="text"
+                  onChange={(e) => setField('description', e.target.value)}
+                  isInvalid={!!errors.description}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.description}
+                </Form.Control.Feedback>
+              </Form.Group>
+            </Row>
 
-              <button
-                type="submit"
-                className="btn btn-outline-secondary py-2 px-5 mt-4"
-              >
-                Submit
-              </button>
-            </div>
-          </form>
+            <Button variant="primary" type="submit">
+              Submit changes
+            </Button>
+          </Form>
         </div>
       </div>
     </section>

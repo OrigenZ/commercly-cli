@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Row, Col } from 'react-bootstrap'
+import { useHistory } from 'react-router-dom'
 import Swal from 'sweetalert2/src/sweetalert2'
 
 import axiosInstance from '../../../../../common/http/index'
@@ -9,7 +10,9 @@ import './CategoriesListAdmin.css'
 
 function CategoriesListAdmin(props) {
   const [categories, setCategories] = useState([])
+
   const storedToken = localStorage.getItem('authToken')
+  let history = useHistory()
 
   const handleDelete = (id, name) => {
     Swal.fire({
@@ -38,7 +41,7 @@ function CategoriesListAdmin(props) {
                 (category) => category._id !== id,
               )
               setCategories([...newCategories])
-              props.history.push('/my-account/admin/categories')
+              history.push('/my-account/admin/categories')
             })
         }
       })

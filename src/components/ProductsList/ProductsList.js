@@ -28,7 +28,7 @@ const ProductList = (props) => {
           .delete(`/api/products/${id}`, {
             headers: { Authorization: `Bearer ${storedToken}` },
           })
-          .then((response) => {
+          .then(() => {
             const newProducts = products.filter(
               (product) => product._id !== id
             );

@@ -18,7 +18,7 @@ const EditProduct = (props) => {
       ...form,
       [field]: value,
     })
-    // Check and see if errors , and remove them from the error object:
+
     if (!!errors[field])
       setErrors({
         ...errors,
@@ -47,7 +47,8 @@ const EditProduct = (props) => {
     // price errors
     if (!price || price === '') newErrors.price = 'This field cannot be blank.'
     else if (price < 0) newErrors.price = 'Price cannot be less than 0.'
-    else if (typeof price !== 'number') newErrors.price = 'Price must be a numeric value'
+    else if (typeof price !== 'number')
+      newErrors.price = 'Price must be a numeric value'
 
     // brand errors
     if (!brand || brand === '') newErrors.brand = 'This field cannot be blank.'
@@ -69,7 +70,6 @@ const EditProduct = (props) => {
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors)
-      console.log(newErrors)
     } else {
       const body = { ...form }
 
@@ -149,7 +149,7 @@ const EditProduct = (props) => {
                 <Form.Control
                   type="text"
                   onChange={(e) => setField('sku', e.target.value)}
-                  value={form.sku  || ''}
+                  value={form.sku || ''}
                   isInvalid={!!errors.sku}
                 />
                 <Form.Control.Feedback type="invalid">
@@ -165,7 +165,7 @@ const EditProduct = (props) => {
                   type="number"
                   onChange={(e) => setField('quantity', e.target.value)}
                   isInvalid={!!errors.quantity}
-                  value={form.quantity  || ''}
+                  value={form.quantity || ''}
                 />
                 <Form.Control.Feedback type="invalid">
                   {errors.quantity}
@@ -180,7 +180,7 @@ const EditProduct = (props) => {
                   type="text"
                   onChange={(e) => setField('name', e.target.value)}
                   isInvalid={!!errors.name}
-                  value={form.name  || ''}
+                  value={form.name || ''}
                 />
                 <Form.Control.Feedback type="invalid">
                   {errors.name}
@@ -196,7 +196,7 @@ const EditProduct = (props) => {
                   type="number"
                   onChange={(e) => setField('price', e.target.value)}
                   isInvalid={!!errors.price}
-                  value={form.price  || ''}
+                  value={form.price || ''}
                 />
                 <Form.Control.Feedback type="invalid">
                   {errors.price}
@@ -211,7 +211,7 @@ const EditProduct = (props) => {
                   type="text"
                   onChange={(e) => setField('brand', e.target.value)}
                   isInvalid={!!errors.brand}
-                  value={form.brand  || ''}
+                  value={form.brand || ''}
                 />
                 <Form.Control.Feedback type="invalid">
                   {errors.brand}
@@ -227,7 +227,7 @@ const EditProduct = (props) => {
                   type="text"
                   onChange={(e) => setField('description', e.target.value)}
                   isInvalid={!!errors.description}
-                  value={form.description  || ''}
+                  value={form.description || ''}
                 />
                 <Form.Control.Feedback type="invalid">
                   {errors.description}
@@ -243,7 +243,7 @@ const EditProduct = (props) => {
                   type="text"
                   onChange={(e) => setField('category', e.target.value)}
                   isInvalid={!!errors.category}
-                  value={form.category  || ''}
+                  value={form.category || ''}
                 >
                   {categories.map((category) => {
                     return category._id === form.category ? (
@@ -269,7 +269,7 @@ const EditProduct = (props) => {
                 <Form.Control
                   type="file"
                   onChange={(e) => setField('category', e.target.value)}
-                  value={form.image  || ''}
+                  value={form.image || ''}
                   isInvalid={!!errors.image}
                 />
                 <Form.Control.Feedback type="invalid">
