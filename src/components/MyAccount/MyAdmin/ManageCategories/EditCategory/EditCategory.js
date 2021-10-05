@@ -88,7 +88,8 @@ const EditCategory = (props) => {
   }, [])
 
   return (
-      <Form className="col-6" onSubmit={handleSubmit}>
+    <div className="section">
+      <Form onSubmit={handleSubmit}>
         <Row className="mb-3">
           <Form.Group as={Col}>
             <Form.Label>Name</Form.Label>
@@ -124,7 +125,7 @@ const EditCategory = (props) => {
           Submit changes
         </Button>
       </Form>
-
+    </div>
   )
 }
 
