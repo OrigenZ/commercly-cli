@@ -1,0 +1,39 @@
+*Authentication*/
+
+#login, #signup {
+  min-height: calc(100vh - 72px);
+}
+
+#login .login-wrapper, #signup .signup-wrapper {
+  margin: 7rem auto auto auto;
+  font-size: 1.3rem;
+  max-width: 16rem;
+}
+
+#login img, #signup img {
+  margin-bottom: 3rem;
+}
+
+#login .btn, #signup .btn {
+  font-size: 1rem;
+  background-color: white;
+  border: 3px solid;
+  border-radius: 0rem;
+}
+
+#login .btn:hover, #signup .btn:hover {
+  background-color: #6c757d;
+  border: 3px solid #6c757d;
+}
+
+#login .lost-password, #login .remember {
+  font-size: .85rem!important;
+}
+
+#login .lost-password a {
+  text-decoration: none;
+}
+
+#login form, #signup form {
+  margin-bottom: 5rem;
+}
