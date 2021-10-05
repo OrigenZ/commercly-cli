@@ -17,17 +17,15 @@ const UserCard = (props) => {
   const isMount = useIsMount();
   const storedToken = localStorage.getItem("authToken");
 
-  //2021-10-02T15:05:00.017Z
 
-  //21 Aug 2021 @ 15:05
+  console.log(userData)
+
+
 
   const formatDate = () => {
     const dateObj = new Date(userData.createdAt);
     return dateFormat(dateObj, " mmm dd yyyy @ h:MM:ss TT");
   }
-
-
-
 
   const handleCheckbox = (e) => {
     const isTrue = e.target.value === "true";
