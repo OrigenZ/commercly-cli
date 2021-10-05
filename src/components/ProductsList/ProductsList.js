@@ -1,76 +1,95 @@
-import Swal from "sweetalert2/src/sweetalert2";
-import { Row } from "react-bootstrap";
+import React from 'react'
+import { useState, useEffect } from 'react'
+import ProductCard from '../ProductCard/ProductCard'
 
-import axiosInstance from "../../common/http";
-import ProductCard from "../ProductCard/ProductCard";
-
-import "./ProductList.css";
+import ReactPaginate from 'react-paginate'
+import axiosInstance from '../../common/http'
+import './ProductList.css'
 
 const ProductList = (props) => {
-  const { results, products, setProducts, isShop, reset } = props;
+  const { handleDelete, results, isShop, reset } = props
 
-  const storedToken = localStorage.getItem("authToken");
+  const [offset, setOffset] = useState(0)
+  const [data, setData] = useState([])
+  const [perPage] = useState(8)
+  const [pageCount, setPageCount] = useState(0)
 
-  const handleDelete = (id, name) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Delete",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire("Deleted!", `Product ${name} has been deleted.`, "success");
+  const storedToken = localStorage.getItem('authToken')
 
-        axiosInstance
-          .delete(`/api/products/${id}`, {
-            headers: { Authorization: `Bearer ${storedToken}` },
-          })
-          .then(() => {
-            const newProducts = products.filter(
-              (product) => product._id !== id
-            );
-            setProducts(newProducts);
-            props.history.push("/my-account/admin/products");
-          })
-          .catch((err) => {});
+  const handlePageClick = (e) => {
+    const selectedPage = e.selected
+    setOffset(Math.ceil(selectedPage * perPage))
+  }
+
+  const getData = async () => {
+    try {
+      const response = await axiosInstance.get(`/api/products`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      const products = response.data.products
+
+      const sliceAllProds = products.slice(offset, offset + perPage)
+      const sliceResults = results.slice(offset, offset + perPage)
+
+      let postData
+
+      if (reset || !results) {
+        postData = sliceAllProds.map((product) => (
+          <ProductCard
+            key={product._id}
+            product={product}
+            handleDelete={handleDelete}
+            isShop={isShop}
+          />
+        ))
+
+        setPageCount(Math.ceil(products.length / perPage))
       }
-    });
-  };
+
+      if (!reset) {
+        postData = sliceResults.map((product) => (
+          <ProductCard
+            key={product._id}
+            product={product}
+            handleDelete={handleDelete}
+            isShop={isShop}
+          />
+        ))
+        setPageCount(Math.ceil(results.length / perPage))
+      }
+
+      setData(postData)
+    } catch (err) {
+      console.log(err.message)
+    }
+  }
+
+  useEffect(() => {
+    getData()
+  }, [offset, handleDelete])
 
   return (
     <div className="row">
-      {(reset || !results) &&
-        products.map((product) => {
-          return (
-            <ProductCard
-              key={product._id}
-              product={product}
-              handleDelete={handleDelete}
-              isShop={isShop}
-            />
-          );
-        })}
-      {!reset &&
-        results &&
-        results.map((product) => {
-          return (
-            <ProductCard
-              key={product._id}
-              product={product}
-              handleDelete={handleDelete}
-              isShop={isShop}
-            />
-          );
-        })}
-
       {!reset && results.length === 0 && (
         <p>No matching products found</p> //TODO: Message
       )}
-    </div>
-  );
-};
 
-export default ProductList;
+      {data}
+      <ReactPaginate
+        previousLabel={'prev'}
+        nextLabel={'next'}
+        breakLabel={'...'}
+        breakClassName={'break-me'}
+        pageCount={pageCount}
+        marginPagesDisplayed={2}
+        pageRangeDisplayed={5}
+        onPageChange={handlePageClick}
+        containerClassName={'pagination'}
+        subContainerClassName={'pages pagination'}
+        activeClassName={'active'}
+      />
+    </div>
+  )
+}
+
+export default ProductList

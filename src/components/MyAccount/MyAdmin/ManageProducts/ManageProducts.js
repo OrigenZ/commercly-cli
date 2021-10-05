@@ -6,8 +6,9 @@ import ProductsList from "../../../ProductsList/ProductsList";
 import AddProductButton from "./NewProduct/AddProductButton/AddProductButton";
 
 import axiosInstance from "../../../../common/http";
+import Swal from 'sweetalert2/src/sweetalert2'
 
-const ManageProducts = () => {
+const ManageProducts = (props) => {
   const [products, setProducts] = useState([]);
   const [results, setResults] = useState([]);
   const [reset, setReset] = useState(true);
@@ -15,6 +16,34 @@ const ManageProducts = () => {
   const [currentSearch, setCurrentSearch] = useState("");
 
   const storedToken = localStorage.getItem("authToken");
+
+  const handleDelete = (id, name) => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Delete',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire('Deleted!', `Product ${name} has been deleted.`, 'success')
+
+        axiosInstance
+          .delete(`/api/products/${id}`, {
+            headers: { Authorization: `Bearer ${storedToken}` },
+          })
+          .then(() => {
+            const newProducts = products.filter((product) => product._id !== id)
+            setProducts(newProducts)
+          })
+          .catch((err) => {
+            console.log(err)
+          })
+      }
+    })
+  }
 
   useEffect(() => {
     if (currentCategory) {
@@ -47,7 +76,9 @@ const ManageProducts = () => {
         .then((response) => {
           setProducts(response.data.products);
         })
-        .catch((err) => {});
+        .catch((err) => {
+          console.log(err.message)
+        });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -70,8 +101,7 @@ const ManageProducts = () => {
       <div className="col-12 col-md-9">
         <ProductsList
           results={results}
-          products={products}
-          setProducts={setProducts}
+          handleDelete={handleDelete}
           isShop={false}
           reset={reset}
         />
