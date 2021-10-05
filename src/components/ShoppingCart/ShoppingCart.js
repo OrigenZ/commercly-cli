@@ -62,7 +62,7 @@ const ShoppingCart = () => {
       </div>
       <div>
         <Row className="total-price">
-          Total: <h3>{checkOutDetails.totalPrice} €</h3>
+          Total: <h3>{((checkOutDetails && checkOutDetails.totalPrice) || 0)} €</h3>
         </Row>
       </div>
     </>

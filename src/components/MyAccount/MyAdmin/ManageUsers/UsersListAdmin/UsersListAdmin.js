@@ -16,7 +16,7 @@ const UsersListAdmin = (props) => {
 
   const handlePageClick = (e) => {
     const selectedPage = e.selected;
-    setOffset(selectedPage + 5);
+    setOffset(Math.ceil(selectedPage * perPage))
   };
 
   const handleDelete = (id, name) => {

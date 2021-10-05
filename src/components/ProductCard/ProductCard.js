@@ -12,6 +12,8 @@ const ProductCard = (props) => {
   const { user } = useContext(AuthContext);
   const { product, handleDelete, isShop } = props;
 
+  console.log(user)
+
   return (
     <>
       <Card id="card-products" className="col-sm-12 col-md-6 col-lg-3">
