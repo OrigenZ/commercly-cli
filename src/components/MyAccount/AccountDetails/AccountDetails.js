@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from "react";
-import { Form, Row, Col, Button, Container,OverlayTrigger, Popover } from "react-bootstrap";
+import { Form, Row, Col, Button, Container } from "react-bootstrap";
 
 import { AuthContext } from "../../../common/context/Auth.context";
 import axiosInstance from "../../../common/http";
@@ -8,7 +8,6 @@ import './AccountDetails.css'
 
 const AccountDetails = () => {
   const { user, setUser } = useContext(AuthContext);
-
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [username, setUsername] = useState("");
