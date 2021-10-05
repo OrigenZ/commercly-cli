@@ -1,52 +1,58 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Row, Col } from "react-bootstrap";
-import Swal from "sweetalert2/src/sweetalert2";
+import React from 'react'
+import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { Row, Col } from 'react-bootstrap'
+import Swal from 'sweetalert2/src/sweetalert2'
 
-import axiosInstance from "../../../../../common/http/index";
-import "./CategoriesListAdmin.css";
+import axiosInstance from '../../../../../common/http/index'
+import './CategoriesListAdmin.css'
 
 function CategoriesListAdmin(props) {
-  const [categories, setCategories] = useState([]);
-  // const [setErrorMessage] = useState(undefined)
-  const storedToken = localStorage.getItem("authToken");
+  const [categories, setCategories] = useState([])
+  const storedToken = localStorage.getItem('authToken')
 
   const handleDelete = (id, name) => {
     Swal.fire({
-      title: "Are you sure?",
+      title: 'Are you sure?',
       text: "You won't be able to revert this!",
-      icon: "warning",
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Delete",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire(
-          "Deleted!",
-          `Category ${name} has been deleted.`,
-          "success"
-        );
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Delete',
+    })
+      .then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            icon: 'success',
+            text: `Category ${name} has been deleted.`,
+            showConfirmButton: false,
+          })
 
-        axiosInstance
-          .delete(`/api/categories/${id}`, {
-            headers: { Authorization: `Bearer ${storedToken}` },
-          })
-          .then(() => {
-            const newCategories = categories.filter(
-              (category) => category._id !== id
-            );
-            setCategories([...newCategories]);
-            props.history.push("/my-account/admin/categories");
-          })
-          .catch((err) => {});
-      }
-    });
-  };
+          axiosInstance
+            .delete(`/api/categories/${id}`, {
+              headers: { Authorization: `Bearer ${storedToken}` },
+            })
+            .then(() => {
+              const newCategories = categories.filter(
+                (category) => category._id !== id,
+              )
+              setCategories([...newCategories])
+              props.history.push('/my-account/admin/categories')
+            })
+        }
+      })
+      .catch((err) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!',
+        })
+      })
+  }
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("authToken");
+    const storedToken = localStorage.getItem('authToken')
 
     // If the token exists in the localStorage
     if (storedToken) {
@@ -55,11 +61,11 @@ function CategoriesListAdmin(props) {
           headers: { Authorization: `Bearer ${storedToken}` },
         })
         .then((response) => {
-          setCategories(response.data);
+          setCategories(response.data)
         })
-        .catch((err) => {});
+        .catch((err) => {})
     }
-  }, []);
+  }, [])
 
   return (
     <>
@@ -106,7 +112,7 @@ function CategoriesListAdmin(props) {
         </Row>
       ))}
     </>
-  );
+  )
 }
 
-export default CategoriesListAdmin;
+export default CategoriesListAdmin
