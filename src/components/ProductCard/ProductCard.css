@@ -9,12 +9,12 @@ span.text-center.price {
   padding-left: 0px;
 }
 
-#card-products:hover{
-    background-color: #f7f9fa;
-}
+/* #card-products:hover {
+  border: 1px solid #17a2b8;
+  border-radius: 0px;
+} */
 
-button.w-100.btn.btn-outline-danger ,
+button.w-100.btn.btn-outline-danger,
 a.btn.btn-outline-secondary.edit-btn.w-100.mb-2 {
   border-radius: 0px;
 }
-

@@ -6,7 +6,7 @@ import ReactPaginate from 'react-paginate'
 import axiosInstance from '../../common/http'
 import './ProductList.css'
 
-const ProductList = (props) => {
+const ProductsList = (props) => {
   const { handleDelete, results, isShop, reset } = props
 
   const [offset, setOffset] = useState(0)
@@ -15,7 +15,7 @@ const ProductList = (props) => {
   const [pageCount, setPageCount] = useState(0)
 
   const storedToken = localStorage.getItem('authToken')
-
+console.log('productlist', data)
   const handlePageClick = (e) => {
     const selectedPage = e.selected
     setOffset(Math.ceil(selectedPage * perPage))
@@ -92,4 +92,4 @@ const ProductList = (props) => {
   )
 }
 
-export default ProductList
+export default ProductsList
