@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import ProductsList from "../ProductsList/ProductsList";
 import SearchBar from "../SearchBar/SearchBar";
 import CategoriesFilter from "../CategoriesFilter/CategoriesFilter";
-import Swal from 'sweetalert2/src/sweetalert2'
+
 import axiosInstance from "../../common/http";
 
 import "./Shop.css";
@@ -15,36 +15,6 @@ const Shop = () => {
   const [reset, setReset] = useState(true);
   const [currentCategory, setCurrentCategory] = useState("");
   const [currentSearch, setCurrentSearch] = useState("");
-
-  const storedToken = localStorage.getItem("authToken");
-
-  const handleDelete = (id, name) => {
-    Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Delete',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire('Deleted!', `Product ${name} has been deleted.`, 'success')
-
-        axiosInstance
-          .delete(`/api/products/${id}`, {
-            headers: { Authorization: `Bearer ${storedToken}` },
-          })
-          .then(() => {
-            const newProducts = products.filter((product) => product._id !== id)
-            setProducts(newProducts)
-          })
-          .catch((err) => {
-            console.log(err)
-          })
-      }
-    })
-  }
 
   useEffect(() => {
     if (currentCategory) {
@@ -71,47 +41,45 @@ const Shop = () => {
   }, [currentCategory, currentSearch]);
 
   useEffect(() => {
-    if (storedToken) {
-      axiosInstance
-        .get(`/api/products`)
-        .then((response) => {
-          setProducts(response.data.products);
-        })
-        .catch((err) => {
-          console.log(err.message)
-        });
-    }
+    axiosInstance
+      .get(`/api/products`)
+      .then((response) => {
+        setProducts(response.data.products);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <div className="container">
-    <div className="row pt-5 ">
-      <div className="col-12 col-md-3">
+    <div>
+      <Container>
+        <Row className="d-flex flex-row justify-content-start">
+          <Col xs={12} md={3} lg={3} className="filter-container">
+            <SearchBar
+              setCurrentSearch={setCurrentSearch}
+              setReset={setReset}
+            />
+            <CategoriesFilter
+              setCurrentCategory={setCurrentCategory}
+              setReset={setReset}
+              reset={reset}
+            />
+          </Col>
 
-  
-
-        <SearchBar 
-          setCurrentSearch={setCurrentSearch} 
-          setReset={setReset}
-        />
-
-        <CategoriesFilter
-          setCurrentCategory={setCurrentCategory}
-          setReset={setReset}
-        />
-   
-      </div>
-      
-      <div className="col-12 col-md-9">
-        <ProductsList
-          results={results}
-          handleDelete={handleDelete}
-          isShop={true}
-          reset={reset}
-        />
-      </div>
-    </div>
+          <Col xs={12} md={9} lg={9} className="products-container">
+            <ProductsList
+              results={results}
+              products={products}
+              handleDelete={() => {}}
+              isShop={true}
+              reset={reset}
+            />
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 };
