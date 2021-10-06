@@ -35,7 +35,6 @@ const LoginPage = (props) => {
   };
 
   const handleLoginSubmit = (e) => {
-    alert();
     e.preventDefault();
     const newErrors = findFormErrors();
 

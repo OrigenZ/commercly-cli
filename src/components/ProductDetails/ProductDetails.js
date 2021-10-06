@@ -33,7 +33,6 @@ const ProductDetails = () => {
   const storedToken = localStorage.getItem("authToken");
 
   const handleCartItem = () => {
-    /* id carrito y id producto */
     if (product && cart) {
       const body = { productId: product._id, cartId: cart._id };
       axiosInstance
@@ -42,7 +41,6 @@ const ProductDetails = () => {
         })
         .then((response) => {
           setCart(response.data);
-          alert("product added");
         });
     }
   };
