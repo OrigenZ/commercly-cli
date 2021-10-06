@@ -90,10 +90,9 @@ const CheckOutCart = () => {
     } else {
       const totalOrder = checkOutDetails.totalPrice;
       const customer = user._id;
-      const date = new Date().toISOString();
       const orderLines = checkOutDetails.products.map(({product, ...keepAttrs}) => keepAttrs)
 
-      const body = { ...form, customer, totalOrder, date, orderLines };
+      const body = { ...form, customer, totalOrder, orderLines };
       axiosInstance
         .post("/api/orders", body, {
           headers: { Authorization: `Bearer ${storedToken}` },

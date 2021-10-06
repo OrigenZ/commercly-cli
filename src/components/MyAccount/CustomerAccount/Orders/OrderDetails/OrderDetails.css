@@ -1,0 +1,99 @@
+#order-details .card {
+    margin: auto;
+    width: 38%;
+    max-width: 600px;
+    padding: 4rem 0;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-top: 3px solid rgb(252, 103, 49);
+    border-bottom: 3px solid rgb(252, 103, 49);
+    border-left: none;
+    border-right: none
+}
+
+@media(max-width:768px) {
+    #order-details .card {
+        width: 90%
+    }
+}
+
+#order-details .title {
+    color: rgb(252, 103, 49);
+    font-weight: 600;
+    margin-bottom: 2rem;
+    padding: 0 8%;
+    font-size: initial
+}
+
+#order-details #details {
+    font-weight: 400
+}
+
+#order-details .info {
+    padding: 5% 8%
+}
+
+#order-details .info .col-5 {
+    padding: 0
+}
+
+#order-details #heading {
+    color: grey;
+    line-height: 6rem
+}
+
+#order-details .pricing {
+    background-color: #ddd3;
+    padding: 2rem 8%;
+    font-weight: 400;
+    line-height: 2.5
+}
+
+#order-details .pricing .col-3 {
+    padding: 0
+}
+
+#order-details .total {
+    padding: 2rem 8%;
+    color: rgb(252, 103, 49);
+    font-weight: bold
+}
+
+#order-details .total .col-3 {
+    padding: 0
+}
+#order-details .shipping {
+    padding: 2rem 8%;
+    color: rgb(252, 103, 49);
+   
+}
+
+#order-details .shipping .col-3 {
+    padding: 0
+}
+
+#order-details .footer {
+    padding: 0 8%;
+    font-size: x-small;
+    color: black
+}
+
+#order-details .footer img {
+    height: 5rem;
+    opacity: 0.2
+}
+
+#order-details .footer a {
+    color: rgb(252, 103, 49)
+}
+
+#order-details .footer .col-10,
+#order-details .col-2 {
+    display: flex;
+    padding: 3rem 0 0;
+    align-items: center
+}
+
+#order-details .footer .row {
+    margin: 0
+}
+
