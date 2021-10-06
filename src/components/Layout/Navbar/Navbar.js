@@ -4,6 +4,8 @@ import PopupCartP from "./Cart/PopupCart/PopupCartP";
 import NavLinks from "./NavLinks/NavLinks";
 import { Navbar, Nav, Container } from "react-bootstrap";
 
+import './Navbar.css'
+
 const MyNavbar = () => {
   return (
     <>

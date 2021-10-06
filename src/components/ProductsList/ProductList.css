@@ -10,6 +10,12 @@
   align-items: center;
 }
 
+img.card-img-top.w-100 {
+  object-fit: contain;
+  padding: 1rem 0;
+  height: 100%;
+}
+
 .products.d-flex.row.justify-content-start {
   border-bottom: 2px solid #dfe2e6;
 }
@@ -17,4 +23,5 @@
 #card-products .card-body{
   color: #191919; 
 }
+
 
