@@ -3,7 +3,7 @@
   }
   
   #login .login-wrapper, #signup .signup-wrapper {
-    margin: 7rem auto auto auto;
+    margin: 2rem auto auto auto;
     font-size: 1.3rem;
     max-width: 16rem;
   }
@@ -33,6 +33,6 @@
   }
   
   #login form, #signup form {
-    margin-bottom: 5rem;
+    margin-bottom: 2rem;
   }
   

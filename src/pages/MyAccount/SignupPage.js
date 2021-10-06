@@ -128,7 +128,7 @@ const SignupPage = (props) => {
             </Button>
           </Form>
 
-          <div className="text-center mb-3">
+          <div className="text-center mb-5">
             <p>
               <strong>I'm an existing customer and would like to login.</strong>
             </p>

@@ -3,11 +3,11 @@ import axiosInstance from '../../../../common/http'
 
 import CategoriesFilter from '../../../CategoriesFilter/CategoriesFilter'
 import SearchBar from '../../../SearchBar/SearchBar'
-import ProductsList from '../../../ProductsList/ProductsList'
 import AddProductButton from './NewProduct/AddProductButton/AddProductButton'
 
 import Swal from 'sweetalert2/src/sweetalert2'
 import {Container, Row, Col } from 'react-bootstrap'
+import ProductsListAdmin from './ProductsListAdmin/ProductsListAdmin'
 
 const ManageProducts = (props) => {
   const [products, setProducts] = useState([])
@@ -87,7 +87,7 @@ const ManageProducts = (props) => {
   return (
     <div>
       <Container>
-        <Row className="d-flex flex-row justify-content-start">
+        <Row className="d-flex flex-row justify-content-space-between;">
           <Col xs={12} md={3} lg={3} className="filter-container">
             <AddProductButton />
             <SearchBar
@@ -100,7 +100,7 @@ const ManageProducts = (props) => {
             />
           </Col>
           <Col xs={12} md={9} lg={9} className="products-container">
-            <ProductsList
+            <ProductsListAdmin
               results={results}
               handleDelete={handleDelete}
               isShop={false}
