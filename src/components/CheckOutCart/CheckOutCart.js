@@ -3,12 +3,14 @@ import { Col, Button, Row, Form } from "react-bootstrap";
 import { CartContext } from "../../common/context/Cart.context";
 import Swal from "sweetalert2/src/sweetalert2";
 import axiosInstance from "../../common/http/index";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { AuthContext } from "../../common/context/Auth.context";
 
 import "./CheckOutCart.css";
 
 const CheckOutCart = () => {
+  const { user } = useContext(AuthContext);
   const { checkOutDetails, cart, setCart } = useContext(CartContext);
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
@@ -18,6 +20,7 @@ const CheckOutCart = () => {
   const storedToken = localStorage.getItem("authToken");
 
   const setField = (field, value) => {
+    console.log("form", field, value);
     setForm({
       ...form,
       [field]: value,
@@ -85,36 +88,33 @@ const CheckOutCart = () => {
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
     } else {
-      const body = { ...form };
+      const totalOrder = checkOutDetails.totalPrice;
+      const customer = user._id;
+      const date = new Date().toISOString();
+      const orderLines = checkOutDetails.products.map(({product, ...keepAttrs}) => keepAttrs)
 
-      e.target.reset();
-
-      // Swal.fire({
-      //   icon: "success",
-      //   text: "Thanks you for shopping with us",
-      //   showConfirmButton: false,
-      // });
-
-      // axiosInstance
-      //   .post(`/api/categories/create`, body, {
-      //     headers: { Authorization: `Bearer ${storedToken}` },
-      //   })
-      //   .then(() => {
-      //     e.target.reset()
-      //     Swal.fire({
-      //       icon: 'success',
-      //       text: 'Category edited successfully',
-      //       showConfirmButton: false,
-      //     })
-      //   })
-      //   .catch((err) => {
-      //     console.log(err.message)
-      //     Swal.fire({
-      //       icon: 'error',
-      //       title: 'Oops...',
-      //       text: 'Something went wrong!',
-      //     })
-      //   })
+      const body = { ...form, customer, totalOrder, date, orderLines };
+      axiosInstance
+        .post("/api/orders", body, {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        })
+        .then((response) => {
+          console.log("Order created = ", response.data);
+          // e.target.reset();
+          Swal.fire({
+            icon: "success",
+            text: "Thanks you for shopping with us",
+            showConfirmButton: false,
+          });
+        })
+        .catch((err) => {
+          console.log(err.message);
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+          });
+        });
     }
   };
 
@@ -205,8 +205,12 @@ const CheckOutCart = () => {
             </Row>
 
             <div className="back-to-shop">
-              <a href="/shop"><span className="text-muted"><FontAwesomeIcon icon={faArrowLeft} className="me-3" />Back to shop</span></a>
-             
+              <a href="/shop">
+                <span className="text-muted">
+                  <FontAwesomeIcon icon={faArrowLeft} className="me-3" />
+                  Back to shop
+                </span>
+              </a>
             </div>
             <div>
               <Row className="border-bottom  mt-5">
@@ -249,7 +253,7 @@ const CheckOutCart = () => {
                     <Form.Label>Phone *</Form.Label>
                     <Form.Control
                       type="text"
-                      onChange={(e) => setField("street", e.target.value)}
+                      onChange={(e) => setField("phone", e.target.value)}
                       isInvalid={!!errors.phone}
                       value={form.phone || ""}
                     />
@@ -276,7 +280,7 @@ const CheckOutCart = () => {
                     <Form.Label>Email address *</Form.Label>
                     <Form.Control
                       type="email"
-                      onChange={(e) => setField("street", e.target.value)}
+                      onChange={(e) => setField("email", e.target.value)}
                       isInvalid={!!errors.email}
                       value={form.email || ""}
                     />
@@ -306,7 +310,7 @@ const CheckOutCart = () => {
                     <Form.Label>Postcode / ZIP *</Form.Label>
                     <Form.Control
                       type="number"
-                      onChange={(e) => setField("street", e.target.value)}
+                      onChange={(e) => setField("zip", e.target.value)}
                       isInvalid={!!errors.zip}
                       value={form.zip || ""}
                     />
@@ -318,7 +322,7 @@ const CheckOutCart = () => {
                     <Form.Label>Town / City *</Form.Label>
                     <Form.Control
                       type="text"
-                      onChange={(e) => setField("street", e.target.value)}
+                      onChange={(e) => setField("city", e.target.value)}
                       isInvalid={!!errors.city}
                       value={form.city || ""}
                     />
@@ -333,7 +337,7 @@ const CheckOutCart = () => {
                     <Form.Label>Province *</Form.Label>
                     <Form.Control
                       type="text"
-                      onChange={(e) => setField("street", e.target.value)}
+                      onChange={(e) => setField("province", e.target.value)}
                       isInvalid={!!errors.province}
                       value={form.province || ""}
                     />
