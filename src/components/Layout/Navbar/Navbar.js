@@ -1,8 +1,7 @@
-import Brand from "./Brand/Brand";
-
-import PopupCartP from "./Cart/PopupCart/PopupCartP";
-import NavLinks from "./NavLinks/NavLinks";
-import { Navbar, Nav, Container } from "react-bootstrap";
+import { Navbar, Nav, Container } from 'react-bootstrap'
+import Brand from './Brand/Brand'
+import Cart from './CartDrawer/CartDrawer'
+import NavLinks from './NavLinks/NavLinks'
 
 import './Navbar.css'
 
@@ -20,13 +19,13 @@ const MyNavbar = () => {
             <Nav>
               <NavLinks />
 
-              <PopupCartP />
+              <Cart />
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
     </>
-  );
-};
+  )
+}
 
-export default MyNavbar;
+export default MyNavbar
