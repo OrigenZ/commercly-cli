@@ -51,6 +51,7 @@ const CartProviderWrapper = (props) => {
             totalPrice += totalLine;
 
             productsArray.push({
+              productId: product._id,
               product: product,
               quantity: quantity,
               totalLine: totalLine,
