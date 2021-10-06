@@ -9,7 +9,7 @@ const NavMyAdmin = () => {
   return (
     <div id="subnav" className="border-bottom customer-menu px-3 text-muted">
       <Container as={Row}>
-        <Col xs={12} sm={4} lg={2} className="center">
+        <Col xs={12} sm={4} lg={1} className="center">
           <NavLink
             exact
             activeClassName="active"
@@ -53,13 +53,23 @@ const NavMyAdmin = () => {
           <NavLink
             exact
             activeClassName="active"
+            to="/my-account/admin/orders"
+            className="text-reset text-decoration-none text-uppercase"
+          >
+            Manage orders
+          </NavLink>
+        </Col>
+        <Col xs={12} sm={4} lg={2} className="center">
+          <NavLink
+            exact
+            activeClassName="active"
             to="/my-account/account-details"
             className="text-reset text-decoration-none text-uppercase"
           >
             Account details
           </NavLink>
         </Col>
-        <Col xs={12} sm={4} lg={2} className="center">
+        <Col xs={12} sm={4} lg={1} className="center">
           <NavLink
             exact
             activeClassName="active"

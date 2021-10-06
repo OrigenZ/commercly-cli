@@ -35,6 +35,7 @@ const CartProviderWrapper = (props) => {
           let productsArray = [];
           let totalItems = 0;
           let totalPrice = 0;
+          let totalBasePrice = 0;
 
           response.data.products.forEach((obj) => {
             const key = JSON.stringify(obj);
@@ -43,29 +44,39 @@ const CartProviderWrapper = (props) => {
 
           itemsCounter = Object.entries(itemsCounter);
 
+
           for (const item of itemsCounter) {
             const product = JSON.parse(item[0]);
             const quantity = item[1];
-            const totalLine = quantity * product.price;
+            const totalLine = quantity * product.totalPrice;
+            const totalBaseLine = quantity * product.price;
+
             totalItems += item[1];
             totalPrice += totalLine;
+            totalBasePrice += totalBaseLine
 
             productsArray.push({
+              productId: product._id,
               product: product,
               quantity: quantity,
               totalLine: totalLine,
+              totalBaseLine: totalBaseLine
             });
           }
+
 
           const billing =
             user.addresses && user.addresses.billing
               ? user.addresses.billing
               : null;
 
+
+
           const details = {
             products: productsArray,
             totalItems: totalItems,
             totalPrice: totalPrice,
+            totalBasePrice: totalBasePrice,
             billing,
           };
 

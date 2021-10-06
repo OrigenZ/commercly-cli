@@ -19,6 +19,9 @@ import NewCategory from "../../components/MyAccount/MyAdmin/ManageCategories/New
 import UserDetails from "../../components/MyAccount/MyAdmin/ManageUsers/UserDetails/UserDetails";
 import NewAddress from "../../components/MyAccount/CustomerAccount/Addresses/NewAddress/NewAddress";
 import EditAddress from "../../components/MyAccount/CustomerAccount/Addresses/EditAddress/EditAddress";
+import OrderDetails from "../../components/MyAccount/CustomerAccount/Orders/OrderDetails/OrderDetails";
+import ManageOrders from "../../components/MyAccount/MyAdmin/ManageOrders/ManageOrders";
+import ManageOrderDetail from "../../components/MyAccount/MyAdmin/ManageOrders/ManageOrderDetail/ManageOrderDetail";
 
 const MyAccountPage = () => {
   const { user } = useContext(AuthContext);
@@ -26,7 +29,7 @@ const MyAccountPage = () => {
     return (
       <section id="user-dashboard">
         <NavMyAccount />
-        <div className="container">
+        
           <PrivateRoute
             exact
             path="/my-account/dashboard"
@@ -36,6 +39,11 @@ const MyAccountPage = () => {
             exact
             path="/my-account/customer/orders"
             component={Orders}
+          />
+          <PrivateRoute
+            exact
+            path="/my-account/customer/orders/:orderId"
+            component={OrderDetails}
           />
           <PrivateRoute
             exact
@@ -59,7 +67,7 @@ const MyAccountPage = () => {
             path="/my-account/account-details"
             component={AccountDetails}
           />
-        </div>
+     
       </section>
     );
   }
@@ -108,6 +116,16 @@ const MyAccountPage = () => {
           component={ManageUsers}
         />
         <PrivateRoute exact path="/admin/user/edit/:id" component={UserDetails} />
+        <PrivateRoute
+          exact
+          path="/my-account/admin/orders"
+          component={ManageOrders}
+        />
+        <PrivateRoute
+          exact
+          path="/my-account/admin/orders/:orderId"
+          component={ManageOrderDetail}
+        />
         <PrivateRoute
           exact
           path="/my-account/account-details"

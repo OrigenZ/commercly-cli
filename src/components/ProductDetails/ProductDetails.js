@@ -82,7 +82,7 @@ const ProductDetails = () => {
             <h3 className="heading">{product.name}</h3>
             <p className="text-muted">{product.brand} </p>
             <p className="product-description">{product.description} </p>
-            <p className="product-price">{product.price} €</p>
+            <p className="product-price">{product.totalPrice} €</p>
             {user && (
               <Form onSubmit={(e) => e.preventDefault()}>
                 <Button

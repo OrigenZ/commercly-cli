@@ -27,7 +27,7 @@ const EditProduct = (props) => {
   }
 
   const findFormErrors = () => {
-    const { sku, quantity, name, price, brand, category } = form
+    const { sku, quantity, name, price, brand,tax, category } = form
     const newErrors = {}
 
     // sku errors
@@ -40,15 +40,15 @@ const EditProduct = (props) => {
     else if (name.length > 50)
       newErrors.name = 'Title cannot be more than 50 characters long.'
 
-    // quantity errors
-    if (quantity === '' || quantity < 0)
-      newErrors.quantity = 'Quantity cannot be less than 0.'
-
     // price errors
     if (!price || price === '') newErrors.price = 'This field cannot be blank.'
     else if (price < 0) newErrors.price = 'Price cannot be less than 0.'
-    else if (typeof price !== 'number')
-      newErrors.price = 'Price must be a numeric value'
+
+
+    // tax errors
+     if (!tax || tax === '') newErrors.tax = 'This field cannot be blank.'
+     else if (tax < 0) newErrors.tax = 'Tax cannot be less than 0.'
+
 
     // brand errors
     if (!brand || brand === '') newErrors.brand = 'This field cannot be blank.'
@@ -109,6 +109,7 @@ const EditProduct = (props) => {
             quantity: foundProduct.quantity,
             name: foundProduct.name,
             price: foundProduct.price,
+            tax: foundProduct.tax,
             brand: foundProduct.brand,
             description: foundProduct.description,
             category: foundProduct.category._id,
@@ -197,6 +198,22 @@ const EditProduct = (props) => {
                   onChange={(e) => setField('price', e.target.value)}
                   isInvalid={!!errors.price}
                   value={form.price || ''}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.price}
+                </Form.Control.Feedback>
+              </Form.Group>
+            </Row>
+
+            <Row className="mb-3">
+              <Form.Group as={Col}>
+                <Form.Label>Tax</Form.Label>
+                <Form.Control
+                  step="any"
+                  type="number"
+                  onChange={(e) => setField('tax', e.target.value)}
+                  isInvalid={!!errors.tax}
+                  value={form.tax || ''}
                 />
                 <Form.Control.Feedback type="invalid">
                   {errors.price}

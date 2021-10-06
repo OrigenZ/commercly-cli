@@ -1,0 +1,45 @@
+
+#manage-order-details .order-details-wrapper {
+    background-color: #fff;
+    border-color: #fff
+}
+
+#manage-order-details .close {
+    color: #000;
+    cursor: pointer
+}
+
+#manage-order-details .close:hover {
+    color: #000
+}
+
+#manage-order-details .theme-color {
+    color: #004cb9
+}
+
+#manage-order-details hr.new1 {
+    border-top: 2px dashed #fff;
+    margin: 0.4rem 0
+}
+
+#manage-order-details .btn-primary {
+    color: #fff;
+    background-color: #004cb9;
+    border-color: #004cb9;
+    padding: 12px;
+    padding-right: 30px;
+    padding-left: 30px;
+    border-radius: 1px;
+    font-size: 17px
+}
+
+#manage-order-details .btn-primary:hover {
+    color: #fff;
+    background-color: #004cb9;
+    border-color: #004cb9;
+    padding: 12px;
+    padding-right: 30px;
+    padding-left: 30px;
+    border-radius: 1px;
+    font-size: 17px
+}
