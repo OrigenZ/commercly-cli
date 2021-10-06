@@ -19,6 +19,7 @@ import NewCategory from "../../components/MyAccount/MyAdmin/ManageCategories/New
 import UserDetails from "../../components/MyAccount/MyAdmin/ManageUsers/UserDetails/UserDetails";
 import NewAddress from "../../components/MyAccount/CustomerAccount/Addresses/NewAddress/NewAddress";
 import EditAddress from "../../components/MyAccount/CustomerAccount/Addresses/EditAddress/EditAddress";
+import OrderDetails from "../../components/MyAccount/CustomerAccount/Orders/OrderDetails/OrderDetails";
 
 const MyAccountPage = () => {
   const { user } = useContext(AuthContext);
@@ -26,7 +27,7 @@ const MyAccountPage = () => {
     return (
       <section id="user-dashboard">
         <NavMyAccount />
-        <div className="container">
+        
           <PrivateRoute
             exact
             path="/my-account/dashboard"
@@ -36,6 +37,11 @@ const MyAccountPage = () => {
             exact
             path="/my-account/customer/orders"
             component={Orders}
+          />
+          <PrivateRoute
+            exact
+            path="/my-account/customer/orders/:orderId"
+            component={OrderDetails}
           />
           <PrivateRoute
             exact
@@ -59,7 +65,7 @@ const MyAccountPage = () => {
             path="/my-account/account-details"
             component={AccountDetails}
           />
-        </div>
+     
       </section>
     );
   }
