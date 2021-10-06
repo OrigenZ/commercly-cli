@@ -7,6 +7,25 @@ div#products-list {
     align-items: center;
 }
 
+#products-list .buttons {
+    padding-left: 0;
+}
+
 p{
     margin: 0;
+}
+
+
+div#products-list {
+    color: #6d757d;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#head-products-list {
+    background-color: #f7f9fa;
+    padding: 0.8rem;
+    font-weight: 600;
+    color: #6d757d;
+    border-bottom: 2px solid #dfe2e6;
 }

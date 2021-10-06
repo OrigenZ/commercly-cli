@@ -82,7 +82,7 @@ const ManageCategories = () => {
   }, [currentSearch])
 
   return (
-    <div className="section col-12">
+    <section className="manage-cat col-12">
       <AddCategoryButton />
 
       <Button
@@ -106,7 +106,7 @@ const ManageCategories = () => {
         setCategories={setCategories}
         reset={reset}
       />
-    </div>
+    </section>
   )
 }
 

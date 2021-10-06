@@ -1,0 +1,20 @@
+#create-product{
+    margin: 3rem auto;
+}
+
+#create-product .form-label{
+    color: #6d757d;
+}
+
+#create-product input.form-control,
+#create-product select.form-select,
+#create-product select.form-control ,
+#create-product textarea.form-control,
+#create-product button.btn.btn-success {
+    border-radius: 0px;
+}
+
+#create-product button.btn.btn-success {
+    margin-top: 1rem;
+    width: 100%;
+}

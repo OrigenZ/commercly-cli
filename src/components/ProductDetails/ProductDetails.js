@@ -3,7 +3,7 @@ import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../common/context/Auth.context";
-
+import Swal from 'sweetalert2/src/sweetalert2'
 import { CartContext } from "../../common/context/Cart.context";
 import axiosInstance from "../../common/http/index";
 
@@ -41,6 +41,11 @@ const ProductDetails = () => {
         })
         .then((response) => {
           setCart(response.data);
+          Swal.fire({
+            icon: 'success',
+            text: 'Product added to cart',
+            showConfirmButton: false,
+          })
         });
     }
   };
