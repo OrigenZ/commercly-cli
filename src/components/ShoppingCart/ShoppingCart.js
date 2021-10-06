@@ -1,13 +1,15 @@
 import React, { useContext } from 'react'
-import { Col, Button, Row } from 'react-bootstrap'
-
 import { CartContext } from '../../common/context/Cart.context'
+import { AuthContext } from '../../common/context/Auth.context'
+
+import { Col, Button, Row } from 'react-bootstrap'
 import axiosInstance from '../../common/http'
 
 import './ShoppingCart.css'
 
 const ShoppingCart = () => {
   const { checkOutDetails, cart, setCart } = useContext(CartContext)
+  const { isLoggedIn} = useContext(AuthContext)
   const storedToken = localStorage.getItem('authToken')
 
   const handleEditItem = (id, operator) => {
@@ -25,7 +27,7 @@ const ShoppingCart = () => {
   return (
     <>
       <div>
-        {checkOutDetails &&
+        {checkOutDetails && isLoggedIn &&
           checkOutDetails.products.map((line) => (
             <Row
               key={`${line.product._id}${Math.random() * 1000}`}
