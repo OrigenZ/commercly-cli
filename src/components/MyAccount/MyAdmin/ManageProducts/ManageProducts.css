@@ -1,0 +1,21 @@
+.top-manage {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+}
+
+.manage-products {
+  padding: 3rem 0;
+  min-width: -webkit-fill-available;
+}
+
+@media (max-width: 600px) {
+  .top-manage {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    align-content: center;
+  }
+}

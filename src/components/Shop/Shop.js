@@ -54,9 +54,9 @@ const Shop = () => {
   }, []);
 
   return (
-    <div>
+
       <Container>
-        <Row className="d-flex flex-row justify-content-start">
+        <Row className="d-flex flex-row justify-content-start shop">
           <Col xs={12} md={3} lg={3} className="filter-container">
             <SearchBar
               setCurrentSearch={setCurrentSearch}
@@ -65,7 +65,6 @@ const Shop = () => {
             <CategoriesFilter
               setCurrentCategory={setCurrentCategory}
               setReset={setReset}
-              reset={reset}
             />
           </Col>
 
@@ -80,7 +79,7 @@ const Shop = () => {
           </Col>
         </Row>
       </Container>
-    </div>
+
   );
 };
 
