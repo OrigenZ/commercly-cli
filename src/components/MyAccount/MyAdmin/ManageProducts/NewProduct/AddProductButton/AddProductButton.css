@@ -1,3 +1,4 @@
-a.btn.btn-outline-dark.mb-4.corners{
+.add-button{
     border-radius: 0px;
+    padding: 0.5rem 1.5rem;
 }
