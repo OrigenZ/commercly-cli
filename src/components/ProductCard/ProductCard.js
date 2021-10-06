@@ -31,7 +31,7 @@ const ProductCard = (props) => {
               <span className="text-center text-muted">{product.brand}</span>
             </Card.Text>
             <Card.Text>
-              <span className="text-center price">{product.price} €</span>
+              <span className="text-center price">{product.totalPrice} €</span>
             </Card.Text>
           </Card.Body>
         </Link>

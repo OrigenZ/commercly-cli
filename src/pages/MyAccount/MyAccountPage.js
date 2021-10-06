@@ -20,6 +20,8 @@ import UserDetails from "../../components/MyAccount/MyAdmin/ManageUsers/UserDeta
 import NewAddress from "../../components/MyAccount/CustomerAccount/Addresses/NewAddress/NewAddress";
 import EditAddress from "../../components/MyAccount/CustomerAccount/Addresses/EditAddress/EditAddress";
 import OrderDetails from "../../components/MyAccount/CustomerAccount/Orders/OrderDetails/OrderDetails";
+import ManageOrders from "../../components/MyAccount/MyAdmin/ManageOrders/ManageOrders";
+import ManageOrderDetail from "../../components/MyAccount/MyAdmin/ManageOrders/ManageOrderDetail/ManageOrderDetail";
 
 const MyAccountPage = () => {
   const { user } = useContext(AuthContext);
@@ -114,6 +116,16 @@ const MyAccountPage = () => {
           component={ManageUsers}
         />
         <PrivateRoute exact path="/admin/user/edit/:id" component={UserDetails} />
+        <PrivateRoute
+          exact
+          path="/my-account/admin/orders"
+          component={ManageOrders}
+        />
+        <PrivateRoute
+          exact
+          path="/my-account/admin/orders/:orderId"
+          component={ManageOrderDetail}
+        />
         <PrivateRoute
           exact
           path="/my-account/account-details"

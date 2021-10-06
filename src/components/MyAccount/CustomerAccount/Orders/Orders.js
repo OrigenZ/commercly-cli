@@ -3,6 +3,7 @@ import { AuthContext } from "../../../../common/context/Auth.context";
 import axiosInstance from "../../../../common/http";
 import { Link } from "react-router-dom";
 
+import dateFormat from "dateformat";
 import ReactPaginate from "react-paginate";
 import { Row, Col } from "react-bootstrap";
 
@@ -16,6 +17,11 @@ const Orders = () => {
 
   const storedToken = localStorage.getItem("authToken");
 
+  const formatDate = (date) => {
+    const dateObj = new Date(date);
+    return dateFormat(dateObj, " mmm dd yyyy @ h:MM:ss TT");
+  }
+  
   const handlePageClick = (e) => {
     const selectedPage = e.selected;
     setOffset(Math.ceil(selectedPage * perPage));
@@ -38,7 +44,7 @@ const Orders = () => {
             <h3>{order._id}</h3>
           </Col>
           <Col xs={12} sm={4} lg={2}>
-            <h3>{order.date}</h3>
+            <h3>{formatDate(order.createdAt)}</h3>
           </Col>
           <Col xs={12} sm={8} lg={2}>
             <p>{order.status}</p>

@@ -26,7 +26,7 @@ const NewProduct = () => {
   }
 
   const findFormErrors = () => {
-    const { sku, quantity, name, price, brand, category } = form
+    const { sku, quantity, name, price, tax, brand, category } = form
     const newErrors = {}
 
     // sku errors
@@ -40,12 +40,18 @@ const NewProduct = () => {
       newErrors.name = 'Title cannot be more than 50 characters long.'
 
     // quantity errors
-    if (!quantity || quantity < 0)
+    if (!quantity || quantity < 0) 
       newErrors.quantity = 'Quantity cannot be less than 0.'
 
     // price errors
     if (!price || price === '') newErrors.price = 'This field cannot be blank.'
     else if (price < 0) newErrors.price = 'Price cannot be less than 0.'
+
+
+    // tax errors
+    if (!tax || tax === '') newErrors.tax = 'This field cannot be blank.'
+    else if (tax < 0) newErrors.tax = 'Tax cannot be less than 0.'
+
 
     // brand errors
     if (!brand || brand === '') newErrors.brand = 'This field cannot be blank.'
@@ -74,6 +80,7 @@ const NewProduct = () => {
       body.append('quantity', form.quantity)
       body.append('name', form.name)
       body.append('price', form.price)
+      body.append('tax', form.tax)
       body.append('brand', form.brand)
       body.append('description', form.description)
       body.append('category', form.category)
@@ -184,6 +191,21 @@ const NewProduct = () => {
                 />
                 <Form.Control.Feedback type="invalid">
                   {errors.price}
+                </Form.Control.Feedback>
+              </Form.Group>
+            </Row>
+
+            <Row className="mb-3">
+              <Form.Group as={Col}>
+                <Form.Label>Tax</Form.Label>
+                <Form.Control
+                  step="any"
+                  type="number"
+                  onChange={(e) => setField('tax', e.target.value)}
+                  isInvalid={!!errors.tax}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.tax}
                 </Form.Control.Feedback>
               </Form.Group>
             </Row>
