@@ -2,10 +2,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
-import "./SearchProduct.css";
+import "./SearchBar.css";
 import { Form, Button, Row, Col } from "react-bootstrap";
 
-const SearchProduct = (props) => {
+const SearchBar = (props) => {
   const [query, setQuery] = useState();
 
   const { setCurrentSearch, setReset } = props;
@@ -23,7 +23,7 @@ const SearchProduct = (props) => {
           <Col sm="10">
             <Form.Control
               type="search"
-              placeholder="Search a product..."
+              placeholder="Search"
               onChange={(e) => setQuery(e.target.value)}
               name="query"
             />
@@ -40,4 +40,4 @@ const SearchProduct = (props) => {
   );
 };
 
-export default SearchProduct;
+export default SearchBar;
