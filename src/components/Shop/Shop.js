@@ -1,57 +1,57 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 
-import ProductsList from '../ProductsList/ProductsList'
-import SearchBar from '../SearchBar/SearchBar'
-import CategoriesFilter from '../CategoriesFilter/CategoriesFilter'
+import ProductsList from "../ProductsList/ProductsList";
+import SearchBar from "../SearchBar/SearchBar";
+import CategoriesFilter from "../CategoriesFilter/CategoriesFilter";
 
-import axiosInstance from '../../common/http'
+import axiosInstance from "../../common/http";
 
-import './Shop.css'
-import { Container, Row, Col } from 'react-bootstrap'
+import "./Shop.css";
+import { Container, Row, Col } from "react-bootstrap";
 
 const Shop = () => {
-  const [products, setProducts] = useState([])
-  const [results, setResults] = useState([])
-  const [reset, setReset] = useState(true)
-  const [currentCategory, setCurrentCategory] = useState('')
-  const [currentSearch, setCurrentSearch] = useState('')
+  const [products, setProducts] = useState([]);
+  const [results, setResults] = useState([]);
+  const [reset, setReset] = useState(true);
+  const [currentCategory, setCurrentCategory] = useState("");
+  const [currentSearch, setCurrentSearch] = useState("");
 
   useEffect(() => {
     if (currentCategory) {
       const filteredByCategory = products.filter((product) => {
-        return product.category._id === currentCategory
-      })
-      setResults(filteredByCategory)
-      setCurrentSearch('')
+        return product.category._id === currentCategory;
+      });
+      setResults(filteredByCategory);
+      setCurrentSearch("");
     }
 
     if (currentSearch) {
       const productsFound = products.filter((product) => {
-        const regex = new RegExp(currentSearch, 'i')
-        const nameFound = product.name.match(regex)
-        const brandFound = product.brand.match(regex)
+        const regex = new RegExp(currentSearch, "i");
+        const nameFound = product.name.match(regex);
+        const brandFound = product.brand.match(regex);
 
-        return nameFound || brandFound
-      })
+        return nameFound || brandFound;
+      });
 
-      setResults(productsFound)
-      setCurrentCategory('')
+      setResults(productsFound);
+      setCurrentCategory("");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentCategory, currentSearch])
+  }, [currentCategory, currentSearch]);
 
   useEffect(() => {
     axiosInstance
       .get(`/api/products`)
       .then((response) => {
-        setProducts(response.data.products)
+        setProducts(response.data.products);
       })
       .catch((err) => {
-        console.log(err.message)
-      })
+        console.log(err.message);
+      });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []);
 
   return (
     <div>
@@ -73,7 +73,7 @@ const Shop = () => {
             <ProductsList
               results={results}
               products={products}
-              handleDelete={()=>{}}
+              handleDelete={() => {}}
               isShop={true}
               reset={reset}
             />
@@ -81,7 +81,7 @@ const Shop = () => {
         </Row>
       </Container>
     </div>
-  )
-}
+  );
+};
 
-export default Shop
+export default Shop;

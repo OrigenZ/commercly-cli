@@ -1,4 +1,5 @@
-div#basic-navbar-nav{
-    display: flex;
-    justify-content: end;
+
+
+.navbar-nav {
+    align-items: center;
 }

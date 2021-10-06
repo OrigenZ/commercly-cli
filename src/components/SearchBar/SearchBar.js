@@ -20,7 +20,7 @@ const SearchBar = (props) => {
     <div className="topbar">
       <Form onSubmit={handleSubmit} className="search-container d-inline-block">
         <Form.Group as={Row} className="p-0 m-0">
-          <Col sm="10">
+          <Col xs={10} sm={10} lg={10}>
             <Form.Control
               type="search"
               placeholder="Search"
@@ -28,7 +28,7 @@ const SearchBar = (props) => {
               name="query"
             />
           </Col>
-          <Col sm="2">
+          <Col xs={2} sm={2} lg={2}>
             <Button variant="light transparent" type="submit">
               <i className="fa fa-search text-muted"></i>
               <FontAwesomeIcon icon={faSearch} className="text-muted" />

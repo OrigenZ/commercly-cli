@@ -7,7 +7,6 @@ import "./CategoriesFilter.css";
 
 const CategoriesFilter = (props) => {
   const [categories, setCategories] = useState([]);
-
   const { setCurrentCategory, setReset } = props;
 
   const handleCategoryClick = (id) => {
