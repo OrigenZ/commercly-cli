@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import ProductList from "../ProductsList/ProductsList";
+import ProductsList from "../ProductsList/ProductsList";
 import SearchBar from "../SearchBar/SearchBar";
 import CategoriesFilter from "../CategoriesFilter/CategoriesFilter";
 
@@ -66,9 +66,9 @@ const Shop = () => {
               reset={reset}
             />
           </Col>
-          {/* TODO: check isAdmin and render ProductList / AdminProductList */}
+
           <Col xs={12} md={9} lg={9} className="products-container">
-            <ProductList 
+            <ProductsList 
               results={results} 
               products={products} 
               isShop={true} 
