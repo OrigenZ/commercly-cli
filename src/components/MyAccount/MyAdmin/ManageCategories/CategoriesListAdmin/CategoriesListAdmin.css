@@ -16,11 +16,12 @@ a.btn.btn-outline-secondary.edit-btn.w-100 {
 }
 
 .pagination {
-    margin: 2rem auto;
+    margin-top: 1rem;
     display: flex;
     list-style: none;
     outline: none;
     justify-content: center;
+    margin-bottom: 0;
   }
   .pagination > .active > a{
     background-color: #17a2b8 ;

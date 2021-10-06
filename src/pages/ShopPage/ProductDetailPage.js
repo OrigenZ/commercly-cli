@@ -1,11 +1,7 @@
-import ProductDetails from '../../components/ProductDetails/ProductDetails'
+import ProductDetails from "../../components/ProductDetails/ProductDetails";
 
 const ProductDetailPage = () => {
-  return (
-    <div className="section">
-      <ProductDetails />
-    </div>
-  )
-}
+  return <ProductDetails />;
+};
 
-export default ProductDetailPage
+export default ProductDetailPage;

@@ -19,6 +19,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
+import defaultImage from "../../images/img-default.jpg";
 import "./ProductDetails.css";
 
 const ProductDetails = () => {
@@ -68,20 +69,22 @@ const ProductDetails = () => {
   }, [id]);
 
   return (
-    <>
-      <Container id="product-details">
-        <Row className="justify-content-center">
-          <Col xs={12} md={6} xl={4} className="m-3 mt-0">
-            <Image
-              src={product.imageUrl}
-              alt="Product Name"
-              className="w-100"
-            />
-          </Col>
-          <Col xs={12} md={6} xl={6} className="m-3 mt-0">
+    <Container id="product-details">
+      <Row>
+        <Col xs={12} md={6} xl={4} className="col">
+          <Image
+            src={product.imageUrl || defaultImage}
+            alt="Product Name"
+            className="w-100"
+          />
+        </Col>
+        <Col xs={12} md={6} xl={6} className="col display">
+          <div>
             <h3 className="heading">{product.name}</h3>
             <p className="text-muted">{product.brand} </p>
             <p className="product-description">{product.description} </p>
+          </div>
+          <div>
             <p className="product-price">{product.totalPrice} €</p>
             {user && (
               <Form onSubmit={(e) => e.preventDefault()}>
@@ -105,10 +108,10 @@ const ProductDetails = () => {
                 </Alert>
               </>
             )}
-          </Col>
-        </Row>
-      </Container>
-    </>
+          </div>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

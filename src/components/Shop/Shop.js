@@ -54,33 +54,30 @@ const Shop = () => {
   }, []);
 
   return (
+    <Container id="shop">
+      <Row className="">
+        <Col xs={12} md={3} lg={3} className="filter-container">
+          <SearchBar setCurrentSearch={setCurrentSearch} setReset={setReset} />
+          <CategoriesFilter
+            setCurrentCategory={setCurrentCategory}
+            setReset={setReset}
+          />
+        </Col>
 
-      <Container>
-        <Row className="d-flex flex-row justify-content-start shop">
-          <Col xs={12} md={3} lg={3} className="filter-container">
-            <SearchBar
-              setCurrentSearch={setCurrentSearch}
-              setReset={setReset}
-            />
-            <CategoriesFilter
-              setCurrentCategory={setCurrentCategory}
-              setReset={setReset}
-            />
-          </Col>
-
-          <Col xs={12} md={9} lg={9} className="products-container">
-            <ProductsList
-              results={results}
-              products={products}
-              handleDelete={() => {}}
-              isShop={true}
-              reset={reset}
-            />
-          </Col>
-        </Row>
-      </Container>
-
+        <Col xs={12} md={9} lg={9} className="products-container">
+          <ProductsList
+            results={results}
+            products={products}
+            handleDelete={() => {}}
+            isShop={true}
+            reset={reset}
+          />
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
 export default Shop;
+
+//className="d-flex flex-row justify-content-start shop"
