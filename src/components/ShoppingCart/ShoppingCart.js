@@ -55,7 +55,7 @@ const ShoppingCart = () => {
               </Col>
               <Col xs={2} md={2} lg={2} className="total-line">
                 <h3>{line.totalLine}€</h3>
-              </Col>
+              </Col>          
             </Row>
             //TODO: for a better way to do this shit
           ))}
