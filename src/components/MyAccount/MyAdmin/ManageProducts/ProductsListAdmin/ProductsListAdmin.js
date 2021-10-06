@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Row, Col } from "react-bootstrap";
 
 import ReactPaginate from "react-paginate";
+import './ProductsListAdmin.css'
 
 import axiosInstance from "../../../../../common/http/index";
 
@@ -31,23 +32,23 @@ function ProductsListAdmin(props) {
 
       const postData = slice.map((product) => (
         <Row key={product._id} id="products-list">
-          <Col xs={12} sm={4} lg={2}>
-            <h3>{product.sku}</h3>
+          <Col xs={12} sm={4} lg={3}>
+            <p>{product.sku}</p>
           </Col>
-          <Col xs={12} sm={8} lg={2}>
+          <Col xs={6} sm={8} lg={2}>
             <p>{product.name}</p>
           </Col>
-          <Col xs={12} sm={8} lg={2}>
+          <Col xs={6} sm={8} lg={2}>
             <p>{product.category.name}</p>
           </Col>
-          <Col xs={12} sm={8} lg={2}>
+          <Col xs={6} sm={8} lg={1}>
             <p>{product.quantity}</p>
           </Col>
-          <Col xs={12} sm={8} lg={2}>
+          <Col xs={6} sm={8} lg={1}>
             <p>{product.price}</p>
           </Col>
 
-          <Col xs={12} sm={12} lg={2}>
+          <Col xs={12} sm={12} lg={3}>
             <Row>
               <Col xs={6} sm={6} lg={6}>
                 <div className="mb-2">

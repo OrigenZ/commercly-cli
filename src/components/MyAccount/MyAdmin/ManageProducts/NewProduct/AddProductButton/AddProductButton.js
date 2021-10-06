@@ -1,14 +1,17 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
 
-import './AddProductButton.css'
+import "./AddProductButton.css";
 
 const AddProductButton = () => {
-    return (
-        <Link to={`/admin/product/create`} className="btn btn-outline-dark mb-4 corners">
-        Add product
-      </Link>
-    )
-}
+  return (
+    <Link
+      to={`/admin/product/create`}
+      className="btn btn-outline-success mb-4 add-button"
+    >
+      Add product
+    </Link>
+  );
+};
 
-export default AddProductButton
+export default AddProductButton;
