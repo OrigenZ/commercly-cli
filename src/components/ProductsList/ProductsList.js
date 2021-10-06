@@ -4,10 +4,12 @@ import ProductCard from '../ProductCard/ProductCard'
 
 import ReactPaginate from 'react-paginate'
 import axiosInstance from '../../common/http'
-import './ProductList.css'
+import './ProductsList.css'
 
 const ProductsList = (props) => {
   const { handleDelete, results, isShop, reset } = props
+
+  console.log(results)
 
   const [offset, setOffset] = useState(0)
   const [data, setData] = useState([])
@@ -66,6 +68,7 @@ console.log('productlist', data)
 
   useEffect(() => {
     getData()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [offset, handleDelete])
 
   return (

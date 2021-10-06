@@ -1,21 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react'
+import axiosInstance from '../../../../common/http'
 
-import CategoriesFilter from "../../../CategoriesFilter/CategoriesFilter";
-import SearchBar from "../../../SearchBar/SearchBar";
-import ProductsList from "../../../ProductsList/ProductsList";
-import AddProductButton from "./NewProduct/AddProductButton/AddProductButton";
+import CategoriesFilter from '../../../CategoriesFilter/CategoriesFilter'
+import SearchBar from '../../../SearchBar/SearchBar'
+import AddProductButton from './NewProduct/AddProductButton/AddProductButton'
 
-import axiosInstance from "../../../../common/http";
 import Swal from 'sweetalert2/src/sweetalert2'
+import {Container, Row, Col } from 'react-bootstrap'
+import ProductsListAdmin from './ProductsListAdmin/ProductsListAdmin'
 
 const ManageProducts = (props) => {
-  const [products, setProducts] = useState([]);
-  const [results, setResults] = useState([]);
-  const [reset, setReset] = useState(true);
-  const [currentCategory, setCurrentCategory] = useState("");
-  const [currentSearch, setCurrentSearch] = useState("");
+  const [products, setProducts] = useState([])
+  const [results, setResults] = useState([])
+  const [reset, setReset] = useState(true)
+  const [currentCategory, setCurrentCategory] = useState('')
+  const [currentSearch, setCurrentSearch] = useState('')
 
-  const storedToken = localStorage.getItem("authToken");
+  const storedToken = localStorage.getItem('authToken')
 
   const handleDelete = (id, name) => {
     Swal.fire({
@@ -48,69 +49,68 @@ const ManageProducts = (props) => {
   useEffect(() => {
     if (currentCategory) {
       const filteredByCategory = products.filter((product) => {
-        return product.category._id === currentCategory;
-      });
-      setResults(filteredByCategory);
-      setCurrentSearch("");
+        return product.category._id === currentCategory
+      })
+      setResults(filteredByCategory)
+      setCurrentSearch('')
     }
 
     if (currentSearch) {
       const productsFound = products.filter((product) => {
-        const regex = new RegExp(currentSearch, "i");
-        const nameFound = product.name.match(regex);
-        const brandFound = product.brand.match(regex);
+        const regex = new RegExp(currentSearch, 'i')
+        const nameFound = product.name.match(regex)
+        const brandFound = product.brand.match(regex)
 
-        return nameFound || brandFound;
-      });
+        return nameFound || brandFound
+      })
 
-      setResults(productsFound);
-      setCurrentCategory("");
+      setResults(productsFound)
+      setCurrentCategory('')
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentCategory, currentSearch]);
+  }, [currentCategory, currentSearch])
 
   useEffect(() => {
     if (storedToken) {
       axiosInstance
         .get(`/api/products`)
         .then((response) => {
-          setProducts(response.data.products);
+          setProducts(response.data.products)
         })
         .catch((err) => {
           console.log(err.message)
-        });
+        })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 
   return (
-    <div className="row pt-5 ">
-      <div className="col-12 col-md-3">
-
-        <AddProductButton />
-
-        <SearchBar 
-          setCurrentSearch={setCurrentSearch} 
-          setReset={setReset}
-        />
-
-        <CategoriesFilter
-          setCurrentCategory={setCurrentCategory}
-          setReset={setReset}
-        />
-   
-      </div>
-      
-      <div className="col-12 col-md-9">
-        <ProductsList
-          results={results}
-          handleDelete={handleDelete}
-          isShop={false}
-          reset={reset}
-        />
-      </div>
+    <div>
+      <Container>
+        <Row className="d-flex flex-row justify-content-space-between;">
+          <Col xs={12} md={3} lg={3} className="filter-container">
+            <AddProductButton />
+            <SearchBar
+              setCurrentSearch={setCurrentSearch}
+              setReset={setReset}
+            />
+            <CategoriesFilter
+              setCurrentCategory={setCurrentCategory}
+              setReset={setReset}
+            />
+          </Col>
+          <Col xs={12} md={9} lg={9} className="products-container">
+            <ProductsListAdmin
+              results={results}
+              handleDelete={handleDelete}
+              isShop={false}
+              reset={reset}
+            />
+          </Col>
+        </Row>
+      </Container>
     </div>
-  );
-};
+  )
+}
 
-export default ManageProducts;
+export default ManageProducts
