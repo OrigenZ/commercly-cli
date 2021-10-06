@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import ProductList from "../ProductsList/ProductsList";
-import SearchProduct from "../SearchProduct/SearchProduct";
+import SearchBar from "../SearchBar/SearchBar";
 import CategoriesFilter from "../CategoriesFilter/CategoriesFilter";
 
 import axiosInstance from "../../common/http";
@@ -56,7 +56,7 @@ const Shop = () => {
       <Container>
         <Row className="d-flex flex-row justify-content-start">
           <Col xs={12} md={3} lg={3} className="filter-container">
-            <SearchProduct
+            <SearchBar
               setCurrentSearch={setCurrentSearch}
               setReset={setReset}
             />

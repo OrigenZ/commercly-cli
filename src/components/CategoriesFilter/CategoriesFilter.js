@@ -34,8 +34,6 @@ const CategoriesFilter = (props) => {
         Filter by category
       </span>
 
-      {/* //TODO: check logic of reset button */}
-
       <div className="filters-wrapper">
         {categories.map((category) => (
           <Button

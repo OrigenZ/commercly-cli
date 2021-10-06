@@ -3,14 +3,13 @@ import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { Row, Col } from 'react-bootstrap'
 
-import Swal from 'sweetalert2/src/sweetalert2'
 import ReactPaginate from 'react-paginate'
 
 import axiosInstance from '../../../../../common/http/index'
 import './CategoriesListAdmin.css'
 
 function CategoriesListAdmin(props) {
-  const [categories, setCategories] = useState([])
+  const { handleDelete, results} = props
   const [offset, setOffset] = useState(0)
   const [data, setData] = useState([])
   const [perPage] = useState(5)
@@ -23,53 +22,12 @@ function CategoriesListAdmin(props) {
     setOffset(Math.ceil(selectedPage * perPage))
   }
 
-  const handleDelete = (id, name) => {
-    Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Delete',
-    })
-      .then((result) => {
-        if (result.isConfirmed) {
-          Swal.fire({
-            icon: 'success',
-            text: `Category ${name} has been deleted.`,
-            showConfirmButton: false,
-          })
-
-          axiosInstance
-            .delete(`/api/categories/${id}`, {
-              headers: { Authorization: `Bearer ${storedToken}` },
-            })
-            .then(() => {
-              const newCategories = categories.filter(
-                (category) => category._id !== id,
-              )
-              setCategories([...newCategories])
-              getData()
-            })
-        }
-      })
-      .catch((err) => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Something went wrong!',
-        })
-      })
-  }
-
   const getData = async () => {
     try {
       const response = await axiosInstance.get(`/api/categories`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
-      const data = response.data
-
+      const data = results.length ? results : response.data
       const slice = data.slice(offset, offset + perPage)
 
       const postData = slice.map((category) => (
@@ -106,10 +64,10 @@ function CategoriesListAdmin(props) {
           </Col>
         </Row>
       ))
+      
+        setData(postData)
+        setPageCount(Math.ceil(data.length / perPage))
 
-
-      setData(postData)
-      setPageCount(Math.ceil(data.length / perPage))
     } catch (err) {
       console.log(err)
     }
@@ -117,32 +75,11 @@ function CategoriesListAdmin(props) {
 
   useEffect(() => {
     getData()
-  }, [offset])
-
-  useEffect(() => {
-    if (storedToken) {
-      axiosInstance
-        .get(`/api/categories`, {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        })
-        .then((response) => {
-          setCategories(response.data)
-        })
-        .catch((err) => {})
-    }
-  }, [])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [offset, handleDelete])
 
   return (
     <>
-      <Row>
-        <Link
-          to={`/admin/category/create`}
-          className="btn btn-outline-dark col-12"
-        >
-          Add Category
-        </Link>
-      </Row>
-
       {data}
       <ReactPaginate
         previousLabel={'prev'}

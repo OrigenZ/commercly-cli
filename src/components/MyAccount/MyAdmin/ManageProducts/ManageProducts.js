@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import CategoriesFilter from "../../../CategoriesFilter/CategoriesFilter";
-import SearchProduct from "../../../SearchProduct/SearchProduct";
+import SearchBar from "../../../SearchBar/SearchBar";
 import ProductsList from "../../../ProductsList/ProductsList";
 import AddProductButton from "./NewProduct/AddProductButton/AddProductButton";
 
@@ -86,18 +86,21 @@ const ManageProducts = (props) => {
   return (
     <div className="row pt-5 ">
       <div className="col-12 col-md-3">
+
         <AddProductButton />
-        <SearchProduct 
+
+        <SearchBar 
           setCurrentSearch={setCurrentSearch} 
           setReset={setReset}
         />
+
         <CategoriesFilter
           setCurrentCategory={setCurrentCategory}
           setReset={setReset}
-          reset={reset}
         />
-        {/* TODO: check isAdmin and render ProductList / AdminProductList */}
+   
       </div>
+      
       <div className="col-12 col-md-9">
         <ProductsList
           results={results}
