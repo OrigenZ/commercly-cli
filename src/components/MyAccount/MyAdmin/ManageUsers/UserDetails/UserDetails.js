@@ -1,15 +1,11 @@
-// import { AuthContext } from "../../../common/context/Auth.context";
 import { ListGroup } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
 import axiosInstance from "../../../../../common/http/index";
 
-const UserDetails = (params) => {
-  // const {product, setProduct}= useState([]);
-
+const UserDetails = (props) => {
   const [user, setUser] = useState("");
 
-  // const [errorMessage, setErrorMessage] = useState('')
-  const { id } = params.match.params;
+  const { id } = props.match.params;
   const storedToken = localStorage.getItem("authToken");
 
   useEffect(() => {

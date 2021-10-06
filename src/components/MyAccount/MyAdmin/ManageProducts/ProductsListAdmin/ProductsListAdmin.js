@@ -45,7 +45,7 @@ function ProductsListAdmin(props) {
             <p>{product.quantity}</p>
           </Col>
           <Col xs={6} sm={8} lg={1}>
-            <p>{product.price}</p>
+            <p>{product.totalPrice}</p>
           </Col>
 
           <Col xs={12} sm={12} lg={3}>
