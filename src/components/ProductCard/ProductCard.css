@@ -1,5 +1,18 @@
 span.text-center.price {
-  font-size: 1.5em;
+  font-size: 1em;
+  color:#6d757d;
+
+}
+
+.product-name{
+  color:#6d757d;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
+.product-brand{
+  color:#6d757d;
+  font-size: 0.9rem
 }
 
 .prod-text.card-body {

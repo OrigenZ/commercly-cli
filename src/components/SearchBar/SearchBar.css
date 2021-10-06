@@ -14,6 +14,14 @@ input[type="search"] {
   height: fit-content;
   block-size: fit-content;
   padding: 0;
+  margin-bottom: 1.5rem;
+}
+
+.search-icon{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+
 }
 
 .search-btn:focus,

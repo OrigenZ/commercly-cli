@@ -1,7 +1,33 @@
+#product-details{
+    margin: 3rem auto;
+}
+
+#product-details .row{
+    display: flex;
+    justify-content: center;
+}
+
+#product-details .col {
+    margin: 0px 1rem 0rem 1rem;
+}
+
 .heading{
     font-size: 3em;
 }
 
+.product-description{
+    margin: 1.5rem 0 1rem 0;
+}
+
 .product-price{
     font-size: 2.5em;
+    margin-bottom: 2rem;
+}
+
+button.btn.btn-success.btn-lg {
+    border-radius: 0px;
+}
+
+img.w-100 {
+    box-shadow: 0px 0px 7px -4px #767e85;
 }
