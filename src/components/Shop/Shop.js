@@ -55,7 +55,7 @@ const Shop = () => {
 
   return (
     <Container id="shop">
-      <Row className="">
+      <Row>
         <Col xs={12} md={3} lg={3} className="filter-container">
           <SearchBar setCurrentSearch={setCurrentSearch} setReset={setReset} />
           <CategoriesFilter

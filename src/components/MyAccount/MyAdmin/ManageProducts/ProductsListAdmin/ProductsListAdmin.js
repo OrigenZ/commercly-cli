@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Row, Col } from "react-bootstrap";
 
 import ReactPaginate from "react-paginate";
-import './ProductsListAdmin.css'
+import "./ProductsListAdmin.css";
 
 import axiosInstance from "../../../../../common/http/index";
 
@@ -32,7 +32,7 @@ function ProductsListAdmin(props) {
 
       const postData = slice.map((product) => (
         <Row key={product._id} id="products-list">
-          <Col xs={12} sm={4} lg={3}>
+          <Col xs={12} sm={4} lg={2}>
             <p>{product.sku}</p>
           </Col>
           <Col xs={6} sm={8} lg={2}>
@@ -41,16 +41,16 @@ function ProductsListAdmin(props) {
           <Col xs={6} sm={8} lg={2}>
             <p>{product.category.name}</p>
           </Col>
-          <Col xs={6} sm={8} lg={1}>
+          <Col xs={6} sm={8} lg={2}>
             <p>{product.quantity}</p>
           </Col>
-          <Col xs={6} sm={8} lg={1}>
-            <p>{product.totalPrice}</p>
+          <Col xs={6} sm={8} lg={2}>
+            <p>{product.totalPrice} €</p>
           </Col>
 
-          <Col xs={12} sm={12} lg={3}>
+          <Col xs={12} sm={12} lg={2}>
             <Row>
-              <Col xs={6} sm={6} lg={6}>
+              <Col xs={6} sm={6} lg={6} className="buttons">
                 <div className="mb-2">
                   <Link
                     to={`/admin/product/edit/${product._id}`}
@@ -60,7 +60,7 @@ function ProductsListAdmin(props) {
                   </Link>
                 </div>
               </Col>
-              <Col xs={6} sm={6} lg={6}>
+              <Col xs={6} sm={6} lg={6}  className="buttons">
                 <div className="mb-0">
                   <div
                     onClick={() => handleDelete(product._id, product.name)}
@@ -89,20 +89,46 @@ function ProductsListAdmin(props) {
 
   return (
     <>
+      <div className="row">
+
+      <Row id="head-products-list">
+          <Col xs={12} sm={4} lg={2}>
+            <p>SKU</p>
+          </Col>
+          <Col xs={6} sm={8} lg={2}>
+            <p>Name</p>
+          </Col>
+          <Col xs={6} sm={8} lg={2}>
+            <p>Category</p>
+          </Col>
+          <Col xs={6} sm={8} lg={2}>
+            <p>Quantity</p>
+          </Col>
+          <Col xs={6} sm={8} lg={2}>
+            <p>Price</p>
+          </Col>
+
+          <Col xs={12} sm={12} lg={2}>
+            <p>Actions</p>
+          </Col>
+        </Row>
       {data}
-      <ReactPaginate
-        previousLabel={"prev"}
-        nextLabel={"next"}
-        breakLabel={"..."}
-        breakClassName={"break-me"}
-        pageCount={pageCount}
-        marginPagesDisplayed={2}
-        pageRangeDisplayed={5}
-        onPageChange={handlePageClick}
-        containerClassName={"pagination"}
-        subContainerClassName={"pages pagination"}
-        activeClassName={"active"}
-      />
+      </div>
+      <div className="shop-pagination">
+        <ReactPaginate
+          previousLabel={"prev"}
+          nextLabel={"next"}
+          breakLabel={"..."}
+          breakClassName={"break-me"}
+          pageCount={pageCount}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+          onPageChange={handlePageClick}
+          containerClassName={"pagination"}
+          subContainerClassName={"pages pagination"}
+          activeClassName={"active"}
+        />
+      </div>
     </>
   );
 }
