@@ -6,11 +6,9 @@ import dateFormat from "dateformat";
 import "./ManageOrderDetail.css";
 
 import { AuthContext } from "../../../../../common/context/Auth.context";
-import { CartContext } from "../../../../../common/context/Cart.context";
 
 const ManageOrderDetail = (props) => {
   const { orderId } = props.match.params;
-  const { checkOutDetails } = useContext(CartContext);
   const { user } = useContext(AuthContext);
   const [order, setOrder] = useState({});
   const [address, setAddress] = useState({});

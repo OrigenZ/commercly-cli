@@ -1,20 +1,20 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { useState } from 'react'
 
-import "./SearchBar.css";
-import { Form, Button, Row, Col } from "react-bootstrap";
+import './SearchBar.css'
+import { Form, Button, Row, Col } from 'react-bootstrap'
 
 const SearchBar = (props) => {
-  const [query, setQuery] = useState();
+  const [query, setQuery] = useState('')
 
-  const { setCurrentSearch, setReset } = props;
+  const { setCurrentSearch, setReset } = props
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    setReset(false);
-    setCurrentSearch(query);
-  };
+    e.preventDefault()
+    setReset(false)
+    if (query !== null) setCurrentSearch(query)
+  }
 
   return (
     <div className="topbar">
@@ -37,7 +37,7 @@ const SearchBar = (props) => {
         </Form.Group>
       </Form>
     </div>
-  );
-};
+  )
+}
 
-export default SearchBar;
+export default SearchBar

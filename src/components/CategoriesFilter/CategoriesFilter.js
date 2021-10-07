@@ -1,31 +1,31 @@
-import React, { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
+import React, { useEffect, useState } from 'react'
+import { Button } from 'react-bootstrap'
 
-import axiosInstance from "../../common/http";
+import axiosInstance from '../../common/http'
 
-import "./CategoriesFilter.css";
+import './CategoriesFilter.css'
 
 const CategoriesFilter = (props) => {
-  const [categories, setCategories] = useState([]);
-  const { setCurrentCategory, setReset } = props;
+  const [categories, setCategories] = useState([])
+  const { setCurrentCategory, setReset } = props
 
   const handleCategoryClick = (id) => {
-    setCurrentCategory(id);
-    setReset(false);
-  };
+    setCurrentCategory(id)
+    setReset(false)
+  }
 
   useEffect(() => {
     axiosInstance
       .get(`/api/categories`)
       .then((response) => {
-        setCategories(response.data);
+        setCategories(response.data)
       })
       .catch((err) => {
-        console.log(err.message);
-      });
+        console.log(err.message)
+      })
     //TODO: proper error handling
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 
   return (
     <div id="filter-container col-12 col-md-4">
@@ -54,7 +54,7 @@ const CategoriesFilter = (props) => {
         Reset Filter
       </Button>
     </div>
-  );
-};
+  )
+}
 
-export default CategoriesFilter;
+export default CategoriesFilter

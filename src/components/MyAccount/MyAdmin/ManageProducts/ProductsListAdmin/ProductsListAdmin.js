@@ -1,34 +1,39 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { Row, Col } from "react-bootstrap";
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { Row, Col } from 'react-bootstrap'
 
-import ReactPaginate from "react-paginate";
+import ReactPaginate from 'react-paginate'
 import './ProductsListAdmin.css'
 
-import axiosInstance from "../../../../../common/http/index";
+import axiosInstance from '../../../../../common/http/index'
 
 function ProductsListAdmin(props) {
-  const { handleDelete, results } = props;
-  const [offset, setOffset] = useState(0);
-  const [data, setData] = useState([]);
-  const [perPage] = useState(5);
-  const [pageCount, setPageCount] = useState(0);
+  const { handleDelete, results, reset } = props
+  const [offset, setOffset] = useState(0)
+  const [data, setData] = useState([])
+  const [perPage] = useState(5)
+  const [pageCount, setPageCount] = useState(0)
 
-  const storedToken = localStorage.getItem("authToken");
+  const storedToken = localStorage.getItem('authToken')
 
   const handlePageClick = (e) => {
-    const selectedPage = e.selected;
-    setOffset(Math.ceil(selectedPage * perPage));
-  };
+    const selectedPage = e.selected
+    setOffset(Math.ceil(selectedPage * perPage))
+  }
   const getData = async () => {
     try {
       const response = await axiosInstance.get(`/api/products`, {
         headers: { Authorization: `Bearer ${storedToken}` },
-      });
+      })
 
-      const data = results.length ? results : response.data.products;
-      const slice = data.slice(offset, offset + perPage);
+      const data = !reset
+        ? results
+          ? results
+          : response.data.products
+        : response.data.products
+
+      const slice = data.slice(offset, offset + perPage)
 
       const postData = slice.map((product) => (
         <Row key={product._id} id="products-list">
@@ -73,38 +78,38 @@ function ProductsListAdmin(props) {
             </Row>
           </Col>
         </Row>
-      ));
+      ))
 
-      setData(postData);
-      setPageCount(Math.ceil(data.length / perPage));
+      setData(postData)
+      setPageCount(Math.ceil(data.length / perPage))
     } catch (err) {
-      console.log(err);
+      console.log(err)
     }
-  };
+  }
 
   useEffect(() => {
-    getData();
+    getData()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [offset, handleDelete]);
+  }, [offset, handleDelete])
 
   return (
     <>
       {data}
       <ReactPaginate
-        previousLabel={"prev"}
-        nextLabel={"next"}
-        breakLabel={"..."}
-        breakClassName={"break-me"}
+        previousLabel={'prev'}
+        nextLabel={'next'}
+        breakLabel={'...'}
+        breakClassName={'break-me'}
         pageCount={pageCount}
         marginPagesDisplayed={2}
         pageRangeDisplayed={5}
         onPageChange={handlePageClick}
-        containerClassName={"pagination"}
-        subContainerClassName={"pages pagination"}
-        activeClassName={"active"}
+        containerClassName={'pagination'}
+        subContainerClassName={'pages pagination'}
+        activeClassName={'active'}
       />
     </>
-  );
+  )
 }
 
-export default ProductsListAdmin;
+export default ProductsListAdmin

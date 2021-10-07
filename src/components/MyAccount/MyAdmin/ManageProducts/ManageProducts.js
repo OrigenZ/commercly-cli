@@ -6,11 +6,11 @@ import SearchBar from '../../../SearchBar/SearchBar'
 import AddProductButton from './NewProduct/AddProductButton/AddProductButton'
 
 import Swal from 'sweetalert2/src/sweetalert2'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
 import ProductsListAdmin from './ProductsListAdmin/ProductsListAdmin'
 import './ManageProducts.css'
 
-const ManageProducts = (props) => {
+const ManageProducts = () => {
   const [products, setProducts] = useState([])
   const [results, setResults] = useState([])
   const [reset, setReset] = useState(false)
@@ -53,6 +53,7 @@ const ManageProducts = (props) => {
   }
 
   useEffect(() => {
+
     if (currentCategory) {
       const filteredByCategory = products.filter((product) => {
         return product.category._id === currentCategory
@@ -66,10 +67,11 @@ const ManageProducts = (props) => {
         const regex = new RegExp(currentSearch, 'i')
         const nameFound = product.name.match(regex)
         const brandFound = product.brand.match(regex)
+        const skuFound = product.sku.match(regex)
 
-        return nameFound || brandFound
+        return nameFound || brandFound || skuFound
       })
-
+      console.log(productsFound)
       setResults(productsFound)
       setCurrentCategory('')
     }
