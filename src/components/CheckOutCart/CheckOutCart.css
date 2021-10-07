@@ -68,6 +68,11 @@ button.btn.btn-outline-dark {
   margin: -1px 0px;
   padding: 1px;
 }
+#cart .total-flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 
 #cart .title {
   margin-bottom: 0rem;
@@ -99,6 +104,16 @@ button.btn.btn-outline-dark {
   box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 0;
   border: transparent;
+}
+
+#cart .payment{
+  margin-top: 3rem;
+}
+
+#cart .summary-flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 @media (max-width: 767px) {
