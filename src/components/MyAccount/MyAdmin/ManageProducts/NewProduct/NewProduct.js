@@ -40,18 +40,18 @@ const NewProduct = () => {
       newErrors.name = 'Title cannot be more than 70 characters long.'
 
     // quantity errors
-    if (!quantity || quantity < 0) 
+    if (!quantity || quantity === '')
+      newErrors.quantity = 'This field cannot be blank.'
+    else if (quantity < 0)
       newErrors.quantity = 'Quantity cannot be less than 0.'
 
     // price errors
     if (!price || price === '') newErrors.price = 'This field cannot be blank.'
     else if (price < 0) newErrors.price = 'Price cannot be less than 0.'
 
-
     // tax errors
     if (!tax || tax === '') newErrors.tax = 'This field cannot be blank.'
     else if (tax < 0) newErrors.tax = 'Tax cannot be less than 0.'
-
 
     // brand errors
     if (!brand || brand === '') newErrors.brand = 'This field cannot be blank.'
@@ -166,23 +166,18 @@ const NewProduct = () => {
                   {errors.quantity}
                 </Form.Control.Feedback>
               </Form.Group>
-            </Row>
-
-            <Row className="mb-3">
               <Form.Group as={Col}>
-                <Form.Label>Title</Form.Label>
+                <Form.Label>Tax</Form.Label>
                 <Form.Control
-                  type="text"
-                  onChange={(e) => setField('name', e.target.value)}
-                  isInvalid={!!errors.name}
+                  step="any"
+                  type="number"
+                  onChange={(e) => setField('tax', e.target.value)}
+                  isInvalid={!!errors.tax}
                 />
                 <Form.Control.Feedback type="invalid">
-                  {errors.name}
+                  {errors.tax}
                 </Form.Control.Feedback>
               </Form.Group>
-            </Row>
-
-            <Row className="mb-3">
               <Form.Group as={Col}>
                 <Form.Label>Price</Form.Label>
                 <Form.Control
@@ -199,18 +194,21 @@ const NewProduct = () => {
 
             <Row className="mb-3">
               <Form.Group as={Col}>
-                <Form.Label>Tax</Form.Label>
+                <Form.Label>Title</Form.Label>
                 <Form.Control
-                  step="any"
-                  type="number"
-                  onChange={(e) => setField('tax', e.target.value)}
-                  isInvalid={!!errors.tax}
+                  type="text"
+                  onChange={(e) => setField('name', e.target.value)}
+                  isInvalid={!!errors.name}
                 />
                 <Form.Control.Feedback type="invalid">
-                  {errors.tax}
+                  {errors.name}
                 </Form.Control.Feedback>
               </Form.Group>
             </Row>
+
+            <Row className="mb-3"></Row>
+
+            <Row className="mb-3"></Row>
 
             <Row className="mb-3">
               <Form.Group as={Col}>
