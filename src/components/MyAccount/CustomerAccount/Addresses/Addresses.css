@@ -28,6 +28,13 @@
 }
 
 
+
+#customer-addresses  a.edit.btn.btn-outline-secondary.w-100,
+#customer-addresses  a.add.btn.btn-outline-secondary.w-100{
+  border-radius: 0px;
+}
+
+
 #customer-addresses .accordion-item:first-of-type .accordion-button {
   border-top-left-radius: 0;
   border-top-right-radius: 0;

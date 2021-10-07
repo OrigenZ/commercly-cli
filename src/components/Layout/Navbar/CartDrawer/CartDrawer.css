@@ -24,3 +24,10 @@
 a.w-100.btn.btn-success.btn-lg {
   border-radius: 0px;
 }
+
+.offcanvas-body {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

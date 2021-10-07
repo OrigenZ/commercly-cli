@@ -1,0 +1,28 @@
+#edit-address{
+    margin: 3rem auto;
+}
+
+#edit-address{
+    margin: 3rem auto;
+}
+
+#edit-address .form-label{
+    color: #6d757d;
+}
+
+#edit-address input.form-control,
+#edit-address select.form-select,
+#edit-address select.form-control ,
+#edit-address textarea.form-control,
+#edit-address button.btn.btn-outline-success {
+    border-radius: 0px;
+}
+
+#edit-address textarea.form-control {
+    min-height: 20vh;
+}
+
+#edit-address button.btn.btn-outline-success {
+    margin-top: 1rem;
+    width: 100%;
+}

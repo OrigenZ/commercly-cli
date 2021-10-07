@@ -46,13 +46,14 @@ const ManageOrderDetail = (props) => {
   }, []);
   return (
     <section
-      className="container d-flex flex-column justify-content-center align-items-center"
-      id="manage-order-details"
-    >
-      <div className="edit-product-wrapper">
-        <h2 className="text-center text-muted text-uppercase">Order details</h2>
+    class="container d-flex flex-column justify-content-center col-6"
+    id="manage-order-details"
+  >
+    <h3 className="text-center text-muted text-uppercase mb-5">
+      Order details
+    </h3>
 
-        <div className="edit-product-container">
+ 
           <Row>
             <Col className="col-8">
               {" "}
@@ -65,60 +66,60 @@ const ManageOrderDetail = (props) => {
               <br /> <span id="details">{order && order.createdAt}</span>{" "}
             </Col>
           </Row>
-          <h6 className="text-uppercase">Shipping address</h6>
-          <h6>
+          <h5 className="text-uppercase">Shipping address</h5>
+          <h5>
             {address.shipping && address.shipping.firstName}{" "}
             {address.shipping && address.shipping.lastName}
-          </h6>
+          </h5>
 
-          <div>
+          <div className="address">
             <p>Street: {address.shipping && address.shipping.street}</p>
             <p>Province {address.shipping && address.shipping.province}</p>
             <p>Zip {address.shipping && address.shipping.zip}</p>
             <p>City {address.shipping && address.shipping.city}</p>
             <p>Country {address.shipping && address.shipping.country}</p>
-            <h6 className="text-uppercase">Contact Details</h6>
             <p>{address.shipping && address.shipping.phone}</p>
-            <p>{address.shipping && address.shipping.email}</p>
+           
           </div>
-          <span className="text-uppercase theme-color">Order details</span>
-          <div className="mb-3">
-            <hr className="new1" />
-          </div>
+          <span className="theme-color">Order details</span>
+            <div className="mb-3">
+              <hr className="new1" />
+            </div>
           {order.orderLines &&
             order.orderLines.map((orderLine) => (
               <div
                 key={orderLine._id}
                 className="d-flex justify-content-between"
               >
-                <span>
+                <span className="product-name">
                   {orderLine.quantity} x {orderLine.productId.name}
                 </span>
-                <span>{orderLine.totalLine} €</span>
+                <span   className="product-totalLine">{orderLine.totalLine} €</span>
               </div>
             ))}
-          <div className="d-flex justify-content-between">
-            <span className="text-muted">Subtotal</span>
-            <span className="text-muted">{order.totalOrder} €</span>
+            <div className="d-flex justify-content-between">
+              <span>Subtotal</span>
+            <span >{order.totalOrder} €</span>
           </div>
           <div className="d-flex justify-content-between">
             <small>Shipping fee</small> <small>{order.shippingFees}€</small>
           </div>
           <div className="d-flex justify-content-between">
             <small>Tax</small>
-            <small> {order.totalTaxes}</small>
+            <small> {order.totalTaxes && order.totalTaxes.toFixed(2)}</small>
           </div>
 
-          <div className="d-flex justify-content-between mt-3">
-            <span className="font-weight-bold">Total</span>
+          <div className="d-flex justify-content-between mt-3  total">
+              <span>Total</span>
+              <span className="theme-color">
             {parseFloat(order.totalOrder) + parseFloat(order.shippingFees)}
+            </span>
           </div>
 
-          <div className="text-center mt-5">
+          {/* <div className="text-center mt-5">
             <button className="btn btn-primary">Track your order</button>
-          </div>
-        </div>
-      </div>
+          </div> */}
+ 
     </section>
   );
 };
