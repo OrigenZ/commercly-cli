@@ -102,7 +102,7 @@ const UsersListAdmin = (props) => {
             <p>Email</p>
           </Col>
           <Col xs={12} sm={2} lg={2}>
-            <p>Create at</p>
+            <p>Created at</p>
           </Col>
           <Col xs={12} sm={1} lg={1}>
             <p className="text-center">Admin</p>

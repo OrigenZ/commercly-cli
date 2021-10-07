@@ -18,8 +18,7 @@
 
 #manage-order-details .theme-color {
   color: #004cb9;
-margin-top: 1rem;
-
+  margin-top: 1rem;
 }
 
 #manage-order-details hr.new1 {
@@ -49,7 +48,7 @@ margin-top: 1rem;
   font-size: 17px;
 }
 
-#manage-order-details h6.text-uppercase {
+#manage-order-details h5.text-uppercase {
   margin-top: 1rem;
   margin-bottom: 0.8rem;
   font-weight: 600;
@@ -61,3 +60,23 @@ margin-top: 1rem;
 #manage-order-details #heading {
   font-weight: 600;
 }
+
+#manage-order-details .product-name,
+#manage-order-details .total {
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+#manage-order-details .product-totalLine {
+  font-size: 1.2rem;
+}
+
+#manage-order-details .address{
+    margin: 1rem 0;
+}
+
+section#manage-order-details {
+    border: 1px solid #dfe2e6;
+    padding: 2rem;
+}
+/*  */
