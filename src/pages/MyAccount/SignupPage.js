@@ -87,7 +87,7 @@ const SignupPage = (props) => {
         </div>
 
         <div className="signup-container">
-          <p className="text-center">
+          <p className="text-center mb-4">
             I'm a new customer and would like to register.
           </p>
 
@@ -121,7 +121,7 @@ const SignupPage = (props) => {
 
             <Button
               variant="outline-secondary"
-              className="py-2 px-5 mt-5"
+              className="py-2 px-5 mt-2"
               type="submit"
             >
               Register
@@ -130,9 +130,9 @@ const SignupPage = (props) => {
 
           <div className="text-center mb-5">
             <p>
-              <strong>I'm an existing customer and would like to login.</strong>
+              I'm an existing customer and would like to login.
             </p>
-            <Link to={"/login"} className="btn btn-outline-secondary py-2 px-4">
+            <Link to={"/login"} className="btn btn-outline-secondary py-2 px-4 mt-3">
               Login to Existing Account
             </Link>
           </div>

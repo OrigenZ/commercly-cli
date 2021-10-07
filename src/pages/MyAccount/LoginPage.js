@@ -88,7 +88,7 @@ const LoginPage = (props) => {
         </div>
 
         <div className="login-container">
-          <p className="text-center">
+          <p className="text-center mb-4">
             I'm an existing customer and would like to login.
           </p>
 
@@ -134,7 +134,7 @@ const LoginPage = (props) => {
 
             <Button
               variant="outline-secondary"
-              className="py-2 px-5 mt-4"
+              className="py-2 px-5 mt-2"
               type="submit"
             >
               Login
@@ -143,11 +143,11 @@ const LoginPage = (props) => {
 
           <div className="text-center mb-5">
             <p>
-              <strong>I'm a new customer and would like to register.</strong>
+              I'm a new customer and would like to register.
             </p>
             <Link
               to={'/signup'}
-              className="btn btn-outline-secondary py-2 px-4"
+              className="btn btn-outline-secondary py-2 px-4 mt-3"
               id="create-account"
             >
               Create a New Account

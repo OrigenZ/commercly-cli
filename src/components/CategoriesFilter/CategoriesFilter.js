@@ -30,7 +30,7 @@ const CategoriesFilter = (props) => {
   return (
     <div id="categories-filter">
       <span className="filter-header">Filter by category</span>
-
+      <div class="vertical-menu">
       <div className="filters-wrapper">
         {categories.map((category) => (
           <Button
@@ -41,6 +41,7 @@ const CategoriesFilter = (props) => {
             <span className="list-cat">{category.name}</span>
           </Button>
         ))}
+      </div>
       </div>
 
       <Button
