@@ -6,7 +6,7 @@ import './Dashboard.css'
 const Dashboard = () => {
   const { user, logOutUser } = useContext(AuthContext)
   return (
-    <div>
+    <div id="dashboard">
       <div className="dashboard-wrapper text-muted d-flex justify-content-center">
         <div className="d-flex flex-column justify-content-center align-items-center col-sm-12 col-md-8 col-lg-10">
           <p>

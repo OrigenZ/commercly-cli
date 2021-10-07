@@ -16,9 +16,13 @@ ReactDOM.render(
     <Router>
       <AuthProviderWrapper>
         <CartProviderWrapper>
-          <MyNavbar />
-          <App />
-          <Footer />
+          <div id="principal">
+            <div id="secondary">
+              <MyNavbar />
+              <App />
+            </div>
+            <Footer />
+          </div>
         </CartProviderWrapper>
       </AuthProviderWrapper>
     </Router>
