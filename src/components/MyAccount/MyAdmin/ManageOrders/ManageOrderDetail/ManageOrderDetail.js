@@ -116,9 +116,9 @@ const ManageOrderDetail = (props) => {
             </span>
           </div>
 
-          <div className="text-center mt-5">
+          {/* <div className="text-center mt-5">
             <button className="btn btn-primary">Track your order</button>
-          </div>
+          </div> */}
  
     </section>
   );
