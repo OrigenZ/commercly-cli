@@ -59,8 +59,8 @@ const CartProviderWrapper = (props) => {
               productId: product._id,
               product: product,
               quantity: quantity,
-              totalLine: totalLine,
-              totalBaseLine: totalBaseLine
+              totalLine: parseFloat(totalLine).toFixed(2), 
+              totalBaseLine: parseFloat(totalBaseLine).toFixed(2)
             });
           }
 
@@ -75,8 +75,8 @@ const CartProviderWrapper = (props) => {
           const details = {
             products: productsArray,
             totalItems: totalItems,
-            totalPrice: totalPrice,
-            totalBasePrice: totalBasePrice,
+            totalPrice: parseFloat(totalPrice).toFixed(2),
+            totalBasePrice: parseFloat(totalBasePrice).toFixed(2),
             billing,
           };
 
