@@ -37,13 +37,19 @@ const useOptions = () => {
   return options
 }
 
-const StripeForm = () => {
+const StripeForm = (props) => {
   const stripe = useStripe()
   const elements = useElements()
   const options = useOptions()
 
-  const handleSubmit = async (event) => {
-    event.preventDefault()
+  const { handleSubmit } = props
+
+  const handleSubSubmit = async (e) => {
+    e.preventDefault()
+
+    const orderDetails = await handleSubmit()
+
+    console.log(orderDetails)
 
     if (!stripe || !elements) {
       // Stripe.js has not loaded yet. Make sure to disable
@@ -51,74 +57,76 @@ const StripeForm = () => {
       return
     }
 
-    const payload = await stripe.createPaymentMethod({
-      type: 'card',
-      card: elements.getElement(CardNumberElement),
-    })
-    console.log('[PaymentMethod]', payload)
+    // const payload = await stripe.createPaymentMethod({
+    //   type: 'card',
+    //   card: elements.getElement(CardNumberElement),
+    // })
+    // console.log('[PaymentMethod]', payload)
   }
 
   return (
-    <div id="stripeForm">
-      <label>
-        Card number
-        <CardNumberElement
-          options={options}
-          onReady={() => {
-            console.log('CardNumberElement [ready]')
-          }}
-          onChange={(event) => {
-            console.log('CardNumberElement [change]', event)
-          }}
-          onBlur={() => {
-            console.log('CardNumberElement [blur]')
-          }}
-          onFocus={() => {
-            console.log('CardNumberElement [focus]')
-          }}
-        />
-      </label>
-      <label>
-        Expiration date
-        <CardExpiryElement
-          options={options}
-          onReady={() => {
-            console.log('CardNumberElement [ready]')
-          }}
-          onChange={(event) => {
-            console.log('CardNumberElement [change]', event)
-          }}
-          onBlur={() => {
-            console.log('CardNumberElement [blur]')
-          }}
-          onFocus={() => {
-            console.log('CardNumberElement [focus]')
-          }}
-        />
-      </label>
-      <label>
-        CVC
-        <CardCvcElement
-          options={options}
-          onReady={() => {
-            console.log('CardNumberElement [ready]')
-          }}
-          onChange={(event) => {
-            console.log('CardNumberElement [change]', event)
-          }}
-          onBlur={() => {
-            console.log('CardNumberElement [blur]')
-          }}
-          onFocus={() => {
-            console.log('CardNumberElement [focus]')
-          }}
-        />
-      </label>
+    <Form onSubmit={handleSubSubmit}>
+      <div id="stripeForm">
+        <label>
+          Card number
+          <CardNumberElement
+            options={options}
+            onReady={() => {
+              console.log('CardNumberElement [ready]')
+            }}
+            onChange={(event) => {
+              console.log('CardNumberElement [change]', event)
+            }}
+            onBlur={() => {
+              console.log('CardNumberElement [blur]')
+            }}
+            onFocus={() => {
+              console.log('CardNumberElement [focus]')
+            }}
+          />
+        </label>
+        <label>
+          Expiration date
+          <CardExpiryElement
+            options={options}
+            onReady={() => {
+              console.log('CardNumberElement [ready]')
+            }}
+            onChange={(event) => {
+              console.log('CardNumberElement [change]', event)
+            }}
+            onBlur={() => {
+              console.log('CardNumberElement [blur]')
+            }}
+            onFocus={() => {
+              console.log('CardNumberElement [focus]')
+            }}
+          />
+        </label>
+        <label>
+          CVC
+          <CardCvcElement
+            options={options}
+            onReady={() => {
+              console.log('CardNumberElement [ready]')
+            }}
+            onChange={(event) => {
+              console.log('CardNumberElement [change]', event)
+            }}
+            onBlur={() => {
+              console.log('CardNumberElement [blur]')
+            }}
+            onFocus={() => {
+              console.log('CardNumberElement [focus]')
+            }}
+          />
+        </label>
 
-      <Button variant="outline-secondary" type="submit" disabled={!stripe}>
-        Checkout
-      </Button>
-    </div>
+        <Button variant="outline-secondary" type="submit">
+          Checkout
+        </Button>
+      </div>
+    </Form>
   )
 }
 

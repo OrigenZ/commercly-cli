@@ -6,13 +6,17 @@ const AnonRoute = (props) => {
   const { to, exact, component: Component, ...restProps } = props
   const { isLoggedIn, isLoading } = useContext(AuthContext)
 
-  // If the authentication is still loading
-  if (isLoading) return <p>Loading ...</p>
+  if (isLoading)
+    return (
+      <>
+        <div class="spinner-border text-secondary position-absolute top-50 start-50" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </>
+    )
 
-  // If the user is already logged in, redirect him to home page
   if (isLoggedIn) return <Redirect to="/my-account/dashboard" />
 
-  // If the user is not logged in yet, allow him to see the page
   return <Route to={to} exact={exact} component={Component} {...restProps} />
 }
 
