@@ -22,10 +22,18 @@ div#products-list {
     padding-right: 0;
 }
 
-#head-products-list {
+/* #head-products-list {
     background-color: #f7f9fa;
     padding: 0.8rem;
     font-weight: 600;
     color: #6d757d;
     border-bottom: 2px solid #dfe2e6;
+} */
+
+#head-products-list {
+    background-color: #1a99e1;
+    padding: 0.8rem;
+    font-weight: 600;
+    color: #ffffff;
+    border-bottom: 2px solid #1c9ce2;
 }
