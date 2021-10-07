@@ -78,7 +78,7 @@ const OrderDetails = (props) => {
               <p>{address.shipping && address.shipping.city}</p>
               <p>{address.shipping && address.shipping.country}</p>
               <p>{address.shipping && address.shipping.phone}</p>
-              <p>{address.shipping && address.shipping.email}</p>
+
             </div>
             <span className="theme-color">Order details</span>
             <div className="mb-3">
@@ -97,21 +97,21 @@ const OrderDetails = (props) => {
                 </div>
               ))}
             <div className="d-flex justify-content-between">
-              <span className="text-muted">Subtotal</span>
-              <span className="text-muted">{parseFloat(order.totalOrder) - parseFloat(order.shippingFees)}€</span>
+              <span>Subtotal</span>
+              <span>{(order.totalOrder - order.shippingFees).toFixed(2)} €</span>
             </div>
-            <div className="d-flex justify-content-between">
-              <small>Shipping fee</small> <small>{order.shippingFees}€</small>
-            </div>
-            <div className="d-flex justify-content-between">
+            <div className="d-flex justify-content-between text-muted">
               <small>Tax</small>
-              <small> {order.totalTaxes && order.totalTaxes.toFixed(2)}</small>
+              <small> {order.totalTaxes && order.totalTaxes.toFixed(2)} €</small>
+            </div>
+            <div className="d-flex justify-content-between">
+              <small>Shipping fee</small> <small>{order.shippingFees} €</small>
             </div>
 
             <div className="d-flex justify-content-between mt-3">
               <span className="font-weight-bold">Total</span>
               <span className="font-weight-bold theme-color">
-                {order.totalOrder}
+                {order.totalOrder && (order.totalOrder).toFixed(2)} €
               </span>
             </div>
 
