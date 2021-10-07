@@ -18,7 +18,6 @@ const MyNavbar = () => {
             <Nav className="me-auto"></Nav>
             <Nav>
               <NavLinks />
-
               <Cart />
             </Nav>
           </Navbar.Collapse>
