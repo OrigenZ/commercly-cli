@@ -86,6 +86,8 @@ const NewProduct = () => {
       body.append('category', form.category)
       body.append('imageUrl', form.image)
 
+      console.log('image', form.image)
+
       axiosInstance
         .post(`/api/products/create`, body, {
           headers: { Authorization: `Bearer ${storedToken}` },
@@ -265,7 +267,7 @@ const NewProduct = () => {
                 <Form.Label>Image</Form.Label>
                 <Form.Control
                   type="file"
-                  onChange={(e) => setField('image', e.target.value)}
+                  onChange={(e) => setField('image', e.target.files[0])}
                   isInvalid={!!errors.image}
                 />
                 <Form.Control.Feedback type="invalid">
