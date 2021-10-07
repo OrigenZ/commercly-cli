@@ -29,7 +29,7 @@ function ProductsListAdmin(props) {
       });
 
       let data;
-      
+
       if (reset) {
         data = response.data.products;
       } else if (results) {
