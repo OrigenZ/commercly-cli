@@ -6,6 +6,12 @@
     padding: 1.5em;
 }
 
+#subnav .container.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 .active {
   font-weight: 700;
   border-bottom: 3px solid #dee2e6;
@@ -15,13 +21,7 @@
   background-color: #f7f9fa;
   display: flex;
 }
-/* 
-.container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
- */
+
 
 .center.col-lg-2.col-sm-4.col-12 {
     display: flex;
