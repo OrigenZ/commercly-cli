@@ -2,7 +2,6 @@ import { useState, useContext, useEffect } from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
-
 import { Offcanvas, Button, Modal } from 'react-bootstrap'
 
 import { CartContext } from '../../../../common/context/Cart.context'
@@ -12,6 +11,7 @@ import './CartDrawer.css'
 
 const CartDrawer = () => {
   const { cart, count, setCount } = useContext(CartContext)
+
   const [show, setShow] = useState(false)
 
   const handleClose = () => setShow(false)
@@ -37,7 +37,7 @@ const CartDrawer = () => {
         name={'end'}
       >
         <Modal.Header closeButton className="text-center">
-          <Modal.Title >Shopping Cart</Modal.Title>
+          <Modal.Title>Shopping Cart</Modal.Title>
         </Modal.Header>
         <Offcanvas.Body>
           <ShoppingCart />
