@@ -13,3 +13,7 @@
   .dashboard-wrapper a {
     text-decoration: none;
   }
+
+  #dashboard a {
+    color: #199ce2;
+}

@@ -106,8 +106,18 @@ button.btn.btn-outline-dark {
   border: transparent;
 }
 
+#cart select.form-control {
+  color: #6d757d;
+}
+
 #cart .payment{
   margin-top: 3rem;
+}
+
+#cart form.shipping {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 #cart .summary-flex {
