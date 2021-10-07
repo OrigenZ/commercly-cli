@@ -171,7 +171,7 @@ const CheckOutCart = () => {
 
         history.push('/my-account')
 
-        return order
+        return order;
       } catch (err) {
         console.log(err.message)
         Swal.fire({
@@ -441,38 +441,14 @@ const CheckOutCart = () => {
                   </Row>
                 </Form>
               </div>
-
-              <Form className="shipping">
-                <Form.Label>SHIPPING: </Form.Label>
-                <Form.Control
-                  as="select"
-                  type="text"
-                  value={shippingFees}
-                  onChange={(e) => setShippingFees(e.target.value)}
-                >
-                  <option className="text-muted" value="4">
-                    Standard Delivery - 4.00 &euro;
-                  </option>
-                  <option className="text-muted" value="8">
-                    Next Day Delivery - 8.00 &euro;
-                  </option>
-                  <option className="text-muted" value="12">
-                    Same Day Delivery - 12.00 &euro;
-                  </option>
-                </Form.Control>
-              </Form>
-              <Row>
-                <div className="total-flex">
-                  <p>TOTAL: </p>
-                  <p>
-                    {checkOutDetails &&
-                      parseFloat(checkOutDetails.totalPrice) +
-                        parseInt(shippingFees)}{' '}
-                    &euro;
-                  </p>
-                </div>
-                <hr />
-              </Row>
+            </Col>
+            <Col md={4} className="summary">
+              <div>
+                <h5>
+                  <b>Summary</b>
+                </h5>
+              </div>
+              <hr />
               <Row>
                 <div className="summary-flex">
                   <p>Total items:</p>
@@ -522,7 +498,7 @@ const CheckOutCart = () => {
                   </h5>
                 </div>
                 <hr />
-                <StripeForm handleSubmit={handleSubmit} />
+                <StripeForm handleSubmit={handleSubmit}/>
               </Row>
             </Col>
           </Row>
