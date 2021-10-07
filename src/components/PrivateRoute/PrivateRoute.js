@@ -7,7 +7,14 @@ const PrivateRoute = (props) => {
   const { isLoggedIn, isLoading } = useContext(AuthContext)
 
   // If the authentication is still loading
-  if (isLoading) return <p>Loading ...</p>
+  if (isLoading)
+    return (
+      <>
+        <div class="spinner-border text-secondary position-absolute top-50 start-50" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </>
+    )
 
   // If the user is not logged in
   if (!isLoggedIn) {
