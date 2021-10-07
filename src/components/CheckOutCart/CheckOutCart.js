@@ -459,7 +459,7 @@ const CheckOutCart = () => {
                 <p>{checkOutDetails && checkOutDetails.totalPrice} €</p>
               </div>
             </Row>
-            <Form>
+            <Form className="shipping">
               <Form.Label>SHIPPING: </Form.Label>
               <Form.Control
                 as="select"
