@@ -2,7 +2,9 @@
   margin-right: 0px;
   margin-top: 0px;
   margin-bottom: 0px;
+  color: #6d757d;
 }
+
 
 .modal-dialog {
   min-width: 30vw;
@@ -21,12 +23,11 @@
   justify-content: space-between;
 }
 
-a.w-100.btn.btn-success.btn-lg {
+a.w-100.btn.btn-outline-success.btn-lg {
   border-radius: 0px;
 }
 
 .offcanvas-body {
-
   display: flex;
   flex-direction: column;
   justify-content: space-between;
