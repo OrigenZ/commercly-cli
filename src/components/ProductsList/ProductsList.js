@@ -17,7 +17,7 @@ const ProductsList = (props) => {
   const [pageCount, setPageCount] = useState(0)
 
   const storedToken = localStorage.getItem('authToken')
-console.log('productlist', data)
+
   const handlePageClick = (e) => {
     const selectedPage = e.selected
     setOffset(Math.ceil(selectedPage * perPage))
