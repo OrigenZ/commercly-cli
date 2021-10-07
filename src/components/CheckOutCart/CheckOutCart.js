@@ -270,7 +270,7 @@ const CheckOutCart = () => {
 
 </div>
 
-
+{/*  */}
 
             <div className="back-to-shop">
               <a href="/shop">
