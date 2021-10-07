@@ -428,11 +428,7 @@ const CheckOutCart = () => {
                   </Form.Group>
                 </Row>
 
-                <Row>
-                  <Elements stripe={stripePromise}>
-                    <StripeForm />
-                  </Elements>
-                </Row>
+                
               </Form>
             </div>
           </Col>
@@ -486,6 +482,11 @@ const CheckOutCart = () => {
                 &euro;
               </Col>
             </Row>
+            <Row>
+                  <Elements stripe={stripePromise}>
+                    <StripeForm />
+                  </Elements>
+                </Row>
           </Col>
         </Row>
       </div>
