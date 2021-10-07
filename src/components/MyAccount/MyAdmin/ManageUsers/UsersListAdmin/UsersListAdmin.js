@@ -95,9 +95,9 @@ const UsersListAdmin = (props) => {
   }, []);
 
   return (
-    <div id="cat-list-admin">
+    <div id="users-list-admin">
       <div>
-        <Row id="head-categories-list">
+        <Row id="head-users-list">
           <Col xs={12} sm={3} lg={3}>
             <p>Email</p>
           </Col>

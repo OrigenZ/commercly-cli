@@ -55,7 +55,7 @@ const ManageOrders = () => {
       const postData = slice.map((order) => (
         <Row key={order._id} className="orders-list">
           <Col xs={12} sm={4} lg={3}>
-            <h5>{order._id}</h5>
+            <p>{order._id}</p>
           </Col>
           <Col xs={12} sm={4} lg={3}>
             <p>{formatDate(order.createdAt)}</p>
