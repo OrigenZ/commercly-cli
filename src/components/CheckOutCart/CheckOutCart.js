@@ -158,7 +158,7 @@ const CheckOutCart = () => {
 
         //reset cart drawer
         setCart(null)
-        setCount(null);
+        setCount(0);
 
         Swal.fire({
           icon: 'success',
