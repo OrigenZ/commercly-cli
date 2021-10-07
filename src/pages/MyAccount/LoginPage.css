@@ -4,10 +4,14 @@
   min-height: calc(100vh - 72px);
 }
 
+#login input.form-control {
+  border-radius: 0px;
+}
+
 #login .login-wrapper, #signup .signup-wrapper {
   margin: 2rem auto auto auto;
   font-size: 1.3rem;
-  max-width: 16rem;
+  max-width: 20rem;
 }
 
 #login img, #signup img {
@@ -32,8 +36,13 @@
 
 #login .lost-password a {
   text-decoration: none;
+  color: #1596e0;
 }
 
 #login form, #signup form {
-  margin-bottom: 2rem;
+  margin-bottom: 4rem;
+}
+
+.login-container {
+  color: #6d757d;
 }

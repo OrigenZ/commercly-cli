@@ -2,3 +2,8 @@
     font-weight: 700;
     border-bottom: none;
  }
+
+
+ .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .show>.nav-link {
+    color: rgb(108 117 125);
+}
