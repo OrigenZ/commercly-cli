@@ -29,7 +29,7 @@ const MyAccountPage = () => {
     return (
       <section id="user-dashboard">
         <NavMyAccount />
-        
+        <div className="container">
           <PrivateRoute
             exact
             path="/my-account/dashboard"
@@ -51,11 +51,11 @@ const MyAccountPage = () => {
             component={Addresses}
           />
 
-           <PrivateRoute
+          <PrivateRoute
             exact
             path="/my-account/customer/edit-address/:type"
             component={EditAddress}
-          /> 
+          />
           <PrivateRoute
             exact
             path="/my-account/customer/add-address/:type"
@@ -67,14 +67,14 @@ const MyAccountPage = () => {
             path="/my-account/account-details"
             component={AccountDetails}
           />
-     
+        </div>
       </section>
     );
   }
   return (
     <section id="user-dashboard">
       <NavMyAdmin />
-<div className="container">
+      <div className="container">
         <PrivateRoute
           exact
           path="/my-account/dashboard"
@@ -115,7 +115,11 @@ const MyAccountPage = () => {
           path="/my-account/admin/users"
           component={ManageUsers}
         />
-        <PrivateRoute exact path="/admin/user/edit/:id" component={UserDetails} />
+        <PrivateRoute
+          exact
+          path="/admin/user/edit/:id"
+          component={UserDetails}
+        />
         <PrivateRoute
           exact
           path="/my-account/admin/orders"
@@ -131,7 +135,7 @@ const MyAccountPage = () => {
           path="/my-account/account-details"
           component={AccountDetails}
         />
-   </div>
+      </div>
     </section>
   );
 };

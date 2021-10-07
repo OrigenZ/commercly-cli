@@ -1,45 +1,76 @@
-
-#manage-order-details .order-details-wrapper {
-    background-color: #fff;
-    border-color: #fff
+#user-order-details {
+  margin: 3rem auto;
 }
 
-#manage-order-details .close {
-    color: #000;
-    cursor: pointer
+#user-order-details .order-details-wrapper {
+  background-color: #fff;
+  border-color: #fff;
 }
 
-#manage-order-details .close:hover {
-    color: #000
+#user-order-details .close {
+  color: #000;
+  cursor: pointer;
 }
 
-#manage-order-details .theme-color {
-    color: #004cb9
+#user-order-details .close:hover {
+  color: #000;
 }
 
-#manage-order-details hr.new1 {
-    border-top: 2px dashed #fff;
-    margin: 0.4rem 0
+#user-order-details .theme-color {
+  color: #004cb9;
+  margin-top: 1rem;
 }
 
-#manage-order-details .btn-primary {
-    color: #fff;
-    background-color: #004cb9;
-    border-color: #004cb9;
-    padding: 12px;
-    padding-right: 30px;
-    padding-left: 30px;
-    border-radius: 1px;
-    font-size: 17px
+#user-order-details hr.new1 {
+  border-top: 2px dashed #fff;
+  margin: 0.4rem 0;
 }
 
-#manage-order-details .btn-primary:hover {
-    color: #fff;
-    background-color: #004cb9;
-    border-color: #004cb9;
-    padding: 12px;
-    padding-right: 30px;
-    padding-left: 30px;
-    border-radius: 1px;
-    font-size: 17px
+#user-order-details .btn-primary {
+  color: #fff;
+  background-color: #004cb9;
+  border-color: #004cb9;
+  padding: 12px;
+  padding-right: 30px;
+  padding-left: 30px;
+  border-radius: 0px;
+  font-size: 17px;
+}
+
+#user-order-details .btn-primary:hover {
+  color: #fff;
+  background-color: #004cb9;
+  border-color: #004cb9;
+  padding: 12px;
+  padding-right: 30px;
+  padding-left: 30px;
+  border-radius: 1px;
+  font-size: 17px;
+}
+
+#user-order-details h5.text-uppercase {
+  margin-top: 1rem;
+  margin-bottom: 0.8rem;
+  font-weight: 600;
+}
+
+#user-order-details .edit-product-container {
+  color: #6d757d;
+}
+#user-order-details #heading {
+  font-weight: 600;
+}
+
+#user-order-details .product-name,
+#user-order-details .total {
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+#user-order-details .product-totalLine {
+  font-size: 1.2rem;
+}
+
+#user-order-details .address{
+    margin: 1rem 0;
 }
