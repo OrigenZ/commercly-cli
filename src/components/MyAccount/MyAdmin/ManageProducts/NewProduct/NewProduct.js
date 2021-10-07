@@ -36,8 +36,8 @@ const NewProduct = () => {
     if (!name || name === '') newErrors.name = 'This field cannot be blank.'
     else if (name.length < 3)
       newErrors.name = 'Title cannot be less than 3 characters long.'
-    else if (name.length > 50)
-      newErrors.name = 'Title cannot be more than 50 characters long.'
+    else if (name.length > 70)
+      newErrors.name = 'Title cannot be more than 70 characters long.'
 
     // quantity errors
     if (!quantity || quantity < 0) 
