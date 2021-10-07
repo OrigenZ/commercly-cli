@@ -28,17 +28,14 @@ const CategoriesFilter = (props) => {
   }, [])
 
   return (
-    <div id="filter-container col-12 col-md-4">
-      <span className="filter-header text-uppercase border-bottom mb-2 d-inline-block">
-        Filter by category
-      </span>
+    <div id="categories-filter">
+      <span className="filter-header">Filter by category</span>
 
       <div className="filters-wrapper">
         {categories.map((category) => (
           <Button
             variant="link"
             key={category._id}
-            className=" d-block p-0 pt-2"
             onClick={() => handleCategoryClick(category._id)}
           >
             <span className="list-cat">{category.name}</span>
@@ -57,4 +54,6 @@ const CategoriesFilter = (props) => {
   )
 }
 
+
 export default CategoriesFilter
+

@@ -1,0 +1,21 @@
+#manage-orders{
+    margin:  3rem auto;
+}
+
+#head-orders-list {
+    background-color: #f7f9fa;
+    padding: 0.8rem;
+    font-weight: 600;
+    color: #6d757d;
+    border-bottom: 2px solid #dfe2e6;
+  }
+
+
+  #manage-orders .orders-list{
+    padding: 1.5em;
+    border: 0px;
+    border-bottom: 1px solid #dfe2e6;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}

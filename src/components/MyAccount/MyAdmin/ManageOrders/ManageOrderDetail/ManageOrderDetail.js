@@ -19,8 +19,6 @@ const ManageOrderDetail = (props) => {
     return dateFormat(dateObj, "mmm d, yyyy");
   };
 
-
-
   const getDetails = async () => {
     try {
       const responseOrder = await axiosInstance.get(`/api/orders/${orderId}`, {
@@ -42,86 +40,82 @@ const ManageOrderDetail = (props) => {
       console.log(err.message);
     }
   };
-  console.log('order', order);
+  console.log("order", order);
   useEffect(() => {
     getDetails();
   }, []);
   return (
-    <section id="manage-order-details">
-      <div className="order-details-wrapper ">
-        <div className="order-body ">
-          <div className="text-right">
-            {" "}
-            <i className="fa fa-close close" data-dismiss="order"></i>{" "}
-          </div>
-          <div className="px-4 py-5">
+    <section
+      className="container d-flex flex-column justify-content-center align-items-center"
+      id="manage-order-details"
+    >
+      <div className="edit-product-wrapper">
+        <h2 className="text-center text-muted text-uppercase">Order details</h2>
+
+        <div className="edit-product-container">
           <Row>
-              <Col className="col-7">
-                {" "}
-                <span id="heading">Date</span>
-                <br /> <span id="details">{order && order.createdAt}</span>{" "}
-              </Col>
-              <Col className="col-5 pull-right">
-                {" "}
-                <span id="heading">Order ref.</span>
-                <br /> <span id="details">{order._id}</span>{" "}
-              </Col>
-              </Row>
-              <h6 className="text-uppercase">Shipping address</h6>
-            <h6 >
-              {address.shipping && address.shipping.firstName}{" "}
-              {address.shipping && address.shipping.lastName}
-            </h6>
+            <Col className="col-8">
+              {" "}
+              <span id="heading">Order ref.</span>
+              <br /> <span id="details">{order._id}</span>{" "}
+            </Col>
+            <Col className="col-4 pull-right">
+              {" "}
+              <span id="heading">Date</span>
+              <br /> <span id="details">{order && order.createdAt}</span>{" "}
+            </Col>
+          </Row>
+          <h6 className="text-uppercase">Shipping address</h6>
+          <h6>
+            {address.shipping && address.shipping.firstName}{" "}
+            {address.shipping && address.shipping.lastName}
+          </h6>
 
-            <div>
-              <p> {address.shipping && address.shipping.street}</p>
-              <p> {address.shipping && address.shipping.province}</p>
-              <p> {address.shipping && address.shipping.zip}</p>
-              <p> {address.shipping && address.shipping.city}</p>
-              <p> {address.shipping && address.shipping.country}</p>
-              <p>{address.shipping && address.shipping.phone}</p>
-              <p>{address.shipping && address.shipping.email}</p>
-            </div>
-            <span className="theme-color">Order details</span>
-            <div className="mb-3">
-              <hr className="new1" />
-            </div>
-            {order.orderLines &&
-              order.orderLines.map((orderLine) => (
-                <div
-                  key={orderLine._id}
-                  className="d-flex justify-content-between"
-                >
-                  <span>
-                    {orderLine.quantity} x {orderLine.productId.name}
-                  </span>
-                  <span>{orderLine.totalLine} €</span>
-                </div>
-              ))}
-            <div className="d-flex justify-content-between">
-              <span className="text-muted">
-              Subtotal
-              </span>
-              <span className="text-muted">
-                {order.totalOrder} €
-              </span>
-            </div>
-            <div className="d-flex justify-content-between">
-              <small>Shipping fee</small> <small>{order.shippingFees}€</small>
-            </div>
-            <div className="d-flex justify-content-between">
-              <small>Tax</small>
-              <small> {order.totalTaxes}</small>
-            </div>
+          <div>
+            <p>Street: {address.shipping && address.shipping.street}</p>
+            <p>Province {address.shipping && address.shipping.province}</p>
+            <p>Zip {address.shipping && address.shipping.zip}</p>
+            <p>City {address.shipping && address.shipping.city}</p>
+            <p>Country {address.shipping && address.shipping.country}</p>
+            <h6 className="text-uppercase">Contact Details</h6>
+            <p>{address.shipping && address.shipping.phone}</p>
+            <p>{address.shipping && address.shipping.email}</p>
+          </div>
+          <span className="text-uppercase theme-color">Order details</span>
+          <div className="mb-3">
+            <hr className="new1" />
+          </div>
+          {order.orderLines &&
+            order.orderLines.map((orderLine) => (
+              <div
+                key={orderLine._id}
+                className="d-flex justify-content-between"
+              >
+                <span>
+                  {orderLine.quantity} x {orderLine.productId.name}
+                </span>
+                <span>{orderLine.totalLine} €</span>
+              </div>
+            ))}
+          <div className="d-flex justify-content-between">
+            <span className="text-muted">Subtotal</span>
+            <span className="text-muted">{order.totalOrder} €</span>
+          </div>
+          <div className="d-flex justify-content-between">
+            <small>Shipping fee</small> <small>{order.shippingFees}€</small>
+          </div>
+          <div className="d-flex justify-content-between">
+            <small>Tax</small>
+            <small> {order.totalTaxes}</small>
+          </div>
 
-            <div className="d-flex justify-content-between mt-3">
-              <span className="font-weight-bold">Total</span>
-              {parseFloat(order.totalOrder) + parseFloat(order.shippingFees)}
-            </div>
+          <div className="d-flex justify-content-between mt-3">
+            <span className="font-weight-bold">Total</span>
+            {parseFloat(order.totalOrder) + parseFloat(order.shippingFees)}
+          </div>
 
-            <div className="text-center mt-5">
-              <button className="btn btn-primary">Track your order</button>
-            </div>
+          <div className="text-center mt-5">
+            <button className="btn btn-primary">Track your order</button>
           </div>
         </div>
       </div>
