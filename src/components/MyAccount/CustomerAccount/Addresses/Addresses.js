@@ -1,8 +1,11 @@
 // ¿ User data con addresses?
 import { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { ListGroup, Accordion, Form, Row, Col } from "react-bootstrap";
 import { AuthContext } from "../../../../common/context/Auth.context";
 import axiosInstance from "../../../../common/http";
+
+import "./Addresses.css";
 
 const Addresses = () => {
   const { user, logOutUser } = useContext(AuthContext);
@@ -27,85 +30,394 @@ const Addresses = () => {
   }, []);
 
   return (
-    <div className="section">
-      <section id="customer-addresses" className="container">
-        <div className="dashboard-wrapper d-flex justify-content-center text-muted ">
-          <div className="col-12 col-md-10 col-lg-8 ">
-            <p className="">
-              The following addresses will be used on the checkout page by
-              default.
-            </p>
-            <div className="addresses row d-flex justify-content-between">
-              <div className="billing-address col-sm-12 col-md-5">
-                <div className="address-title">
-                  <h3>Billing address</h3>
+    <section id="customer-addresses">
+      <div className="dashboard-wrapper d-flex justify-content-center text-muted ">
+        <div className="col-12 col-md-10 col-lg-8 ">
+          <p className="">
+            The following addresses will be used on the checkout page by
+            default.
+          </p>
 
-                  {billingAddress ? (
-                    <address>
-                      <p>First name: {billingAddress.firstName}</p>
-                      <p>Last name: {billingAddress.lastName}</p>
-                      <p>Email: {billingAddress.email}</p>
-                      <p>Phone: {billingAddress.phone}</p>
-                      <p>Company: {billingAddress.company}</p>
-                      <p>Street: {billingAddress.street}</p>
-                      <p>City: {billingAddress.city}</p>
-                      <p>Province:{billingAddress.province}</p>
-                      <p>Postcode: {billingAddress.zip}</p>
-                      <p>Country: {billingAddress.country}</p>
-                    </address>
-                  ) : (
-                    <p>You have not set up this type of address yet.</p>
-                  )}
+          <Accordion>
+            <Accordion.Item eventKey="0">
+              <Accordion.Header>Billing Address:</Accordion.Header>
+              <Accordion.Body>
+                {billingAddress ? (
+                  <ListGroup>
+                    <Form.Group
+                      as={Row}
+                      className="mb-3"
+                      controlId="formPlaintextEmail"
+                    >
+                      <Form.Label column sm="3">
+                        First name:
+                      </Form.Label>
+                      <Col sm="9">
+                        <Form.Control
+                          plaintext
+                          readOnly
+                          defaultValue={billingAddress.firstName}
+                        />
+                      </Col>
+                    </Form.Group>
+                    <Form.Group
+                      as={Row}
+                      className="mb-3"
+                      controlId="formPlaintextEmail"
+                    >
+                      <Form.Label column sm="3">
+                        Last name:
+                      </Form.Label>
+                      <Col sm="9">
+                        <Form.Control
+                          plaintext
+                          readOnly
+                          defaultValue={billingAddress.lastName}
+                        />
+                      </Col>
+                    </Form.Group>
+                    <Form.Group
+                      as={Row}
+                      className="mb-3"
+                      controlId="formPlaintextEmail"
+                    >
+                      <Form.Label column sm="3">
+                        Email:
+                      </Form.Label>
+                      <Col sm="9">
+                        <Form.Control
+                          plaintext
+                          readOnly
+                          defaultValue={billingAddress.email}
+                        />
+                      </Col>
+                    </Form.Group>
+                    <Form.Group
+                      as={Row}
+                      className="mb-3"
+                      controlId="formPlaintextEmail"
+                    >
+                      <Form.Label column sm="3">
+                        Phone:
+                      </Form.Label>
+                      <Col sm="9">
+                        <Form.Control
+                          plaintext
+                          readOnly
+                          defaultValue={billingAddress.phone}
+                        />
+                      </Col>
+                    </Form.Group>
+                    <Form.Group
+                      as={Row}
+                      className="mb-3"
+                      controlId="formPlaintextEmail"
+                    >
+                      <Form.Label column sm="3">
+                        Company:
+                      </Form.Label>
+                      <Col sm="9">
+                        <Form.Control
+                          plaintext
+                          readOnly
+                          defaultValue={billingAddress.company}
+                        />
+                      </Col>
+                    </Form.Group>
+                    <Form.Group
+                      as={Row}
+                      className="mb-3"
+                      controlId="formPlaintextEmail"
+                    >
+                      <Form.Label column sm="3">
+                        Street:
+                      </Form.Label>
+                      <Col sm="9">
+                        <Form.Control
+                          plaintext
+                          readOnly
+                          defaultValue={billingAddress.street}
+                        />
+                      </Col>
+                    </Form.Group>
+                    <Form.Group
+                      as={Row}
+                      className="mb-3"
+                      controlId="formPlaintextEmail"
+                    >
+                      <Form.Label column sm="3">
+                        City:
+                      </Form.Label>
+                      <Col sm="9">
+                        <Form.Control
+                          plaintext
+                          readOnly
+                          defaultValue={billingAddress.city}
+                        />
+                      </Col>
+                    </Form.Group>
+                    <Form.Group
+                      as={Row}
+                      className="mb-3"
+                      controlId="formPlaintextEmail"
+                    >
+                      <Form.Label column sm="3">
+                        Province:
+                      </Form.Label>
+                      <Col sm="9">
+                        <Form.Control
+                          plaintext
+                          readOnly
+                          defaultValue={billingAddress.province}
+                        />
+                      </Col>
+                    </Form.Group>
+                    <Form.Group
+                      as={Row}
+                      className="mb-3"
+                      controlId="formPlaintextEmail"
+                    >
+                      <Form.Label column sm="3">
+                        Postcode:
+                      </Form.Label>
+                      <Col sm="9">
+                        <Form.Control
+                          plaintext
+                          readOnly
+                          defaultValue={billingAddress.zip}
+                        />
+                      </Col>
+                    </Form.Group>
+                    <Form.Group
+                      as={Row}
+                      className="mb-3"
+                      controlId="formPlaintextEmail"
+                    >
+                      <Form.Label column sm="3">
+                        Country:
+                      </Form.Label>
+                      <Col sm="9">
+                        <Form.Control
+                          plaintext
+                          readOnly
+                          defaultValue={billingAddress.country}
+                        />
+                      </Col>
+                    </Form.Group>
+                  </ListGroup>
+                ) : (
+                  <p>You have not set up this type of address yet.</p>
+                )}
 
-                  {billingAddress ? (
-                    <Link to={"/my-account/customer/edit-address/billing"}className="edit" >
-                      Edit
-                    </Link>
-                  ) : (
-                    <Link to={"/my-account/customer/add-address/billing"} className="add" >
-                      Add
-                    </Link>
-                  )}
-                </div>
+                {billingAddress ? (
+                  <Link
+                    to={"/my-account/customer/edit-address/billing"}
+                    className="edit btn btn-outline-secondary w-100"
+                  >
+                    Edit
+                  </Link>
+                ) : (
+                  <Link
+                    to={"/my-account/customer/add-address/billing"}
+                    className="add  btn btn-outline-secondary w-100"
+                  >
+                    Add
+                  </Link>
+                )}
+              </Accordion.Body>
+            </Accordion.Item>
 
-                <div className="shipping-address col-sm-12 col-md-5 ">
-                  <div className="address-title">
-                    <h3>Shipping address</h3>
+            <Accordion.Item eventKey="1">
+              <Accordion.Header> Shipping Address:</Accordion.Header>
+              <Accordion.Body>
+                {shippingAddress ? (
+                  <ListGroup>
+                    <Form.Group
+                      as={Row}
+                      className="mb-3"
+                      controlId="formPlaintextEmail"
+                    >
+                      <Form.Label column sm="3">
+                        First name:
+                      </Form.Label>
+                      <Col sm="9">
+                        <Form.Control
+                          plaintext
+                          readOnly
+                          defaultValue={shippingAddress.firstName}
+                        />
+                      </Col>
+                    </Form.Group>
+                    <Form.Group
+                      as={Row}
+                      className="mb-3"
+                      controlId="formPlaintextEmail"
+                    >
+                      <Form.Label column sm="3">
+                        Last name:
+                      </Form.Label>
+                      <Col sm="9">
+                        <Form.Control
+                          plaintext
+                          readOnly
+                          defaultValue={shippingAddress.lastName}
+                        />
+                      </Col>
+                    </Form.Group>
+                    <Form.Group
+                      as={Row}
+                      className="mb-3"
+                      controlId="formPlaintextEmail"
+                    >
+                      <Form.Label column sm="3">
+                        Email:
+                      </Form.Label>
+                      <Col sm="9">
+                        <Form.Control
+                          plaintext
+                          readOnly
+                          defaultValue={shippingAddress.email}
+                        />
+                      </Col>
+                    </Form.Group>
+                    <Form.Group
+                      as={Row}
+                      className="mb-3"
+                      controlId="formPlaintextEmail"
+                    >
+                      <Form.Label column sm="3">
+                        Phone:
+                      </Form.Label>
+                      <Col sm="9">
+                        <Form.Control
+                          plaintext
+                          readOnly
+                          defaultValue={shippingAddress.phone}
+                        />
+                      </Col>
+                    </Form.Group>
+                    <Form.Group
+                      as={Row}
+                      className="mb-3"
+                      controlId="formPlaintextEmail"
+                    >
+                      <Form.Label column sm="3">
+                        Company:
+                      </Form.Label>
+                      <Col sm="9">
+                        <Form.Control
+                          plaintext
+                          readOnly
+                          defaultValue={shippingAddress.company}
+                        />
+                      </Col>
+                    </Form.Group>
+                    <Form.Group
+                      as={Row}
+                      className="mb-3"
+                      controlId="formPlaintextEmail"
+                    >
+                      <Form.Label column sm="3">
+                        Street:
+                      </Form.Label>
+                      <Col sm="9">
+                        <Form.Control
+                          plaintext
+                          readOnly
+                          defaultValue={shippingAddress.street}
+                        />
+                      </Col>
+                    </Form.Group>
+                    <Form.Group
+                      as={Row}
+                      className="mb-3"
+                      controlId="formPlaintextEmail"
+                    >
+                      <Form.Label column sm="3">
+                        City:
+                      </Form.Label>
+                      <Col sm="9">
+                        <Form.Control
+                          plaintext
+                          readOnly
+                          defaultValue={shippingAddress.city}
+                        />
+                      </Col>
+                    </Form.Group>
+                    <Form.Group
+                      as={Row}
+                      className="mb-3"
+                      controlId="formPlaintextEmail"
+                    >
+                      <Form.Label column sm="3">
+                        Province:
+                      </Form.Label>
+                      <Col sm="9">
+                        <Form.Control
+                          plaintext
+                          readOnly
+                          defaultValue={shippingAddress.province}
+                        />
+                      </Col>
+                    </Form.Group>
+                    <Form.Group
+                      as={Row}
+                      className="mb-3"
+                      controlId="formPlaintextEmail"
+                    >
+                      <Form.Label column sm="3">
+                        Postcode:
+                      </Form.Label>
+                      <Col sm="9">
+                        <Form.Control
+                          plaintext
+                          readOnly
+                          defaultValue={shippingAddress.zip}
+                        />
+                      </Col>
+                    </Form.Group>
+                    <Form.Group
+                      as={Row}
+                      className="mb-3"
+                      controlId="formPlaintextEmail"
+                    >
+                      <Form.Label column sm="3">
+                        Country:
+                      </Form.Label>
+                      <Col sm="9">
+                        <Form.Control
+                          plaintext
+                          readOnly
+                          defaultValue={shippingAddress.country}
+                        />
+                      </Col>
+                    </Form.Group>
+                  </ListGroup>
+                ) : (
+                  <p>You have not set up this type of address yet.</p>
+                )}
 
-                    {shippingAddress ? (
-                      <address>
-                        <p>First name: {shippingAddress.firstName}</p>
-                        <p>Last name: {shippingAddress.lastName}</p>
-                        <p>Email: {shippingAddress.email}</p>
-                        <p>Phone: {shippingAddress.phone}</p>
-                        <p>Company: {shippingAddress.company}</p>
-                        <p>Street: {shippingAddress.street}</p>
-                        <p>City: {shippingAddress.city}</p>
-                        <p>Province:{shippingAddress.province}</p>
-                        <p>Postcode: {shippingAddress.zip}</p>
-                        <p>Country: {shippingAddress.country}</p>
-                      </address>
-                    ) : (
-                      <p>You have not set up this type of address yet.</p>
-                    )}
-
-                    {shippingAddress ? (
-                      <Link to={"/my-account/customer/edit-address/shipping"} className="edit" >
-                        Edit
-                      </Link>
-                    ) : (
-                      <Link to={"/my-account/customer/add-address/shipping"} className="add" >
-                        Add
-                      </Link>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+                {shippingAddress ? (
+                  <Link
+                    to={"/my-account/customer/edit-address/shipping"}
+                    className="edit btn btn-outline-secondary w-100"
+                  >
+                    Edit
+                  </Link>
+                ) : (
+                  <Link
+                    to={"/my-account/customer/add-address/shipping"}
+                    className="add btn btn-outline-secondary w-100"
+                  >
+                    Add
+                  </Link>
+                )}
+              </Accordion.Body>
+            </Accordion.Item>
+          </Accordion>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 };
 

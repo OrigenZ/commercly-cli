@@ -7,6 +7,8 @@ import dateFormat from "dateformat";
 import ReactPaginate from "react-paginate";
 import { Row, Col } from "react-bootstrap";
 
+import './Orders.css'
+
 const Orders = () => {
   const { user } = useContext(AuthContext);
   const [orders, setOrders] = useState([]);
@@ -39,12 +41,12 @@ const Orders = () => {
       const slice = data.slice(offset, offset + perPage);
 
       const postData = slice.map((order) => (
-        <Row key={order._id} id="orders-list">
-          <Col xs={12} sm={4} lg={4}>
-            <h3>{order._id}</h3>
+        <Row key={order._id} className="orders-list">
+          <Col xs={12} sm={4} lg={3}>
+            <p>{order._id}</p>
           </Col>
-          <Col xs={12} sm={4} lg={2}>
-            <h3>{formatDate(order.createdAt)}</h3>
+          <Col xs={12} sm={4} lg={3}>
+            <p>{formatDate(order.createdAt)}</p>
           </Col>
           <Col xs={12} sm={8} lg={2}>
             <p>{order.status}</p>
@@ -53,18 +55,16 @@ const Orders = () => {
             <p>{order.totalOrder} €</p>
           </Col>
           <Col xs={12} sm={12} lg={2}>
-            <Row>
-              <Col xs={6} sm={6} lg={6}>
-                <div className="mb-2">
+        
+             
                   <Link
                     to={`/my-account/customer/orders/${order._id}`}
                     className="btn btn-outline-secondary edit-btn w-100"
                   >
                     Order details
                   </Link>
-                </div>
-              </Col>
-            </Row>
+            
+          
           </Col>
         </Row>
       ));
@@ -94,13 +94,24 @@ const Orders = () => {
   }, []);
 
   return (
-    <div className="section">
-      <div className="dashboard-wrapper text-muted d-flex justify-content-center">
-        <div className="d-flex flex-column justify-content-center align-items-center col-sm-12 col-md-8 col-lg-10">
-          <p>
-            Hello <strong>{user.username}</strong>
-          </p>
-          <div>
+    <div id="user-orders">
+           <Row id="head-orders-list">
+        <Col xs={12} sm={4} lg={3}>
+          <p>ID</p>
+        </Col>
+        <Col xs={12} sm={4} lg={3}>
+          <p>Create at</p>
+        </Col>
+        <Col xs={12} sm={8} lg={2}>
+          <p>Status</p>
+        </Col>
+        <Col xs={12} sm={8} lg={2}>
+          <p>Total order</p>
+        </Col>
+        <Col xs={12} sm={12} lg={2}>
+          <p>Action</p>
+        </Col>
+      </Row>
             {orders.length !== 0 && data}
             {!orders.length && <p>No orders found</p>}
 
@@ -117,10 +128,9 @@ const Orders = () => {
               subContainerClassName={"pages pagination"}
               activeClassName={"active"}
             />
-          </div>
+   
         </div>
-      </div>
-    </div>
+
   );
 };
 
