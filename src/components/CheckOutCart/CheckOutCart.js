@@ -8,6 +8,10 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { AuthContext } from '../../common/context/Auth.context'
 import { useHistory } from 'react-router-dom'
 
+import { loadStripe } from '@stripe/stripe-js'
+import { Elements } from '@stripe/react-stripe-js'
+import StripeForm from './StripeForm/StripeForm'
+
 import './CheckOutCart.css'
 
 const CheckOutCart = () => {
@@ -19,8 +23,7 @@ const CheckOutCart = () => {
 
   let history = useHistory()
 
-
-
+  const stripePromise = loadStripe('pk_test_6pRNASCoBOKtIshFeQd4XMUh')
   const storedToken = localStorage.getItem('authToken')
 
   const setField = (field, value) => {
@@ -158,15 +161,13 @@ const CheckOutCart = () => {
 
         //reset cart drawer
         setCart(null)
-        setCount(0);
+        setCount(0)
 
         Swal.fire({
           icon: 'success',
           text: 'Thank you for shopping with us',
           showConfirmButton: false,
         })
-
-
 
         history.push('/my-account')
       } catch (err) {
@@ -178,7 +179,6 @@ const CheckOutCart = () => {
           showConfirmButton: false,
         })
       }
-
     }
   }
 
@@ -424,9 +424,11 @@ const CheckOutCart = () => {
                   </Form.Group>
                 </Row>
 
-                <Button variant="outline-secondary" type="submit">
-                  Checkout
-                </Button>
+                <Row>
+                  <Elements stripe={stripePromise}>
+                    <StripeForm />
+                  </Elements>
+                </Row>
               </Form>
             </div>
           </Col>
@@ -488,5 +490,3 @@ const CheckOutCart = () => {
 }
 
 export default CheckOutCart
-
-
