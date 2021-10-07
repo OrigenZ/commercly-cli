@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react'
 import axiosInstance from '../../../../../common/http'
 import Swal from 'sweetalert2/src/sweetalert2'
 
+import './EditCategory.css'
+
 const EditCategory = (props) => {
   const [form, setForm] = useState({})
   const [errors, setErrors] = useState({})
@@ -88,7 +90,16 @@ const EditCategory = (props) => {
   }, [])
 
   return (
-    <div className="section">
+    <section
+      className="container d-flex flex-column justify-content-center align-items-center"
+      id="edit-category"
+    >
+      <div className="edit-category-wrapper">
+        <h2 className="text-center text-muted text-uppercase">
+          Edit category
+        </h2>
+
+        <div className="edit-category-container">
       <Form onSubmit={handleSubmit}>
         <Row className="mb-3">
           <Form.Group as={Col}>
@@ -121,11 +132,13 @@ const EditCategory = (props) => {
           </Form.Group>
         </Row>
 
-        <Button variant="primary" type="submit">
+        <Button variant="success" type="submit">
           Submit changes
         </Button>
       </Form>
-    </div>
+      </div>
+      </div>
+    </section>
   )
 }
 

@@ -1,0 +1,25 @@
+#create-category{
+    margin: 3rem auto;
+}
+
+#create-category .form-label{
+    color: #6d757d;
+}
+
+#create-category input.form-control,
+#create-category select.form-select,
+#create-category select.form-control ,
+#create-category textarea.form-control,
+#create-category button.btn.btn-success {
+    border-radius: 0px;
+}
+
+#create-category textarea.form-control {
+    min-height: 20vh;
+}
+
+#create-category button.btn.btn-success {
+    margin-top: 1rem;
+    width: 100%;
+    font-size: 1.2rem;
+}

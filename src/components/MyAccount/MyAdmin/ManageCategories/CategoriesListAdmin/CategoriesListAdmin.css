@@ -1,4 +1,4 @@
-#categories-list{
+#cat-list-admin .categories-list{
     padding: 1.5em;
     border: 0px;
     border-bottom: 1px solid #dfe2e6;
@@ -6,14 +6,31 @@
     flex-direction: row;
     align-items: center;
 }
-#categories-list:last-child{
+/* #cat-list-admin .categories-list:last-child{
     border-bottom: 0px solid #dfe2e6;
-}
+} */
 a.btn.btn-outline-dark.col-12,
 .btn.btn-outline-danger.delete-btn.w-100,
 a.btn.btn-outline-secondary.edit-btn.w-100 {
     border-radius: 0px;
 }
+
+#cat-list-admin {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+
+}
+
+#head-categories-list {
+  background-color: #f7f9fa;
+  padding: 0.8rem;
+  font-weight: 600;
+  color: #6d757d;
+  border-bottom: 2px solid #dfe2e6;
+}
+
 
 .pagination {
     margin-top: 1rem;

@@ -1,0 +1,25 @@
+#edit-category{
+    margin: 3rem auto;
+}
+
+#edit-category .form-label{
+    color: #6d757d;
+}
+
+#edit-category input.form-control,
+#edit-category select.form-select,
+#edit-category select.form-control ,
+#edit-category textarea.form-control,
+#edit-category button.btn.btn-success {
+    border-radius: 0px;
+}
+
+#edit-category textarea.form-control {
+    min-height: 20vh;
+}
+
+#edit-category button.btn.btn-success {
+    margin-top: 1rem;
+    width: 100%;
+    font-size: 1.2rem;
+}
