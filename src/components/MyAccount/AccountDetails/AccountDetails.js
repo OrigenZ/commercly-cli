@@ -120,8 +120,14 @@ const AccountDetails = () => {
   }, [])
 
   return (
-    <Container id="account-details" className="section account">
-      <Col xs={12} md={6} xl={4}>
+
+    <section
+    id="account-details"
+    className="d-flex flex-column justify-content-center align-items-center section account"
+  >
+    <div className="col-sm-12 col-md-6 ">
+
+      
         <Form onSubmit={handleSubmit}>
           <Row className="mb-3">
             <Form.Group as={Col}>
@@ -208,8 +214,9 @@ const AccountDetails = () => {
             Submit changes
           </Button>
         </Form>
-      </Col>
-    </Container>
+   
+      </div>
+    </section>
   )
 }
 
