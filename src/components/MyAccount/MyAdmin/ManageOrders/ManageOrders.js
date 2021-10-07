@@ -1,42 +1,56 @@
-import React from "react";
-import { useContext, useEffect, useState } from "react";
-import dateFormat from "dateformat";
-import { AuthContext } from "../../../../common/context/Auth.context";
-import axiosInstance from "../../../../common/http";
-import ReactPaginate from "react-paginate";
-import { Row, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import React from 'react'
+import { useContext, useEffect, useState } from 'react'
+import dateFormat from 'dateformat'
+import { AuthContext } from '../../../../common/context/Auth.context'
+import axiosInstance from '../../../../common/http'
+import ReactPaginate from 'react-paginate'
+import { Row, Col, Form } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
-import "./ManageOrders.css";
+import './ManageOrders.css'
 
 const ManageOrders = () => {
-  const { user } = useContext(AuthContext);
-  const [orders, setOrders] = useState([]);
-  const [offset, setOffset] = useState(0);
-  const [data, setData] = useState([]);
-  const [perPage] = useState(5);
-  const [pageCount, setPageCount] = useState(0);
+  const { user } = useContext(AuthContext)
+  const [orders, setOrders] = useState([])
+  const [offset, setOffset] = useState(0)
+  const [data, setData] = useState([])
+  const [perPage] = useState(5)
+  const [pageCount, setPageCount] = useState(0)
 
-  const storedToken = localStorage.getItem("authToken");
+  const storedToken = localStorage.getItem('authToken')
 
   const formatDate = (date) => {
-    const dateObj = new Date(date);
-    return dateFormat(dateObj, " mmm dd yyyy @ h:MM:ss TT");
-  };
+    const dateObj = new Date(date)
+    return dateFormat(dateObj, ' mmm dd yyyy @ h:MM:ss TT')
+  }
 
   const handlePageClick = (e) => {
-    const selectedPage = e.selected;
-    setOffset(Math.ceil(selectedPage * perPage));
-  };
+    const selectedPage = e.selected
+    setOffset(Math.ceil(selectedPage * perPage))
+  }
+
+  const handleChangeStatus = (e, id) => {
+    const status = e.target.value
+    axiosInstance
+      .patch(
+        `/api/orders/${id}`,
+        { status },
+        {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        },
+      )
+      .then(() => {})
+      .catch((err) => console.log(err.message))
+  }
 
   const getData = async () => {
     try {
       const response = await axiosInstance.get(`/api/orders`, {
         headers: { Authorization: `Bearer ${storedToken}` },
-      });
-      console.log("orders", response.data);
-      const data = response.data;
-      const slice = data.slice(offset, offset + perPage);
+      })
+      console.log('orders', response.data)
+      const data = response.data
+      const slice = data.slice(offset, offset + perPage)
 
       const postData = slice.map((order) => (
         <Row key={order._id} className="orders-list">
@@ -47,7 +61,15 @@ const ManageOrders = () => {
             <p>{formatDate(order.createdAt)}</p>
           </Col>
           <Col xs={12} sm={8} lg={2}>
-            <p>{order.status}</p>
+            <Form.Select
+              onChange={(e) => handleChangeStatus(e, order._id)}
+              defaultValue={order.status}
+            >
+              <option value="Processing">Processing</option>
+              <option value="Shipped">Shipped</option>
+              <option value="Delivered">Delivered</option>
+              <option value="Cancelled">Cancelled</option>
+            </Form.Select>
           </Col>
           <Col xs={12} sm={8} lg={2}>
             <p>{order.customer.email}</p>
@@ -61,19 +83,19 @@ const ManageOrders = () => {
             </Link>
           </Col>
         </Row>
-      ));
+      ))
 
-      setData(postData);
-      setPageCount(Math.ceil(data.length / perPage));
+      setData(postData)
+      setPageCount(Math.ceil(data.length / perPage))
     } catch (err) {
-      console.log(err);
+      console.log(err.message)
     }
-  };
+  }
 
   useEffect(() => {
-    getData();
+    getData()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [offset]);
+  }, [offset])
 
   useEffect(() => {
     axiosInstance
@@ -81,11 +103,11 @@ const ManageOrders = () => {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
-        setOrders(response.data);
-        console.log("getOrders", response.data);
+        setOrders(response.data)
       })
-      .catch((err) => console.log(err.message));
-  }, []);
+      .catch((err) => console.log(err.message))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <div id="manage-orders">
@@ -111,20 +133,20 @@ const ManageOrders = () => {
       {!orders.length && <p>No orders found</p>}
 
       <ReactPaginate
-        previousLabel={"prev"}
-        nextLabel={"next"}
-        breakLabel={"..."}
-        breakClassName={"break-me"}
+        previousLabel={'prev'}
+        nextLabel={'next'}
+        breakLabel={'...'}
+        breakClassName={'break-me'}
         pageCount={pageCount}
         marginPagesDisplayed={2}
         pageRangeDisplayed={5}
         onPageChange={handlePageClick}
-        containerClassName={"pagination"}
-        subContainerClassName={"pages pagination"}
-        activeClassName={"active"}
+        containerClassName={'pagination'}
+        subContainerClassName={'pages pagination'}
+        activeClassName={'active'}
       />
     </div>
-  );
-};
+  )
+}
 
-export default ManageOrders;
+export default ManageOrders
