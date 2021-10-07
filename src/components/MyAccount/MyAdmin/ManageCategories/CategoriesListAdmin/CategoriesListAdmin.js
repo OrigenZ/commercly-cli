@@ -1,37 +1,37 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { useState, useEffect } from 'react'
-import { Row, Col } from 'react-bootstrap'
+import React from "react";
+import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Row, Col } from "react-bootstrap";
 
-import ReactPaginate from 'react-paginate'
+import ReactPaginate from "react-paginate";
 
-import axiosInstance from '../../../../../common/http/index'
-import './CategoriesListAdmin.css'
+import axiosInstance from "../../../../../common/http/index";
+import "./CategoriesListAdmin.css";
 
 function CategoriesListAdmin(props) {
-  const { handleDelete, results} = props
-  const [offset, setOffset] = useState(0)
-  const [data, setData] = useState([])
-  const [perPage] = useState(5)
-  const [pageCount, setPageCount] = useState(0)
+  const { handleDelete, results } = props;
+  const [offset, setOffset] = useState(0);
+  const [data, setData] = useState([]);
+  const [perPage] = useState(5);
+  const [pageCount, setPageCount] = useState(0);
 
-  const storedToken = localStorage.getItem('authToken')
+  const storedToken = localStorage.getItem("authToken");
 
   const handlePageClick = (e) => {
-    const selectedPage = e.selected
-    setOffset(Math.ceil(selectedPage * perPage))
-  }
+    const selectedPage = e.selected;
+    setOffset(Math.ceil(selectedPage * perPage));
+  };
 
   const getData = async () => {
     try {
       const response = await axiosInstance.get(`/api/categories`, {
         headers: { Authorization: `Bearer ${storedToken}` },
-      })
-      const data = results.length ? results : response.data
-      const slice = data.slice(offset, offset + perPage)
+      });
+      const data = results.length ? results : response.data;
+      const slice = data.slice(offset, offset + perPage);
 
       const postData = slice.map((category) => (
-        <Row key={category._id} id="categories-list">
+        <Row key={category._id} className="categories-list">
           <Col xs={12} sm={4} lg={2}>
             <h3>{category.name}</h3>
           </Col>
@@ -63,39 +63,53 @@ function CategoriesListAdmin(props) {
             </Row>
           </Col>
         </Row>
-      ))
-      
-        setData(postData)
-        setPageCount(Math.ceil(data.length / perPage))
+      ));
 
+      setData(postData);
+      setPageCount(Math.ceil(data.length / perPage));
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
-  }
+  };
 
   useEffect(() => {
-    getData()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [offset, handleDelete])
+    getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [offset, handleDelete]);
 
   return (
-    <>
-      {data}
-      <ReactPaginate
-        previousLabel={'prev'}
-        nextLabel={'next'}
-        breakLabel={'...'}
-        breakClassName={'break-me'}
-        pageCount={pageCount}
-        marginPagesDisplayed={2}
-        pageRangeDisplayed={5}
-        onPageChange={handlePageClick}
-        containerClassName={'pagination'}
-        subContainerClassName={'pages pagination'}
-        activeClassName={'active'}
-      />
-    </>
-  )
+    <div id="cat-list-admin">
+      <div>
+        <Row id="head-categories-list">
+          <Col xs={12} sm={4} lg={2}>
+            <p>Name</p>
+          </Col>
+          <Col xs={12} sm={8} lg={8}>
+            <p>Description</p>
+          </Col>
+          <Col xs={12} sm={12} lg={2}>
+            <p>Actions</p>
+          </Col>
+        </Row>
+        {data}
+      </div>
+      <div className="paginate-cat">
+        <ReactPaginate
+          previousLabel={"prev"}
+          nextLabel={"next"}
+          breakLabel={"..."}
+          breakClassName={"break-me"}
+          pageCount={pageCount}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+          onPageChange={handlePageClick}
+          containerClassName={"pagination"}
+          subContainerClassName={"pages pagination"}
+          activeClassName={"active"}
+        />
+      </div>
+    </div>
+  );
 }
 
-export default CategoriesListAdmin
+export default CategoriesListAdmin;

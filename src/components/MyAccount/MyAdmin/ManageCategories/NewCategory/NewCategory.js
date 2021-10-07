@@ -3,6 +3,8 @@ import { Form, Row, Col, Button } from 'react-bootstrap'
 import axiosInstance from '../../../../../common/http'
 import Swal from 'sweetalert2/src/sweetalert2'
 
+import './NewCategory.css'
+
 const NewCategory = (props) => {
   const [form, setForm] = useState({})
   const [errors, setErrors] = useState({})
@@ -109,7 +111,7 @@ const NewCategory = (props) => {
               </Form.Group>
             </Row>
 
-            <Button variant="primary" type="submit">
+            <Button variant="success" type="submit">
               Submit changes
             </Button>
           </Form>
