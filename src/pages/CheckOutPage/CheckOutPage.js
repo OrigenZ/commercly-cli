@@ -1,4 +1,4 @@
-import CheckOutCart from "../../components/CheckOutCart/CheckOutCart"
+import CheckOutCart from '../../components/CheckOutCart/CheckOutCart'
 
 const CheckOutPage = () => {
   return (
