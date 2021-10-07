@@ -74,7 +74,7 @@ const MyAccountPage = () => {
   return (
     <section id="user-dashboard">
       <NavMyAdmin />
-      <div className="container">
+<div className="container">
         <PrivateRoute
           exact
           path="/my-account/dashboard"
@@ -131,7 +131,7 @@ const MyAccountPage = () => {
           path="/my-account/account-details"
           component={AccountDetails}
         />
-      </div>
+   </div>
     </section>
   );
 };

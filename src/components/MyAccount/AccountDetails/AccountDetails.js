@@ -3,7 +3,7 @@ import { Form, Row, Col, Button, Container } from "react-bootstrap";
 
 import { AuthContext } from "../../../common/context/Auth.context";
 import axiosInstance from "../../../common/http";
-
+import Swal from 'sweetalert2/src/sweetalert2'
 import './AccountDetails.css'
 
 const AccountDetails = () => {
@@ -29,10 +29,20 @@ const AccountDetails = () => {
         })
         .then((response) => {
           setUser(response.data.user);
+          Swal.fire({
+            icon: 'success',
+            text: 'Account details edited successfully',
+            showConfirmButton: false,
+          })
+
         })
-        .catch((error) => {
-          // const errorDescription = error.response.data.message
-          // setErrorMessage(errorDescription)
+        .catch((err) => {
+          console.log(err.message)
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+          })
         });
     } else {
       console.log("passwords do not match");
@@ -58,7 +68,7 @@ const AccountDetails = () => {
   }, []);
 
   return (
-    <Container className="section account">
+    <Container id="account-details" className="section account">
     <Col xs={12} md={6} xl={4} >
 
           <Form onSubmit={handleSubmit}>
@@ -132,7 +142,7 @@ const AccountDetails = () => {
               </Form.Group>
             </Row>
 
-            <Button variant="primary" type="submit">
+            <Button variant="success" type="submit">
               Submit changes
             </Button>
      

@@ -1,8 +1,17 @@
+#shop {
+  margin: 3rem auto;
+}
 
-.filter-container {
-    margin-top: 1em;
-  }
-  
-  .shop{
-    min-width: -webkit-fill-available;
-  }
+#shop .row {
+  min-width: -webkit-fill-available;
+}
+
+.products-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.shop-pagination {
+  margin-top: 1rem;
+}

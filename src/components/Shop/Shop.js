@@ -54,8 +54,10 @@ const Shop = () => {
   }, [])
 
   return (
-    <Container>
-      <Row className="d-flex flex-row justify-content-start shop">
+
+    <Container id="shop">
+      <Row>
+
         <Col xs={12} md={3} lg={3} className="filter-container">
           <SearchBar setCurrentSearch={setCurrentSearch} setReset={setReset} />
           <CategoriesFilter
@@ -67,6 +69,7 @@ const Shop = () => {
         <Col xs={12} md={9} lg={9} className="products-container">
           <ProductsList
             results={results}
+            products={products}
             handleDelete={() => {}}
             isShop={true}
             reset={reset}
@@ -74,7 +77,8 @@ const Shop = () => {
         </Col>
       </Row>
     </Container>
+
   )
 }
-
 export default Shop
+

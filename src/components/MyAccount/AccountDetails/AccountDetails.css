@@ -1,5 +1,30 @@
-.section.account.container{
+div#account-details {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#account-details{
+    margin: 3rem auto;
+}
+
+#account-details .form-label{
+    color: #6d757d;
+}
+
+#account-details input.form-control,
+#account-details select.form-select,
+#account-details select.form-control ,
+#account-details textarea.form-control,
+#account-details button.btn.btn-success {
+    border-radius: 0px;
+}
+
+#account-details textarea.form-control {
+    min-height: 20vh;
+}
+
+#account-details button.btn.btn-success {
+    margin-top: 1rem;
+    width: 100%;
 }

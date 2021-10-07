@@ -1,11 +1,7 @@
-import Shop from '../../components/Shop/Shop'
+import Shop from "../../components/Shop/Shop";
 
 const ShopPage = () => {
-  return (
-    <div className="section">
-      <Shop />
-    </div>
-  )
-}
+  return <Shop />;
+};
 
-export default ShopPage
+export default ShopPage;
