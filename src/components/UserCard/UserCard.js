@@ -17,15 +17,12 @@ const UserCard = (props) => {
   const isMount = useIsMount();
   const storedToken = localStorage.getItem("authToken");
 
-
-  console.log(userData)
-
-
+  console.log(userData);
 
   const formatDate = () => {
     const dateObj = new Date(userData.createdAt);
     return dateFormat(dateObj, " mmm dd yyyy @ h:MM:ss TT");
-  }
+  };
 
   const handleCheckbox = (e) => {
     const isTrue = e.target.value === "true";
@@ -38,7 +35,6 @@ const UserCard = (props) => {
   };
 
   useEffect(() => {
-
     if (!isMount) {
       axiosInstance
         .patch(
@@ -52,7 +48,7 @@ const UserCard = (props) => {
         .catch((err) => console.log(err.message));
       //TODO: set proper error handling
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAdmin]);
 
   return (
@@ -61,18 +57,18 @@ const UserCard = (props) => {
         <Card id="card-users">
           <Row>
             <Col xs={12} sm={3} lg={3}>
-              <Card.Title>{userData.email}</Card.Title>
+              <Card.Text>
+                <span className="text-center text-muted">{userData.email}</span>
+              </Card.Text>
             </Col>
             <Col xs={12} sm={2} lg={2}>
               <Card.Text>
-                <span className="text-center text-muted">
-                  {formatDate()}
-                </span>
+                <span className="text-center text-muted">{formatDate()}</span>
               </Card.Text>
             </Col>
             <Col xs={12} sm={4} lg={1}>
               <Form className="text-center price">
-                <Form.Group className="mb-3">
+                <Form.Group>
                   <Form.Check
                     type="checkbox"
                     defaultChecked={userData.isAdmin}
@@ -101,7 +97,9 @@ const UserCard = (props) => {
                 <Col xs={12} sm={12} lg={6}>
                   <Button
                     variant="outline-danger"
-                    onClick={() => handleDelete(userData._id, userData.username)}
+                    onClick={() =>
+                      handleDelete(userData._id, userData.username)
+                    }
                     className="w-100"
                   >
                     Delete
