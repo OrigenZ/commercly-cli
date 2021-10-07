@@ -94,7 +94,7 @@ button.btn.btn-outline-dark {
 }
 #cart .card {
   margin: auto;
-  max-width: 950px;
+  max-width: 1000px;
   width: 90%;
   box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 0;
@@ -204,8 +204,7 @@ button.btn.btn-outline-dark {
   width: 100%;
   background-color: #fff;
 }
-
-#cart .card input {
+ #cart .card input {
   border: 1px solid rgba(0, 0, 0, 0.137);
   padding: 0.5rem;
   outline: none;
@@ -215,13 +214,13 @@ button.btn.btn-outline-dark {
 
 #cart .card input:focus::input-placeholder {
   color: transparent;
-}
+} 
 
 #cart .card .btn {
   margin-top: 1rem;
   padding: 0.5rem;
   border-radius: 0;
-  width: 95%;
+
 }
 
 #cart .card .btn:focus {
@@ -268,7 +267,7 @@ button.btn.btn-outline-dark {
 #cart button.btn.btn-success {
   margin-top: 1rem;
   width: 100%;
-}
+} 
 
 #cart .shopping {
   border: 1px solid #dfe2e6;
@@ -286,3 +285,15 @@ button.btn.btn-outline-dark {
 #cart .p-3.popup-cart.row {
   border-bottom: 1px solid #dfe2e6;
 }
+
+#cart .summary{
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+
+
+
+
