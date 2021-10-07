@@ -9,7 +9,7 @@ import './ShoppingCart.css'
 
 const ShoppingCart = () => {
   const { checkOutDetails, cart, setCart } = useContext(CartContext)
-  const { isLoggedIn} = useContext(AuthContext)
+  const { isLoggedIn } = useContext(AuthContext)
   const storedToken = localStorage.getItem('authToken')
 
   const handleEditItem = (id, operator) => {
@@ -24,10 +24,13 @@ const ShoppingCart = () => {
       })
   }
 
+  console.log('checkoutDetails Shopping Cart c ' ,checkOutDetails)
+
   return (
     <>
       <div>
-        {checkOutDetails && isLoggedIn &&
+        {checkOutDetails &&
+          isLoggedIn &&
           checkOutDetails.products.map((line) => (
             <Row
               key={`${line.product._id}${Math.random() * 1000}`}

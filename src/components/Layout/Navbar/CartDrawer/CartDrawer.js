@@ -19,7 +19,7 @@ const CartDrawer = () => {
 
   useEffect(() => {
     if (cart && cart.products) setCount(cart.products.length)
-  }, [cart, setCount])
+  }, [cart])
 
   return (
     <>
