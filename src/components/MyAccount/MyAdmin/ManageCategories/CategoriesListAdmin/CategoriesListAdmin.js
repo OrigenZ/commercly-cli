@@ -33,7 +33,7 @@ function CategoriesListAdmin(props) {
       const postData = slice.map((category) => (
         <Row key={category._id} className="categories-list">
           <Col xs={12} sm={4} lg={2}>
-            <h3>{category.name}</h3>
+            <p>{category.name}</p>
           </Col>
           <Col xs={12} sm={8} lg={8}>
             <p>{category.description}</p>
