@@ -80,7 +80,6 @@ const CartProviderWrapper = (props) => {
             billing,
           };
 
-          // setCart(response.data);
           setCheckOutDetails(details);
         })
         .catch((err) => console.log(err));

@@ -37,8 +37,8 @@ const EditProduct = (props) => {
     if (!name || name === '') newErrors.name = 'This field cannot be blank.'
     else if (name.length < 3)
       newErrors.name = 'Title cannot be less than 3 characters long.'
-    else if (name.length > 50)
-      newErrors.name = 'Title cannot be more than 50 characters long.'
+    else if (name.length > 70)
+      newErrors.name = 'Title cannot be more than 70 characters long.'
 
     // price errors
     if (!price || price === '') newErrors.price = 'This field cannot be blank.'
@@ -53,7 +53,7 @@ const EditProduct = (props) => {
     // brand errors
     if (!brand || brand === '') newErrors.brand = 'This field cannot be blank.'
     else if (brand.length < 2)
-      newErrors.brand = 'Title cannot be less than 2 characters long.'
+      newErrors.brand = 'Brand cannot be less than 2 characters long.'
     else if (brand.length > 20)
       newErrors.brand = 'Brand cannot be more than 20 characters long.'
 

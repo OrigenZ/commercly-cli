@@ -15,11 +15,8 @@ const AccountDetails = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rePassword, setRePassword] = useState("");
-  // const [errorMessage, setErrorMessage] = useState('')
 
   const storedToken = localStorage.getItem("authToken");
-
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -54,9 +51,8 @@ const AccountDetails = () => {
         setPhone(foundUser.phone || "");
         setEmail(foundUser.email || "");
       })
-      .catch((error) => {
-        // const errorDescription = error.response.data.message
-        // setErrorMessage(errorDescription)
+      .catch((err) => {
+        console.log(err)
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
