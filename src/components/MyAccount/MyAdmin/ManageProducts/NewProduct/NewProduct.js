@@ -136,7 +136,7 @@ const NewProduct = () => {
       id="create-product"
     >
       <div className="create-product-wrapper">
-        <h2 className="text-center text-muted text-uppercase">New product</h2>
+        <h3 className="text-center text-muted text-uppercase">New product</h3>
 
         <div className="create-product-container">
           <Form onSubmit={handleSubmit}>

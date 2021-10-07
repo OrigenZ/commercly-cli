@@ -28,7 +28,7 @@ const UserDetails = (props) => {
   return (
     <section id="user-details" className=" flex-column justify-content-center align-items-center">
     <div className="col-sm-12 col-md-6 ">
-         <h2 className="text-center text-muted text-uppercase">User Details</h2>
+         <h3 className="text-center text-muted text-uppercase">User Details</h3>
       <ListGroup>
         {/*        <ListGroup.Item>Name: {user.name}</ListGroup.Item>
         <ListGroup.Item>Surname: {user.surname}</ListGroup.Item>

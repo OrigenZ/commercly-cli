@@ -94,7 +94,7 @@ const ManageOrders = () => {
           <p>ID</p>
         </Col>
         <Col xs={12} sm={4} lg={3}>
-          <p>Create at</p>
+          <p>Created at</p>
         </Col>
         <Col xs={12} sm={8} lg={2}>
           <p>Status</p>

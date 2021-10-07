@@ -95,9 +95,9 @@ const EditCategory = (props) => {
       id="edit-category"
     >
       <div className="edit-category-wrapper">
-        <h2 className="text-center text-muted text-uppercase">
+        <h3 className="text-center text-muted text-uppercase">
           Edit category
-        </h2>
+        </h3>
 
         <div className="edit-category-container">
       <Form onSubmit={handleSubmit}>
