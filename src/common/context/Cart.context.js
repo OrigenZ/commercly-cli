@@ -5,12 +5,12 @@ import { AuthContext } from "../context/Auth.context";
 const CartContext = React.createContext();
 
 const CartProviderWrapper = (props) => {
+  const { user } = useContext(AuthContext);
   const [cart, setCart] = useState(null);
   const [count, setCount] = useState(0);
   const [checkOutDetails, setCheckOutDetails] = useState(null);
 
   const storedToken = localStorage.getItem("authToken");
-  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     if (user) {
