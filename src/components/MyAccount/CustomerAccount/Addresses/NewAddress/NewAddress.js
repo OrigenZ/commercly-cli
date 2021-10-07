@@ -35,7 +35,7 @@ const NewAddress = (props) => {
       country,
     };
     axiosInstance
-      .post(`/api/users/${user._id}/new-address/${type}`, body, {
+      .post(`/api/users/${user._id}/address/${type}`, body, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then(() => {
