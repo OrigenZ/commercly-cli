@@ -20,11 +20,7 @@ const ManageUsers = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return (
-
-      <UsersListAdmin users={users} setUsers={setUsers} />
-
-  );
+  return <UsersListAdmin users={users} setUsers={setUsers} />;
 };
 
 export default ManageUsers;
