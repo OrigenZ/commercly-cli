@@ -74,3 +74,8 @@
 #user-order-details .address{
     margin: 1rem 0;
 }
+
+section#user-order-details {
+    border: 1px solid #dfe2e6;
+    padding: 2rem;
+}
