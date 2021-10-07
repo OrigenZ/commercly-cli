@@ -1,11 +1,5 @@
-div#account-details {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 #account-details{
-    margin: 3rem auto;
+    margin: 1rem auto;
 }
 
 #account-details .form-label{
@@ -20,11 +14,8 @@ div#account-details {
     border-radius: 0px;
 }
 
-#account-details textarea.form-control {
-    min-height: 20vh;
-}
-
 #account-details button.btn.btn-outline-success {
     margin-top: 1rem;
     width: 100%;
+    font-size: 1.2rem;
 }

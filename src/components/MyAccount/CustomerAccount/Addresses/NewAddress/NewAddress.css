@@ -1,0 +1,22 @@
+#create-billing-address{
+    margin: 3rem auto;
+}
+
+#create-billing-address .form-label{
+    color: #6d757d;
+}
+
+#create-billing-address input.form-control,
+#create-billing-address select.form-select,
+#create-billing-address select.form-control ,
+#create-billing-address textarea.form-control,
+#create-billing-address button.btn.btn-outline-success {
+    border-radius: 0px;
+    color: #6d757d;
+}
+
+#create-billing-address button.btn.btn-outline-success {
+    margin-top: 1rem;
+    width: 100%;
+    font-size: 1.2rem;
+}

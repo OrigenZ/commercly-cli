@@ -45,7 +45,7 @@ const CartDrawer = () => {
 
         <Modal.Footer>
           <Button
-            variant="success"
+            variant="outline-success"
             href="/my-account/checkout"
             size="lg"
             className="w-100"
