@@ -92,7 +92,7 @@ const ProductDetails = () => {
             {user && (
               <Form onSubmit={(e) => e.preventDefault()}>
                 <Button
-                  variant="success"
+                  variant="outline-success"
                   onClick={handleCartItem} //TODO: check this later
                   type="submit"
                   size="lg"

@@ -434,41 +434,6 @@ const UserDetails = (props) => {
           </Accordion.Item>
         </Accordion>
 
-        {/*  <ListGroup.Item>
-          Billing Address:
-          {user.addresses && user.addresses.billing && (
-            <>
-              <p>First name: {user.addresses.billing.firstName}</p>
-              <p>Last name: {user.addresses.billing.lastName}</p>
-              <p>Email: {user.addresses.billing.email}</p>
-              <p>Phone: {user.addresses.billing.phone}</p>
-              <p>Company: {user.addresses.billing.company}</p>
-              <p>Street: {user.addresses.billing.street}</p>
-              <p>City: {user.addresses.billing.city}</p>
-              <p>Province:{user.addresses.billing.province}</p>
-              <p>Postcode: {user.addresses.billing.zip}</p>
-              <p>Country: {user.addresses.billing.country}</p>
-            </>
-          )}
-        </ListGroup.Item>
-
-        <ListGroup.Item>
-          Shipping Address:
-          {user.addresses && user.addresses.shipping && (
-            <>
-              <p>First name: {user.addresses.shipping.firstName}</p>
-              <p>Last name: {user.addresses.shipping.lastName}</p>
-              <p>Email: {user.addresses.shipping.email}</p>
-              <p>Phone: {user.addresses.shipping.phone}</p>
-              <p>Company: {user.addresses.shipping.company}</p>
-              <p>Street: {user.addresses.shipping.street}</p>
-              <p>City: {user.addresses.shipping.city}</p>
-              <p>Province:{user.addresses.shipping.province}</p>
-              <p>Postcode: {user.addresses.shipping.zip}</p>
-              <p>Country: {user.addresses.shipping.country}</p>
-            </>
-          )}
-        </ListGroup.Item> */}
       </ListGroup>
       </div>
     </section>
