@@ -209,6 +209,10 @@ const CheckOutCart = () => {
       <div className="card">
         <Row>
           <Col md={8} className="cart">
+            
+            
+            
+            <div className="shopping">
             <div className="title border-bottom">
               <Row>
                 <Col>
@@ -216,12 +220,7 @@ const CheckOutCart = () => {
                     <b>Shopping Cart</b>
                   </h4>
                 </Col>
-                <Col className="align-self-center text-right text-muted">
-                  <p>
-                    {' '}
-                    total items: {checkOutDetails && checkOutDetails.totalItems}
-                  </p>
-                </Col>
+                
               </Row>
             </div>
 
@@ -231,7 +230,7 @@ const CheckOutCart = () => {
                   checkOutDetails.products.map((line) => (
                     <Row
                       key={`${line.product._id}${Math.random() * 1000}`}
-                      className="p-3 border-bottom popup-cart"
+                      className="p-3 popup-cart"
                     >
                       <Col xs={2} md={1} lg={1} className="p-0">
                         <Button
@@ -267,6 +266,11 @@ const CheckOutCart = () => {
                   ))}
               </Row>
             </Row>
+
+
+</div>
+
+
 
             <div className="back-to-shop">
               <a href="/shop">

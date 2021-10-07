@@ -16,7 +16,7 @@ div#account-details {
 #account-details select.form-select,
 #account-details select.form-control ,
 #account-details textarea.form-control,
-#account-details button.btn.btn-success {
+#account-details button.btn.btn-outline-success {
     border-radius: 0px;
 }
 
@@ -24,7 +24,7 @@ div#account-details {
     min-height: 20vh;
 }
 
-#account-details button.btn.btn-success {
+#account-details button.btn.btn-outline-success {
     margin-top: 1rem;
     width: 100%;
 }
