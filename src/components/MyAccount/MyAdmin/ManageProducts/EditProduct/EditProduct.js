@@ -216,7 +216,7 @@ const EditProduct = (props) => {
                   value={form.tax || ""}
                 />
                 <Form.Control.Feedback type="invalid">
-                  {errors.price}
+                  {errors.tax}
                 </Form.Control.Feedback>
               </Form.Group>
             </Row>
@@ -285,7 +285,7 @@ const EditProduct = (props) => {
                 <Form.Label>Image</Form.Label>
                 <Form.Control
                   type="file"
-                  onChange={(e) => setField("category", e.target.value)}
+                  onChange={(e) => setField("image", e.target.files[0])}
                   value={form.image || ""}
                   isInvalid={!!errors.image}
                 />
