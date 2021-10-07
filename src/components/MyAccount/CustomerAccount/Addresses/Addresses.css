@@ -1,14 +1,35 @@
+#customer-addresses .card {
+  max-width: 26rem;
+  border-radius: 0 !important;
+}
+
+#customer-addresses h4 {
+  padding: 1rem 0 5rem 0;
+}
+
+#customer-addresses .card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  padding-top: 1.5rem;
+}
+
 #customer-addresses .dashboard-wrapper {
   padding: 3rem 2rem;
   max-width: 62.5rem;
   margin: 0 auto;
 }
 
-#customer-addresses .accordion{
+#customer-addresses .dashboard-wrapper p {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+#customer-addresses .accordion {
   color: #707071;
   font-weight: 600;
 }
-
 
 #customer-addresses button.accordion-button.collapsed {
   color: #707071;
@@ -27,22 +48,18 @@
   font-size: 1.2rem;
 }
 
-
-
-#customer-addresses  a.edit.btn.btn-outline-secondary.w-100,
-#customer-addresses  a.add.btn.btn-outline-secondary.w-100{
+#customer-addresses a.edit.btn.btn-outline-secondary.w-100,
+#customer-addresses a.add.btn.btn-outline-secondary.w-100 {
   border-radius: 0px;
+  margin-top: 2rem;
 }
-
 
 #customer-addresses .accordion-item:first-of-type .accordion-button {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-
 }
 
 .accordion-item:last-of-type .accordion-button.collapsed {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
-
