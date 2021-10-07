@@ -1,100 +1,104 @@
-import React, { useState, useEffect } from "react";
-import { Form, Row, Col, Button } from "react-bootstrap";
-import axiosInstance from "../../../../../common/http/index";
-import Swal from "sweetalert2/src/sweetalert2";
+import React, { useState, useEffect } from 'react'
+import { Form, Row, Col, Button } from 'react-bootstrap'
+import axiosInstance from '../../../../../common/http/index'
+import Swal from 'sweetalert2/src/sweetalert2'
 
-import "./EditProduct.css";
+import './EditProduct.css'
 
 const EditProduct = (props) => {
-  const [form, setForm] = useState({});
-  const [errors, setErrors] = useState({});
-  const [categories, setCategories] = useState([]);
+  const [form, setForm] = useState({})
+  const [errors, setErrors] = useState({})
+  const [categories, setCategories] = useState([])
 
-  const { id } = props.match.params;
-  const storedToken = localStorage.getItem("authToken");
+  const { id } = props.match.params
+  const storedToken = localStorage.getItem('authToken')
 
   const setField = (field, value) => {
     setForm({
       ...form,
       [field]: value,
-    });
+    })
 
     if (!!errors[field])
       setErrors({
         ...errors,
         [field]: null,
-      });
-  };
+      })
+  }
 
   const findFormErrors = () => {
-    const { sku, quantity, name, price, brand, tax, category } = form;
-    const newErrors = {};
+    const { sku, quantity, name, price, brand, tax, category } = form
+    const newErrors = {}
 
     // sku errors
-    if (!sku || sku === "") newErrors.sku = "This field cannot be blank.";
+    if (!sku || sku === '') newErrors.sku = 'This field cannot be blank.'
 
     // name errors
-    if (!name || name === "") newErrors.name = "This field cannot be blank.";
+    if (!name || name === '') newErrors.name = 'This field cannot be blank.'
     else if (name.length < 3)
-
       newErrors.name = 'Title cannot be less than 3 characters long.'
     else if (name.length > 70)
       newErrors.name = 'Title cannot be more than 70 characters long.'
-    
+
     // price errors
-    if (!price || price === "") newErrors.price = "This field cannot be blank.";
-    else if (price < 0) newErrors.price = "Price cannot be less than 0.";
+    if (!price || price === '') newErrors.price = 'This field cannot be blank.'
+    else if (price < 0) newErrors.price = 'Price cannot be less than 0.'
+
+    // quantity errors
+    if (!quantity || quantity === '')
+      newErrors.quantity = 'This field cannot be blank.'
+    else if (quantity < 0)
+      newErrors.quantity = 'Quantity cannot be less than 0.'
 
     // tax errors
-    if (!tax || tax === "") newErrors.tax = "This field cannot be blank.";
-    else if (tax < 0) newErrors.tax = "Tax cannot be less than 0.";
+    if (!tax || tax === '') newErrors.tax = 'This field cannot be blank.'
+    else if (tax < 0) newErrors.tax = 'Tax cannot be less than 0.'
 
     // brand errors
-    if (!brand || brand === "") newErrors.brand = "This field cannot be blank.";
+    if (!brand || brand === '') newErrors.brand = 'This field cannot be blank.'
     else if (brand.length < 2)
       newErrors.brand = 'Brand cannot be less than 2 characters long.'
-
     else if (brand.length > 20)
-      newErrors.brand = "Brand cannot be more than 20 characters long.";
+      newErrors.brand = 'Brand cannot be more than 20 characters long.'
 
     // category
-    if (!category || category === "")
-      newErrors.category = "This field cannot be blank!";
+    if (!category || category === '')
+      newErrors.category = 'This field cannot be blank!'
 
-    return newErrors;
-  };
+    return newErrors
+  }
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    const newErrors = findFormErrors();
+    e.preventDefault()
+    const newErrors = findFormErrors()
 
     if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
+      setErrors(newErrors)
     } else {
-      const body = { ...form };
+      const body = { ...form }
 
       axiosInstance
         .patch(`/api/products/${id}`, body, {
           headers: { Authorization: `Bearer ${storedToken}` },
         })
         .then(() => {
-          e.target.reset();
+          e.target.reset()
           Swal.fire({
-            icon: "success",
-            text: "Product edited successfully",
+            icon: 'success',
+            text: 'Product edited successfully',
             showConfirmButton: false,
-          });
+          })
         })
         .catch((err) => {
           Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Something went wrong!",
-          });
-        });
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+          })
+        })
       //TODO: Set proper error handling
     }
-  };
+  }
 
   useEffect(() => {
     try {
@@ -103,7 +107,7 @@ const EditProduct = (props) => {
           headers: { Authorization: `Bearer ${storedToken}` },
         })
         .then((response) => {
-          const foundProduct = response.data;
+          const foundProduct = response.data
           setForm({
             sku: foundProduct.sku,
             quantity: foundProduct.quantity,
@@ -114,25 +118,25 @@ const EditProduct = (props) => {
             description: foundProduct.description,
             category: foundProduct.category._id,
             image: foundProduct.image,
-          });
-        });
+          })
+        })
 
       axiosInstance
-        .get("/api/categories", {
+        .get('/api/categories', {
           headers: { Authorization: `Bearer ${storedToken}` },
         })
         .then((response) => {
-          setCategories(response.data);
-        });
+          setCategories(response.data)
+        })
     } catch (err) {
       Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Something went wrong!",
-      });
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong!',
+      })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 
   return (
     <section
@@ -149,8 +153,8 @@ const EditProduct = (props) => {
                 <Form.Label>SKU</Form.Label>
                 <Form.Control
                   type="text"
-                  onChange={(e) => setField("sku", e.target.value)}
-                  value={form.sku || ""}
+                  onChange={(e) => setField('sku', e.target.value)}
+                  value={form.sku || ''}
                   isInvalid={!!errors.sku}
                 />
                 <Form.Control.Feedback type="invalid">
@@ -164,24 +168,50 @@ const EditProduct = (props) => {
                 <Form.Label>Quantity</Form.Label>
                 <Form.Control
                   type="number"
-                  onChange={(e) => setField("quantity", e.target.value)}
+                  onChange={(e) => setField('quantity', e.target.value)}
                   isInvalid={!!errors.quantity}
-                  value={form.quantity || ""}
+                  value={form.quantity || ''}
                 />
                 <Form.Control.Feedback type="invalid">
                   {errors.quantity}
                 </Form.Control.Feedback>
               </Form.Group>
-            </Row>
+              <Form.Group as={Col}>
+                <Form.Label>Tax</Form.Label>
+                <Form.Control
+                  step="any"
+                  type="number"
+                  onChange={(e) => setField('tax', e.target.value)}
+                  isInvalid={!!errors.tax}
+                  value={form.tax || ''}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.tax}
+                </Form.Control.Feedback>
+              </Form.Group>
 
+              <Form.Group as={Col}>
+                <Form.Label>Price</Form.Label>
+                <Form.Control
+                  step="any"
+                  type="number"
+                  onChange={(e) => setField('price', e.target.value)}
+                  isInvalid={!!errors.price}
+                  value={form.price || ''}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.price}
+                </Form.Control.Feedback>
+              </Form.Group>
+            </Row>
             <Row className="mb-3">
               <Form.Group as={Col}>
                 <Form.Label>Title</Form.Label>
                 <Form.Control
                   type="text"
-                  onChange={(e) => setField("name", e.target.value)}
+                  onChange={(e) => setField('name', e.target.value)}
                   isInvalid={!!errors.name}
-                  value={form.name || ""}
+                  value={form.name || ''}
                 />
                 <Form.Control.Feedback type="invalid">
                   {errors.name}
@@ -189,78 +219,47 @@ const EditProduct = (props) => {
               </Form.Group>
             </Row>
 
-            <Row className="mb-3">
-              <Form.Group as={Col}>
-                <Form.Label>Price</Form.Label>
-                <Form.Control
-                  step="any"
-                  type="number"
-                  onChange={(e) => setField("price", e.target.value)}
-                  isInvalid={!!errors.price}
-                  value={form.price || ""}
-                />
-                <Form.Control.Feedback type="invalid">
-                  {errors.price}
-                </Form.Control.Feedback>
-              </Form.Group>
-            </Row>
+            <Row className="mb-3"></Row>
 
-            <Row className="mb-3">
-              <Form.Group as={Col}>
-                <Form.Label>Tax</Form.Label>
-                <Form.Control
-                  step="any"
-                  type="number"
-                  onChange={(e) => setField("tax", e.target.value)}
-                  isInvalid={!!errors.tax}
-                  value={form.tax || ""}
-                />
-                <Form.Control.Feedback type="invalid">
-                  {errors.tax}
-                </Form.Control.Feedback>
-              </Form.Group>
-            </Row>
-
+            <Row className="mb-3"></Row>
             <Row className="mb-3">
               <Form.Group as={Col}>
                 <Form.Label>Brand</Form.Label>
                 <Form.Control
                   type="text"
-                  onChange={(e) => setField("brand", e.target.value)}
+                  onChange={(e) => setField('brand', e.target.value)}
                   isInvalid={!!errors.brand}
-                  value={form.brand || ""}
+                  value={form.brand || ''}
                 />
                 <Form.Control.Feedback type="invalid">
                   {errors.brand}
                 </Form.Control.Feedback>
               </Form.Group>
             </Row>
-
             <Row className="mb-3">
               <Form.Group as={Col}>
                 <Form.Label>Description</Form.Label>
                 <Form.Control
                   as="textarea"
                   type="text"
-                  onChange={(e) => setField("description", e.target.value)}
+                  onChange={(e) => setField('description', e.target.value)}
                   isInvalid={!!errors.description}
-                  value={form.description || ""}
+                  value={form.description || ''}
                 />
                 <Form.Control.Feedback type="invalid">
                   {errors.description}
                 </Form.Control.Feedback>
               </Form.Group>
             </Row>
-
             <Row className="mb-3">
               <Form.Group as={Col}>
                 <Form.Label>Category</Form.Label>
                 <Form.Control
                   as="select"
                   type="text"
-                  onChange={(e) => setField("category", e.target.value)}
+                  onChange={(e) => setField('category', e.target.value)}
                   isInvalid={!!errors.category}
-                  value={form.category || ""}
+                  value={form.category || ''}
                 >
                   {categories.map((category) => {
                     return category._id === form.category ? (
@@ -271,7 +270,7 @@ const EditProduct = (props) => {
                       <option key={category._id} value={category._id}>
                         {category.name}
                       </option>
-                    );
+                    )
                   })}
                 </Form.Control>
                 <Form.Control.Feedback type="invalid">
@@ -279,14 +278,13 @@ const EditProduct = (props) => {
                 </Form.Control.Feedback>
               </Form.Group>
             </Row>
-
             <Row className="mb-3">
               <Form.Group as={Col}>
                 <Form.Label>Image</Form.Label>
                 <Form.Control
                   type="file"
-                  onChange={(e) => setField("image", e.target.files[0])}
-                  value={form.image || ""}
+                  onChange={(e) => setField('image', e.target.files[0])}
+                  value={form.image || ''}
                   isInvalid={!!errors.image}
                 />
                 <Form.Control.Feedback type="invalid">
@@ -294,7 +292,6 @@ const EditProduct = (props) => {
                 </Form.Control.Feedback>
               </Form.Group>
             </Row>
-
             <Button variant="success" type="submit">
               Submit changes
             </Button>
@@ -302,7 +299,7 @@ const EditProduct = (props) => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default EditProduct;
+export default EditProduct
