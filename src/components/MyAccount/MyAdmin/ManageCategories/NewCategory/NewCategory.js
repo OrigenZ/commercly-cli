@@ -76,9 +76,9 @@ const NewCategory = (props) => {
       id="create-category"
     >
       <div className="create-category-wrapper">
-        <h2 className="text-center text-muted text-uppercase">
+        <h3 className="text-center text-muted text-uppercase">
           Create category
-        </h2>
+        </h3>
 
         <div className="create-category-container">
           <Form onSubmit={handleSubmit}>

@@ -144,7 +144,7 @@ const EditProduct = (props) => {
       id="edit-product"
     >
       <div className="edit-product-wrapper">
-        <h2 className="text-center text-muted text-uppercase">Edit product</h2>
+        <h3 className="text-center text-muted text-uppercase">Edit product</h3>
 
         <div className="edit-product-container">
           <Form onSubmit={handleSubmit}>
