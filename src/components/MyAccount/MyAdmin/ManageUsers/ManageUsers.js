@@ -21,9 +21,9 @@ const ManageUsers = () => {
   }, []);
 
   return (
-    <div className="section">
+
       <UsersListAdmin users={users} setUsers={setUsers} />
-    </div>
+
   );
 };
 

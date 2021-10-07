@@ -3,6 +3,9 @@ import UserCard from "../../../../UserCard/UserCard";
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2/src/sweetalert2";
 import ReactPaginate from "react-paginate";
+import { Row, Col } from "react-bootstrap";
+
+import './UsersListAdmin.css'
 
 const UsersListAdmin = (props) => {
   const { users, setUsers } = props;
@@ -91,8 +94,28 @@ const UsersListAdmin = (props) => {
   }, []);
 
   return (
-    <>
-      {data}
+    <div id="cat-list-admin">
+      <div>
+        <Row id="head-categories-list">
+          <Col xs={12} sm={3} lg={3}>
+            <p>Email</p>
+          </Col>
+          <Col xs={12} sm={2} lg={2}>
+            <p>Create at</p>
+          </Col>
+          <Col xs={12} sm={1} lg={1}>
+            <p className="text-center">Admin</p>
+          </Col>
+          <Col xs={12} sm={3} lg={3}>
+            <p>ID</p>
+          </Col>
+          <Col xs={12} sm={3} lg={3}>
+            <p className="text-center">Actions</p>
+          </Col>
+        </Row>
+        {data}
+      </div>
+      <div className="paginate-cat">
       <ReactPaginate
         previousLabel={"prev"}
         nextLabel={"next"}
@@ -106,7 +129,8 @@ const UsersListAdmin = (props) => {
         subContainerClassName={"pages pagination"}
         activeClassName={"active"}
       />
-    </>
+      </div>
+    </div>
   );
 };
 
