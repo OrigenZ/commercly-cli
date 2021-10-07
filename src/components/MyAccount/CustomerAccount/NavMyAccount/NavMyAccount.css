@@ -3,7 +3,7 @@
     justify-content: center;
     flex-direction: row;
     align-items: center;
-    padding: 1.5em;
+    padding: 1em;
 }
 
 #subnav .container.row {
@@ -18,7 +18,7 @@
 }
 
 .customer-menu {
-  background-color: #f7f9fa;
+  background-color: #fff;
   display: flex;
 }
 
