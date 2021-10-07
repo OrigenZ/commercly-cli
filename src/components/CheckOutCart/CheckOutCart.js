@@ -232,7 +232,7 @@ const CheckOutCart = () => {
                         </Button>
                       </Col>
                       <Col xs={2} md={1} lg={1} className="quantity">
-                        <h3>{line.quantity}</h3>
+                        <h5>{line.quantity}</h5>
                       </Col>
                       <Col
                         xs={6}
@@ -240,10 +240,10 @@ const CheckOutCart = () => {
                         lg={8}
                         className="product-checkout p-0"
                       >
-                        <h4>{line.product.name}</h4>
+                        <h5>{line.product.name}</h5>
                       </Col>
                       <Col xs={2} md={2} lg={2} className="total-line">
-                        <h3>{line.totalLine}€</h3>
+                        <h5>{line.totalLine}€</h5>
                       </Col>
                     </Row>
                   ))}
