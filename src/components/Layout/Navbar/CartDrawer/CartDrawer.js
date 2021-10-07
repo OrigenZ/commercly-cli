@@ -19,6 +19,7 @@ const CartDrawer = () => {
 
   useEffect(() => {
     if (cart && cart.products) setCount(cart.products.length)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cart])
 
   return (
@@ -58,28 +59,3 @@ const CartDrawer = () => {
 }
 
 export default CartDrawer
-
-// <>
-//   <div className="nav-link" onClick={handleShow}>
-//     <FontAwesomeIcon icon={faShoppingCart} className="me-3" />
-//     <span id="cart-count"> {count} </span>
-//   </div>
-//   <Modal id="popup-cart" show={show} onHide={handleClose}>
-//     <Modal.Header closeButton>
-//       <Modal.Title>Shopping Cart</Modal.Title>
-//     </Modal.Header>
-//     <Modal.Body>
-//       <ShoppingCart />
-//     </Modal.Body>
-//     <Modal.Footer>
-//       <Button
-//         variant="success"
-//         href="/my-account/checkout"
-//         size="lg"
-//         className="w-100"
-//       >
-//         Checkout
-//       </Button>
-//     </Modal.Footer>
-//   </Modal>
-// </>
