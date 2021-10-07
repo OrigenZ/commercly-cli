@@ -170,7 +170,11 @@ const CheckOutCart = () => {
           showConfirmButton: false,
         });
 
+
         history.push("/my-account");
+
+        return order;
+
       } catch (err) {
         console.log(err.message);
         Swal.fire({
@@ -368,6 +372,7 @@ const CheckOutCart = () => {
                   </Form.Group>
                 </Row>
 
+
                 <Row className="mb-3">
                   <Form.Group as={Col}>
                     <Form.Label>Street address *</Form.Label>
@@ -503,6 +508,214 @@ const CheckOutCart = () => {
           </Col>
         </Row>
       </div>
+=======
+                <Form onSubmit={handleSubmit}>
+                  <input type="hidden" id="id" name="id" />
+
+                  <Row className="mb-3">
+                    <Form.Group as={Col}>
+                      <Form.Label>First Name</Form.Label>
+                      <Form.Control
+                        type="text"
+                        onChange={(e) => setField('firstName', e.target.value)}
+                        isInvalid={!!errors.firstName}
+                        value={form.firstName || ''}
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.firstName}
+                      </Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group as={Col}>
+                      <Form.Label>Last name</Form.Label>
+                      <Form.Control
+                        type="text"
+                        onChange={(e) => setField('lastName', e.target.value)}
+                        isInvalid={!!errors.lastName}
+                        value={form.lastName || ''}
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.lastName}
+                      </Form.Control.Feedback>
+                    </Form.Group>
+                  </Row>
+
+                  <Row className="mb-3">
+                    <Form.Group as={Col}>
+                      <Form.Label>Phone *</Form.Label>
+                      <Form.Control
+                        type="text"
+                        onChange={(e) => setField('phone', e.target.value)}
+                        isInvalid={!!errors.phone}
+                        value={form.phone || ''}
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.phone}
+                      </Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group as={Col}>
+                      <Form.Label>Company (Optional)</Form.Label>
+                      <Form.Control
+                        type="text"
+                        onChange={(e) => setField('company', e.target.value)}
+                        isInvalid={!!errors.company}
+                        value={form.company || ''}
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.company}
+                      </Form.Control.Feedback>
+                    </Form.Group>
+                  </Row>
+
+                  <Row className="mb-3">
+                    <Form.Group as={Col}>
+                      <Form.Label>Email address *</Form.Label>
+                      <Form.Control
+                        type="email"
+                        onChange={(e) => setField('email', e.target.value)}
+                        isInvalid={!!errors.email}
+                        value={form.email || ''}
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.email}
+                      </Form.Control.Feedback>
+                    </Form.Group>
+                  </Row>
+
+                  <Row className="mb-3">
+                    <Form.Group as={Col}>
+                      <Form.Label>Street address *</Form.Label>
+                      <Form.Control
+                        type="text"
+                        onChange={(e) => setField('street', e.target.value)}
+                        isInvalid={!!errors.street}
+                        value={form.street || ''}
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.street}
+                      </Form.Control.Feedback>
+                    </Form.Group>
+                  </Row>
+
+                  <Row className="mb-3">
+                    <Form.Group as={Col}>
+                      <Form.Label>Postcode / ZIP *</Form.Label>
+                      <Form.Control
+                        type="number"
+                        onChange={(e) => setField('zip', e.target.value)}
+                        isInvalid={!!errors.zip}
+                        value={form.zip || ''}
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.zip}
+                      </Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group as={Col}>
+                      <Form.Label>Town / City *</Form.Label>
+                      <Form.Control
+                        type="text"
+                        onChange={(e) => setField('city', e.target.value)}
+                        isInvalid={!!errors.city}
+                        value={form.city || ''}
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.city}
+                      </Form.Control.Feedback>
+                    </Form.Group>
+                  </Row>
+
+                  <Row className="mb-3">
+                    <Form.Group as={Col}>
+                      <Form.Label>Province *</Form.Label>
+                      <Form.Control
+                        type="text"
+                        onChange={(e) => setField('province', e.target.value)}
+                        isInvalid={!!errors.province}
+                        value={form.province || ''}
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.province}
+                      </Form.Control.Feedback>
+                    </Form.Group>
+
+                    <Form.Group as={Col}>
+                      <Form.Label>Country / Region</Form.Label>
+                      <Form.Control
+                        type="text"
+                        onChange={(e) => setField('country', e.target.value)}
+                        isInvalid={!!errors.country}
+                        value={form.country || ''}
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.country}
+                      </Form.Control.Feedback>
+                    </Form.Group>
+                  </Row>
+                </Form>
+              </div>
+            </Col>
+            <Col md={4} className="summary">
+              <div>
+                <h5>
+                  <b>Summary</b>
+                </h5>
+              </div>
+              <hr />
+              <Row>
+                <div className="summary-flex">
+                  <p>Total items:</p>
+                  <p>{checkOutDetails && checkOutDetails.totalItems}</p>
+                </div>
+
+                <div className="summary-flex">
+                  {' '}
+                  <p>Subtotal:</p>
+                  <p>{checkOutDetails && checkOutDetails.totalPrice} €</p>
+                </div>
+              </Row>
+              <Form>
+                <Form.Label>SHIPPING: </Form.Label>
+                <Form.Control
+                  as="select"
+                  type="text"
+                  value={shippingFees}
+                  onChange={(e) => setShippingFees(e.target.value)}
+                >
+                  <option className="text-muted" value="4">
+                    Standard Delivery - 4.00 &euro;
+                  </option>
+                  <option className="text-muted" value="8">
+                    Next Day Delivery - 8.00 &euro;
+                  </option>
+                  <option className="text-muted" value="12">
+                    Same Day Delivery - 12.00 &euro;
+                  </option>
+                </Form.Control>
+              </Form>
+              <Row>
+                <div className="total-flex">
+                  <p>TOTAL: </p>
+                  <p>
+                    {checkOutDetails &&
+                      parseFloat(checkOutDetails.totalPrice) +
+                        parseInt(shippingFees)}{' '}
+                    &euro;
+                  </p>
+                </div>
+              </Row>
+              <Row>
+                <div className="payment">
+                  <h5>
+                    <b>Payment details</b>
+                  </h5>
+                </div>
+                <hr />
+                <StripeForm handleSubmit={handleSubmit}/>
+              </Row>
+            </Col>
+          </Row>
+        </div>
+      </Elements>
+
     </section>
   );
 };
