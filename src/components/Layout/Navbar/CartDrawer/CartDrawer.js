@@ -32,7 +32,7 @@ const CartDrawer = () => {
       <Offcanvas
         show={show}
         onHide={handleClose}
-        id="popup-cart"
+        id="cart-drawer"
         placement={'end'}
         name={'end'}
       >
@@ -45,7 +45,7 @@ const CartDrawer = () => {
 
         <Modal.Footer>
           <Button
-            variant="outline-success"
+            variant="outline-dark"
             href="/my-account/checkout"
             size="lg"
             className="w-100"

@@ -5,6 +5,7 @@ import { AuthContext } from '../../common/context/Auth.context'
 import { Col, Button, Row } from 'react-bootstrap'
 import axiosInstance from '../../common/http'
 
+
 import './ShoppingCart.css'
 
 const ShoppingCart = () => {
@@ -24,11 +25,11 @@ const ShoppingCart = () => {
       })
   }
 
-
   return (
     <>
       <div>
         {checkOutDetails &&
+          checkOutDetails.products &&
           isLoggedIn &&
           checkOutDetails.products.map((line) => (
             <Row
@@ -37,6 +38,7 @@ const ShoppingCart = () => {
             >
               <Col xs={2} md={1} lg={1} className="p-0">
                 <Button
+                  className="quant"
                   variant="outline-dark"
                   onClick={() => handleEditItem(line.product._id, '+')}
                 >
@@ -44,6 +46,7 @@ const ShoppingCart = () => {
                   +{' '}
                 </Button>{' '}
                 <Button
+                  className="quant"
                   variant="outline-dark"
                   onClick={() => handleEditItem(line.product._id, '-')}
                 >
@@ -52,16 +55,15 @@ const ShoppingCart = () => {
                 </Button>
               </Col>
               <Col xs={2} md={1} lg={1} className="quantity">
-                <h3>{line.quantity}</h3>
+                <h4>{line.quantity}</h4>
               </Col>
-              <Col xs={6} md={8} lg={8} className="product-cart p-0">
-                <h4>{line.product.name}</h4>
+              <Col xs={6} md={6} lg={6} className="product-cart p-0">
+                <h5>{line.product.name}</h5>
               </Col>
-              <Col xs={2} md={2} lg={2} className="total-line">
-                <h3>{line.totalLine}€</h3>
+              <Col xs={6} md={4} lg={4} className="total-line">
+                <h5>{line.totalLine}€</h5>
               </Col>
             </Row>
-            //TODO: for a better way to do this shit
           ))}
       </div>
       <div>

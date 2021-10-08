@@ -164,7 +164,7 @@ const EditAddress = (props) => {
 
   return (
     <section
-      class="container d-flex flex-column justify-content-center col-6"
+      className="container d-flex flex-column justify-content-center col-6"
       id="edit-address"
     >
       <Form onSubmit={handleSubmit}>

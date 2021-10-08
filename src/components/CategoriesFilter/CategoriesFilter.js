@@ -30,7 +30,7 @@ const CategoriesFilter = (props) => {
   return (
     <div id="categories-filter">
       <span className="filter-header">Filter by category</span>
-      <div class="vertical-menu">
+      <div className="vertical-menu">
       <div className="filters-wrapper">
         {categories.map((category) => (
           <Button

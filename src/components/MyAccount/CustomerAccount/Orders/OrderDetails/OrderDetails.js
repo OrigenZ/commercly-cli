@@ -51,7 +51,7 @@ const OrderDetails = (props) => {
 
   return (
     <section
-      class="container d-flex flex-column justify-content-center col-6"
+      className="container d-flex flex-column justify-content-center col-6"
       id="user-order-details"
     >
       <div className="edit-product-wrapper">

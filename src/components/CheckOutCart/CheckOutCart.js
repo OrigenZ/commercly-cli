@@ -13,6 +13,7 @@ import { Elements } from '@stripe/react-stripe-js'
 import StripeForm from './StripeForm/StripeForm'
 
 import './CheckOutCart.css'
+import './StripeForm/Stripeform.css'
 
 const CheckOutCart = () => {
   const { user } = useContext(AuthContext)
@@ -225,7 +226,7 @@ const CheckOutCart = () => {
 
                 <Row>
                   <Row className="items-list align-items-center">
-                    {checkOutDetails &&
+                    {checkOutDetails && checkOutDetails.products &&
                       checkOutDetails.products.map((line) => (
                         <Row
                           key={`${line.product._id}${Math.random() * 1000}`}
