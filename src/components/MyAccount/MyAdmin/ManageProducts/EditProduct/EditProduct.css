@@ -1,20 +1,24 @@
-#edit-product{
-    margin: 3rem auto;
+#edit-product {
+  margin: 3rem auto;
 }
 
 #edit-product input.form-control,
 #edit-product select.form-select,
-#edit-product select.form-control ,
+#edit-product select.form-control,
 #edit-product textarea.form-control,
 #edit-product button.btn.btn-success {
-    border-radius: 0px;
+  border-radius: 0px;
 }
 
 #edit-product button.btn.btn-success {
-    margin-top: 1rem;
-    width: 100%;
+  margin-top: 1rem;
+  width: 100%;
 }
 
-#edit-product .form-label{
-    color: #6d757d;
+#edit-product .form-label {
+  color: #6d757d;
+}
+#edit-product #text-editor .container {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
 }

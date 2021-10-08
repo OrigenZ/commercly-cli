@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Form, Row, Col, Button } from 'react-bootstrap'
 import axiosInstance from '../../../../../common/http'
 import Swal from 'sweetalert2/src/sweetalert2'
+import TextEditor from '../TextEditor/TextEditor'
 
 import './NewProduct.css'
 
@@ -224,15 +225,17 @@ const NewProduct = () => {
               </Form.Group>
             </Row>
 
-            <Row className="mb-3">
+            <Row className="mb-3" id='text-editor'>
               <Form.Group as={Col}>
                 <Form.Label>Description</Form.Label>
-                <Form.Control
+
+                <TextEditor
                   as="textarea"
                   type="text"
                   onChange={(e) => setField('description', e.target.value)}
                   isInvalid={!!errors.description}
                 />
+
                 <Form.Control.Feedback type="invalid">
                   {errors.description}
                 </Form.Control.Feedback>

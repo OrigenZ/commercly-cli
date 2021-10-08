@@ -6,6 +6,8 @@ import { AuthContext } from '../../common/context/Auth.context'
 import Swal from 'sweetalert2/src/sweetalert2'
 import { CartContext } from '../../common/context/Cart.context'
 import axiosInstance from '../../common/http/index'
+import ReactMde from 'react-mde'
+import Showdown from 'showdown'
 
 import {
   Col,
@@ -29,6 +31,40 @@ const ProductDetails = () => {
   const { cart, setCart, setCount } = useContext(CartContext)
 
   const { id } = useParams()
+
+  const converter = new Showdown.Converter({
+    tables: true,
+    simplifiedAutoLink: true,
+    strikethrough: true,
+    tasklists: true,
+    omitExtraWLInCodeBlocks: true,
+    noHeaderId: true,
+    prefixHeaderId: true,
+    rawPrefixHeaderId: true,
+    ghCompatibleHeaderId: true,
+    rawHeaderId: true,
+    headerLevelStart: true,
+    parseImgDimensions: true,
+    excludeTrailingPunctuationFromURLs: true,
+    literalMidWordUnderscores: true,
+    literalMidWordAsterisks: true,
+    tablesHeaderId: true,
+    ghCodeBlocks: true,
+    smoothLivePreview: true,
+    smartIndentationFix: true,
+    disableForced4SpacesIndentedSublists: true,
+    simpleLineBreaks: true,
+    requireSpaceBeforeHeadingText: true,
+    ghMentions: true,
+    encodeEmails: true,
+    openLinksInNewWindow: true,
+    backslashEscapesHTMLTags: true,
+    emoji: true,
+    underline: true,
+    completeHTMLDocument: true,
+    metadata: true,
+    splitAdjacentBlockquotes: true,
+  })
 
   const storedToken = localStorage.getItem('authToken')
 
@@ -85,12 +121,19 @@ const ProductDetails = () => {
           <div>
             <h3 className="heading">{product.name}</h3>
             <p className="text-muted">{product.brand} </p>
-            <p className="product-description">{product.description} </p>
+
+            <ReactMde
+              value={product.description}
+              selectedTab={'preview'}
+              generateMarkdownPreview={(markdown) =>
+                Promise.resolve(converter.makeHtml(markdown))
+              }
+            />
           </div>
           <div>
             <p className="product-price">{product.totalPrice} €</p>
 
-            {user && !user.isAdmin &&  (
+            {user && !user.isAdmin && (
               <Form onSubmit={(e) => e.preventDefault()}>
                 <Button
                   variant="outline-success"
