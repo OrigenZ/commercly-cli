@@ -2,18 +2,33 @@ import React, { useState, useEffect } from 'react'
 import { Form, Row, Col, Button } from 'react-bootstrap'
 import axiosInstance from '../../../../../common/http/index'
 import Swal from 'sweetalert2/src/sweetalert2'
+// import TextEditor from '../TextEditor/TextEditor'
+import ReactMde from 'react-mde'
+
+import * as Showdown from 'showdown'
+import 'react-mde/lib/styles/css/react-mde-all.css'
 
 import './EditProduct.css'
+
+const converter = new Showdown.Converter({
+  tables: true,
+  simplifiedAutoLink: true,
+  strikethrough: true,
+  tasklists: true,
+})
 
 const EditProduct = (props) => {
   const [form, setForm] = useState({})
   const [errors, setErrors] = useState({})
   const [categories, setCategories] = useState([])
+  const [selectedTab, setSelectedTab] = React.useState('write')
+  const [value, setValue] = React.useState('')
 
   const { id } = props.match.params
   const storedToken = localStorage.getItem('authToken')
 
   const setField = (field, value) => {
+    console.log(field, value)
     setForm({
       ...form,
       [field]: value,
@@ -25,6 +40,10 @@ const EditProduct = (props) => {
         [field]: null,
       })
   }
+
+  useEffect(() => {
+    setField('description', value)
+  }, [value])
 
   const findFormErrors = () => {
     const { sku, quantity, name, price, brand, tax, category } = form
@@ -75,6 +94,7 @@ const EditProduct = (props) => {
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors)
     } else {
+      console.log('description', form.description)
       const body = { ...form }
 
       axiosInstance
@@ -236,15 +256,22 @@ const EditProduct = (props) => {
                 </Form.Control.Feedback>
               </Form.Group>
             </Row>
-            <Row className="mb-3">
+            <Row className="mb-3" id="text-editor">
               <Form.Group as={Col}>
                 <Form.Label>Description</Form.Label>
-                <Form.Control
-                  as="textarea"
-                  type="text"
-                  onChange={(e) => setField('description', e.target.value)}
-                  isInvalid={!!errors.description}
+                <ReactMde
                   value={form.description || ''}
+                  onChange={setValue}
+                  selectedTab={selectedTab}
+                  onTabChange={setSelectedTab}
+                  generateMarkdownPreview={(markdown) =>
+                    Promise.resolve(converter.makeHtml(markdown))
+                  }
+                  childProps={{
+                    writeButton: {
+                      tabIndex: -1,
+                    },
+                  }}
                 />
                 <Form.Control.Feedback type="invalid">
                   {errors.description}
