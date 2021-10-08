@@ -5,7 +5,7 @@ import { AuthContext } from "../context/Auth.context";
 const CartContext = React.createContext();
 
 const CartProviderWrapper = (props) => {
-  const { user } = useContext(AuthContext);
+  const { user, isLoggedIn } = useContext(AuthContext);
   const [cart, setCart] = useState(null);
   const [count, setCount] = useState(0);
   const [checkOutDetails, setCheckOutDetails] = useState(null);
@@ -25,7 +25,7 @@ const CartProviderWrapper = (props) => {
   }, [user]);
 
   useEffect(() => {
-    if (user) {
+    if (user && isLoggedIn) {
       axiosInstance
         .get(`/api/cart/${user._id}`, {
           headers: { Authorization: `Bearer ${storedToken}` },
@@ -84,6 +84,7 @@ const CartProviderWrapper = (props) => {
         })
         .catch((err) => console.log(err));
     } else {
+      setCheckOutDetails([]);
       setCount(0);
       setCart(null);
     }
