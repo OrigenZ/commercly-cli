@@ -10,8 +10,8 @@ const PrivateRoute = (props) => {
   if (isLoading)
     return (
       <>
-        <div class="spinner-border text-secondary position-absolute top-50 start-50" role="status">
-          <span class="sr-only">Loading...</span>
+        <div className="spinner-border text-secondary position-absolute top-50 start-50" role="status">
+          <span className="sr-only">Loading...</span>
         </div>
       </>
     )

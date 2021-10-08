@@ -21,7 +21,7 @@ const useOptions = () => {
           fontSize,
           color: '#424770',
           letterSpacing: '0.025em',
-          fontFamily: 'Source Code Pro, monospace',
+          fontFamily: 'AzoSans, Helvetica, Arial, sans-serif',
           '::placeholder': {
             color: '#aab7c4',
           },

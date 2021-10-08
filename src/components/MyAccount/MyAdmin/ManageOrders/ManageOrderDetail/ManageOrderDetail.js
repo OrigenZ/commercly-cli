@@ -47,7 +47,7 @@ const ManageOrderDetail = (props) => {
   }, []);
   return (
     <section
-    class="container d-flex flex-column justify-content-center col-6"
+    className="container d-flex flex-column justify-content-center col-6"
     id="manage-order-details"
   >
     <h3 className="text-center text-muted text-uppercase mb-5">
