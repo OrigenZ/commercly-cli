@@ -19,9 +19,8 @@ const AboutUsPage = () => {
             <Card.Body>
               <Card.Title>Sherab Pereira</Card.Title>
               <Card.Text>
-                This is a longer card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
+                Hi, I'm Sherab Pereira, a full stack web developer, nice to see
+                you here!.
               </Card.Text>
             </Card.Body>
             <Card.Footer>
@@ -52,9 +51,8 @@ const AboutUsPage = () => {
             <Card.Body>
               <Card.Title>Laura Alabau</Card.Title>
               <Card.Text>
-                This is a longer card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
+                Hi, I'm Laura, a front end leaned developer and graphic
+                designer, nice to meet you!
               </Card.Text>
             </Card.Body>
             <Card.Footer>
