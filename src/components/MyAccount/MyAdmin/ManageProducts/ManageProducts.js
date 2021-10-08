@@ -74,7 +74,7 @@ const ManageProducts = () => {
 
         return nameFound || brandFound || skuFound;
       });
-      console.log(productsFound);
+
       setResults(productsFound);
       setCurrentCategory("");
     }

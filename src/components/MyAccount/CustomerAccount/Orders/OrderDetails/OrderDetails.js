@@ -43,9 +43,10 @@ const OrderDetails = (props) => {
       console.log(err.message);
     }
   };
-  console.log(order);
+
   useEffect(() => {
     getDetails();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

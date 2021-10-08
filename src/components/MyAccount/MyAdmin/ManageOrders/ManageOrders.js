@@ -48,7 +48,6 @@ const ManageOrders = () => {
       const response = await axiosInstance.get(`/api/orders`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
-      console.log('orders', response.data)
       const data = response.data
       const slice = data.slice(offset, offset + perPage)
 

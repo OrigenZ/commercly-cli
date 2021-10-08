@@ -1,14 +1,14 @@
 // ¿ User data con addresses?
 import { useContext, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { ListGroup, Form, Row, Col, Card, Button } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
 import { AuthContext } from '../../../../common/context/Auth.context'
 import axiosInstance from '../../../../common/http'
 
 import './Addresses.css'
 
 const Addresses = () => {
-  const { user, logOutUser } = useContext(AuthContext)
+  const { user } = useContext(AuthContext)
   const [billingAddress, setBillingAddress] = useState(null)
   const [shippingAddress, setShippingAddress] = useState(null)
 
@@ -27,6 +27,7 @@ const Addresses = () => {
       })
       .catch((err) => console.log(err.message))
     //TODO: Set proper error handling
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

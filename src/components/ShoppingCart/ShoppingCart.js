@@ -24,7 +24,6 @@ const ShoppingCart = () => {
       })
   }
 
-  console.log('checkoutDetails Shopping Cart c ' ,checkOutDetails)
 
   return (
     <>
