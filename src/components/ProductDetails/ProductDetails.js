@@ -66,6 +66,7 @@ const ProductDetails = () => {
     splitAdjacentBlockquotes: true,
   })
 
+
   const storedToken = localStorage.getItem('authToken')
 
   const handleCartItem = () => {
@@ -132,7 +133,11 @@ const ProductDetails = () => {
           </div>
           <div>
             <p className="product-price">{product.totalPrice} €</p>
-
+            <p className="product-quantity">
+              {' '}
+              {product.quantity < 10 &&
+                `Only ${product.quantity} available`}{' '}
+            </p>
             {user && !user.isAdmin && (
               <Form onSubmit={(e) => e.preventDefault()}>
                 <Button
