@@ -72,7 +72,7 @@ const ManageOrders = () => {
             </Form.Select>
           </Col>
           <Col xs={12} sm={8} lg={2}>
-            <p>{order.customer.email}</p>
+            <p>{order.customer && order.customer.email}</p>
           </Col>
           <Col xs={12} sm={12} lg={2}>
             <Link
@@ -129,7 +129,7 @@ const ManageOrders = () => {
         </Col>
       </Row>
 
-      {orders.length !== 0 && data}
+      {orders.length !== 0 && (data)}
       {!orders.length && <p>No orders found</p>}
 
       <ReactPaginate
