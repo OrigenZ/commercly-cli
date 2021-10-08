@@ -30,6 +30,11 @@
   margin-bottom: 1rem;
   color: #6d757d;
 }
+.product-quantity {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: #e92d3c;
+}
 
 button.btn.btn-outline-success.btn-lg {
   border-radius: 0px;
@@ -45,4 +50,9 @@ img.w-100 {
 
 #product-details .react-mde-tabbed-layout {
   border: none !important;
+}
+
+.react-mde {
+  margin: 1.5rem 0;
+  color: #575d63;
 }

@@ -5,3 +5,10 @@
   border-bottom: none;
 }
 
+input.form-control,
+select.form-select,
+select.form-control,
+textarea.form-control {
+  border-radius: 0px;
+  color: #46484b;
+}

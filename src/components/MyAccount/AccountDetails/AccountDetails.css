@@ -6,10 +6,7 @@
     color: #6d757d;
 }
 
-#account-details input.form-control,
-#account-details select.form-select,
-#account-details select.form-control ,
-#account-details textarea.form-control,
+
 #account-details button.btn.btn-outline-success {
     border-radius: 0px;
 }
