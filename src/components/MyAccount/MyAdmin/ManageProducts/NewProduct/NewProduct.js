@@ -87,8 +87,6 @@ const NewProduct = () => {
       body.append('category', form.category)
       body.append('imageUrl', form.image)
 
-      console.log('image', form.image)
-
       axiosInstance
         .post(`/api/products/create`, body, {
           headers: { Authorization: `Bearer ${storedToken}` },

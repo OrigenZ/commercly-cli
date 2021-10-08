@@ -5,22 +5,14 @@
   color: #6d757d;
 }
 
-
-.modal-dialog {
-  min-width: 30vw;
+#popup-cart h4,
+#popup-cart h3 {
+  font-size: 1.1rem;
 }
 
-.modal-content {
-  min-height: 100vh;
-  justify-content: flex-end;
-  border-radius: 0px;
-}
-
-.modal-body {
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+#popup-cart .total-price,
+#popup-cart .total-price h3 {
+  font-size: 1.6rem;
 }
 
 a.w-100.btn.btn-outline-success.btn-lg {
@@ -32,3 +24,4 @@ a.w-100.btn.btn-outline-success.btn-lg {
   flex-direction: column;
   justify-content: space-between;
 }
+

@@ -28,7 +28,7 @@ const EditProduct = (props) => {
   const storedToken = localStorage.getItem('authToken')
 
   const setField = (field, value) => {
-    console.log(field, value)
+
     setForm({
       ...form,
       [field]: value,
@@ -43,6 +43,7 @@ const EditProduct = (props) => {
 
   useEffect(() => {
     setField('description', value)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value])
 
   const findFormErrors = () => {

@@ -38,7 +38,6 @@ function ProductsListAdmin(props) {
         data = response.data.products;
       }
 
-      console.log(data);
 
       const slice = data.slice(offset, offset + perPage);
 

@@ -71,6 +71,7 @@ const ManageCategories = () => {
           console.log(err.message);
         });
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

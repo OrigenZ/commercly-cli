@@ -9,8 +9,6 @@ import "./ProductsList.css";
 const ProductsList = (props) => {
   const { handleDelete, results, isShop, reset } = props;
 
-  console.log(results);
-
   const [offset, setOffset] = useState(0);
   const [data, setData] = useState([]);
   const [perPage] = useState(8);

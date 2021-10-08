@@ -7,7 +7,7 @@ import {
   CardExpiryElement,
 } from '@stripe/react-stripe-js'
 
-import { Col, Button, Row, Form } from 'react-bootstrap'
+import { Button, Form } from 'react-bootstrap'
 import './Stripeform.css'
 
 import useResponsiveFontSize from '../../../common/customHooks/useResponsiveFontSize'
