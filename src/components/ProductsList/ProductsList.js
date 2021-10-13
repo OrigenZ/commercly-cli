@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import ProductCard from "../ProductCard/ProductCard";
+import { Col } from "react-bootstrap";
 
 import ReactPaginate from "react-paginate";
 import axiosInstance from "../../common/http";
@@ -59,6 +60,11 @@ const ProductsList = (props) => {
         setPageCount(Math.ceil(results.length / perPage));
       }
 
+      if(!reset && results.length === 0){
+        postData =  <Col xs={12} className="text-center">No matching products found</Col> 
+      }
+
+
       setData(postData);
     } catch (err) {
       console.log(err.message);
@@ -73,9 +79,6 @@ const ProductsList = (props) => {
   return (
     <>
       <div className="row">
-        {!reset && results.length === 0 && (
-          <p>No matching products found</p> //TODO: Message
-        )}
       {data}
       </div>
       <div className="shop-pagination">
