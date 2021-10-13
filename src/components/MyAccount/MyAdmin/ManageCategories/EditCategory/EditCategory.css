@@ -10,7 +10,7 @@
 #edit-category select.form-select,
 #edit-category select.form-control ,
 #edit-category textarea.form-control,
-#edit-category button.btn.btn-success {
+#edit-category button.btn.btn-outline-success {
     border-radius: 0px;
 }
 
@@ -18,8 +18,7 @@
     min-height: 20vh;
 }
 
-#edit-category button.btn.btn-success {
+#edit-category button.btn.btn-outline-success {
     margin-top: 1rem;
-    width: 100%;
-    font-size: 1.2rem;
+
 }

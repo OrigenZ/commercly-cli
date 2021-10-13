@@ -6,11 +6,11 @@
 #edit-product select.form-select,
 #edit-product select.form-control,
 #edit-product textarea.form-control,
-#edit-product button.btn.btn-success {
+#edit-product button.btn.btn-outline-success {
   border-radius: 0px;
 }
 
-#edit-product button.btn.btn-success {
+#edit-product button.btn.btn-outline-success {
   margin-top: 1rem;
   width: 30%;
 }
