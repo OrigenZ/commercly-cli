@@ -10,14 +10,12 @@
 #create-product select.form-select,
 #create-product select.form-control,
 #create-product textarea.form-control,
-#create-product button.btn.btn-success {
+#create-product button.btn.btn-outline-success {
   border-radius: 0px;
 }
 
-#create-product button.btn.btn-success {
+#create-product button.btn.btn-outline-success {
   margin-top: 1rem;
-  width: 30%;
-  font-size: 1.2rem;
 }
 
 #create-product #text-editor .container{

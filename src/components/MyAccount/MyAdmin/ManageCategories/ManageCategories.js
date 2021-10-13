@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "react-bootstrap";
 import axiosInstance from "../../../../common/http";
 
 import Swal from "sweetalert2/src/sweetalert2";
@@ -71,7 +70,7 @@ const ManageCategories = () => {
           console.log(err.message);
         });
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -89,17 +88,6 @@ const ManageCategories = () => {
       <div className="search-add">
         <div className="search">
           <SearchBar setCurrentSearch={setCurrentSearch} setReset={setReset} />
-          <Button
-            variant="outline-secondary"
-            className="reset"
-            onClick={() => {
-              setReset(true);
-              setResults([]);
-              setCurrentSearch("");
-            }}
-          >
-            Reset Search
-          </Button>
         </div>
         <div className="add">
           <AddCategoryButton />

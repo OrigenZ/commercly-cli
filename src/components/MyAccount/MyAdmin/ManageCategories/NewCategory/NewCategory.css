@@ -10,7 +10,7 @@
 #create-category select.form-select,
 #create-category select.form-control ,
 #create-category textarea.form-control,
-#create-category button.btn.btn-success {
+#create-category button.btn.btn-outline-success {
     border-radius: 0px;
 }
 
@@ -18,8 +18,7 @@
     min-height: 20vh;
 }
 
-#create-category button.btn.btn-success {
+#create-category button.btn.btn-outline-success {
     margin-top: 1rem;
-    width: 100%;
-    font-size: 1.2rem;
+
 }

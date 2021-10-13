@@ -21,3 +21,7 @@
     flex-direction: row;
     justify-content: center;
 }
+
+#subnav .button-navMyAdmin{
+  width: 100rem;
+}
