@@ -16,20 +16,21 @@ const SearchBar = (props) => {
 
   return (
     <Form className="search-container d-inline-block top-bar">
-      <Form.Group as={Row} className="p-0 m-0">
-        <Col xs={10} sm={10} lg={10} className="p-0">
+      <Form.Group  className="p-0 m-0">
+        <Col className="p-0" xs={12} lg={12} >
           <Form.Control
             placeholder="Search"
+            type='search'
             onChange={(e) => handleSearch(e)}
             name="query"
           />
         </Col>
-        <Col xs={2} sm={2} lg={2} className="search-icon">
+        {/* <Col xs={2} sm={2} lg={2} className="search-icon">
           <Button variant="light transparent" type="submit">
             <i className="fa fa-search text-muted"></i>
             <FontAwesomeIcon icon={faSearch} className="text-muted" />
           </Button>
-        </Col>
+        </Col> */}
       </Form.Group>
     </Form>
   );
