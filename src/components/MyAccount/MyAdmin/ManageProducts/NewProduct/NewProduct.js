@@ -275,7 +275,7 @@ const NewProduct = () => {
               </Form.Group>
             </Row>
 
-            <Button variant="success" type="submit">
+            <Button variant="outline-success" type="submit">
               Submit changes
             </Button>
           </Form>

@@ -22,7 +22,6 @@ function ProductsListAdmin(props) {
     setOffset(Math.ceil(selectedPage * perPage));
   };
   const getData = async () => {
-    console.log("ProductsListAdmin useEffect");
     try {
       const response = await axiosInstance.get(`/api/products`, {
         headers: { Authorization: `Bearer ${storedToken}` },
@@ -126,6 +125,7 @@ function ProductsListAdmin(props) {
         {!reset && results && results.length === 0 && (
           <p>No matching products found</p>
         )}
+        {/* TODO: put as setData*/} 
 
         {data}
       </div>

@@ -4,7 +4,6 @@
 
 input[type="search"] {
   border: none;
-  font-size: 1.2rem;
   border-radius: 0rem;
   margin-bottom: 0rem;
 }
@@ -21,7 +20,7 @@ input[type="search"] {
   display: flex;
   flex-direction: row;
   align-items: flex-end;
-
+  padding-left: 0px;
 }
 
 .search-btn:focus,
