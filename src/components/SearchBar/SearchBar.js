@@ -1,32 +1,26 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import { useState } from 'react'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
-import './SearchBar.css'
-import { Form, Button, Row, Col } from 'react-bootstrap'
+import "./SearchBar.css";
+import { Form, Button, Row, Col } from "react-bootstrap";
 
 const SearchBar = (props) => {
-  const [query, setQuery] = useState('')
+  const { setCurrentSearch, setReset } = props;
 
-  const { setCurrentSearch, setReset } = props
+  const handleSearch = (e) => {
+    if (e.target.value) setReset(false);
+    else setReset(true);
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    setReset(false)
-    if (query !== null) setCurrentSearch(query)
-  }
+    setCurrentSearch(e.target.value);
+  };
 
   return (
-    <Form
-      onSubmit={handleSubmit}
-      className="search-container d-inline-block top-bar"
-    >
+    <Form className="search-container d-inline-block top-bar">
       <Form.Group as={Row} className="p-0 m-0">
         <Col xs={10} sm={10} lg={10} className="p-0">
           <Form.Control
-            type="search"
             placeholder="Search"
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(e) => handleSearch(e)}
             name="query"
           />
         </Col>
@@ -41,5 +35,4 @@ const SearchBar = (props) => {
   );
 };
 
-
-export default SearchBar
+export default SearchBar;
