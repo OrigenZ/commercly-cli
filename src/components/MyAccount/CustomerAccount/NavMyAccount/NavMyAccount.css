@@ -28,3 +28,14 @@
     flex-direction: row;
     justify-content: center;
 }
+
+#subnav .subnav.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#subnav .button-navMyAccount {
+  padding: 0 3rem;
+}
