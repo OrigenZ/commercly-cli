@@ -12,8 +12,8 @@ import "./ManageCategories.css";
 const ManageCategories = () => {
   const [categories, setCategories] = useState([]);
   const [currentSearch, setCurrentSearch] = useState("");
-  const [results, setResults] = useState([]);
-  const [reset, setReset] = useState(true);
+  const [results, setResults] = useState(null);
+  const [reset, setReset] = useState(false);
 
   const storedToken = localStorage.getItem("authToken");
 
@@ -74,11 +74,13 @@ const ManageCategories = () => {
   }, []);
 
   useEffect(() => {
-    const categoriesFound = categories.filter((category) => {
-      const regex = new RegExp(currentSearch, "i");
-      return category.name.match(regex);
-    });
-    setResults(categoriesFound);
+    if (currentSearch) {
+      const categoriesFound = categories.filter((category) => {
+        const regex = new RegExp(currentSearch, "i");
+        return category.name.match(regex);
+      });
+      setResults(categoriesFound);
+    }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentSearch]);
@@ -100,6 +102,7 @@ const ManageCategories = () => {
         categories={categories}
         setCategories={setCategories}
         reset={reset}
+        setReset={setReset}
       />
     </section>
   );
