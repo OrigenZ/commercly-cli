@@ -22,6 +22,13 @@
     justify-content: center;
 }
 
-#subnav .button-navMyAdmin{
-  width: 100rem;
+#subnav .subnav.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#subnav .button-navMyAdmin {
+  padding: 0 3rem;
 }
