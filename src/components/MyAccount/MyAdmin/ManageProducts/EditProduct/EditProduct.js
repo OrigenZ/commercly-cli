@@ -2,33 +2,19 @@ import React, { useState, useEffect } from 'react'
 import { Form, Row, Col, Button } from 'react-bootstrap'
 import axiosInstance from '../../../../../common/http/index'
 import Swal from 'sweetalert2/src/sweetalert2'
-// import TextEditor from '../TextEditor/TextEditor'
-import ReactMde from 'react-mde'
-
-import * as Showdown from 'showdown'
-import 'react-mde/lib/styles/css/react-mde-all.css'
-
+import ReactQuill from 'react-quill'
+import 'react-quill/dist/quill.snow.css'
 import './EditProduct.css'
-
-const converter = new Showdown.Converter({
-  tables: true,
-  simplifiedAutoLink: true,
-  strikethrough: true,
-  tasklists: true,
-})
 
 const EditProduct = (props) => {
   const [form, setForm] = useState({})
   const [errors, setErrors] = useState({})
   const [categories, setCategories] = useState([])
-  const [selectedTab, setSelectedTab] = React.useState('write')
-  const [value, setValue] = React.useState('')
 
   const { id } = props.match.params
   const storedToken = localStorage.getItem('authToken')
 
   const setField = (field, value) => {
-
     setForm({
       ...form,
       [field]: value,
@@ -40,11 +26,6 @@ const EditProduct = (props) => {
         [field]: null,
       })
   }
-
-  useEffect(() => {
-    setField('description', value)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [value])
 
   const findFormErrors = () => {
     const { sku, quantity, name, price, brand, tax, category } = form
@@ -95,7 +76,6 @@ const EditProduct = (props) => {
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors)
     } else {
-      console.log('description', form.description)
       const body = { ...form }
 
       axiosInstance
@@ -103,7 +83,7 @@ const EditProduct = (props) => {
           headers: { Authorization: `Bearer ${storedToken}` },
         })
         .then(() => {
-          e.target.reset()
+          //  e.target.reset()
           Swal.fire({
             icon: 'success',
             text: 'Product edited successfully',
@@ -121,9 +101,9 @@ const EditProduct = (props) => {
     }
   }
 
-  useEffect(() => {
+  const getData = async () => {
     try {
-      axiosInstance
+      await axiosInstance
         .get(`/api/products/${id}`, {
           headers: { Authorization: `Bearer ${storedToken}` },
         })
@@ -142,7 +122,7 @@ const EditProduct = (props) => {
           })
         })
 
-      axiosInstance
+      await axiosInstance
         .get('/api/categories', {
           headers: { Authorization: `Bearer ${storedToken}` },
         })
@@ -156,6 +136,10 @@ const EditProduct = (props) => {
         text: 'Something went wrong!',
       })
     }
+  }
+
+  useEffect(() => {
+    getData()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -260,20 +244,47 @@ const EditProduct = (props) => {
             <Row className="mb-3" id="text-editor">
               <Form.Group as={Col}>
                 <Form.Label>Description</Form.Label>
-                <ReactMde
-                  value={form.description || ''}
-                  onChange={setValue}
-                  selectedTab={selectedTab}
-                  onTabChange={setSelectedTab}
-                  generateMarkdownPreview={(markdown) =>
-                    Promise.resolve(converter.makeHtml(markdown))
-                  }
-                  childProps={{
-                    writeButton: {
-                      tabIndex: -1,
-                    },
+
+                <ReactQuill
+                  theme={'snow'}
+                  value={form.description}
+                  onChange={(innerHTML) => {
+                    if (form.description) setField('description', innerHTML)
                   }}
+                  modules={{
+                    toolbar: [
+                      [{ header: [1, 2, 3, 4, 5, false] }],
+                      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+                      [{ color: [] }], // dropdown with defaults from theme
+                      [
+                        { list: 'ordered' },
+                        { list: 'bullet' },
+                        { indent: '-1' },
+                        { indent: '+1' },
+                        { align: [] },
+                      ],
+
+                      ['link'],
+                      ['clean'],
+                    ],
+                  }}
+                  formats={[
+                    'header',
+                    'bold',
+                    'italic',
+                    'underline',
+                    'strike',
+                    'blockquote',
+                    'list',
+                    'bullet',
+                    'indent',
+                    'link',
+                    'color',
+                    'background',
+                    'align',
+                  ]}
                 />
+
                 <Form.Control.Feedback type="invalid">
                   {errors.description}
                 </Form.Control.Feedback>
