@@ -18,7 +18,15 @@
   margin-top: 1rem;
 }
 
-#create-product #text-editor .container{
-  padding-right: 0 !important;
-  padding-left: 0!important;
+#create-product #text-editor .ql-editor {
+  min-height: 15rem;
 }
+
+#create-product span svg {
+  vertical-align: super;
+}
+
+#create-product .ql-editor ul{
+  padding-left: 0;
+}
+

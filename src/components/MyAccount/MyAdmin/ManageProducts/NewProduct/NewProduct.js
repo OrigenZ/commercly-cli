@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { Form, Row, Col, Button } from 'react-bootstrap'
 import axiosInstance from '../../../../../common/http'
 import Swal from 'sweetalert2/src/sweetalert2'
-import TextEditor from '../TextEditor/TextEditor'
+import ReactQuill from 'react-quill'
 
+import 'react-quill/dist/quill.snow.css'
 import './NewProduct.css'
 
 const NewProduct = () => {
@@ -223,15 +224,47 @@ const NewProduct = () => {
               </Form.Group>
             </Row>
 
-            <Row className="mb-3" id='text-editor'>
+            <Row className="mb-3" id="text-editor">
               <Form.Group as={Col}>
                 <Form.Label>Description</Form.Label>
 
-                <TextEditor
-                  as="textarea"
-                  type="text"
-                  onChange={(e) => setField('description', e.target.value)}
+                <ReactQuill
+                  theme={'snow'}
+                  defaultValue={''}
+                  onChange={(innerHTML) => setField('description', innerHTML)}
                   isInvalid={!!errors.description}
+                  modules={{
+                    toolbar: [
+                      [{ header: [1, 2, 3, 4, 5, false] }],
+                      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+                      [{ color: [] }], // dropdown with defaults from theme
+                      [
+                        { list: 'ordered' },
+                        { list: 'bullet' },
+                        { indent: '-1' },
+                        { indent: '+1' },
+                        { align: [] },
+                      ],
+
+                      ['link'],
+                      ['clean'],
+                    ],
+                  }}
+                  formats={[
+                    'header',
+                    'bold',
+                    'italic',
+                    'underline',
+                    'strike',
+                    'blockquote',
+                    'list',
+                    'bullet',
+                    'indent',
+                    'link',
+                    'color',
+                    'background',
+                    'align',
+                  ]}
                 />
 
                 <Form.Control.Feedback type="invalid">
@@ -245,7 +278,6 @@ const NewProduct = () => {
                 <Form.Label>Category</Form.Label>
                 <Form.Control
                   as="select"
-                  type="text"
                   onChange={(e) => setField('category', e.target.value)}
                   isInvalid={!!errors.category}
                 >

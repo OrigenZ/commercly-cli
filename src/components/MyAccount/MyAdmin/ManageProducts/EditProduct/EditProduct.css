@@ -18,7 +18,19 @@
 #edit-product .form-label {
   color: #6d757d;
 }
-#edit-product #text-editor .container {
-  padding-right: 0 !important;
-  padding-left: 0 !important;
+
+#edit-product #text-editor .ql-editor {
+  min-height: 15rem;
 }
+
+#edit-product span svg {
+  vertical-align: super;
+}
+
+#edit-product .ql-editor ul{
+  padding-left: 0;
+}
+
+
+
+

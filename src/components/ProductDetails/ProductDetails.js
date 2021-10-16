@@ -1,14 +1,10 @@
-import React from 'react'
-import { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../common/context/Auth.context'
-import Swal from 'sweetalert2/src/sweetalert2'
 import { CartContext } from '../../common/context/Cart.context'
 import axiosInstance from '../../common/http/index'
-import ReactMde from 'react-mde'
-import Showdown from 'showdown'
-
+import Swal from 'sweetalert2/src/sweetalert2'
 import {
   Col,
   Container,
@@ -20,6 +16,8 @@ import {
 } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+import ReactQuill from 'react-quill'
+import 'react-quill/dist/quill.bubble.css'
 
 import defaultImage from '../../images/img-default.jpg'
 import './ProductDetails.css'
@@ -31,41 +29,6 @@ const ProductDetails = () => {
   const { cart, setCart, setCount } = useContext(CartContext)
 
   const { id } = useParams()
-
-  const converter = new Showdown.Converter({
-    tables: true,
-    simplifiedAutoLink: true,
-    strikethrough: true,
-    tasklists: true,
-    omitExtraWLInCodeBlocks: true,
-    noHeaderId: true,
-    prefixHeaderId: true,
-    rawPrefixHeaderId: true,
-    ghCompatibleHeaderId: true,
-    rawHeaderId: true,
-    headerLevelStart: true,
-    parseImgDimensions: true,
-    excludeTrailingPunctuationFromURLs: true,
-    literalMidWordUnderscores: true,
-    literalMidWordAsterisks: true,
-    tablesHeaderId: true,
-    ghCodeBlocks: true,
-    smoothLivePreview: true,
-    smartIndentationFix: true,
-    disableForced4SpacesIndentedSublists: true,
-    simpleLineBreaks: true,
-    requireSpaceBeforeHeadingText: true,
-    ghMentions: true,
-    encodeEmails: true,
-    openLinksInNewWindow: true,
-    backslashEscapesHTMLTags: true,
-    emoji: true,
-    underline: true,
-    completeHTMLDocument: true,
-    metadata: true,
-    splitAdjacentBlockquotes: true,
-  })
-
 
   const storedToken = localStorage.getItem('authToken')
 
@@ -123,12 +86,11 @@ const ProductDetails = () => {
             <h3 className="heading">{product.name}</h3>
             <p className="text-muted">{product.brand} </p>
 
-            <ReactMde
-              value={product.description}
-              selectedTab={'preview'}
-              generateMarkdownPreview={(markdown) =>
-                Promise.resolve(converter.makeHtml(markdown))
-              }
+            <ReactQuill
+              className="product-description"
+              value={product.description || ''}
+              readOnly={true}
+              theme="bubble"
             />
           </div>
           <div>

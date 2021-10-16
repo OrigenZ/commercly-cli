@@ -67,7 +67,7 @@ const ManageProducts = () => {
     if (currentSearch) {
  
       const productsFound = products.filter((product) => {
-        console.log(typeof currentSearch , currentSearch)
+    
         const regex = new RegExp(currentSearch, "i");
         const nameFound = product.name.match(regex);
         const brandFound = product.brand.match(regex);
