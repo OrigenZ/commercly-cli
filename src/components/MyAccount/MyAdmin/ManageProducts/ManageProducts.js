@@ -56,7 +56,6 @@ const ManageProducts = () => {
 
   useEffect(() => {
     if (currentCategory) {
-
       const filteredByCategory = products.filter((product) => {
         return product.category._id === currentCategory;
       });
@@ -65,7 +64,6 @@ const ManageProducts = () => {
     }
 
     if (currentSearch) {
- 
       const productsFound = products.filter((product) => {
     
         const regex = new RegExp(currentSearch, "i");
