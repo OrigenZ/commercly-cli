@@ -68,7 +68,7 @@ const UserCard = (props) => {
             </Col>
             <Col xs={12} sm={4} lg={1}>
               <Form className="text-center price">
-                <Form.Group>
+                <Form.Group className="before">
                   <Form.Check
                     type="checkbox"
                     defaultChecked={userData.isAdmin}
@@ -85,8 +85,8 @@ const UserCard = (props) => {
             </Col>
 
             <Col xs={12} sm={12} lg={3}>
-              <Row>
-                <Col xs={12} sm={12} lg={6}>
+              <Row className="btns">
+                <Col xs={6} sm={6} lg={6}>
                   <reactRouterDom.Link
                     to={`/admin/user/edit/${userData._id}`} //TODO  pasar a App.js
                     className="btn btn-outline-secondary edit-btn w-100 mb-2"
@@ -94,7 +94,7 @@ const UserCard = (props) => {
                     Details
                   </reactRouterDom.Link>
                 </Col>{" "}
-                <Col xs={12} sm={12} lg={6}>
+                <Col xs={6} sm={6} lg={6}>
                   <Button
                     variant="outline-danger"
                     onClick={() =>

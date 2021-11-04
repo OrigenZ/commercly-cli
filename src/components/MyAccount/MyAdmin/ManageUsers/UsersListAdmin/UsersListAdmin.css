@@ -1,21 +1,20 @@
-
-#users-list-admin{
-    margin: 3rem auto;
+#users-list-admin {
+  margin: 3rem auto;
 }
 
-#users-list-admin .users-list{
-    padding: 1.5em;
-    border: 0px;
-    border-bottom: 1px solid #dfe2e6;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+#users-list-admin .users-list {
+  padding: 1.5em;
+  border: 0px;
+  border-bottom: 1px solid #dfe2e6;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 a.btn.btn-outline-dark.col-12,
 .btn.btn-outline-danger.delete-btn.w-100,
 a.btn.btn-outline-secondary.edit-btn.w-100 {
-    border-radius: 0px;
+  border-radius: 0px;
 }
 
 #users-list-admin {
@@ -23,19 +22,41 @@ a.btn.btn-outline-secondary.edit-btn.w-100 {
   flex-direction: column;
   justify-content: space-between;
   padding: 0px;
-
 }
 
-
- #head-users-list {
-    background-color: #d02953;
-    padding: 0.8rem;
-    font-weight: 600;
-    color: #ffffff;
-    border-bottom: 2px solid #d02953;
+#head-users-list {
+  background-color: #d02953;
+  padding: 0.8rem;
+  font-weight: 600;
+  color: #ffffff;
+  border-bottom: 2px solid #d02953;
 }
 
 #users-list-admin .form-check-input:checked {
-    background-color: #d02953;
-    border-color: #d02953;
+  background-color: #d02953;
+  border-color: #d02953;
+}
+
+/* MEDIA QUERIES */
+
+@media (max-width: 600px) {
+  #users-list-admin {
+    padding-right: var(--bs-gutter-x, 0.75rem);
+    padding-left: var(--bs-gutter-x, 0.75rem);
+  }
+  #head-users-list {
+    margin: 0;
+  }
+  #head-users-list p {
+    text-align: left !important;
+  }
+
+  #users-list-admin .before div::before {
+    content: "Admin ";
+    color: #6d757d;
+    padding-right: 1rem;
+  }
+  .before {
+    text-align: left;
+  }
 }
