@@ -9,10 +9,10 @@ import './AboutUsPage.css'
 
 const AboutUsPage = () => {
   return (
-    <Container className="section">
+    <Container className="section" id="about-us">
       {/*  <div className='section container text-center'> */}
 
-      <Row xs={1} md={2} className="p-5 pt-0 pb-5">
+      <Row xs={1} md={2} className="cards-div p-5 pt-0 pb-5">
         <Col>
           <Card className="m-5">
             <Card.Img variant="top" src={Sherab} />

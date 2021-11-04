@@ -71,12 +71,25 @@
   font-size: 1.2rem;
 }
 
-#user-order-details .address{
-    margin: 1rem 0;
+#user-order-details .address {
+  margin: 1rem 0;
 }
 
 section#user-order-details {
-    border: 1px solid #dfe2e6;
-    padding: 2rem;
+  border: 1px solid #dfe2e6;
+  padding: 2rem;
 }
-/*  */
+
+/* MEDIA QUERIES */
+
+@media (max-width: 600px) {
+  #user-order-details .product-name,
+  #user-order-details .total {
+    font-weight: 600;
+    font-size: 1rem;
+  }
+  .h5,
+  h5 {
+    font-size: 1rem;
+  }
+}
