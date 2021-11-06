@@ -32,7 +32,19 @@
 }
 
 @media (max-width: 600px) {
-  #manage-orders .form-select{
+  #manage-orders {
+    margin: 3rem 0;
+    padding-right: var(--bs-gutter-x, 0.75rem);
+    padding-left: var(--bs-gutter-x, 0.75rem);
+  }
+  #head-orders-list {
+    margin: 0;
+  }
+  #manage-orders .orders-list {
+    padding: 1.5em 0;
+    margin: 0;
+  }
+  #manage-orders .form-select {
     width: 100%;
   }
 }

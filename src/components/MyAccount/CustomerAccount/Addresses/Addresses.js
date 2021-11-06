@@ -38,7 +38,7 @@ const Addresses = () => {
         </h4>
 
         <div className="col-12 d-flex flex-row flex-wrap justify-content-between">
-          <Card className="col-6 mr-1">
+          <Card className="col-lg-6 col-xs-12 mr-1">
             <Card.Header className="text-center">
               <Card.Title>Shipping Address:</Card.Title>
             </Card.Header>
@@ -80,7 +80,7 @@ const Addresses = () => {
             </Card.Body>
           </Card>
 
-          <Card className="col-6 ml-1">
+          <Card className="col-lg-6 col-xs-12 ml-1">
             <Card.Header>
               <Card.Title className="text-center">Billing Address:</Card.Title>
             </Card.Header>

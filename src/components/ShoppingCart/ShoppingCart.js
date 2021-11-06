@@ -36,7 +36,7 @@ const ShoppingCart = () => {
               key={`${line.product._id}${Math.random() * 1000}`}
               className="p-3 border-bottom popup-cart"
             >
-              <Col xs={2} md={1} lg={1} className="p-0">
+              <Col xs={1} md={1} lg={1} className="p-0">
                 <Button
                   className="quant"
                   variant="outline-dark"
@@ -54,13 +54,13 @@ const ShoppingCart = () => {
                   -{' '}
                 </Button>
               </Col>
-              <Col xs={2} md={1} lg={1} className="quantity">
+              <Col xs={1} md={1} lg={1} className="quantity">
                 <h4>{line.quantity}</h4>
               </Col>
               <Col xs={6} md={6} lg={6} className="product-cart p-0">
                 <h5>{line.product.name}</h5>
               </Col>
-              <Col xs={6} md={4} lg={4} className="total-line">
+              <Col xs={4} md={4} lg={4} className="total-line">
                 <h5>{line.totalLine}€</h5>
               </Col>
             </Row>

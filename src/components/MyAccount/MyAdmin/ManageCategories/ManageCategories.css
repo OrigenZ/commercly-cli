@@ -28,7 +28,14 @@
   margin-bottom: 0;
 }
 
+/* MEDIA QUERIES */
+
 @media (max-width: 600px) {
+  #manage-cat {
+    padding-right: var(--bs-gutter-x, 0.75rem);
+    padding-left: var(--bs-gutter-x, 0.75rem);
+  }
+
   #manage-cat .search,
   #manage-cat .search-add,
   #manage-cat .add {
@@ -36,5 +43,12 @@
     flex-direction: column;
     align-items: stretch;
     align-content: center;
+  }
+  #manage-cat .search-container {
+    margin-bottom: 1.5rem;
+  }
+
+  #cat-list-admin .categories-list {
+    padding: 1.5em 0;
   }
 }
