@@ -53,5 +53,23 @@
 
 #product-details .ql-editor ol li:not(.ql-direction-rtl),
 .ql-editor ul li:not(.ql-direction-rtl) {
-  padding-left: 0.7em!important;
+  padding-left: 0.7em !important;
+}
+
+/* MEDIA QUERIES */
+
+@media (max-width: 600px) {
+  #product-details {
+    padding: 0 2rem;
+  }
+
+  #product-details .heading {
+    font-size: 2em;
+    padding-top: 1.5rem;
+    font-weight: 600;
+    color: #6d757d;
+  }
+  #product-details .product-price {
+    margin-top: 1rem;
+  }
 }

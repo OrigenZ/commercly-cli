@@ -41,7 +41,6 @@ button.reset.btn.btn-outline-danger {
   border-radius: 0px;
 }
 
-
 .vertical-menu a {
   background-color: #eee;
   color: black;
@@ -62,26 +61,43 @@ button.reset.btn.btn-outline-danger {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  background: #f1f1f1;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #c2c2c2; 
+  background: #c2c2c2;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #c2c2c2; 
+  background: #c2c2c2;
 }
-
-
 
 .vertical-menu a:hover {
   background-color: #ccc;
 }
 
 .vertical-menu a.active {
-  background-color: #04AA6D;
+  background-color: #04aa6d;
   color: white;
+}
+
+/* MEDIA QUERIES */
+
+@media (max-width: 600px) {
+  
+  .vertical-menu {
+    width: auto;
+    height: 190px;
+    overflow-y: auto;
+  }
+  .filter-categories {
+    margin: 0;
+    padding: 0;
+  }
+  .filter-container {
+    padding-right: var(--bs-gutter-x, 0.75rem);
+    padding-left: var(--bs-gutter-x, 0.75rem);
+  }
 }

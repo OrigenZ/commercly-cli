@@ -1,15 +1,24 @@
-#card-users{
-    padding: 1.5em;
-    border: 0px;
-    border-bottom: 1px solid #dfe2e6;
+#card-users {
+  padding: 1.5em;
+  border: 0px;
+  border-bottom: 1px solid #dfe2e6;
 }
 /* #card-users:last-child{
     border-bottom: 0px solid #dfe2e6;
 } */
 
+#card-users .row {
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+}
 
-#card-users .row{
+@media (max-width: 600px) {
+  #card-users .btns{
+    display: flex;
     flex-direction: row;
-    align-content: center;
+    justify-content: space-around;
     align-items: center;
+    align-content: center;
+  }
 }

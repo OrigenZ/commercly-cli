@@ -4,7 +4,7 @@
 }
 
 #customer-addresses h4 {
-  padding: 1rem 0 5rem 0;
+  padding: 1rem 0 3rem 0;
 }
 
 #customer-addresses .card-body {
@@ -62,4 +62,18 @@
 .accordion-item:last-of-type .accordion-button.collapsed {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
+}
+
+/* MEDIA QUERIES */
+
+@media (max-width: 600px) {
+  #customer-addresses .card:first-child {
+    margin-bottom: 2rem;
+  }
+  #customer-addresses h4 {
+    padding: 1rem 0;
+  }
+  #customer-addresses .dashboard-wrapper {
+    padding: 2rem 1rem;
+  }
 }
