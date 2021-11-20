@@ -1,73 +1,79 @@
-import { useState, useContext } from 'react'
-import { Form, Button, Row, Col } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { useState, useContext } from "react";
+import { Form, Button, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-import { AuthContext } from '../../common/context/Auth.context'
-import axiosInstance from '../../common/http/index'
+import { AuthContext } from "../../common/context/Auth.context";
+import axiosInstance from "../../common/http/index";
 
-import Logo from '../../images/logo2.png'
-import './LoginPage.css'
+import Logo from "../../images/logo2.png";
+import "./LoginPage.css";
 
 const LoginPage = (props) => {
-  const [form, setForm] = useState({})
-  const [errors, setErrors] = useState({})
+  const [form, setForm] = useState({});
+  const [errors, setErrors] = useState({});
 
-  const { logInUser } = useContext(AuthContext)
+  const { logInUser } = useContext(AuthContext);
 
   const setField = (field, value) => {
     setForm({
       ...form,
       [field]: value,
-    })
+    });
     // Check and see if errors , and remove them from the error object:
     if (!!errors[field])
       setErrors({
         ...errors,
         [field]: null,
-      })
-  }
+      });
+  };
 
   const handleLoginSubmit = (e) => {
-    e.preventDefault()
-    const newErrors = findFormErrors()
+    e.preventDefault();
+    const newErrors = findFormErrors();
+
+    console.log("1");
 
     if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors)
+      setErrors(newErrors);
     } else {
-      const requestBody = { ...form }
+      console.log("2");
+
+      const requestBody = { ...form };
 
       axiosInstance
         .post(`/api/auth/login`, requestBody)
         .then((response) => {
-          const token = response.data.authToken
-          logInUser(token)
-          props.history.push('/') // TODO: redirect to account-details (comun en todos los perfiles)
+          const token = response.data.authToken;
+          logInUser(token);
+          props.history.push("/"); // TODO: redirect to account-details (comun en todos los perfiles)
         })
-        .catch((err) => {})
+        .catch((err) => {
+          setErrors({ unauthorized: "Credentials are not valid" });
+        });
     }
-  }
+  };
 
   const findFormErrors = () => {
-    const { email, password } = form
-    const newErrors = {}
+    const { email, password } = form;
+    const newErrors = {};
 
-    const emailRegex = new RegExp(/^\S+@\S+\.\S+$/)
-    const passwordRegex = new RegExp(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/)
+    const emailRegex = new RegExp(/^\S+@\S+\.\S+$/);
+    const passwordRegex = new RegExp(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/);
 
     // email errors
-    if (!email || email === '') newErrors.email = 'This field cannot be blank.'
+    if (!email || email === "") newErrors.email = "This field cannot be blank.";
     else if (!emailRegex.test(email))
-      newErrors.email = 'Please provide a valid email address.'
+      newErrors.email = "Please provide a valid email address.";
 
     // password errors
-    if (!password || password === '')
-      newErrors.password = 'This field cannot be blank.'
+    if (!password || password === "")
+      newErrors.password = "This field cannot be blank.";
     else if (!passwordRegex.test(password))
       newErrors.password =
-        'Password must be 6 characters long and have one number, one lowercase and one uppercase letter.'
+        "Password must be 6 characters long and have one number, one lowercase and one uppercase letter.";
 
-    return newErrors
-  }
+    return newErrors;
+  };
 
   return (
     <section
@@ -76,7 +82,7 @@ const LoginPage = (props) => {
     >
       <div className="login-wrapper">
         <div className="text-center logo">
-          <Link to={'/my-account'} className="logolink">
+          <Link to={"/my-account"} className="logolink">
             <img
               src={Logo}
               alt="logo"
@@ -98,7 +104,7 @@ const LoginPage = (props) => {
                 <Form.Label>Email</Form.Label>
                 <Form.Control
                   type="email"
-                  onChange={(e) => setField('email', e.target.value)}
+                  onChange={(e) => setField("email", e.target.value)}
                   isInvalid={!!errors.email}
                 />
                 <Form.Control.Feedback type="invalid">
@@ -111,7 +117,7 @@ const LoginPage = (props) => {
                 <Form.Label>Password</Form.Label>
                 <Form.Control
                   type="password"
-                  onChange={(e) => setField('password', e.target.value)}
+                  onChange={(e) => setField("password", e.target.value)}
                   isInvalid={!!errors.password}
                 />
                 <Form.Control.Feedback type="invalid">
@@ -131,6 +137,10 @@ const LoginPage = (props) => {
                 <a href="#!">Lost Password?</a>
               </div>
             </div>
+ 
+            <div>
+                {errors.unauthorized} {/* TODO: make it pretty like you */}
+            </div>
 
             <Button
               variant="outline-secondary"
@@ -142,11 +152,9 @@ const LoginPage = (props) => {
           </Form>
 
           <div className="text-center mb-5">
-            <p>
-              I'm a new customer and would like to register.
-            </p>
+            <p>I'm a new customer and would like to register.</p>
             <Link
-              to={'/signup'}
+              to={"/signup"}
               className="btn btn-outline-secondary py-2 px-4 mt-3"
               id="create-account"
             >
@@ -156,7 +164,7 @@ const LoginPage = (props) => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default LoginPage
+export default LoginPage;
