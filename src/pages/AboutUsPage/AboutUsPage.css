@@ -2,6 +2,13 @@
   border-radius: 0px;
 }
 
+.card-us {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+}
+
 /* MEDIA QUERIES */
 
 @media (max-width: 600px) {
@@ -9,7 +16,7 @@
     margin: 2rem 0 !important;
   }
 
-  #about-us .cards-div  {
+  #about-us .cards-div {
     padding: 2rem !important;
   }
 }
