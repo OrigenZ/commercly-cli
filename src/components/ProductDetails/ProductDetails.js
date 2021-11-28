@@ -76,7 +76,7 @@ const ProductDetails = () => {
   return (
     <Container id="product-details">
       <Row>
-        <Col xs={12} md={6} xl={4} className="col">
+        <Col xs={12} md={6} xl={5} className="col">
           <Image
             src={product.imageUrl || defaultImage}
             alt="Product Name"
@@ -91,10 +91,9 @@ const ProductDetails = () => {
             >
               {category}
             </button>
+            <p className="text-muted">{product.brand} </p>
             <h3 className="heading">{product.name}</h3>
             <p className="product-price">{product.totalPrice} €</p>
-
-            <p className="text-muted">{product.brand} </p>
             <ReactQuill
               className="product-description"
               value={product.description || ""}
@@ -102,16 +101,18 @@ const ProductDetails = () => {
               theme="bubble"
             />
           </div>
-          <p className="product-quantity">
-              {" "}
-              {product.quantity < 10 &&
-                `Only ${product.quantity} available`}{" "}
+          <div>
+            <p className="product-quantity">
               <span className="product-stock">
                 {" "}
                 {product.quantity >= 10 && `In stock`}{" "}
               </span>
+              <span className="product-limited-stock">
+                {" "}
+                {product.quantity < 10 &&
+                  `Only ${product.quantity} available`}{" "}
+              </span>
             </p>
-          <div>
             {user && !user.isAdmin && (
               <Form onSubmit={(e) => e.preventDefault()}>
                 <Button
@@ -127,19 +128,15 @@ const ProductDetails = () => {
               </Form>
             )}
             {!user && (
-              <>
-                <Alert variant="light">
-                  {/*  You must be */}
-                  <Link
-                    to={`/my-account`}
-                    className="btn btn-outline-danger must-logged"
-                  >
-                    {" "}
-                    Log in
-                  </Link>{" "}
-                  to purchase
-                </Alert>
-              </>
+              <p>
+                <Link
+                  to={`/my-account`}
+                  className="btn btn-outline-danger must-logged"
+                >
+                  Log in
+                </Link>
+                to shop
+              </p>
             )}
           </div>
         </Col>
