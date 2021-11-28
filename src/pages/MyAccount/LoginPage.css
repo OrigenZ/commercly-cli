@@ -11,7 +11,7 @@
 
 #login #formBasicCheckbox {
   border-radius: 0px !important;
-  margin-top: 0.5em;
+  margin-top: 0.55em;
 }
 
 #login .form-check-input:checked {
@@ -51,7 +51,7 @@
 }
 
 #login .lost-password,
-#login .remember {
+#login .show-password {
   font-size: 0.85rem !important;
 }
 
