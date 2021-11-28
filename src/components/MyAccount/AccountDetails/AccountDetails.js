@@ -47,18 +47,13 @@ const AccountDetails = () => {
       newErrors.email = "Please provide a valid email address.";
 
     // password errors
-    if (!password || password === "")
-      newErrors.password = "This field cannot be blank.";
-    else if (password !== rePassword)
-      newErrors.password = "Passwords do not match";
-    else if (!passwordRegex.test(password))
+    if (password !== rePassword) newErrors.password = "Passwords do not match";
+    else if (password && !passwordRegex.test(password))
       newErrors.password =
         "Password must be 6 characters long and have one number, one lowercase and one uppercase letter.";
 
     // rePassword errors
-    if (!rePassword || rePassword === "")
-      newErrors.rePassword = "This field cannot be blank.";
-    else if (password !== rePassword)
+    if (password !== rePassword)
       newErrors.rePassword = "Passwords do not match";
 
     return newErrors;
@@ -67,11 +62,10 @@ const AccountDetails = () => {
     e.preventDefault();
     const newErrors = findFormErrors();
 
-    console.log(newErrors);
-
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
     } else {
+      if (!form.password) delete form.password;
       const body = { ...form };
 
       axiosInstance

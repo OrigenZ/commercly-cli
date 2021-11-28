@@ -76,11 +76,11 @@ const ProductDetails = () => {
   return (
     <Container id="product-details">
       <Row>
-        <Col xs={12} md={6} xl={5} className="col">
+        <Col xs={12} md={6} xl={5} className="col image-container">
           <Image
             src={product.imageUrl || defaultImage}
             alt="Product Name"
-            className="w-100"
+            className="image-label"
           />
         </Col>
         <Col xs={12} md={6} xl={6} className="col display">
