@@ -8,6 +8,7 @@ span.text-center.price {
   color:#6d757d;
   font-weight: 600;
   margin-bottom: 0;
+  text-align: left!important;
 }
 
 .product-brand{
