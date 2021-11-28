@@ -17,6 +17,14 @@
   flex-direction: column;
   justify-content: space-around;
 }
+#product-details .image-container {
+  align-items: center;
+}
+
+#product-details .image-label {
+  max-height: 500px;
+  max-width: 100%;
+}
 
 #product-details .category {
   border-radius: 0px;
@@ -80,7 +88,6 @@
 #product-details .must-logged {
   border-radius: 0px;
   margin: 0 0.5rem 0 0;
-  color: red;
 }
 
 #product-details .ql-editor ol li:not(.ql-direction-rtl),
