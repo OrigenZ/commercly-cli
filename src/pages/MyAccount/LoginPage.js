@@ -127,9 +127,9 @@ const LoginPage = (props) => {
             </Row>
 
             <div className="d-flex justify-content-between">
-              <div className="remember">
+              <div className="show-password">
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                  <Form.Check type="checkbox" label="Remember me" />
+                  <Form.Check type="checkbox" label="Show password" />
                 </Form.Group>
               </div>
 
