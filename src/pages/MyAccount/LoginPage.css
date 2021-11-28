@@ -41,6 +41,11 @@
   color: #1596e0;
 }
 
+#login .credentials-error {
+  text-decoration: none;
+  color: #e01515;
+}
+
 #login form, #signup form {
   margin-bottom: 4rem;
 }

@@ -138,7 +138,7 @@ const LoginPage = (props) => {
               </div>
             </div>
  
-            <div>
+            <div className="credentials-error">
                 {errors.unauthorized} {/* TODO: make it pretty like you */}
             </div>
 
