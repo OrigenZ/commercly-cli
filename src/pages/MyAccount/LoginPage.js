@@ -21,7 +21,7 @@ const LoginPage = (props) => {
       [field]: value,
     })
     // Check and see if errors , and remove them from the error object:
-    if (!!errors[field])
+    if (errors[field])
       setErrors({
         ...errors,
         [field]: null,
@@ -33,32 +33,25 @@ const LoginPage = (props) => {
     inputElement.type = inputElement.type === 'password' ? 'text' : 'password'
   }
 
-  const handleLoginSubmit = (e) => {
+  const handleLoginSubmit = async (e) => {
     e.preventDefault()
     const newErrors = findFormErrors()
 
-    console.log('1')
-
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors)
-    } else {
-      console.log('2')
+      return
+    }
 
-      const requestBody = { ...form }
-
-      axiosInstance
-        .post(`/api/auth/login`, requestBody)
-        .then((response) => {
-          const token = response.data.authToken
-          logInUser(token)
-          props.history.push('/') // TODO: redirect to account-details (comun en todos los perfiles)
-        })
-        .catch((err) => {
-          setErrors({ unauthorized: 'Credentials are not valid' })
-        })
+    const requestBody = { ...form }
+    try {
+      const response = await axiosInstance.post(`/api/auth/login`, requestBody)
+      const token = response.data.authToken
+      logInUser(token)
+      props.history.push('/my-account/dashboard')
+    } catch (err) {
+      setErrors({ unauthorized: err.response.data })
     }
   }
-
   const findFormErrors = () => {
     const { email, password } = form
     const newErrors = {}
@@ -111,7 +104,7 @@ const LoginPage = (props) => {
                 <Form.Control
                   type="email"
                   onChange={(e) => setField('email', e.target.value)}
-                  isInvalid={!!errors.email}
+                  isInvalid={errors.email}
                 />
                 <Form.Control.Feedback type="invalid">
                   {errors.email}
@@ -125,7 +118,7 @@ const LoginPage = (props) => {
                   ref={passwordInput}
                   type="password"
                   onChange={(e) => setField('password', e.target.value)}
-                  isInvalid={!!errors.password}
+                  isInvalid={errors.password}
                 />
                 <Form.Control.Feedback type="invalid">
                   {errors.password}
