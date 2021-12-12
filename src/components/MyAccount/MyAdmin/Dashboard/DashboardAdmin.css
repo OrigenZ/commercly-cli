@@ -1,18 +1,18 @@
-#dashboard .dashboard-wrapper {
+#dashboard-admin .dashboard-wrapper {
   padding: 8rem 2rem;
   max-width: 62.5rem;
   margin: 0 auto;
 }
 
-#dashboard .dashboard-wrapper p {
+#dashboard-admin .dashboard-wrapper p {
   font-size: 1.2rem;
   margin-bottom: 2rem;
 }
 
-#dashboard .logout {
+#dashboard-admin .logout {
   color: #199ce2;
 }
-#dashboard .logout:hover {
+#dashboard-admin .logout:hover {
   cursor: pointer;
   color: #0a58ca;
 }
