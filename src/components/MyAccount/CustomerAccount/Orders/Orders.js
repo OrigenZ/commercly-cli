@@ -84,7 +84,6 @@ const Orders = () => {
       })
       .then((response) => {
         setOrders(response.data)
-        console.log('getOrders', response.data)
       })
       .catch((err) => console.log(err.message))
   // eslint-disable-next-line react-hooks/exhaustive-deps

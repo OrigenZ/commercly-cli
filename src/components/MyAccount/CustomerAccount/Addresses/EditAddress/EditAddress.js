@@ -110,7 +110,6 @@ const EditAddress = (props) => {
     } else {
       const body = { ...form };
 
-      console.log(user._id);
       axiosInstance
         .patch(`/api/users/${user._id}/address/${type}`, body, {
           headers: { Authorization: `Bearer ${storedToken}` },

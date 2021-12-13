@@ -17,26 +17,30 @@ const SignupPage = (props) => {
       [field]: value,
     })
     // Check and see if errors , and remove them from the error object:
-    if (!!errors[field])
+    if (errors[field])
       setErrors({
         ...errors,
         [field]: null,
       })
   }
 
-  const handleSignupSubmit = (e) => {
+  const handleSignupSubmit = async (e) => {
     e.preventDefault()
     const newErrors = findFormErrors()
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors)
-    } else {
-      const requestBody = { ...form }
-      axiosInstance
-        .post(`/api/auth/signup`, requestBody)
-        .then((_) => props.history.push('/login')) // TODO: mirar esto
-        .catch((err) => {})
+      return
     }
+
+    const requestBody = { ...form }
+    try {
+      await axiosInstance.post(`/api/auth/signup`, requestBody)
+      props.history.push('/login') // TODO: mirar esto, encriptar password?
+    } catch (err) {
+      setErrors({ unauthorized: err.response.data })
+    }
+
   }
 
   const findFormErrors = () => {
@@ -91,7 +95,7 @@ const SignupPage = (props) => {
                 <Form.Control
                   type="email"
                   onChange={(e) => setField('email', e.target.value)}
-                  isInvalid={!!errors.email}
+                  isInvalid={errors.email}
                 />
                 <Form.Control.Feedback type="invalid">
                   {errors.email}
@@ -104,13 +108,17 @@ const SignupPage = (props) => {
                 <Form.Control
                   type="password"
                   onChange={(e) => setField('password', e.target.value)}
-                  isInvalid={!!errors.password}
+                  isInvalid={errors.password}
                 />
                 <Form.Control.Feedback type="invalid">
                   {errors.password}
                 </Form.Control.Feedback>
               </Form.Group>
             </Row>
+
+            <div className="credentials-error">
+              {errors.unauthorized} {/* TODO: make it pretty like you */}
+            </div>
 
             <Button
               variant="outline-secondary"
