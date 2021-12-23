@@ -20,7 +20,7 @@ const EditAddress = (props) => {
       [field]: value,
     });
     // Check and see if errors , and remove them from the error object:
-    if (!!errors[field])
+    if (errors[field])
       setErrors({
         ...errors,
         [field]: null,

@@ -1,4 +1,4 @@
-import { Switch, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import "./App.css";
 
@@ -15,114 +15,85 @@ import CheckOutPage from "./pages/CheckOutPage/CheckOutPage";
 
 const App = () => {
   return (
-    <Switch>
-      <Route exact path="/" component={HomePage} />
-      <Route exact path="/shop" component={ShopPage} />
-      <Route exact path="/products/:id" component={ProductDetailPage} />
+    <Routes>
 
-      <Route exact path="/about-us" component={AboutUsPage} />
-      <AnonRoute exact path="/my-account" component={LoginPage} />
-      <PrivateRoute
-        exact
-        path="/my-account/customer"
-        component={MyAccountPage}
-      />
-      <PrivateRoute
-        exact
-        path="/my-account/customer/orders/:orderId"
-        component={MyAccountPage}
-      />
+      <Route path="/" element={<HomePage />} />
+      <Route path="/shop" element={<ShopPage />} />
+      <Route path="/products/:id" element={<ProductDetailPage />} />
+      <Route path="/about-us" element={<AboutUsPage />} />
 
-      <PrivateRoute
-        exact
-        path="/my-account/customer/edit-address/:type"
-        component={MyAccountPage}
-      />
-      <PrivateRoute
-        exact
-        path="/my-account/customer/add-address/:type"
-        component={MyAccountPage}
-      />
+      {/* Anon routes */}
+      <Route path="/my-account" element={<AnonRoute />}>
+        <Route path="" element={<LoginPage />} />
+      </Route>
+      <Route path="/signup" element={<AnonRoute />}>
+        <Route path="" element={<SignupPage />} />
+      </Route>
+      <Route path="/login" element={<AnonRoute />}>
+        <Route path="" element={<LoginPage />} />
+      </Route>
 
-      <PrivateRoute
-        exact
-        path="/my-account/customer/orders"
-        component={MyAccountPage}
-      />
-      <PrivateRoute
-        exact
-        path="/my-account/customer/address-list"
-        component={MyAccountPage}
-      />
-      <PrivateRoute
-        exact
-        path="/my-account/dashboard"
-        component={MyAccountPage}
-      />
-      <PrivateRoute
-        exact
-        path="/my-account/account-details"
-        component={MyAccountPage}
-      />
-      <PrivateRoute
-        exact
-        path="/my-account/checkout"
-        component={CheckOutPage}
-      />
-      <PrivateRoute
-        exact
-        path="/my-account/admin/products"
-        component={MyAccountPage}
-      />
-      <PrivateRoute
-        exact
-        path="/admin/product/edit/:id"
-        component={MyAccountPage}
-      />
-      <PrivateRoute
-        exact
-        path="/admin/product/create"
-        component={MyAccountPage}
-      />
-      <PrivateRoute
-        exact
-        path="/my-account/admin/categories"
-        component={MyAccountPage}
-      />
-      <PrivateRoute
-        exact
-        path="/admin/category/edit/:id"
-        component={MyAccountPage}
-      />
-      <PrivateRoute
-        exact
-        path="/admin/category/create"
-        component={MyAccountPage}
-      />
-      <PrivateRoute
-        exact
-        path="/my-account/admin/users"
-        component={MyAccountPage}
-      />
-      <PrivateRoute
-        exact
-        path="/admin/user/edit/:id"
-        component={MyAccountPage}
-      />
-      <PrivateRoute
-        exact
-        path="/my-account/admin/orders"
-        component={MyAccountPage}
-      />
-      <PrivateRoute
-        exact
-        path="/my-account/admin/orders/:orderId"
-        component={MyAccountPage}
-      />
+      {/* Common private routes */}
+      <Route path="/my-account/dashboard" element={<PrivateRoute />}>
+        <Route path="" element={<MyAccountPage />} />
+      </Route>
 
-      <AnonRoute exact path="/signup" component={SignupPage} />
-      <AnonRoute exact path="/login" component={LoginPage} />
-    </Switch>
+      {/* Private routes customer */}
+      <Route path="/my-account/customer/orders" element={<PrivateRoute />}>
+        <Route path="" element={<MyAccountPage />} />
+      </Route>
+      <Route path="/my-account/customer/orders/:orderId" element={<PrivateRoute />}>
+        <Route path="" element={<MyAccountPage />} />
+      </Route>
+      <Route path="/my-account/customer/edit-address/:type" element={<PrivateRoute />}>
+        <Route path="" element={<MyAccountPage />} />
+      </Route>
+      <Route path="/my-account/customer/add-address/:type" element={<PrivateRoute />}>
+        <Route path="" element={<MyAccountPage />} />
+      </Route>
+      <Route path="/my-account/customer/address-list" element={<PrivateRoute />}>
+        <Route path="" element={<MyAccountPage />} />
+      </Route>
+      <Route path="/my-account/account-details" element={<PrivateRoute />}>
+        <Route path="" element={<MyAccountPage />} />
+      </Route>
+      <Route path="/my-account/checkout" element={<PrivateRoute />}>
+        <Route path="" element={<CheckOutPage />} />
+      </Route>
+      
+      {/* Private routes admin */}
+      <Route path="/my-account/admin/products" element={<PrivateRoute />}>
+        <Route path="" element={<MyAccountPage />} />
+      </Route>
+      <Route path="/admin/product/edit/:id" element={<PrivateRoute />}>   {/* TODO: check naming consistency*/}
+        <Route path="" element={<MyAccountPage />} />
+      </Route>
+      <Route path="/admin/product/create" element={<PrivateRoute />}>  {/* TODO: check naming consistency*/}
+        <Route path="" element={<MyAccountPage />} />
+      </Route>
+      <Route path="/my-account/admin/categories" element={<PrivateRoute />}>
+        <Route path="" element={<MyAccountPage />} />
+      </Route>
+      <Route path="/admin/category/edit/:id" element={<PrivateRoute />}>  {/* TODO: check naming consistency*/}
+        <Route path="" element={<MyAccountPage />} />
+      </Route>
+      <Route path="/admin/category/create" element={<PrivateRoute />}>  {/* TODO: check naming consistency*/}
+        <Route path="" element={<MyAccountPage />} />
+      </Route>
+      <Route path="/my-account/admin/users" element={<PrivateRoute />}>
+        <Route path="" element={<MyAccountPage />} />
+      </Route>
+      <Route path="/admin/user/edit/:id" element={<PrivateRoute />}>  {/* TODO: check naming consistency*/}
+        <Route path="" element={<MyAccountPage />} />
+      </Route>
+      <Route path="/my-account/admin/orders" element={<PrivateRoute />}>
+        <Route path="" element={<MyAccountPage />} />
+      </Route>
+      <Route path="/my-account/admin/orders/:orderId" element={<PrivateRoute />}>
+        <Route path="" element={<MyAccountPage />} />
+      </Route>
+
+    </Routes>
   );
 };
 

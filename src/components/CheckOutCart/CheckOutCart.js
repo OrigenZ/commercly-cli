@@ -6,7 +6,7 @@ import axiosInstance from "../../common/http/index";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { AuthContext } from "../../common/context/Auth.context";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
@@ -22,7 +22,7 @@ const CheckOutCart = () => {
   const [errors, setErrors] = useState({});
   const [shippingFees, setShippingFees] = useState(4);
 
-  let history = useHistory();
+  let navigate = useNavigate();
 
   const stripePromise = loadStripe("pk_test_6pRNASCoBOKtIshFeQd4XMUh");
   const storedToken = localStorage.getItem("authToken");
@@ -171,7 +171,7 @@ const CheckOutCart = () => {
           showConfirmButton: false,
         });
 
-        history.push("/my-account");
+        navigate("/my-account");
 
         return order;
       } catch (err) {
