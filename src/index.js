@@ -12,21 +12,19 @@ import Footer from "./components/Layout/Footer/Footer";
 import { CartProviderWrapper } from "./common/context/Cart.context";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Router>
-      <AuthProviderWrapper>
-        <CartProviderWrapper>
-          <div id="principal">
-            <div id="secondary">
-              <MyNavbar />
-              <App />
-            </div>
-            <Footer />
+  <Router>
+    <AuthProviderWrapper>
+      <CartProviderWrapper>
+        <div id="principal">
+          <div id="secondary">
+            <MyNavbar />
+            <App />
           </div>
-        </CartProviderWrapper>
-      </AuthProviderWrapper>
-    </Router>
-  </React.StrictMode>,
+          <Footer />
+        </div>
+      </CartProviderWrapper>
+    </AuthProviderWrapper>
+  </Router>,
   document.getElementById("root")
 );
 

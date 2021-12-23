@@ -1,10 +1,10 @@
-import React from "react";
 import { Form, Button, Col, Row } from "react-bootstrap";
 import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../../../../common/context/Auth.context";
 import axiosInstance from "../../../../../common/http";
 import Swal from "sweetalert2/src/sweetalert2";
 import "./EditAddress.css";
+import { useNavigate } from "react-router-dom";
 
 const EditAddress = (props) => {
   const { user } = useContext(AuthContext);
@@ -12,6 +12,7 @@ const EditAddress = (props) => {
   const [errors, setErrors] = useState({});
 
   const storedToken = localStorage.getItem("authToken");
+  const navigate = useNavigate()
   const type = props.match.params.type;
 
   const setField = (field, value) => {
@@ -120,7 +121,7 @@ const EditAddress = (props) => {
             text: "Address edited successfully",
             showConfirmButton: false,
           });
-          props.history.push("/my-account/customer/address-list");
+          navigate("/my-account/customer/address-list");
         })
         .catch((err) =>
           Swal.fire({

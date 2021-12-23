@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { AuthContext } from "../../common/context/Auth.context";
 import PrivateRoute from "../../components/PrivateRoute/PrivateRoute";
 import NavMyAccount from "../../components/MyAccount/CustomerAccount/NavMyAccount/NavMyAccount";
@@ -30,69 +30,73 @@ const MyAccountPage = () => {
       <section id="user-dashboard">
         <NavMyAccount />
         <div className="container">
-          <Route path="/my-account/dashboard" element={<PrivateRoute />}>
-            <Route path="" element={<Dashboard />} />
-          </Route>
-          <Route path="/my-account/customer/orders" element={<PrivateRoute />}>
-            <Route path="" element={<Orders />} />
-          </Route>
-          <Route path="/my-account/customer/orders/:orderId" element={<PrivateRoute />}>
-            <Route path="" element={<OrderDetails />} />
-          </Route>
-          <Route path="/my-account/customer/address-list" element={<PrivateRoute />}>
-            <Route path="" element={<Addresses />} />
-          </Route>
-          <Route path="/my-account/customer/edit-address/:type" element={<PrivateRoute />}>
-            <Route path="" element={<EditAddress />} />
-          </Route>
-          <Route path="/my-account/customer/add-address/:type" element={<PrivateRoute />}>
-            <Route path="" element={<NewAddress />} />
-          </Route>
-          <Route path="/my-account/account-details" element={<PrivateRoute />}>
-            <Route path="" element={<AccountDetails />} />
-          </Route>
+          <Routes>
+            <Route path="/my-account/dashboard" element={<PrivateRoute />}>
+              <Route path="" element={<Dashboard />} />
+            </Route>
+            <Route path="/my-account/customer/orders" element={<PrivateRoute />}>
+              <Route path="" element={<Orders />} />
+            </Route>
+            <Route path="/my-account/customer/orders/:orderId" element={<PrivateRoute />}>
+              <Route path="" element={<OrderDetails />} />
+            </Route>
+            <Route path="/my-account/customer/address-list" element={<PrivateRoute />}>
+              <Route path="" element={<Addresses />} />
+            </Route>
+            <Route path="/my-account/customer/edit-address/:type" element={<PrivateRoute />}>
+              <Route path="" element={<EditAddress />} />
+            </Route>
+            <Route path="/my-account/customer/add-address/:type" element={<PrivateRoute />}>
+              <Route path="" element={<NewAddress />} />
+            </Route>
+            <Route path="/my-account/account-details" element={<PrivateRoute />}>
+              <Route path="" element={<AccountDetails />} />
+            </Route>
+          </Routes>
         </div>
       </section>
     ) : (
       <section id="user-dashboard">
         <NavMyAdmin />
         <div className="container">
-          <Route path="/my-account/dashboard" element={<PrivateRoute />}>
-            <Route path="" element={<DashboardAdmin />} />
-          </Route>
-          <Route path="/admin/product/edit/:id" element={<PrivateRoute />}>   {/* TODO: check naming consistency*/}
-            <Route path="" element={<EditProduct />} />
-          </Route>
-          <Route path="/my-account/admin/products" element={<PrivateRoute />}>
-            <Route path="" element={<ManageProducts />} />
-          </Route>
-          <Route path="/admin/product/create" element={<PrivateRoute />}>  {/* TODO: check naming consistency*/}
-            <Route path="" element={<NewProduct />} />
-          </Route>
-          <Route path="/my-account/admin/categories" element={<PrivateRoute />}>
-            <Route path="" element={<ManageCategories />} />
-          </Route>
-          <Route path="/admin/category/edit/:id" element={<PrivateRoute />}>  {/* TODO: check naming consistency*/}
-            <Route path="" element={<EditCategory />} />
-          </Route>
-          <Route path="/admin/category/create" element={<PrivateRoute />}>  {/* TODO: check naming consistency*/}
-            <Route path="" element={<NewCategory />} />
-          </Route>
-          <Route path="/my-account/admin/users" element={<PrivateRoute />}>
-            <Route path="" element={<ManageUsers />} />
-          </Route>
-          <Route path="/admin/user/edit/:id" element={<PrivateRoute />}>  {/* TODO: check naming consistency*/}
-            <Route path="" element={<UserDetails />} />
-          </Route>
-          <Route path="/my-account/admin/orders" element={<PrivateRoute />}>
-            <Route path="" element={<ManageOrders />} />
-          </Route>
-          <Route path="/my-account/admin/orders/:orderId" element={<PrivateRoute />}>
-            <Route path="" element={<ManageOrderDetail />} />
-          </Route>
-          <Route path="/my-account/account-details" element={<PrivateRoute />}>
-            <Route path="" element={<AccountDetails />} />
-          </Route>
+          <Routes>
+            <Route path="/my-account/dashboard" element={<PrivateRoute />}>
+              <Route path="" element={<DashboardAdmin />} />
+            </Route>
+            <Route path="/admin/product/edit/:id" element={<PrivateRoute />}>   {/* TODO: check naming consistency*/}
+              <Route path="" element={<EditProduct />} />
+            </Route>
+            <Route path="/my-account/admin/products" element={<PrivateRoute />}>
+              <Route path="" element={<ManageProducts />} />
+            </Route>
+            <Route path="/admin/product/create" element={<PrivateRoute />}>  {/* TODO: check naming consistency*/}
+              <Route path="" element={<NewProduct />} />
+            </Route>
+            <Route path="/my-account/admin/categories" element={<PrivateRoute />}>
+              <Route path="" element={<ManageCategories />} />
+            </Route>
+            <Route path="/admin/category/edit/:id" element={<PrivateRoute />}>  {/* TODO: check naming consistency*/}
+              <Route path="" element={<EditCategory />} />
+            </Route>
+            <Route path="/admin/category/create" element={<PrivateRoute />}>  {/* TODO: check naming consistency*/}
+              <Route path="" element={<NewCategory />} />
+            </Route>
+            <Route path="/my-account/admin/users" element={<PrivateRoute />}>
+              <Route path="" element={<ManageUsers />} />
+            </Route>
+            <Route path="/admin/user/edit/:id" element={<PrivateRoute />}>  {/* TODO: check naming consistency*/}
+              <Route path="" element={<UserDetails />} />
+            </Route>
+            <Route path="/my-account/admin/orders" element={<PrivateRoute />}>
+              <Route path="" element={<ManageOrders />} />
+            </Route>
+            <Route path="/my-account/admin/orders/:orderId" element={<PrivateRoute />}>
+              <Route path="" element={<ManageOrderDetail />} />
+            </Route>
+            <Route path="/my-account/account-details" element={<PrivateRoute />}>
+              <Route path="" element={<AccountDetails />} />
+            </Route>
+          </Routes>
         </div>
       </section>
     );

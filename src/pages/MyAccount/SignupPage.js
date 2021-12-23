@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 
 import axiosInstance from '../../common/http/index'
@@ -7,9 +7,11 @@ import axiosInstance from '../../common/http/index'
 import Logo from '../../images/logo2.png'
 import './SignupPage.css'
 
-const SignupPage = (props) => {
+const SignupPage = () => {
   const [form, setForm] = useState({})
   const [errors, setErrors] = useState({})
+
+  const navigate = useNavigate()
 
   const setField = (field, value) => {
     setForm({
@@ -36,7 +38,7 @@ const SignupPage = (props) => {
     const requestBody = { ...form }
     try {
       await axiosInstance.post(`/api/auth/signup`, requestBody)
-      props.history.push('/login') // TODO: mirar esto, encriptar password?
+      navigate('/login') // TODO: mirar esto, encriptar password?
     } catch (err) {
       setErrors({ unauthorized: err.response.data })
     }

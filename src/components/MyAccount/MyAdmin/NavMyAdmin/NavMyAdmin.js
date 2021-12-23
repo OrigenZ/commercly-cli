@@ -10,8 +10,7 @@ const NavMyAdmin = () => {
     <div id="subnav" className="border-bottom customer-menu px-3 text-muted">
       <Container className="subnav">
         <NavLink
-          exact
-          activeClassName="active"
+          activeclassname="active"
           to="/my-account/dashboard"
           className="text-reset text-decoration-none text-uppercase button-navMyAdmin"
         >
@@ -19,8 +18,7 @@ const NavMyAdmin = () => {
         </NavLink>
 
         <NavLink
-          exact
-          activeClassName="active"
+          activeclassname="active"
           to="/my-account/admin/products"
           className="text-reset text-decoration-none text-uppercase button-navMyAdmin"
         >
@@ -28,8 +26,7 @@ const NavMyAdmin = () => {
         </NavLink>
 
         <NavLink
-          exact
-          activeClassName="active"
+          activeclassname="active"
           to="/my-account/admin/categories"
           className="text-reset text-decoration-none text-uppercase button-navMyAdmin"
         >
@@ -37,8 +34,7 @@ const NavMyAdmin = () => {
         </NavLink>
 
         <NavLink
-          exact
-          activeClassName="active"
+          activeclassname="active"
           to="/my-account/admin/users"
           className="text-reset text-decoration-none text-uppercase button-navMyAdmin"
         >
@@ -46,8 +42,7 @@ const NavMyAdmin = () => {
         </NavLink>
 
         <NavLink
-          exact
-          activeClassName="active"
+          activeclassname="active"
           to="/my-account/admin/orders"
           className="text-reset text-decoration-none text-uppercase button-navMyAdmin"
         >
@@ -55,8 +50,7 @@ const NavMyAdmin = () => {
         </NavLink>
 
         <NavLink
-          exact
-          activeClassName="active"
+          activeclassname="active"
           to="/my-account/account-details"
           className="text-reset text-decoration-none text-uppercase button-navMyAdmin"
         >
@@ -64,8 +58,7 @@ const NavMyAdmin = () => {
         </NavLink>
 
         <NavLink
-          exact
-          activeClassName="active"
+          activeclassname="active"
           onClick={logOutUser}
           to="/"
           className="text-reset text-decoration-none text-uppercase button-navMyAdmin"

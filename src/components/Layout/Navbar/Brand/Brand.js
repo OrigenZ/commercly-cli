@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 
 const Brand = () => {
   return (
-    <NavLink exact activeClassName="active" to="/" className="navbar-brand">
+    <NavLink activeclassname="active" to="/" className="navbar-brand">
       <img
         src={commercly}
         alt="logo"

@@ -10,8 +10,7 @@ const NavMyAccount = () => {
     <div id="subnav" className="border-bottom customer-menu px-3 text-muted">
       <Container className="subnav">
         <NavLink
-          exact
-          activeClassName="active"
+          activeclassname="active"
           to="/my-account/dashboard"
           className="text-reset text-decoration-none text-uppercase button-navMyAccount"
         >
@@ -19,8 +18,7 @@ const NavMyAccount = () => {
         </NavLink>
 
         <NavLink
-          exact
-          activeClassName="active"
+          activeclassname="active"
           to="/my-account/customer/orders"
           className="text-reset text-decoration-none text-uppercase button-navMyAccount"
         >
@@ -28,8 +26,7 @@ const NavMyAccount = () => {
         </NavLink>
 
         <NavLink
-          exact
-          activeClassName="active"
+          activeclassname="active"
           to="/my-account/customer/address-list"
           className="text-reset text-decoration-none text-uppercase button-navMyAccount"
         >
@@ -37,8 +34,7 @@ const NavMyAccount = () => {
         </NavLink>
 
         <NavLink
-          exact
-          activeClassName="active"
+          activeclassname="active"
           to="/my-account/account-details"
           className="text-reset text-decoration-none text-uppercase button-navMyAccount"
         >
@@ -46,8 +42,7 @@ const NavMyAccount = () => {
         </NavLink>
 
         <NavLink
-          exact
-          activeClassName="active"
+          activeclassname="active"
           onClick={logOutUser}
           to="/"
           className="text-reset text-decoration-none text-uppercase button-navMyAccount"

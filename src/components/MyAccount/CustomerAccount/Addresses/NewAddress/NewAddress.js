@@ -1,6 +1,7 @@
 import React from "react";
 import { Form, Button, Col, Row } from "react-bootstrap";
 import { useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../../../common/context/Auth.context";
 import axiosInstance from "../../../../../common/http";
 import Swal from "sweetalert2/src/sweetalert2";
@@ -13,6 +14,7 @@ const NewAddress = (props) => {
   const [errors, setErrors] = useState({});
 
   const storedToken = localStorage.getItem("authToken");
+  const navigate = useNavigate()
   const type = props.match.params.type;
 
   const setField = (field, value) => {
@@ -121,7 +123,7 @@ const NewAddress = (props) => {
             text: "Address added successfully",
             showConfirmButton: false,
           });
-          props.history.push("/my-account/customer/address-list");
+          navigate("/my-account/customer/address-list");
         })
         .catch((err) =>
           Swal.fire({
@@ -159,7 +161,7 @@ const NewAddress = (props) => {
         });
       })
       .catch((err) => console.log(err.message));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -168,7 +170,7 @@ const NewAddress = (props) => {
       className="d-flex flex-column justify-content-center align-items-center"
     >
       <div className="col-sm-12 col-md-6 ">
-      
+
         <Form onSubmit={handleSubmit}>
           <Row className="mb-3">
             <Form.Group as={Col}>

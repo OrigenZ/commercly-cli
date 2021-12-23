@@ -60,7 +60,7 @@ const App = () => {
       <Route path="/my-account/checkout" element={<PrivateRoute />}>
         <Route path="" element={<CheckOutPage />} />
       </Route>
-      
+
       {/* Private routes admin */}
       <Route path="/my-account/admin/products" element={<PrivateRoute />}>
         <Route path="" element={<MyAccountPage />} />

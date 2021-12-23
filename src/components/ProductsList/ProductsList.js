@@ -93,7 +93,7 @@ const ProductsList = (props) => {
           onPageChange={handlePageClick}
           containerClassName={"pagination"}
           subContainerClassName={"pages pagination"}
-          activeClassName={"active"}
+          activeclassname={"active"}
         />
       </div>
     </>

@@ -1,6 +1,6 @@
 import { useState, useContext, useRef } from 'react'
 import { Form, Button, Row, Col } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { AuthContext } from '../../common/context/Auth.context'
 import axiosInstance from '../../common/http/index'
@@ -8,12 +8,13 @@ import axiosInstance from '../../common/http/index'
 import Logo from '../../images/logo2.png'
 import './LoginPage.css'
 
-const LoginPage = (props) => {
+const LoginPage = () => {
   const [form, setForm] = useState({})
   const [errors, setErrors] = useState({})
   const passwordInput = useRef(null)
-
+  
   const { logInUser } = useContext(AuthContext)
+  const navigate = useNavigate()
 
   const setField = (field, value) => {
     setForm({
@@ -47,7 +48,7 @@ const LoginPage = (props) => {
       const response = await axiosInstance.post(`/api/auth/login`, requestBody)
       const token = response.data.authToken
       logInUser(token)
-      props.history.push('/my-account/dashboard')
+      navigate('/my-account/dashboard')
     } catch (err) {
       setErrors({ unauthorized: err.response.data })
     }
