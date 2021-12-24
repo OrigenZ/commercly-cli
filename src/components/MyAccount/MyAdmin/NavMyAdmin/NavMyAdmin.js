@@ -11,7 +11,7 @@ const NavMyAdmin = () => {
       <Container className="subnav">
         <NavLink
           activeclassname="active"
-          to="/my-account/dashboard"
+          to="/my-account/admin/dashboard"
           className="text-reset text-decoration-none text-uppercase button-navMyAdmin"
         >
           Dashboard
@@ -51,7 +51,7 @@ const NavMyAdmin = () => {
 
         <NavLink
           activeclassname="active"
-          to="/my-account/account-details"
+          to="/my-account/admin/account-details"
           className="text-reset text-decoration-none text-uppercase button-navMyAdmin"
         >
           Account details

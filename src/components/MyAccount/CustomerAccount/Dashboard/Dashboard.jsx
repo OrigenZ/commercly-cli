@@ -7,7 +7,7 @@ import './Dashboard.css'
 const Dashboard = () => {
   const { user, logOutUser } = useContext(AuthContext)
   return (
-    <div id="dashboard">
+    <div id="dashboard" className="container">
       <div className="dashboard-wrapper text-muted d-flex justify-content-center">
         <div className="d-flex flex-column justify-content-center align-items-center col-sm-12 col-md-8 col-lg-10">
           <p>
@@ -27,7 +27,7 @@ const Dashboard = () => {
               shipping and billing addresses
             </Link>
             , and{' '}
-            <Link to={'/my-account/account-details'}>
+            <Link to={'/my-account/customer/account-details'}>
               edit your password and account details
             </Link>
             .

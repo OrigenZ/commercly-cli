@@ -62,7 +62,7 @@ function CategoriesListAdmin(props) {
                 <Col xs={6} sm={6} lg={6}>
                   <div className="mb-2">
                     <Link
-                      to={`/admin/category/edit/${category._id}`}
+                      to={`/my-account/admin/category/edit/${category._id}`}
                       className="btn btn-outline-secondary edit-btn w-100"
                     >
                       Edit

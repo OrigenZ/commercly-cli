@@ -96,7 +96,7 @@ const UsersListAdmin = (props) => {
   }, []);
 
   return (
-    <div id="users-list-admin">
+    <div id="users-list-admin" className="container">
       <div>
         <Row id="head-users-list">
           <Col xs={12} sm={3} lg={3}>

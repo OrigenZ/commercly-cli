@@ -5,13 +5,14 @@ import axiosInstance from "../../../../../common/http";
 import Swal from "sweetalert2/src/sweetalert2";
 
 import "./EditCategory.css";
+import { useParams } from "react-router-dom";
 
 const EditCategory = (props) => {
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
 
-  const { id } = props.match.params;
   const storedToken = localStorage.getItem("authToken");
+  const { id } = useParams()
 
   const setField = (field, value) => {
     setForm({
@@ -85,13 +86,13 @@ const EditCategory = (props) => {
           description: foundCategory.description,
         });
       })
-      .catch((error) => {});
+      .catch((error) => { });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <section
-      className="d-flex justify-content-center align-items-center"
+      className="d-flex justify-content-center align-items-center container"
       id="edit-category"
     >
       <Col xs={12} sm={6} lg={4} className="edit-category-wrapper">

@@ -6,7 +6,6 @@ const NavLinks = () => {
   const [isLoggedIn] = useState(false);
   return (
     <>
-
       <NavLink
         activeclassname="active"
         to="/shop"
@@ -40,8 +39,6 @@ const NavLinks = () => {
           </NavLink>
         </>
       )}
-
-
     </>
   );
 };

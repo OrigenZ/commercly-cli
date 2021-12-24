@@ -4,16 +4,17 @@ import { AuthContext } from "../../../../../common/context/Auth.context";
 import axiosInstance from "../../../../../common/http";
 import Swal from "sweetalert2/src/sweetalert2";
 import "./EditAddress.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-const EditAddress = (props) => {
+const EditAddress = () => {
   const { user } = useContext(AuthContext);
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
 
   const storedToken = localStorage.getItem("authToken");
+
   const navigate = useNavigate()
-  const type = props.match.params.type;
+  const { type } = useParams()
 
   const setField = (field, value) => {
     setForm({

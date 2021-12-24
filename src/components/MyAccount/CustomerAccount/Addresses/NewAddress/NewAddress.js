@@ -1,21 +1,22 @@
 import React from "react";
 import { Form, Button, Col, Row } from "react-bootstrap";
-import { useContext, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../../../../common/context/Auth.context";
 import axiosInstance from "../../../../../common/http";
 import Swal from "sweetalert2/src/sweetalert2";
 
 import "./NewAddress.css";
 
-const NewAddress = (props) => {
+const NewAddress = () => {
   const { user } = useContext(AuthContext);
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
 
   const storedToken = localStorage.getItem("authToken");
+
   const navigate = useNavigate()
-  const type = props.match.params.type;
+  const { type } = useParams()
 
   const setField = (field, value) => {
     setForm({
@@ -136,38 +137,11 @@ const NewAddress = (props) => {
     }
   };
 
-  useEffect(() => {
-    axiosInstance
-      .get(`/api/users/${user._id}`, {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      })
-      .then((response) => {
-        const address =
-          type === "billing"
-            ? response.data.addresses.billing
-            : response.data.addresses.shipping;
-
-        setForm({
-          firstName: address.firstName,
-          lastName: address.lastName,
-          phone: address.phone,
-          company: address.company,
-          email: address.email,
-          street: address.street,
-          city: address.city,
-          zip: address.zip,
-          province: address.province,
-          country: address.country,
-        });
-      })
-      .catch((err) => console.log(err.message));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <section
-      id="create-billing-address"
-      className="d-flex flex-column justify-content-center align-items-center"
+      id="create-address"
+      className="d-flex flex-column justify-content-center align-items-center container"
     >
       <div className="col-sm-12 col-md-6 ">
 

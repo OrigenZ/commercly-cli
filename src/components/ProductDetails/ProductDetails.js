@@ -12,7 +12,6 @@ import {
   Row,
   Button,
   Form,
-  Alert,
 } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";

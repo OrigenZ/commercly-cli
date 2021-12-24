@@ -40,7 +40,7 @@ const ProductCard = (props) => {
         {user && user.isAdmin && !isShop && (
           <>
             <Link
-              to={`/admin/product/edit/${product._id}`} //TODO  pasar a App.js
+              to={`/my-account/admin/product/edit/${product._id}`} //TODO  pasar a App.js
               className="btn btn-outline-secondary edit-btn w-100 mb-2"
             >
               Edit

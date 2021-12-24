@@ -5,14 +5,15 @@ import Swal from 'sweetalert2/src/sweetalert2'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 import './EditProduct.css'
+import { useParams } from 'react-router-dom'
 
-const EditProduct = (props) => {
+const EditProduct = () => {
   const [form, setForm] = useState({})
   const [errors, setErrors] = useState({})
   const [categories, setCategories] = useState([])
 
-  const { id } = props.match.params
   const storedToken = localStorage.getItem('authToken')
+  const { id } = useParams()
 
   const setField = (field, value) => {
     setForm({

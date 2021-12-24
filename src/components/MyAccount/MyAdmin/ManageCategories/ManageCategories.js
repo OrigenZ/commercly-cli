@@ -86,7 +86,7 @@ const ManageCategories = () => {
   }, [currentSearch]);
 
   return (
-    <section id="manage-cat">
+    <section id="manage-cat" className="container">
       <div className="search-add">
         <div className="search">
           <SearchBar setCurrentSearch={setCurrentSearch} setReset={setReset} />

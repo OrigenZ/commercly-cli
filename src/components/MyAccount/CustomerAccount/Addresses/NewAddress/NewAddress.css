@@ -1,22 +1,24 @@
-#create-billing-address{
-    margin: 3rem auto;
+#create-address {
+  margin: 3rem auto;
 }
 
-#create-billing-address .form-label{
-    color: #6d757d;
+#create-address {
+  margin: 3rem auto;
 }
 
-#create-billing-address input.form-control,
-#create-billing-address select.form-select,
-#create-billing-address select.form-control ,
-#create-billing-address textarea.form-control,
-#create-billing-address button.btn.btn-outline-success {
-    border-radius: 0px;
-    color: #6d757d;
+#create-address .form-label {
+  color: #6d757d;
 }
 
-#create-billing-address button.btn.btn-outline-success {
-    margin-top: 1rem;
-    width: 100%;
-    font-size: 1.2rem;
+#create-address input.form-control,
+#create-address select.form-select,
+#create-address select.form-control,
+#create-address textarea.form-control,
+#create-address button.btn.btn-outline-success {
+  border-radius: 0px;
+}
+
+#create-address button.btn.btn-outline-success {
+  margin-top: 1rem;
+  width: 50%;
 }

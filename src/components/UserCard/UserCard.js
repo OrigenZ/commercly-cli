@@ -88,7 +88,7 @@ const UserCard = (props) => {
               <Row className="btns">
                 <Col xs={6} sm={6} lg={6}>
                   <reactRouterDom.Link
-                    to={`/admin/user/edit/${userData._id}`} //TODO  pasar a App.js
+                    to={`/my-account/admin/user/edit/${userData._id}`} //TODO  pasar a App.js
                     className="btn btn-outline-secondary edit-btn w-100 mb-2"
                   >
                     Details

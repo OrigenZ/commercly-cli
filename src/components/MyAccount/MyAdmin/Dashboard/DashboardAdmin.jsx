@@ -7,7 +7,7 @@ import './DashboardAdmin.css'
 const Dashboard = () => {
   const { user, logOutUser } = useContext(AuthContext)
   return (
-    <div id="dashboard-admin">
+    <div id="dashboard-admin" className="container">
       <div className="dashboard-wrapper text-muted d-flex justify-content-center">
         <div className="d-flex flex-column justify-content-center align-items-center col-sm-12 col-md-8 col-lg-10">
           <p>
@@ -23,7 +23,7 @@ const Dashboard = () => {
             <Link to={'/my-account/admin/categories'}> products</Link>, manage
             your
             <Link to={'/my-account/admin/products'}> categories</Link>, and
-            <Link to={'/my-account/account-details'}>
+            <Link to={'/my-account/admin/account-details'}>
               {' '}
               edit your password and account details
             </Link>

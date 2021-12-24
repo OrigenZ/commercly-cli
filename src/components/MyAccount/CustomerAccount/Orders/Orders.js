@@ -90,7 +90,7 @@ const Orders = () => {
   }, [])
 
   return (
-    <div id="user-orders">
+    <div id="user-orders" className="container">
       <Row id="head-orders-list">
         <Col xs={12} sm={4} lg={3}>
           <p>ID</p>

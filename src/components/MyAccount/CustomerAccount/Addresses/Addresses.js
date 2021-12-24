@@ -14,8 +14,6 @@ const Addresses = () => {
 
   const storedToken = localStorage.getItem('authToken')
 
-  console.log(billingAddress, shippingAddress)
-
   useEffect(() => {
     // /api/users/:id/addresses
     axiosInstance(`/api/users/${user._id}/addresses`, {
@@ -31,7 +29,7 @@ const Addresses = () => {
   }, [])
 
   return (
-    <section id="customer-addresses">
+    <section id="customer-addresses" className="container">
       <div className="dashboard-wrapper text-muted ">
         <h4 className="text-center ">
           The following addresses will be used on the checkout page by default.
@@ -46,7 +44,7 @@ const Addresses = () => {
               {shippingAddress ? (
                 <>
                   <Card.Text>
-                    {shippingAddress.firstName} {billingAddress.lastName}
+                    {shippingAddress.firstName} {shippingAddress.lastName}
                   </Card.Text>
                   <Card.Text> {shippingAddress.company} </Card.Text>
                   <Card.Text> {shippingAddress.email} </Card.Text>

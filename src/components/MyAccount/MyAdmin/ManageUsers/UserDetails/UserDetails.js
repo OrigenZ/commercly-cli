@@ -3,12 +3,13 @@ import React, { useState, useEffect } from 'react'
 import axiosInstance from '../../../../../common/http/index'
 
 import './UserDetails.css'
+import { useParams } from 'react-router-dom'
 
-const UserDetails = (props) => {
+const UserDetails = () => {
   const [user, setUser] = useState('')
 
-  const { id } = props.match.params
   const storedToken = localStorage.getItem('authToken')
+  const { id } = useParams()
 
   useEffect(() => {
     axiosInstance
@@ -18,14 +19,14 @@ const UserDetails = (props) => {
       .then((response) => {
         setUser(response.data)
       })
-      .catch((error) => {})
+      .catch((error) => { })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
     <section
       id="user-details"
-      className=" flex-column justify-content-center align-items-center"
+      className=" flex-column justify-content-center align-items-center container"
     >
       <div className="col-sm-12 col-md-6 ">
         <h3 className="text-center text-muted text-uppercase">User Details</h3>

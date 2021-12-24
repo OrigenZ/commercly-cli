@@ -12,8 +12,8 @@ const LoginPage = () => {
   const [form, setForm] = useState({})
   const [errors, setErrors] = useState({})
   const passwordInput = useRef(null)
-  
-  const { logInUser } = useContext(AuthContext)
+
+  const { logInUser} = useContext(AuthContext)
   const navigate = useNavigate()
 
   const setField = (field, value) => {
@@ -46,9 +46,12 @@ const LoginPage = () => {
     const requestBody = { ...form }
     try {
       const response = await axiosInstance.post(`/api/auth/login`, requestBody)
-      const token = response.data.authToken
-      logInUser(token)
-      navigate('/my-account/dashboard')
+      const { authToken, isAdmin } = response.data
+
+      logInUser(authToken)
+
+      isAdmin ? navigate('/my-account/admin/dashboard') : navigate('/my-account/customer/dashboard')
+
     } catch (err) {
       setErrors({ unauthorized: err.response.data })
     }

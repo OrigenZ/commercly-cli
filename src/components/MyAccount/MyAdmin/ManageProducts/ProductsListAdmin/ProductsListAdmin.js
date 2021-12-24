@@ -71,7 +71,7 @@ function ProductsListAdmin(props) {
                 <Col xs={6} sm={6} lg={6} className="buttons">
                   <div className="mb-2">
                     <Link
-                      to={`/admin/product/edit/${product._id}`}
+                      to={`/my-account/admin/product/edit/${product._id}`}
                       className="btn btn-outline-secondary edit-btn w-100"
                     >
                       Edit

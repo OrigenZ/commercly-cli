@@ -7,13 +7,15 @@ import { AuthContext } from "../../../../../common/context/Auth.context";
 
 import dateFormat from "dateformat";
 import "./OrderDetails.css";
+import { useParams } from "react-router-dom";
 
-const OrderDetails = (props) => {
-  const { orderId } = props.match.params;
+const OrderDetails = () => {
   const { user } = useContext(AuthContext);
   const [order, setOrder] = useState({});
   const [address, setAddress] = useState({});
+
   const storedToken = localStorage.getItem("authToken");
+  const { orderId } = useParams()
 
   const formatDate = (date) => {
     const dateObj = new Date(date);
