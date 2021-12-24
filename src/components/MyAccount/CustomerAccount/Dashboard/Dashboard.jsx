@@ -2,14 +2,12 @@ import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../../../common/context/Auth.context'
 
-import MyAccountPage from '../../../../pages/MyAccount/MyAccountPage'
 import './Dashboard.css'
 
 const Dashboard = () => {
-  const { user, logOutUser, isLoggedIn } = useContext(AuthContext)
+  const { user, logOutUser } = useContext(AuthContext)
   return (
     <>
-      {isLoggedIn && <MyAccountPage />}
       <div id="dashboard" className="container">
         <div className="dashboard-wrapper text-muted d-flex justify-content-center">
           <div className="d-flex flex-column justify-content-center align-items-center col-sm-12 col-md-8 col-lg-10">
