@@ -1,0 +1,20 @@
+#forbidden h1 {
+  font-size: 5rem;
+  margin: 4rem;
+  font-weight: bold;
+}
+#forbidden h4 {
+  font-size: 1.4rem;
+  margin: 2rem;
+}
+#forbidden a {
+  font-size: 1.3rem;
+  background-color: white;
+  border: 3px solid;
+  border-radius: 0rem;
+  margin: 3rem;
+}
+#forbidden a:hover {
+  background-color: #6c757d;
+  border: 3px solid #6c757d;
+}

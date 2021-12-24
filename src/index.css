@@ -1,19 +1,19 @@
 @font-face {
-  font-family: "AzoSans";
-  src: url("./fonts/Azo-sans/AzoSans-Light.otf") format("opentype");
+  font-family: 'AzoSans';
+  src: url('./fonts/Azo-sans/AzoSans-Light.otf') format('opentype');
   /* src: url("../fonts/Azo-sans/AzoSans-Light.otf") format("opentype"); */
   font-weight: lighter;
 }
 
 @font-face {
-  font-family: "AzoSans";
-  src: url("./fonts/Azo-sans/AzoSans-Regular.otf") format("opentype");
+  font-family: 'AzoSans';
+  src: url('./fonts/Azo-sans/AzoSans-Regular.otf') format('opentype');
   font-weight: normal;
 }
 
 @font-face {
-  font-family: "AzoSans";
-  src: url("./fonts/Azo-sans/AzoSans-Bold.otf") format("opentype");
+  font-family: 'AzoSans';
+  src: url('./fonts/Azo-sans/AzoSans-Bold.otf') format('opentype');
   font-weight: bold;
 }
 
@@ -26,11 +26,11 @@ html {
 }
 
 body {
-  font-family: "AzoSans", Helvetica, Arial, sans-serif;
+  font-family: 'AzoSans', Helvetica, Arial, sans-serif;
   line-height: 2rem;
-  letter-spacing: .04rem;
-  -ms-overflow-style: none; 
-  scrollbar-width: none;  
+  letter-spacing: 0.04rem;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 body::-webkit-scrollbar {
@@ -41,14 +41,14 @@ a {
   color: #00b7ff;
 }
 
-h2.text-center.text-muted{
+h2.text-center.text-muted {
   font-size: 4em;
   margin-bottom: 0.2em;
   text-transform: uppercase;
 }
 
-.section{
-  min-height: calc(100vh - 456px) ;
+.section {
+  min-height: calc(100vh - 456px);
   padding-top: 2em;
   padding-bottom: 2em;
 }
@@ -73,6 +73,3 @@ header {
   justify-content: space-between;
   min-height: 100vh;
 }
-
-
-

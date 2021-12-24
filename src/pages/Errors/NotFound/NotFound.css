@@ -1,0 +1,21 @@
+#not-found h1 {
+  font-size: 5rem;
+  margin: 4rem;
+  font-weight: bold;
+}
+#not-found h4 {
+  font-size: 1.4rem;
+  margin: 2rem;
+}
+#not-found a {
+  font-size: 1.3rem;
+  background-color: white;
+  border: 3px solid;
+  border-radius: 0rem;
+  margin: 3rem;
+}
+#not-found a:hover {
+  background-color: #6c757d;
+  border: 3px solid #6c757d;
+}
+

@@ -32,6 +32,7 @@ import Orders from "./components/MyAccount/CustomerAccount/Orders/Orders";
 import Addresses from "./components/MyAccount/CustomerAccount/Addresses/Addresses";
 import AccountDetails from "./components/MyAccount/AccountDetails/AccountDetails";
 import DashboardAdmin from "./components/MyAccount/MyAdmin/Dashboard/DashboardAdmin";
+import Notfound from "./pages/Errors/NotFound/NotFound";
 
 
 const App = () => {
@@ -83,7 +84,7 @@ const App = () => {
       </Route>
 
       {/* Error routes */}
-      <Route path="*" element={<h1>404 Not found</h1>} />
+      <Route path="*" element={<Notfound />} />
 
     </Routes>
   );
