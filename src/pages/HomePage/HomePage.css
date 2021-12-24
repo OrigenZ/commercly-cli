@@ -1,10 +1,11 @@
 #home {
-  background: url("../../images/home-background.jpg") top center no-repeat;
+  background: url('../../images/home-background.jpg') top center no-repeat;
   background-size: cover;
   height: 93vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 #home .call-to-action {

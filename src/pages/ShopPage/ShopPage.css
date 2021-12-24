@@ -2,6 +2,10 @@
   margin: 3rem auto;
 }
 
+#shop .search-form{
+  margin-bottom: 1.5rem !important;
+}
+
 #shop .row {
   min-width: -webkit-fill-available;
 }

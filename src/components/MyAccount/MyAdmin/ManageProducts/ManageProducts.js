@@ -116,7 +116,6 @@ const ManageProducts = () => {
           />
         </Col>
       </Row>
-
     </Container>
   );
 };

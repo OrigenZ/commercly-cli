@@ -20,6 +20,10 @@ p {
   border-bottom: 2px solid #a033d1;
 }
 
+.paginate-cat {
+  margin-top: 1rem;
+}
+
 .pagination {
   margin-top: 1rem;
   display: flex;

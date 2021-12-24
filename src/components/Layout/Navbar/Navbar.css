@@ -1,5 +1,8 @@
-
-
 .navbar-nav {
-    align-items: center;
+  align-items: center;
+  padding: 1rem 0rem;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+  padding: 0 1rem !important;
 }

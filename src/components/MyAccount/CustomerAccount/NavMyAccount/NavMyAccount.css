@@ -3,13 +3,14 @@
     justify-content: center;
     flex-direction: row;
     align-items: center;
-    padding: 1em;
+    padding: 1.5em!important;
 }
 
 #subnav .container.row {
   display: flex;
   flex-direction: row;
   justify-content: center;
+
 }
 
 .active {

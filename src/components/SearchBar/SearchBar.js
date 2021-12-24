@@ -12,7 +12,7 @@ const SearchBar = (props) => {
   };
 
   return (
-    <Form className="search-container d-inline-block top-bar">
+    <Form className="search-form d-inline-block top-bar">
       <Form.Group  className="p-0 m-0">
         <Col className="p-0" xs={12} lg={12} >
           <Form.Control
