@@ -8,24 +8,13 @@
   flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 1.5rem !important;
 }
 
-#manage-cat .search {
+#manage-cat .list {
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-}
-
-#manage-cat button.reset {
-  margin-left: -2px;
-  border-radius: 0px;
-  border: 2px solid #dfe2e6;
-  margin-top: 0px;
-  height: 36px;
-}
-
-#manage-cat .search-container {
-  margin-bottom: 0;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 /* MEDIA QUERIES */
@@ -49,6 +38,6 @@
   }
 
   #cat-list-admin .categories-list {
-    padding: 1.5em 0;
+    padding: 1.5em 0em;
   }
 }

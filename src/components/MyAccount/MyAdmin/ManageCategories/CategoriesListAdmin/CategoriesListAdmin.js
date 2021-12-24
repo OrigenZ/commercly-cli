@@ -51,12 +51,13 @@ function CategoriesListAdmin(props) {
 
         postData = slice.map((category) => (
           <Row key={category._id} className="categories-list">
-            <Col xs={12} sm={4} lg={2}>
+            <Col xs={12} sm={4} lg={2} >
               <p>{category.name}</p>
             </Col>
-            <Col xs={12} sm={8} lg={8}>
+            <Col xs={12} sm={8} lg={8} >
               <p>{category.description}</p>
             </Col>
+
             <Col xs={12} sm={12} lg={2}>
               <Row>
                 <Col xs={6} sm={6} lg={6}>
@@ -98,20 +99,21 @@ function CategoriesListAdmin(props) {
   }, [offset, handleDelete]);
 
   return (
-    <div id="cat-list-admin">
-      <div>
+    <>
+      <div id="cat-list-admin">
         <Row id="head-categories-list">
-          <Col xs={12} sm={4} lg={2}>
+          <Col xs={12} sm={4} lg={2} >
             <p>Name</p>
           </Col>
-          <Col xs={12} sm={8} lg={8}>
+          <Col xs={12} sm={8} lg={8} className="text-center">
             <p>Description</p>
           </Col>
-          <Col xs={12} sm={12} lg={2}>
+          <Col xs={12} sm={12} lg={2} className="text-center">
             <p>Actions</p>
           </Col>
         </Row>
         {data}
+
       </div>
       <div className="paginate-cat">
         <ReactPaginate
@@ -128,7 +130,7 @@ function CategoriesListAdmin(props) {
           activeclassname={"active"}
         />
       </div>
-    </div>
+    </>
   );
 }
 

@@ -1,5 +1,5 @@
 #cat-list-admin .categories-list {
-  padding: 1.5em;
+  padding: 1.5em 0em;
   border: 0px;
   border-bottom: 1px solid #dfe2e6;
   display: flex;
@@ -8,17 +8,8 @@
   color: #6c757d;
 }
 
-a.btn.btn-outline-dark.col-12,
-.btn.btn-outline-danger.delete-btn.w-100,
-a.btn.btn-outline-secondary.edit-btn.w-100 {
-  border-radius: 0px;
-}
-
-#cat-list-admin {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 10px;
+p {
+  margin: 0;
 }
 
 #head-categories-list {

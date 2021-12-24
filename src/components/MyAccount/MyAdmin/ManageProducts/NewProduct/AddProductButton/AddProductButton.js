@@ -7,7 +7,7 @@ const AddProductButton = () => {
   return (
     <Link
       to={`/my-account/admin/product/create`}
-      className="btn btn-outline-success mb-4 add-button"
+      className="btn btn-outline-success add-button"
     >
       Add product
     </Link>

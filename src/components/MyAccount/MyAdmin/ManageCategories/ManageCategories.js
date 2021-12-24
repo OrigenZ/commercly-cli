@@ -8,6 +8,7 @@ import AddCategoryButton from "./NewCategory/AddCategoryButton/AddCategoryButton
 import SearchBar from "../../../SearchBar/SearchBar";
 
 import "./ManageCategories.css";
+import { Col, Container, Row } from "react-bootstrap";
 
 const ManageCategories = () => {
   const [categories, setCategories] = useState([]);
@@ -86,26 +87,25 @@ const ManageCategories = () => {
   }, [currentSearch]);
 
   return (
-    <section id="manage-cat" className="container">
-      <div className="search-add">
-        <div className="search">
+    <Container>
+      <Row id="manage-cat" >
+        <Col xs={12} className="search-add">
           <SearchBar setCurrentSearch={setCurrentSearch} setReset={setReset} />
-        </div>
-        <div className="add">
           <AddCategoryButton />
-        </div>
-      </div>
-
-      <CategoriesListAdmin
-        results={results}
-        handleDelete={handleDelete}
-        categories={categories}
-        setCategories={setCategories}
-        reset={reset}
-        setReset={setReset}
-      />
-    </section>
+        </Col>
+        <Col xs={12} className="list">
+          <CategoriesListAdmin
+            results={results}
+            handleDelete={handleDelete}
+            categories={categories}
+            setCategories={setCategories}
+            reset={reset}
+            setReset={setReset}
+          />
+        </Col>
+      </Row>
+    </Container>
   );
 };
-
 export default ManageCategories;
+

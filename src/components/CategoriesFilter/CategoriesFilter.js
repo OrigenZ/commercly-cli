@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Button } from 'react-bootstrap'
 
 import axiosInstance from '../../common/http'
@@ -31,17 +31,17 @@ const CategoriesFilter = (props) => {
     <div id="categories-filter">
       <span className="filter-header">Filter by category</span>
       <div className="vertical-menu">
-      <div className="filters-wrapper">
-        {categories.map((category) => (
-          <Button
-            variant="link"
-            key={category._id}
-            onClick={() => handleCategoryClick(category._id)}
-          >
-            <span className="list-cat">{category.name}</span>
-          </Button>
-        ))}
-      </div>
+        <div className="filters-wrapper">
+          {categories.map((category) => (
+            <Button
+              variant="link"
+              key={category._id}
+              onClick={() => handleCategoryClick(category._id)}
+            >
+              <span className="list-cat">{category.name}</span>
+            </Button>
+          ))}
+        </div>
       </div>
 
       <Button

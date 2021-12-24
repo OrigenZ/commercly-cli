@@ -12,7 +12,7 @@ const AboutUsPage = () => {
     <Container className="section" id="about-us">
       {/*  <div className='section container text-center'> */}
 
-      <Row xs={1} md={3} className="cards-div p-5 pt-0 pb-5 card-us">
+      <Row xs={1} md={3} className="cards-div p-5 card-us">
         <Col>
           <Card className="m-5">
             <Card.Img variant="top" src={Sherab} />

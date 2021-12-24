@@ -5,7 +5,7 @@ import './AddCategoryButton.css'
 
 const AddCategoryButton = () => {
   return (
-    <Link to={`/my-account/admin/category/create`} className="btn btn-outline-success" id="add-Cat">
+    <Link to={`/my-account/admin/category/create`} className="btn btn-outline-success" id="add-cat">
       Add Category
     </Link>
   )

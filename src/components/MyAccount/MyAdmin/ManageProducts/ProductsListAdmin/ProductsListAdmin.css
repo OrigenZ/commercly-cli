@@ -1,33 +1,16 @@
-div#products-list {
+#products-list-admin .products-list {
+  padding: 1.5em 0em;
+  border: 0px;
   border-bottom: 1px solid #dfe2e6;
-  padding-top: 1rem;
-  padding-bottom: 0.4rem;
   display: flex;
-  align-content: center;
+  flex-direction: row;
   align-items: center;
-}
-
-#products-list .buttons {
-  padding-left: 0;
+  color: #6c757d;
 }
 
 p {
   margin: 0;
 }
-
-div#products-list {
-  color: #6d757d;
-  padding-left: 0;
-  padding-right: 0;
-}
-
-/* #head-products-list {
-    background-color: #f7f9fa;
-    padding: 0.8rem;
-    font-weight: 600;
-    color: #6d757d;
-    border-bottom: 2px solid #dfe2e6;
-} */
 
 #head-products-list {
   background-color: #1a99e1;

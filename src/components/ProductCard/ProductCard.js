@@ -17,7 +17,6 @@ const ProductCard = (props) => {
       <Card id="card-products" className="col-sm-12 col-md-6 col-lg-3">
         <Link to={`/products/${product._id}`}>
           <div className="img-container">
-        {/*   <div className="sold-out"></div> */}
             <Card.Img
               variant="top"
               src={product.imageUrl || defaultImage}
@@ -37,7 +36,7 @@ const ProductCard = (props) => {
           </Card.Body>
         </Link>
 
-        {user && user.isAdmin && !isShop && (
+        {user?.isAdmin && !isShop && (
           <>
             <Link
               to={`/my-account/admin/product/edit/${product._id}`} //TODO  pasar a App.js

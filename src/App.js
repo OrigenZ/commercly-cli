@@ -2,6 +2,9 @@ import { Routes, Route } from "react-router-dom";
 
 import "./App.css";
 
+import MyNavbar from "./components/Layout/Navbar/Navbar";
+import Footer from "./components/Layout/Footer/Footer";
+
 import AnonRoute from "./components/AnonRoute/AnonRoute";
 import PrivateCustomerRoute from "./components/PrivateCustomerRoute/PrivateCustomerRoute";
 import PrivateAdminRoute from "./components/PrivateAdminRoute/PrivateAdminRoute";
@@ -12,6 +15,7 @@ import ProductDetailPage from "./pages/ShopPage/ProductDetailPage";
 import AboutUsPage from "./pages/AboutUsPage/AboutUsPage";
 import SignupPage from "./pages/MyAccount/SignupPage";
 import LoginPage from "./pages/MyAccount/LoginPage";
+
 
 import CheckOutPage from "./pages/CheckOutPage/CheckOutPage";
 import ManageCategories from "./components/MyAccount/MyAdmin/ManageCategories/ManageCategories";
@@ -37,56 +41,62 @@ import Notfound from "./pages/Errors/NotFound/NotFound";
 
 const App = () => {
   return (
-    <Routes>
+    <>
+      <MyNavbar />
+      <main>
+        <Routes>
 
-      <Route path="/" element={<HomePage />} />
-      <Route path="/shop" element={<ShopPage />} />
-      <Route path="/products/:id" element={<ProductDetailPage />} />
-      <Route path="/about-us" element={<AboutUsPage />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/shop" element={<ShopPage />} />
+          <Route path="/products/:id" element={<ProductDetailPage />} />
+          <Route path="/about-us" element={<AboutUsPage />} />
 
-      {/* Anon routes */}
-      <Route path="/my-account" element={<AnonRoute />}>
-        <Route path="" element={<LoginPage />} />
-      </Route>
-      <Route path="/signup" element={<AnonRoute />}>
-        <Route path="" element={<SignupPage />} />
-      </Route>
-      <Route path="/login" element={<AnonRoute />}>
-        <Route path="" element={<LoginPage />} />
-      </Route>
+          {/* Anon routes */}
+          <Route path="/my-account" element={<AnonRoute />}>
+            <Route path="" element={<LoginPage />} />
+          </Route>
+          <Route path="/signup" element={<AnonRoute />}>
+            <Route path="" element={<SignupPage />} />
+          </Route>
+          <Route path="/login" element={<AnonRoute />}>
+            <Route path="" element={<LoginPage />} />
+          </Route>
 
-      {/* Private routes customer */}
-      <Route path="/my-account/customer/" element={<PrivateCustomerRoute />}>
-        <Route path="dashboard" element={<Dashboard />} />
-        <Route path="orders" element={<Orders />} />
-        <Route path="order/:orderId" element={<OrderDetails />} />
-        <Route path="address-list" element={<Addresses />} />
-        <Route path="edit-address/:type" element={<EditAddress />} />
-        <Route path="add-address/:type" element={<NewAddress />} />
-        <Route path="account-details" element={<AccountDetails />} />
-        <Route path="checkout" element={<CheckOutPage />} />
-      </Route>
+          {/* Private routes customer */}
+          <Route path="/my-account/customer/" element={<PrivateCustomerRoute />}>
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="orders" element={<Orders />} />
+            <Route path="order/:orderId" element={<OrderDetails />} />
+            <Route path="address-list" element={<Addresses />} />
+            <Route path="edit-address/:type" element={<EditAddress />} />
+            <Route path="add-address/:type" element={<NewAddress />} />
+            <Route path="account-details" element={<AccountDetails />} />
+            <Route path="checkout" element={<CheckOutPage />} />
+          </Route>
 
-      {/* Private routes admin */}
-      <Route path="/my-account/admin/" element={<PrivateAdminRoute />}>
-        <Route path="dashboard" element={<DashboardAdmin />} />
-        <Route path="products" element={<ManageProducts />} />
-        <Route path="product/create" element={<NewProduct />} />
-        <Route path="product/edit/:id" element={<EditProduct />} />
-        <Route path="categories" element={<ManageCategories />} />
-        <Route path="category/create" element={<NewCategory />} />
-        <Route path="category/edit/:id" element={<EditCategory />} />
-        <Route path="users" element={<ManageUsers />} />
-        <Route path="user/edit/:id" element={<UserDetails />} />
-        <Route path="orders" element={<ManageOrders />} />
-        <Route path="order/:orderId" element={<ManageOrderDetail />} />
-        <Route path="account-details" element={<AccountDetails />} />
-      </Route>
+          {/* Private routes admin */}
+          <Route path="/my-account/admin/" element={<PrivateAdminRoute />}>
+            <Route path="dashboard" element={<DashboardAdmin />} />
+            <Route path="products" element={<ManageProducts />} />
+            <Route path="product/create" element={<NewProduct />} />
+            <Route path="product/edit/:id" element={<EditProduct />} />
+            <Route path="categories" element={<ManageCategories />} />
+            <Route path="category/create" element={<NewCategory />} />
+            <Route path="category/edit/:id" element={<EditCategory />} />
+            <Route path="users" element={<ManageUsers />} />
+            <Route path="user/edit/:id" element={<UserDetails />} />
+            <Route path="orders" element={<ManageOrders />} />
+            <Route path="order/:orderId" element={<ManageOrderDetail />} />
+            <Route path="account-details" element={<AccountDetails />} />
+          </Route>
 
-      {/* Error routes */}
-      <Route path="*" element={<Notfound />} />
+          {/* Error routes */}
+          <Route path="*" element={<Notfound />} />
 
-    </Routes>
+        </Routes>
+      </main>
+      <Footer />
+    </>
   );
 };
 

@@ -65,7 +65,7 @@ const ManageProducts = () => {
 
     if (currentSearch) {
       const productsFound = products.filter((product) => {
-    
+
         const regex = new RegExp(currentSearch, "i");
         const nameFound = product.name.match(regex);
         const brandFound = product.brand.match(regex);
@@ -101,24 +101,22 @@ const ManageProducts = () => {
           <SearchBar setCurrentSearch={setCurrentSearch} setReset={setReset} />
           <AddProductButton />
         </Col>
-        <Row className="row-section">
-          <Col xs={12} md={3} lg={3} className="filter-categories">
-            <CategoriesFilter
-              setCurrentCategory={setCurrentCategory}
-              setReset={setReset}
-            />
-          </Col>
-
-          <Col xs={12} md={9} lg={9} className="list">
-            <ProductsListAdmin
-              results={results}
-              handleDelete={handleDelete}
-              isShop={false}
-              reset={reset}
-            />
-          </Col>
-        </Row>
+        <Col xs={12} md={3} lg={3} className="filter-categories">
+          <CategoriesFilter
+            setCurrentCategory={setCurrentCategory}
+            setReset={setReset}
+          />
+        </Col>
+        <Col xs={12} md={9} lg={9} className="list">
+          <ProductsListAdmin
+            results={results}
+            handleDelete={handleDelete}
+            isShop={false}
+            reset={reset}
+          />
+        </Col>
       </Row>
+
     </Container>
   );
 };

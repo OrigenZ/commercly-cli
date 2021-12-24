@@ -49,24 +49,24 @@ function ProductsListAdmin(props) {
         const slice = data.slice(offset, offset + perPage);
 
         postData = slice.map((product) => (
-          <Row key={product._id} id="products-list">
-            <Col xs={12} sm={4} lg={2}>
+          <Row key={product._id} className="products-list">
+            <Col xs={12} sm={4} lg={2} >
               <p>{product.sku}</p>
             </Col>
-            <Col xs={6} sm={8} lg={2}>
+            <Col xs={6} sm={8} lg={2} >
               <p>{product.name}</p>
             </Col>
-            <Col xs={6} sm={8} lg={2}>
+            <Col xs={6} sm={8} lg={2} >
               <p>{product.category.name}</p>
             </Col>
-            <Col xs={6} sm={8} lg={2}>
+            <Col xs={6} sm={8} lg={1} className="text-center">
               <p>{product.quantity}</p>
             </Col>
-            <Col xs={6} sm={8} lg={2}>
+            <Col xs={6} sm={8} lg={2} className="text-center">
               <p>{product.totalPrice} €</p>
             </Col>
 
-            <Col xs={12} sm={12} lg={2}>
+            <Col xs={12} sm={12} lg={3}>
               <Row>
                 <Col xs={6} sm={6} lg={6} className="buttons">
                   <div className="mb-2">
@@ -108,25 +108,24 @@ function ProductsListAdmin(props) {
 
   return (
     <>
-      <div className="row">
+      <div id="products-list-admin">
         <Row id="head-products-list">
-          <Col xs={12} sm={4} lg={2}>
+          <Col xs={12} sm={4} lg={2} >
             <p>SKU</p>
           </Col>
-          <Col xs={6} sm={8} lg={2}>
+          <Col xs={6} sm={8} lg={2} >
             <p>Name</p>
           </Col>
-          <Col xs={6} sm={8} lg={2}>
+          <Col xs={6} sm={8} lg={2} >
             <p>Category</p>
           </Col>
-          <Col xs={6} sm={8} lg={2}>
+          <Col xs={6} sm={8} lg={1} className="text-center">
             <p>Quantity</p>
           </Col>
-          <Col xs={6} sm={8} lg={2}>
+          <Col xs={6} sm={8} lg={2} className="text-center">
             <p>Price</p>
           </Col>
-
-          <Col xs={12} sm={12} lg={2}>
+          <Col xs={12} sm={12} lg={3} className="text-center">
             <p>Actions</p>
           </Col>
         </Row>
