@@ -26,7 +26,7 @@ const OrderDetails = () => {
 
   const getDetails = async () => {
     try {
-      const responseOrder = await axiosInstance.get(`/api/order/${orderId}`, {
+      const responseOrder = await axiosInstance.get(`/api/orders/${orderId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       });
       const ord = responseOrder.data;

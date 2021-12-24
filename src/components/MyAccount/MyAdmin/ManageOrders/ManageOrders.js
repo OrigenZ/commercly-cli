@@ -33,7 +33,7 @@ const ManageOrders = () => {
     const status = e.target.value
     axiosInstance
       .patch(
-        `/api/order/${id}`,
+        `/api/orders/${id}`,
         { status },
         {
           headers: { Authorization: `Bearer ${storedToken}` },

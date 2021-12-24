@@ -37,7 +37,7 @@ const Orders = () => {
           headers: { Authorization: `Bearer ${storedToken}` },
         },
       )
-      const data = response.data
+      const { data } = response
       const slice = data.slice(offset, offset + perPage)
 
       const postData = slice.map((order) => (
@@ -86,7 +86,7 @@ const Orders = () => {
         setOrders(response.data)
       })
       .catch((err) => console.log(err.message))
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
