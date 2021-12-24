@@ -33,7 +33,7 @@ const ManageOrders = () => {
     const status = e.target.value
     axiosInstance
       .patch(
-        `/api/orders/${id}`,
+        `/api/order/${id}`,
         { status },
         {
           headers: { Authorization: `Bearer ${storedToken}` },
@@ -75,7 +75,7 @@ const ManageOrders = () => {
           </Col>
           <Col xs={12} sm={12} lg={2}>
             <Link
-              to={`/my-account/admin/orders/${order._id}`}
+              to={`/my-account/admin/order/${order._id}`}
               className="btn btn-outline-secondary edit-btn w-100"
             >
               Order details

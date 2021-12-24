@@ -55,67 +55,31 @@ const App = () => {
       </Route>
 
       {/* Private routes customer */}
-      <Route path="/my-account/customer/dashboard" element={<PrivateCustomerRoute />}>
-        <Route path="" element={<Dashboard />} />
-      </Route>
-      <Route path="/my-account/customer/orders" element={<PrivateCustomerRoute />}>
-        <Route path="" element={<Orders />} />
-      </Route>
-      <Route path="/my-account/customer/orders/:orderId" element={<PrivateCustomerRoute />}>
-        <Route path="" element={<OrderDetails />} />
-      </Route>
-      <Route path="/my-account/customer/address-list" element={<PrivateCustomerRoute />}>
-        <Route path="" element={<Addresses />} />
-      </Route>
-      <Route path="/my-account/customer/edit-address/:type" element={<PrivateCustomerRoute />}>
-        <Route path="" element={<EditAddress />} />
-      </Route>
-      <Route path="/my-account/customer/add-address/:type" element={<PrivateCustomerRoute />}>
-        <Route path="" element={<NewAddress />} />
-      </Route>
-      <Route path="/my-account/customer/account-details" element={<PrivateCustomerRoute />}>
-        <Route path="" element={<AccountDetails />} />
-      </Route>
-      <Route path="/my-account/customer/checkout" element={<PrivateCustomerRoute />}>
-        <Route path="" element={<CheckOutPage />} />
+      <Route path="/my-account/customer/" element={<PrivateCustomerRoute />}>
+        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="orders" element={<Orders />} />
+        <Route path="order/:orderId" element={<OrderDetails />} />
+        <Route path="address-list" element={<Addresses />} />
+        <Route path="edit-address/:type" element={<EditAddress />} />
+        <Route path="add-address/:type" element={<NewAddress />} />
+        <Route path="account-details" element={<AccountDetails />} />
+        <Route path="checkout" element={<CheckOutPage />} />
       </Route>
 
       {/* Private routes admin */}
-      <Route path="/my-account/admin/dashboard" element={<PrivateAdminRoute />}>
-        <Route path="" element={<DashboardAdmin />} />
-      </Route>
-      <Route path="/my-account/admin/product/edit/:id" element={<PrivateAdminRoute />}>
-        <Route path="" element={<EditProduct />} />
-      </Route>
-      <Route path="/my-account/admin/products" element={<PrivateAdminRoute />}>
-        <Route path="" element={<ManageProducts />} />
-      </Route>
-      <Route path="/my-account/admin/product/create" element={<PrivateAdminRoute />}>
-        <Route path="" element={<NewProduct />} />
-      </Route>
-      <Route path="/my-account/admin/categories" element={<PrivateAdminRoute />}>
-        <Route path="" element={<ManageCategories />} />
-      </Route>
-      <Route path="/my-account/admin/category/edit/:id" element={<PrivateAdminRoute />}>
-        <Route path="" element={<EditCategory />} />
-      </Route>
-      <Route path="/my-account/admin/category/create" element={<PrivateAdminRoute />}>
-        <Route path="" element={<NewCategory />} />
-      </Route>
-      <Route path="/my-account/admin/users" element={<PrivateAdminRoute />}>
-        <Route path="" element={<ManageUsers />} />
-      </Route>
-      <Route path="/my-account/admin/user/edit/:id" element={<PrivateAdminRoute />}>
-        <Route path="" element={<UserDetails />} />
-      </Route>
-      <Route path="/my-account/admin/orders" element={<PrivateAdminRoute />}>
-        <Route path="" element={<ManageOrders />} />
-      </Route>
-      <Route path="/my-account/admin/orders/:orderId" element={<PrivateAdminRoute />}>
-        <Route path="" element={<ManageOrderDetail />} />
-      </Route>
-      <Route path="/my-account/admin/account-details" element={<PrivateAdminRoute />}>
-        <Route path="" element={<AccountDetails />} />
+      <Route path="/my-account/admin/" element={<PrivateAdminRoute />}>
+        <Route path="dashboard" element={<DashboardAdmin />} />
+        <Route path="products" element={<ManageProducts />} />
+        <Route path="product/create" element={<NewProduct />} />
+        <Route path="product/edit/:id" element={<EditProduct />} />
+        <Route path="categories" element={<ManageCategories />} />
+        <Route path="category/create" element={<NewCategory />} />
+        <Route path="category/edit/:id" element={<EditCategory />} />
+        <Route path="users" element={<ManageUsers />} />
+        <Route path="user/edit/:id" element={<UserDetails />} />
+        <Route path="orders" element={<ManageOrders />} />
+        <Route path="order/:orderId" element={<ManageOrderDetail />} />
+        <Route path="account-details" element={<AccountDetails />} />
       </Route>
 
       {/* Error routes */}
