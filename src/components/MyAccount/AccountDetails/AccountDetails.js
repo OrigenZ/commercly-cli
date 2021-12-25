@@ -118,7 +118,6 @@ const AccountDetails = () => {
       id="account-details"
       className="d-flex flex-column justify-content-center align-items-center section account container"
     >
-      <h3 className="text-center text-muted text-uppercase">Account Details</h3>
       <div className="col-sm-12 col-md-6 ">
         <Form onSubmit={handleSubmit}>
           <Row className="mb-3">

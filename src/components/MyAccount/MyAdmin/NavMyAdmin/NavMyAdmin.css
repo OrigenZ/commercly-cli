@@ -29,8 +29,8 @@
   flex-wrap: wrap;
 }
 
-#subnav .button-navMyAdmin {
-  padding: 0 3rem;
+#subnav .button-nav-myadmin {
+  padding: 0 1rem;
 }
 
 /* MEDIA QUERIES */

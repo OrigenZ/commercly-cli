@@ -2,13 +2,14 @@
   margin: 3rem auto;
 }
 
-#manage-cat .search-add {
+#manage-cat .filter-container {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.5rem !important;
+  padding: 0;
 }
 
 #manage-cat .list {
@@ -26,7 +27,7 @@
   }
 
   #manage-cat .search,
-  #manage-cat .search-add,
+  #manage-cat .filter-container,
   #manage-cat .add {
     display: flex;
     flex-direction: column;

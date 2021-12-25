@@ -1,8 +1,8 @@
 @import '~@sweetalert2/theme-minimal/minimal.css';
 
 .active {
-  font-weight: 700;
-  border-bottom: none;
+  font-weight: 900 !important;
+  border-bottom: none !important;
 }
 
 input.form-control,

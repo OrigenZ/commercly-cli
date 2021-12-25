@@ -12,7 +12,7 @@ const NavMyAdmin = () => {
         <NavLink
           activeclassname="active"
           to="/my-account/admin/dashboard"
-          className="text-reset text-decoration-none text-uppercase button-navMyAdmin"
+          className="text-reset text-decoration-none text-uppercase button-nav-myadmin"
         >
           Dashboard
         </NavLink>
@@ -20,7 +20,7 @@ const NavMyAdmin = () => {
         <NavLink
           activeclassname="active"
           to="/my-account/admin/products"
-          className="text-reset text-decoration-none text-uppercase button-navMyAdmin"
+          className="text-reset text-decoration-none text-uppercase button-nav-myadmin"
         >
           Products
         </NavLink>
@@ -28,7 +28,7 @@ const NavMyAdmin = () => {
         <NavLink
           activeclassname="active"
           to="/my-account/admin/categories"
-          className="text-reset text-decoration-none text-uppercase button-navMyAdmin"
+          className="text-reset text-decoration-none text-uppercase button-nav-myadmin"
         >
           Categories
         </NavLink>
@@ -36,7 +36,7 @@ const NavMyAdmin = () => {
         <NavLink
           activeclassname="active"
           to="/my-account/admin/users"
-          className="text-reset text-decoration-none text-uppercase button-navMyAdmin"
+          className="text-reset text-decoration-none text-uppercase button-nav-myadmin"
         >
           Users
         </NavLink>
@@ -44,7 +44,7 @@ const NavMyAdmin = () => {
         <NavLink
           activeclassname="active"
           to="/my-account/admin/orders"
-          className="text-reset text-decoration-none text-uppercase button-navMyAdmin"
+          className="text-reset text-decoration-none text-uppercase button-nav-myadmin"
         >
           Orders
         </NavLink>
@@ -52,7 +52,7 @@ const NavMyAdmin = () => {
         <NavLink
           activeclassname="active"
           to="/my-account/admin/account-details"
-          className="text-reset text-decoration-none text-uppercase button-navMyAdmin"
+          className="text-reset text-decoration-none text-uppercase button-nav-myadmin"
         >
           Account details
         </NavLink>
@@ -61,7 +61,7 @@ const NavMyAdmin = () => {
           activeclassname="active"
           onClick={logOutUser}
           to="/"
-          className="text-reset text-decoration-none text-uppercase button-navMyAdmin"
+          className="text-reset text-decoration-none text-uppercase button-nav-myadmin"
         >
           Logout
         </NavLink>

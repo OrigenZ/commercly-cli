@@ -89,7 +89,7 @@ const ManageCategories = () => {
   return (
     <Container>
       <Row id="manage-cat" >
-        <Col xs={12} className="search-add">
+        <Col xs={12} className="filter-container">
           <SearchBar setCurrentSearch={setCurrentSearch} setReset={setReset} />
           <AddCategoryButton />
         </Col>

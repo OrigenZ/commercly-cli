@@ -1,8 +1,8 @@
-#manage-products{
+#manage-products {
   margin: 3rem 0;
 }
 
-#manage-products .row-section{
+#manage-products .row-section {
   margin: 0;
   padding: 0;
   display: -webkit-box;
@@ -13,6 +13,7 @@
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 1.5rem !important;
+  padding: 0;
 }
 
 #manage-products .list {
@@ -20,7 +21,6 @@
   flex-direction: column;
   justify-content: space-between;
 }
-
 
 @media (max-width: 600px) {
   #manage-products .filter-container {
