@@ -1,7 +1,7 @@
 import React from 'react'
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import dateFormat from 'dateformat'
-import { AuthContext } from '../../../../common/context/Auth.context'
+
 import axiosInstance from '../../../../common/http'
 import ReactPaginate from 'react-paginate'
 import { Row, Col, Form } from 'react-bootstrap'
@@ -10,7 +10,6 @@ import { Link } from 'react-router-dom'
 import './ManageOrders.css'
 
 const ManageOrders = () => {
-  const { user } = useContext(AuthContext)
   const [orders, setOrders] = useState([])
   const [offset, setOffset] = useState(0)
   const [data, setData] = useState([])
