@@ -12,3 +12,7 @@ textarea.form-control {
   border-radius: 0px;
   color: #46484b;
 }
+
+.navbar-toggler {
+  border: none;
+}

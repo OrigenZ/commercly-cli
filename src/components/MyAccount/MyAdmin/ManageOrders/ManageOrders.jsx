@@ -123,13 +123,17 @@ const ManageOrders = () => {
         <Col xs={12} sm={8} lg={2}>
           <p>User email</p>
         </Col>
-        <Col xs={12} sm={12} lg={2}>
-          <p>Action</p>
-        </Col>
+        <Col xs={12} sm={12} lg={2} />
       </Row>
 
-      {orders.length !== 0 && (data)}
-      {!orders.length && <p>No orders found</p>}
+      {/* {orders.length !== 0 && data} */}
+      {!orders.length ? (
+        <div className="text-center p-5">
+          <p>No orders found</p>
+        </div>
+      ) : (
+        <div>{data}</div>
+      )}
 
       <ReactPaginate
         previousLabel={'prev'}

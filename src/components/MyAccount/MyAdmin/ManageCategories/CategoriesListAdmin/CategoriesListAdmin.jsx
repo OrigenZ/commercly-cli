@@ -4,11 +4,11 @@ import { useState, useEffect } from "react";
 import { Row, Col } from "react-bootstrap";
 
 import ReactPaginate from "react-paginate";
-import "./ProductsListAdmin.css";
 
 import axiosInstance from "../../../../../common/http/index";
+import "./CategoriesListAdmin.css";
 
-function ProductsListAdmin(props) {
+function CategoriesListAdmin(props) {
   const { handleDelete, results, reset } = props;
   const [offset, setOffset] = useState(0);
   const [data, setData] = useState([]);
@@ -21,9 +21,10 @@ function ProductsListAdmin(props) {
     const selectedPage = e.selected;
     setOffset(Math.ceil(selectedPage * perPage));
   };
+
   const getData = async () => {
     try {
-      const response = await axiosInstance.get(`/api/products`, {
+      const response = await axiosInstance.get(`/api/categories`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       });
 
@@ -31,11 +32,11 @@ function ProductsListAdmin(props) {
       let postData;
 
       if (reset) {
-        data = response.data.products;
+        data = response.data;
       } else if (results) {
         data = results;
       } else {
-        data = response.data.products;
+        data = response.data;
       }
       //TODO: optimizar
 
@@ -48,40 +49,31 @@ function ProductsListAdmin(props) {
       } else {
         const slice = data.slice(offset, offset + perPage);
 
-        postData = slice.map((product) => (
-          <Row key={product._id} className="products-list">
+        postData = slice.map((category) => (
+          <Row key={category._id} className="categories-list">
             <Col xs={12} sm={4} lg={2} >
-              <p>{product.sku}</p>
+              <p>{category.name}</p>
             </Col>
-            <Col xs={6} sm={8} lg={2} >
-              <p>{product.name}</p>
-            </Col>
-            <Col xs={6} sm={8} lg={2} >
-              <p>{product.category.name}</p>
-            </Col>
-            <Col xs={6} sm={8} lg={1} className="text-center">
-              <p>{product.quantity}</p>
-            </Col>
-            <Col xs={6} sm={8} lg={2} className="text-center">
-              <p>{product.totalPrice} €</p>
+            <Col xs={12} sm={8} lg={8} >
+              <p>{category.description}</p>
             </Col>
 
-            <Col xs={12} sm={12} lg={3}>
+            <Col xs={12} sm={12} lg={2}>
               <Row>
-                <Col xs={6} sm={6} lg={6} className="buttons">
+                <Col xs={6} sm={6} lg={6} className="actions-btn">
                   <div className="mb-2">
                     <Link
-                      to={`/my-account/admin/product/edit/${product._id}`}
+                      to={`/my-account/admin/category/edit/${category._id}`}
                       className="btn btn-outline-secondary edit-btn w-100"
                     >
                       Edit
                     </Link>
                   </div>
                 </Col>
-                <Col xs={6} sm={6} lg={6} className="buttons">
+                <Col xs={6} sm={6} lg={6} className="actions-btn">
                   <div className="mb-0">
                     <div
-                      onClick={() => handleDelete(product._id, product.name)}
+                      onClick={() => handleDelete(category._id, category.name)}
                       className="btn btn-outline-danger delete-btn w-100"
                     >
                       Delete
@@ -108,30 +100,20 @@ function ProductsListAdmin(props) {
 
   return (
     <>
-      <div id="products-list-admin">
-        <Row id="head-products-list">
-          <Col xs={12} sm={4} lg={2} >
-            <p>SKU</p>
-          </Col>
-          <Col xs={6} sm={8} lg={2} >
+      <div id="cat-list-admin">
+        <Row id="head-categories-list">
+          <Col xs={12} lg={2} >
             <p>Name</p>
           </Col>
-          <Col xs={6} sm={8} lg={2} >
-            <p>Category</p>
+          <Col xs={12} lg={8} className="text-lg-center">
+            <p>Description</p>
           </Col>
-          <Col xs={6} sm={8} lg={1} className="text-center">
-            <p>Quantity</p>
-          </Col>
-          <Col xs={6} sm={8} lg={2} className="text-center">
-            <p>Price</p>
-          </Col>
-          <Col xs={12} sm={12} lg={3} className="text-center">
-            <p>Actions</p>
-          </Col>
+          <Col xs={12} lg={2} className="text-lg-center" />
         </Row>
         {data}
+
       </div>
-      <div className="shop-pagination">
+      <div className="paginate-cat">
         <ReactPaginate
           previousLabel={"prev"}
           nextLabel={"next"}
@@ -150,4 +132,4 @@ function ProductsListAdmin(props) {
   );
 }
 
-export default ProductsListAdmin;
+export default CategoriesListAdmin;

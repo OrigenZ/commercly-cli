@@ -101,13 +101,13 @@ const ManageProducts = () => {
           <SearchBar setCurrentSearch={setCurrentSearch} setReset={setReset} />
           <AddProductButton />
         </Col>
-        <Col xs={12} md={3} lg={3} className="filter-categories">
+        <Col xs={12} md={4} lg={3} className="filter-categories">
           <CategoriesFilter
             setCurrentCategory={setCurrentCategory}
             setReset={setReset}
           />
         </Col>
-        <Col xs={12} md={9} lg={9} className="list">
+        <Col xs={12} md={8} lg={9} className="list">
           <ProductsListAdmin
             results={results}
             handleDelete={handleDelete}

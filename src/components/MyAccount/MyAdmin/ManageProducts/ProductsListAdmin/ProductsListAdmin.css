@@ -8,6 +8,10 @@
   color: #6c757d;
 }
 
+#products-list-admin .actions-btn {
+  padding-left: 0;
+}
+
 p {
   margin: 0;
 }

@@ -17,8 +17,6 @@ const UserCard = (props) => {
   const isMount = useIsMount();
   const storedToken = localStorage.getItem("authToken");
 
-  console.log(userData);
-
   const formatDate = () => {
     const dateObj = new Date(userData.createdAt);
     return dateFormat(dateObj, " mmm dd yyyy @ h:MM:ss TT");
