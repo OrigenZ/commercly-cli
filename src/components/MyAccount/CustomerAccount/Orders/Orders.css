@@ -20,7 +20,11 @@
   color: #6d757d;
 }
 
+.pagination {
+  margin-top: 1rem;
 
-.orders-list.row{
+}
+
+.orders-list.row {
   color: #6d757d;
 }

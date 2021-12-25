@@ -125,7 +125,7 @@ const UsersListAdmin = (props) => {
           <div>{data}</div>
         )}
       </div>
-      <div className="paginate-cat">
+      <div className="pagination">
         <ReactPaginate
           previousLabel={'prev'}
           nextLabel={'next'}

@@ -1,19 +1,5 @@
-#cat-list-admin .categories-list {
-  padding: 1.5em 0em;
-  border: 0px;
-  border-bottom: 1px solid #dfe2e6;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  color: #6c757d;
-}
-
 p {
   margin: 0;
-}
-
-#cat-list-admin .actions-btn {
-  padding-left: 0;
 }
 
 #head-categories-list {
@@ -24,8 +10,18 @@ p {
   border-bottom: 2px solid #a033d1;
 }
 
-.paginate-cat {
-  margin-top: 1rem;
+#cat-list-admin .categories-list {
+  padding: 1.5em 0em;
+  border: 0px;
+  border-bottom: 1px solid #dfe2e6;
+  color: #6c757d;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#cat-list-admin .actions-btn {
+  padding-left: 0;
 }
 
 .pagination {

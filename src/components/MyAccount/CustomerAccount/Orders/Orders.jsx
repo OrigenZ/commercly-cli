@@ -108,22 +108,29 @@ const Orders = () => {
           <p>Action</p>
         </Col>
       </Row>
-      {orders.length !== 0 && data}
-      {!orders.length && <p>No orders found</p>}
 
-      <ReactPaginate
-        previousLabel={'prev'}
-        nextLabel={'next'}
-        breakLabel={'...'}
-        breakClassName={'break-me'}
-        pageCount={pageCount}
-        marginPagesDisplayed={2}
-        pageRangeDisplayed={5}
-        onPageChange={handlePageClick}
-        containerClassName={'pagination'}
-        subContainerClassName={'pages pagination'}
-        activeclassname={'active'}
-      />
+      {!orders.length ? (
+        <div className="text-center p-5">
+          <p>No orders found</p>
+        </div>
+      ) : (
+        <div>{data}</div>
+      )}
+      <div className="pagination">
+        <ReactPaginate
+          previousLabel={'prev'}
+          nextLabel={'next'}
+          breakLabel={'...'}
+          breakClassName={'break-me'}
+          pageCount={pageCount}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+          onPageChange={handlePageClick}
+          containerClassName={'pagination'}
+          subContainerClassName={'pages pagination'}
+          activeclassname={'active'}
+        />
+      </div>
     </div>
   )
 }

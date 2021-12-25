@@ -127,9 +127,16 @@ function ProductsListAdmin(props) {
           </Col>
           <Col xs={12} lg={3} className="text-lg-center" />
         </Row>
-        {data}
+
+        {!data.length ? (
+          <div className="text-center p-5">
+            <p>No products found</p>
+          </div>
+        ) : (
+          <div>{data}</div>
+        )}
       </div>
-      <div className="shop-pagination">
+      <div className="pagination">
         <ReactPaginate
           previousLabel={"prev"}
           nextLabel={"next"}

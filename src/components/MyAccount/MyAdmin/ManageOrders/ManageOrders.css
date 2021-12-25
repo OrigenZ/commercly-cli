@@ -1,3 +1,15 @@
+p {
+  margin: 0;
+}
+
+#head-orders-list {
+  background-color: #f5ab15!important;
+  padding: 0.8rem;
+  font-weight: 600;
+  color: #ffffff!important;
+  border-bottom: 2px solid #f5ab15!important;
+}
+
 #manage-orders {
   margin: 3rem auto;
 }
@@ -8,18 +20,11 @@
   border-radius: 0px;
 }
 
-#head-orders-list {
-  background-color: #f5ab15;
-  padding: 0.8rem;
-  font-weight: 600;
-  color: #ffffff;
-  border-bottom: 2px solid #f5ab15;
-}
-
 #manage-orders .orders-list {
-  padding: 1.5em;
+  padding: 1.5em 0em;
   border: 0px;
   border-bottom: 1px solid #dfe2e6;
+  color: #6c757d;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -29,6 +34,9 @@
   border-color: rgb(245 171 21 / 30%);
   outline: 0;
   box-shadow: 0 0 0 0.1rem rgb(245 171 21 / 30%);
+}
+.pagination {
+  margin-top: 1rem;
 }
 
 @media (max-width: 600px) {

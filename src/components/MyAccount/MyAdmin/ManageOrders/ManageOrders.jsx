@@ -39,7 +39,7 @@ const ManageOrders = () => {
           headers: { Authorization: `Bearer ${storedToken}` },
         },
       )
-      .then(() => {})
+      .then(() => { })
       .catch((err) => console.log(err.message))
   }
 
@@ -98,7 +98,7 @@ const ManageOrders = () => {
 
   useEffect(() => {
     axiosInstance
-      .get(`/api/orders/customer/${user._id}`, {
+      .get(`/api/orders`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
@@ -126,7 +126,6 @@ const ManageOrders = () => {
         <Col xs={12} sm={12} lg={2} />
       </Row>
 
-      {/* {orders.length !== 0 && data} */}
       {!orders.length ? (
         <div className="text-center p-5">
           <p>No orders found</p>
@@ -135,19 +134,21 @@ const ManageOrders = () => {
         <div>{data}</div>
       )}
 
-      <ReactPaginate
-        previousLabel={'prev'}
-        nextLabel={'next'}
-        breakLabel={'...'}
-        breakClassName={'break-me'}
-        pageCount={pageCount}
-        marginPagesDisplayed={2}
-        pageRangeDisplayed={5}
-        onPageChange={handlePageClick}
-        containerClassName={'pagination'}
-        subContainerClassName={'pages pagination'}
-        activeclassname={'active'}
-      />
+      <div className="pagination">
+        <ReactPaginate
+          previousLabel={'prev'}
+          nextLabel={'next'}
+          breakLabel={'...'}
+          breakClassName={'break-me'}
+          pageCount={pageCount}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+          onPageChange={handlePageClick}
+          containerClassName={'pagination'}
+          subContainerClassName={'pages pagination'}
+          activeclassname={'active'}
+        />
+      </div>
     </div>
   )
 }

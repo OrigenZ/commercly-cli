@@ -61,7 +61,7 @@ function CategoriesListAdmin(props) {
             <Col xs={12} sm={12} lg={2}>
               <Row>
                 <Col xs={6} sm={6} lg={6} className="actions-btn">
-                  <div className="mb-2">
+                  <div >
                     <Link
                       to={`/my-account/admin/category/edit/${category._id}`}
                       className="btn btn-outline-secondary edit-btn w-100"
@@ -110,10 +110,17 @@ function CategoriesListAdmin(props) {
           </Col>
           <Col xs={12} lg={2} className="text-lg-center" />
         </Row>
-        {data}
+
+        {!data.length ? (
+          <div className="text-center p-5">
+            <p>No categories found</p>
+          </div>
+        ) : (
+          <div>{data}</div>
+        )}
 
       </div>
-      <div className="paginate-cat">
+      <div className="pagination">
         <ReactPaginate
           previousLabel={"prev"}
           nextLabel={"next"}

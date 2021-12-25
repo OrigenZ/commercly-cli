@@ -81,7 +81,7 @@ const ProductsList = (props) => {
       <div className="row">
       {data}
       </div>
-      <div className="shop-pagination">
+      <div className="pagination">
         <ReactPaginate
           previousLabel={"prev"}
           nextLabel={"next"}
