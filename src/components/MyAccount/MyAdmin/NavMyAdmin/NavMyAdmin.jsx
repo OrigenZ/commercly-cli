@@ -7,7 +7,7 @@ import "./NavMyAdmin.css";
 const NavMyAdmin = () => {
   const { logOutUser } = useContext(AuthContext);
   return (
-    <div id="subnav" className="border-bottom customer-menu px-3 text-muted">
+    <div id="subnav" className="border-bottom px-3 text-muted">
       <Container className="subnav">
         <NavLink
           activeclassname="active"
