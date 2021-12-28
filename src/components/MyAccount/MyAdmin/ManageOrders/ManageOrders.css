@@ -7,11 +7,11 @@ p {
 }
 
 #head-orders-list {
-  background-color: #f5ab15!important;
+  background-color: #f5ab15;
   padding: 0.8rem;
   font-weight: 600;
-  color: #ffffff!important;
-  border-bottom: 2px solid #f5ab15!important;
+  color: #ffffff;
+  border-bottom: 2px solid #f5ab15;
 }
 
 #orders-list-admin .order-row {
@@ -22,10 +22,6 @@ p {
   display: flex;
   flex-direction: row;
   align-items: center;
-}
-
-#orders-list-admin .actions-btn {
-  padding-left: 0;
 }
 
 #orders-list-admin .form-select {

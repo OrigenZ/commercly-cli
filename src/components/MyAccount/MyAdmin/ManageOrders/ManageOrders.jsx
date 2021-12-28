@@ -130,9 +130,9 @@ const ManageOrders = () => {
 
 
           {!orders.length ? (
-            <div className="text-center p-5">
+            <Row className="text-center p-5">
               <p>No orders found</p>
-            </div>
+            </Row>
           ) : (
             <Col xs={12}>
               {data}

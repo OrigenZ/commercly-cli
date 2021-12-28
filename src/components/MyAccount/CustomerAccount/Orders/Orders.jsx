@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 import dateFormat from 'dateformat'
 import ReactPaginate from 'react-paginate'
-import { Row, Col } from 'react-bootstrap'
+import { Row, Col, Container } from 'react-bootstrap'
 
 import './Orders.css'
 
@@ -41,7 +41,7 @@ const Orders = () => {
       const slice = data.slice(offset, offset + perPage)
 
       const postData = slice.map((order) => (
-        <Row key={order._id} className="orders-list">
+        <Row key={order._id} className="order-row">
           <Col xs={12} sm={4} lg={3}>
             <p>{order._id}</p>
           </Col>
@@ -90,49 +90,58 @@ const Orders = () => {
   }, [])
 
   return (
-    <div id="user-orders" className="container">
-      <Row id="head-orders-list">
-        <Col xs={12} sm={4} lg={3}>
-          <p>ID</p>
-        </Col>
-        <Col xs={12} sm={4} lg={3}>
-          <p>Created at</p>
-        </Col>
-        <Col xs={12} sm={8} lg={2}>
-          <p>Status</p>
-        </Col>
-        <Col xs={12} sm={8} lg={2}>
-          <p>Total order</p>
-        </Col>
-        <Col xs={12} sm={12} lg={2}>
-          <p>Action</p>
+    <Container>
+      <Row id="manage-orders">
+
+        <Col id="orders-list-customer" >
+          <Row id="head-orders-list">
+            <Col xs={12} sm={4} lg={3}>
+              <p>ID</p>
+            </Col>
+            <Col xs={12} sm={4} lg={3}>
+              <p>Created at</p>
+            </Col>
+            <Col xs={12} sm={8} lg={2}>
+              <p>Status</p>
+            </Col>
+            <Col xs={12} sm={8} lg={2}>
+              <p>Total order</p>
+            </Col>
+            <Col xs={12} sm={12} lg={2}>
+              <p>Action</p>
+            </Col>
+          </Row>
+
+          {!orders.length ? (
+            <Row className="text-center p-5">
+              <p>No orders found</p>
+            </Row>
+          ) : (
+            <Col>
+              {data}
+            </Col>
+          )}
+          <Row className="pagination">
+            <ReactPaginate
+              previousLabel={'prev'}
+              nextLabel={'next'}
+              breakLabel={'...'}
+              breakClassName={'break-me'}
+              pageCount={pageCount}
+              marginPagesDisplayed={2}
+              pageRangeDisplayed={5}
+              onPageChange={handlePageClick}
+              containerClassName={'pagination'}
+              subContainerClassName={'pages pagination'}
+              activeclassname={'active'}
+            />
+          </Row>
         </Col>
       </Row>
-
-      {!orders.length ? (
-        <div className="text-center p-5">
-          <p>No orders found</p>
-        </div>
-      ) : (
-        <div>{data}</div>
-      )}
-      <div className="pagination">
-        <ReactPaginate
-          previousLabel={'prev'}
-          nextLabel={'next'}
-          breakLabel={'...'}
-          breakClassName={'break-me'}
-          pageCount={pageCount}
-          marginPagesDisplayed={2}
-          pageRangeDisplayed={5}
-          onPageChange={handlePageClick}
-          containerClassName={'pagination'}
-          subContainerClassName={'pages pagination'}
-          activeclassname={'active'}
-        />
-      </div>
-    </div>
+    </Container>
   )
 }
 
 export default Orders
+
+

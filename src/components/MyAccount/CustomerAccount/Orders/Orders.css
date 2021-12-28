@@ -1,23 +1,23 @@
-#user-orders {
-  margin: 3rem auto;
+p {
+  margin: 0;
 }
 
 #head-orders-list {
-  background-color: #f7f9fa;
+  background-color: #f5ab15;
   padding: 0.8rem;
   font-weight: 600;
-  color: #6d757d;
-  border-bottom: 2px solid #dfe2e6;
+  color: #ffffff;
+  border-bottom: 2px solid #f5ab15;
 }
 
-#user-orders .orders-list {
-  padding: 1.5em;
+#orders-list-customer .order-row {
+  padding: 1.5em 0em;
   border: 0px;
   border-bottom: 1px solid #dfe2e6;
+  color: #6c757d;
   display: flex;
   flex-direction: row;
   align-items: center;
-  color: #6d757d;
 }
 
 .pagination {
