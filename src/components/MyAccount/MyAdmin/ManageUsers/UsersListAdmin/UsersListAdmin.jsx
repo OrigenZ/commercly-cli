@@ -3,7 +3,7 @@ import UserCard from '../../../../UserCard/UserCard'
 import { useState, useEffect } from 'react'
 import Swal from 'sweetalert2/src/sweetalert2'
 import ReactPaginate from 'react-paginate'
-import { Row, Col } from 'react-bootstrap'
+import { Row, Col, Container } from 'react-bootstrap'
 
 import './UsersListAdmin.css'
 
@@ -85,7 +85,7 @@ const UsersListAdmin = (props) => {
         .then((response) => {
           setUsers(response.data)
         })
-        .catch((err) => {})
+        .catch((err) => { })
     }
   }
   useEffect(() => {
@@ -99,33 +99,34 @@ const UsersListAdmin = (props) => {
   }, [])
 
   return (
-    <div id="users-list-admin" className="container">
-      <div>
-        <Row id="head-users-list">
-          <Col xs={12} sm={3} lg={3}>
-            <p>Email</p>
-          </Col>
-          <Col xs={12} sm={2} lg={2}>
-            <p>Created at</p>
-          </Col>
-          <Col xs={12} sm={1} lg={1}>
-            <p className="text-center">Admin</p>
-          </Col>
-          <Col xs={12} sm={3} lg={3}>
-            <p>ID</p>
-          </Col>
-          <Col xs={12} sm={3} lg={3} />
-        </Row>
+    <Col id="users-list-admin" xs={12}>
+      <Row xs={12} id="head-users-list">
+        <Col xs={12} sm={3} lg={3}>
+          <p>Email</p>
+        </Col>
+        <Col xs={12} sm={2} lg={2}>
+          <p>Created at</p>
+        </Col>
+        <Col xs={12} sm={1} lg={1}>
+          <p className="text-center">Admin</p>
+        </Col>
+        <Col xs={12} sm={3} lg={4}>
+          <p>ID</p>
+        </Col>
+        <Col xs={12} sm={3} lg={2} />
+      </Row>
 
-        {!data.length ? (
-          <div className="text-center p-5">
-            <p>No users found</p>
-          </div>
-        ) : (
-          <div>{data}</div>
-        )}
-      </div>
-      <div className="pagination">
+      {!data.length ? (
+        <Row className="text-center p-5">
+          <p>No users found</p>
+        </Row>
+      ) : (
+        <Col xs={12}>
+          {data}
+        </Col>
+      )}
+
+      <Row className="pagination">
         <ReactPaginate
           previousLabel={'prev'}
           nextLabel={'next'}
@@ -139,8 +140,8 @@ const UsersListAdmin = (props) => {
           subContainerClassName={'pages pagination'}
           activeclassname={'active'}
         />
-      </div>
-    </div>
+      </Row>
+    </Col>
   )
 }
 

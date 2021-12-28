@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Button } from "react-bootstrap";
 
 import ReactPaginate from "react-paginate";
 
@@ -50,7 +50,7 @@ function CategoriesListAdmin(props) {
         const slice = data.slice(offset, offset + perPage);
 
         postData = slice.map((category) => (
-          <Row key={category._id} className="categories-list">
+          <Row key={category._id} className="category-row">
             <Col xs={12} sm={4} lg={2} >
               <p>{category.name}</p>
             </Col>
@@ -61,24 +61,23 @@ function CategoriesListAdmin(props) {
             <Col xs={12} sm={12} lg={2}>
               <Row>
                 <Col xs={6} sm={6} lg={6} className="actions-btn">
-                  <div >
+                  <Col >
                     <Link
                       to={`/my-account/admin/category/edit/${category._id}`}
                       className="btn btn-outline-secondary edit-btn w-100"
                     >
                       Edit
                     </Link>
-                  </div>
+                  </Col>
                 </Col>
                 <Col xs={6} sm={6} lg={6} className="actions-btn">
-                  <div className="mb-0">
-                    <div
-                      onClick={() => handleDelete(category._id, category.name)}
-                      className="btn btn-outline-danger delete-btn w-100"
-                    >
-                      Delete
-                    </div>
-                  </div>
+                  <Button
+                    variant="outline-danger"
+                    onClick={() => handleDelete(category._id, category.name)}
+                    className="delete-btn w-100"
+                  >
+                    Delete
+                  </Button>
                 </Col>
               </Row>
             </Col>
@@ -99,28 +98,28 @@ function CategoriesListAdmin(props) {
   }, [offset, handleDelete]);
 
   return (
-    <>
-      <div id="cat-list-admin">
-        <Row id="head-categories-list">
-          <Col xs={12} lg={2} >
-            <p>Name</p>
-          </Col>
-          <Col xs={12} lg={8} className="text-lg-center">
-            <p>Description</p>
-          </Col>
-          <Col xs={12} lg={2} className="text-lg-center" />
+    <Col id="categories-list-admin" xs={12}>
+      <Row id="head-categories-list">
+        <Col xs={12} lg={2} >
+          <p>Name</p>
+        </Col>
+        <Col xs={12} lg={8} className="text-lg-center">
+          <p>Description</p>
+        </Col>
+        <Col xs={12} lg={2} className="text-lg-center" />
+      </Row>
+
+      {!data.length ? (
+        <Row className="text-center p-5">
+          <p>No categories found</p>
         </Row>
+      ) : (
+        <Col xs={12}>
+          {data}
+        </Col>
+      )}
 
-        {!data.length ? (
-          <div className="text-center p-5">
-            <p>No categories found</p>
-          </div>
-        ) : (
-          <div>{data}</div>
-        )}
-
-      </div>
-      <div className="pagination">
+      <Row className="pagination">
         <ReactPaginate
           previousLabel={"prev"}
           nextLabel={"next"}
@@ -134,9 +133,12 @@ function CategoriesListAdmin(props) {
           subContainerClassName={"pages pagination"}
           activeclassname={"active"}
         />
-      </div>
-    </>
+      </Row>
+    </Col>
+
   );
 }
 
 export default CategoriesListAdmin;
+
+

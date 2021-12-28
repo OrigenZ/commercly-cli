@@ -57,7 +57,7 @@ const Orders = () => {
           <Col xs={12} sm={12} lg={2}>
             <Link
               to={`/my-account/customer/order/${order._id}`}
-              className="btn btn-outline-secondary edit-btn w-100"
+              className="btn btn-outline-secondary view-btn w-100"
             >
               Order details
             </Link>

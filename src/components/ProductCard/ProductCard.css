@@ -1,19 +1,18 @@
 span.text-center.price {
   font-size: 1em;
-  color:#6d757d;
-
+  color: #6d757d;
 }
 
-.product-name{
-  color:#6d757d;
+.product-name {
+  color: #6d757d;
   font-weight: 600;
   margin-bottom: 0;
-  text-align: left!important;
+  text-align: left !important;
 }
 
-.product-brand{
-  color:#6d757d;
-  font-size: 0.9rem
+.product-brand {
+  color: #6d757d;
+  font-size: 0.9rem;
 }
 
 .prod-text.card-body {
@@ -23,8 +22,9 @@ span.text-center.price {
   padding-left: 0px;
 }
 
-button.w-100.btn.btn-outline-danger,
-a.btn.btn-outline-secondary.edit-btn.w-100.mb-2 {
+.delete-btn,
+.edit-btn,
+.view-btn {
   border-radius: 0px;
-  margin-bottom: 0px!important;
+  margin-bottom: 0px !important;
 }

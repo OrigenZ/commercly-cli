@@ -1,27 +1,5 @@
-#users-list-admin {
-  margin: 3rem auto;
-}
-
-#users-list-admin .users-list {
-  padding: 1.5em;
-  border: 0px;
-  border-bottom: 1px solid #dfe2e6;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-a.btn.btn-outline-dark.col-12,
-.btn.btn-outline-danger.delete-btn.w-100,
-a.btn.btn-outline-secondary.edit-btn.w-100 {
-  border-radius: 0px;
-}
-
-#users-list-admin {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 0px;
+p {
+  margin: 0;
 }
 
 #head-users-list {
@@ -30,6 +8,19 @@ a.btn.btn-outline-secondary.edit-btn.w-100 {
   font-weight: 600;
   color: #ffffff;
   border-bottom: 2px solid #d02953;
+}
+
+#users-list-admin .user-row {
+  padding: 1.5rem 0rem;
+  border: 0px;
+  border-bottom: 1px solid #dfe2e6;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#users-list-admin .actions-btn {
+  padding-left: 0;
 }
 
 #users-list-admin .form-check-input:checked {
@@ -52,7 +43,7 @@ a.btn.btn-outline-secondary.edit-btn.w-100 {
   }
 
   #users-list-admin .before div::before {
-    content: "Admin ";
+    content: 'Admin ';
     color: #6d757d;
     padding-right: 1rem;
   }

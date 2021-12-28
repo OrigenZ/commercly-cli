@@ -40,14 +40,14 @@ const ProductCard = (props) => {
           <>
             <Link
               to={`/my-account/admin/product/edit/${product._id}`} //TODO  pasar a App.js
-              className="btn btn-outline-secondary edit-btn w-100 mb-2"
+              className="btn btn-outline-secondary edit-btn w-100"
             >
               Edit
             </Link>
 
             <Button variant="outline-danger"
               onClick={() => handleDelete(product._id, product.name)}
-              className="w-100"
+              className="delete-btn w-100"
             >
               Delete
             </Button>

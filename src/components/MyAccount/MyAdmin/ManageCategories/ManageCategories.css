@@ -1,8 +1,8 @@
-#manage-cat {
+#manage-categories {
   margin: 3rem auto;
 }
 
-#manage-cat .filter-container {
+#manage-categories .filter-container {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -12,33 +12,27 @@
   padding: 0;
 }
 
-#manage-cat .list {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
 /* MEDIA QUERIES */
 
 @media (max-width: 600px) {
-  #manage-cat {
+  #manage-categories {
     padding-right: var(--bs-gutter-x, 0.75rem);
     padding-left: var(--bs-gutter-x, 0.75rem);
   }
 
-  #manage-cat .search,
-  #manage-cat .filter-container,
-  #manage-cat .add {
+  #manage-categories .search,
+  #manage-categories .filter-container,
+  #manage-categories .add {
     display: flex;
     flex-direction: column;
     align-items: stretch;
     align-content: center;
   }
-  #manage-cat .search-container {
+  #manage-categories .search-container {
     margin-bottom: 1.5rem;
   }
 
-  #cat-list-admin .categories-list {
+  #categories-list-admin .categories-list {
     padding: 1.5em 0em;
   }
 }

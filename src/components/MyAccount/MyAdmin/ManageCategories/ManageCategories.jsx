@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Col, Container, Row } from "react-bootstrap";
 import axiosInstance from "../../../../common/http";
 
 import Swal from "sweetalert2/src/sweetalert2";
@@ -8,7 +9,6 @@ import AddCategoryButton from "./NewCategory/AddCategoryButton/AddCategoryButton
 import SearchBar from "../../../SearchBar/SearchBar";
 
 import "./ManageCategories.css";
-import { Col, Container, Row } from "react-bootstrap";
 
 const ManageCategories = () => {
   const [categories, setCategories] = useState([]);
@@ -88,21 +88,20 @@ const ManageCategories = () => {
 
   return (
     <Container>
-      <Row id="manage-cat" >
+      <Row id="manage-categories" >
         <Col xs={12} className="filter-container">
           <SearchBar setCurrentSearch={setCurrentSearch} setReset={setReset} />
           <AddCategoryButton />
         </Col>
-        <Col xs={12} className="list">
-          <CategoriesListAdmin
-            results={results}
-            handleDelete={handleDelete}
-            categories={categories}
-            setCategories={setCategories}
-            reset={reset}
-            setReset={setReset}
-          />
-        </Col>
+
+        <CategoriesListAdmin
+          results={results}
+          handleDelete={handleDelete}
+          categories={categories}
+          setCategories={setCategories}
+          reset={reset}
+          setReset={setReset}
+        />
       </Row>
     </Container>
   );

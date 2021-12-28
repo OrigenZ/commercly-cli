@@ -1,13 +1,10 @@
-#card-users {
-  padding: 1.5em;
+#user-row {
+  padding: 1.5em 0em;
   border: 0px;
   border-bottom: 1px solid #dfe2e6;
 }
-/* #card-users:last-child{
-    border-bottom: 0px solid #dfe2e6;
-} */
 
-#card-users .row {
+#user-row .row {
   flex-direction: row;
   align-content: center;
   align-items: center;

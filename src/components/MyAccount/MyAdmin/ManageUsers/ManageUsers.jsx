@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { Container, Row } from "react-bootstrap";
 import axiosInstance from "../../../../common/http";
 import UsersListAdmin from "./UsersListAdmin/UsersListAdmin";
+
+import "./ManageUsers.css";
 
 const ManageUsers = () => {
   const [users, setUsers] = useState([]);
@@ -20,7 +23,13 @@ const ManageUsers = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return <UsersListAdmin users={users} setUsers={setUsers} />;
+  return (
+    <Container>
+      <Row id="manage-users" xs={12}>
+        <UsersListAdmin users={users} setUsers={setUsers} />
+      </Row>
+    </Container>
+  )
 };
 
 export default ManageUsers;

@@ -1,3 +1,7 @@
+#manage-orders {
+  margin: 3rem auto;
+}
+
 p {
   margin: 0;
 }
@@ -10,17 +14,7 @@ p {
   border-bottom: 2px solid #f5ab15!important;
 }
 
-#manage-orders {
-  margin: 3rem auto;
-}
-
-#manage-orders .form-select {
-  width: 75%;
-  color: #6d757d;
-  border-radius: 0px;
-}
-
-#manage-orders .orders-list {
+#orders-list-admin .order-row {
   padding: 1.5em 0em;
   border: 0px;
   border-bottom: 1px solid #dfe2e6;
@@ -30,13 +24,21 @@ p {
   align-items: center;
 }
 
-#manage-orders .form-select:focus {
+#orders-list-admin .actions-btn {
+  padding-left: 0;
+}
+
+#orders-list-admin .form-select {
+  width: 75%;
+  color: #6d757d;
+  border-radius: 0px;
+}
+
+
+#orders-list-admin .form-select:focus {
   border-color: rgb(245 171 21 / 30%);
   outline: 0;
   box-shadow: 0 0 0 0.1rem rgb(245 171 21 / 30%);
-}
-.pagination {
-  margin-top: 1rem;
 }
 
 @media (max-width: 600px) {
@@ -48,7 +50,7 @@ p {
   #head-orders-list {
     margin: 0;
   }
-  #manage-orders .orders-list {
+  #manage-orders .orders-list-admin {
     padding: 1.5em 0;
     margin: 0;
   }
