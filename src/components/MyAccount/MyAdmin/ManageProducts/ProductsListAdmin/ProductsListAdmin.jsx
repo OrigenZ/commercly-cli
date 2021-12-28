@@ -39,60 +39,54 @@ function ProductsListAdmin(props) {
       }
       //TODO: optimizar
 
-      if (results && results.length === 0) {
-        postData = (
-          <Col xs={12} className="text-center">
-            No matching products found
+
+      const slice = data.slice(offset, offset + perPage);
+
+      postData = slice.map((product) => (
+        <Row key={product._id} className="products-list">
+          <Col xs={12} lg={2} >
+            <p>{product.sku}</p>
           </Col>
-        );
-      } else {
-        const slice = data.slice(offset, offset + perPage);
+          <Col xs={12} lg={2} >
+            <p>{product.name}</p>
+          </Col>
+          <Col xs={12} lg={2} >
+            <p>{product.category.name}</p>
+          </Col>
+          <Col xs={12} lg={1} className="text-lg-center">
+            <p>{product.quantity}</p>
+          </Col>
+          <Col xs={12} lg={2} className="text-lg-center">
+            <p>{product.totalPrice} €</p>
+          </Col>
 
-        postData = slice.map((product) => (
-          <Row key={product._id} className="products-list">
-            <Col xs={12} lg={2} >
-              <p>{product.sku}</p>
-            </Col>
-            <Col xs={12} lg={2} >
-              <p>{product.name}</p>
-            </Col>
-            <Col xs={12} lg={2} >
-              <p>{product.category.name}</p>
-            </Col>
-            <Col xs={12} lg={1} className="text-lg-center">
-              <p>{product.quantity}</p>
-            </Col>
-            <Col xs={12} lg={2} className="text-lg-center">
-              <p>{product.totalPrice} €</p>
-            </Col>
+          <Col xs={12} lg={3}>
+            <Row>
+              <Col xs={6} className="actions-btn">
+                <div className="mb-2">
+                  <Link
+                    to={`/my-account/admin/product/edit/${product._id}`}
+                    className="btn btn-outline-secondary edit-btn w-100"
+                  >
+                    Edit
+                  </Link>
+                </div>
+              </Col>
+              <Col xs={6} className="actions-btn">
+                <div className="mb-0">
+                  <div
+                    onClick={() => handleDelete(product._id, product.name)}
+                    className="btn btn-outline-danger delete-btn w-100"
+                  >
+                    Delete
+                  </div>
+                </div>
+              </Col>
+            </Row>
+          </Col>
+        </Row>
+      ));
 
-            <Col xs={12} lg={3}>
-              <Row>
-                <Col xs={6} className="actions-btn">
-                  <div className="mb-2">
-                    <Link
-                      to={`/my-account/admin/product/edit/${product._id}`}
-                      className="btn btn-outline-secondary edit-btn w-100"
-                    >
-                      Edit
-                    </Link>
-                  </div>
-                </Col>
-                <Col xs={6} className="actions-btn">
-                  <div className="mb-0">
-                    <div
-                      onClick={() => handleDelete(product._id, product.name)}
-                      className="btn btn-outline-danger delete-btn w-100"
-                    >
-                      Delete
-                    </div>
-                  </div>
-                </Col>
-              </Row>
-            </Col>
-          </Row>
-        ));
-      }
 
       setData(postData);
       setPageCount(Math.ceil(data.length / perPage));

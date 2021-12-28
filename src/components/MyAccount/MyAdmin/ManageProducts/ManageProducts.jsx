@@ -45,7 +45,7 @@ const ManageProducts = () => {
             const newProducts = products.filter(
               (product) => product._id !== id
             );
-            setProducts(newProducts);
+            setProducts(newProducts)
           })
           .catch((err) => {
             console.log(err);

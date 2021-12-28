@@ -42,7 +42,7 @@ const UserCard = (props) => {
             headers: { Authorization: `Bearer ${storedToken}` },
           }
         )
-        .then((response) => console.log(response.data))
+        .then((response) => response)
         .catch((err) => console.log(err.message));
       //TODO: set proper error handling
     }

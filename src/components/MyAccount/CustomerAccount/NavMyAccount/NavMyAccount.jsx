@@ -8,7 +8,7 @@ const NavMyAccount = () => {
   const { logOutUser } = useContext(AuthContext);
   return (
     <div id="subnav" className="border-bottom px-3 text-muted">
-      <Container className="subnav">
+      <Container >
         <NavLink
           activeclassname="active"
           to="/my-account/customer/dashboard"
