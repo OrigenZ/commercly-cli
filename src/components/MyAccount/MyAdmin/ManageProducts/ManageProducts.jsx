@@ -58,7 +58,6 @@ const ManageProducts = () => {
         );
         setProducts(newProducts)
       }
-
     } catch (err) {
       console.log(err.message)
       //TODO: set proper error handling
