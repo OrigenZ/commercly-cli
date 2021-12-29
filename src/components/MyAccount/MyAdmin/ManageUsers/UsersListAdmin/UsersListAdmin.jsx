@@ -3,7 +3,7 @@ import UserCard from '../../../../UserCard/UserCard'
 import { useState, useEffect } from 'react'
 import Swal from 'sweetalert2/src/sweetalert2'
 import ReactPaginate from 'react-paginate'
-import { Row, Col, Container } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
 
 import './UsersListAdmin.css'
 

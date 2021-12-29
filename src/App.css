@@ -62,3 +62,7 @@ li.previous.disabled {
   color: #6d757d;
 }
 
+.pagination .selected {
+  background-color: #6d757d;
+  color: whitesmoke;
+}

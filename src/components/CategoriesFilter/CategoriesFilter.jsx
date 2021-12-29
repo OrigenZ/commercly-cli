@@ -14,17 +14,18 @@ const CategoriesFilter = (props) => {
     setReset(false)
   }
 
+  const getCategories = async () => {
+    try {
+      const response = await axiosInstance.get(`/api/categories`)
+      setCategories(response.data)
+    } catch (err) {
+      console.log(err.message)
+      //TODO: proper error handling
+    }
+  }
+
   useEffect(() => {
-    axiosInstance
-      .get(`/api/categories`)
-      .then((response) => {
-        setCategories(response.data)
-      })
-      .catch((err) => {
-        console.log(err.message)
-      })
-    //TODO: proper error handling
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    getCategories()
   }, [])
 
   return (

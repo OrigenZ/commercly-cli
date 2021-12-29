@@ -1,87 +1,62 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import ProductCard from "../ProductCard/ProductCard";
-import { Col } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 
 import ReactPaginate from "react-paginate";
-import axiosInstance from "../../common/http";
 import "./ProductsList.css";
 
 const ProductsList = (props) => {
-  const { handleDelete, results, isShop, reset } = props;
+  const { handleDelete, results, products, isShop, reset } = props;
 
-  const [offset, setOffset] = useState(0);
   const [data, setData] = useState([]);
+  const [offset, setOffset] = useState(0);
   const [perPage] = useState(8);
   const [pageCount, setPageCount] = useState(0);
+  const [page, setPage] = useState(null)
 
-
-  const storedToken = localStorage.getItem('authToken')
-
-  const handlePageClick = (e) => {
-    const selectedPage = e.selected;
-    setOffset(Math.ceil(selectedPage * perPage));
+  const handlePageClick = ({ selected }) => {
+    setPage(selected)
+    setOffset(Math.ceil(selected * perPage));
   };
 
-  const getData = async () => {
-    try {
-      const response = await axiosInstance.get(`/api/products`, {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      });
-      const products = response.data.products;
-
-      const sliceAllProds = products.slice(offset, offset + perPage);
-      const sliceResults = results.slice(offset, offset + perPage);
-
-      let postData;
-
-      if (reset || !results) {
-        postData = sliceAllProds.map((product) => (
-          <ProductCard
-            key={product._id}
-            product={product}
-            handleDelete={handleDelete}
-            isShop={isShop}
-          />
-        ));
-
-        setPageCount(Math.ceil(products.length / perPage));
-      }
-
-      if (!reset) {
-        postData = sliceResults.map((product) => (
-          <ProductCard
-            key={product._id}
-            product={product}
-            handleDelete={handleDelete}
-            isShop={isShop}
-          />
-        ));
-        setPageCount(Math.ceil(results.length / perPage));
-      }
-
-      if(!reset && results.length === 0){
-        postData =  <Col xs={12} className="text-center">No matching products found</Col> 
-      }
-
-
-      setData(postData);
-    } catch (err) {
-      console.log(err.message);
+  const getData = () => {
+    if (!reset) {
+      setPageCount(Math.ceil(results.length / perPage));
+      return results.slice(offset, offset + perPage);
     }
+    setPageCount(Math.ceil(products.length / perPage));
+    return products.slice(offset, offset + perPage);
   };
 
   useEffect(() => {
-    getData();
+    setData(getData());
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [offset, handleDelete]);
+  }, [offset, results, reset, products]);
+
+  useEffect(() => {
+    setOffset(0)
+    setPage(0)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [results]);
+
 
   return (
     <>
-      <div className="row">
-      {data}
-      </div>
-      <div className="pagination">
+      <Row >
+        {data.map((product) => {
+          return <ProductCard
+            key={product._id}
+            product={product}
+            handleDelete={handleDelete}
+            isShop={isShop}
+          />
+        })}
+
+        {!reset && !results.length && <Col xs={12} className="text-center">No matching products found</Col>}
+
+      </Row>
+      <Row className="pagination">
         <ReactPaginate
           previousLabel={"prev"}
           nextLabel={"next"}
@@ -89,15 +64,19 @@ const ProductsList = (props) => {
           breakClassName={"break-me"}
           pageCount={pageCount}
           marginPagesDisplayed={2}
-          pageRangeDisplayed={5}
+          pageRangeDisplayed={10}
           onPageChange={handlePageClick}
           containerClassName={"pagination"}
           subContainerClassName={"pages pagination"}
           activeclassname={"active"}
+          renderOnZeroPageCount={null}
+          forcePage={page}
         />
-      </div>
+      </Row>
     </>
   );
 };
+
+
 
 export default ProductsList;

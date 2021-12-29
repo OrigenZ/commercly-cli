@@ -16,6 +16,17 @@ const ShopPage = () => {
   const [currentCategory, setCurrentCategory] = useState('')
   const [currentSearch, setCurrentSearch] = useState('')
 
+  const getProducts = async () => {
+    try {
+      const response = await axiosInstance.get(`/api/products`)
+      setProducts(response.data.products)
+    } catch (err) {
+      console.log(err.message)
+      //TODO: set proper error handling
+    }
+  }
+
+
   useEffect(() => {
     if (currentCategory) {
       const filteredByCategory = products.filter((product) => {
@@ -30,27 +41,17 @@ const ShopPage = () => {
         const regex = new RegExp(currentSearch, 'i')
         const nameFound = product.name.match(regex)
         const brandFound = product.brand.match(regex)
-
         return nameFound || brandFound
       })
-
       setResults(productsFound)
       setCurrentCategory('')
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentCategory, currentSearch])
 
-  useEffect(() => {
-    axiosInstance
-      .get(`/api/products`)
-      .then((response) => {
-        setProducts(response.data.products)
-      })
-      .catch((err) => {
-        console.log(err.message)
-      })
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    getProducts()
   }, [])
 
   return (
@@ -68,7 +69,7 @@ const ShopPage = () => {
           <ProductsList
             results={results}
             products={products}
-            handleDelete={() => {}}
+            handleDelete={() => { }}
             isShop={true}
             reset={reset}
           />
