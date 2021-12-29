@@ -12,12 +12,22 @@ import "./ManageProducts.css";
 
 const ManageProducts = () => {
   const [products, setProducts] = useState([]);
-  const [results, setResults] = useState(null);
-  const [reset, setReset] = useState(false);
-  const [currentCategory, setCurrentCategory] = useState("");
-  const [currentSearch, setCurrentSearch] = useState("");
+  const [results, setResults] = useState([]);
+  const [reset, setReset] = useState(true);
+  const [currentCategory, setCurrentCategory] = useState('');
+  const [currentSearch, setCurrentSearch] = useState('');
 
   const storedToken = localStorage.getItem("authToken");
+
+  const getProducts = async () => {
+    try {
+      const response = await axiosInstance.get(`/api/products`)
+      setProducts(response.data.products)
+    } catch (err) {
+      console.log(err.message)
+      //TODO: set proper error handling
+    }
+  }
 
   const handleDelete = (id, name) => {
     Swal.fire({
@@ -65,15 +75,12 @@ const ManageProducts = () => {
 
     if (currentSearch) {
       const productsFound = products.filter((product) => {
-
         const regex = new RegExp(currentSearch, "i");
         const nameFound = product.name.match(regex);
         const brandFound = product.brand.match(regex);
         const skuFound = product.sku.match(regex);
-
         return nameFound || brandFound || skuFound;
       });
-
       setResults(productsFound);
       setCurrentCategory("");
     }
@@ -81,16 +88,7 @@ const ManageProducts = () => {
   }, [currentCategory, currentSearch]);
 
   useEffect(() => {
-    if (storedToken) {
-      axiosInstance
-        .get(`/api/products`)
-        .then((response) => {
-          setProducts(response.data.products);
-        })
-        .catch((err) => {
-          console.log(err.message);
-        });
-    }
+    getProducts();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -110,6 +108,7 @@ const ManageProducts = () => {
         <Col xs={12} md={8} lg={9} className="list">
           <ProductsListAdmin
             results={results}
+            products={products}
             handleDelete={handleDelete}
             isShop={false}
             reset={reset}

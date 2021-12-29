@@ -49,11 +49,11 @@ const ProductsList = (props) => {
             key={product._id}
             product={product}
             handleDelete={handleDelete}
-            isShop={isShop}
+            isShop={isShop} //TODO: check this later
           />
         })}
 
-        {!reset && !results.length && <Col xs={12} className="text-center">No matching products found</Col>}
+        {!data.length && <Col xs={12} className="text-center p-5">No matching products found</Col>}
 
       </Row>
       <Row className="pagination">
