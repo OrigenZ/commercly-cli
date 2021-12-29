@@ -29,44 +29,40 @@ const ManageCategories = () => {
     }
   }
 
-  const handleDelete = (id, name) => {
-    Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Delete',
-    })
-      .then((result) => {
-        if (result.isConfirmed) {
-          Swal.fire({
-            icon: 'success',
-            text: `Category ${name} has been deleted.`,
-            showConfirmButton: false,
-          })
+  const handleDelete = async (id, name) => {
+    try {
+      const input = await Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Delete',
+      })
 
-          axiosInstance
-            .delete(`/api/categories/${id}`, {
-              headers: { Authorization: `Bearer ${storedToken}` },
-            })
-            .then(() => {
-              const newCategories = categories.filter(
-                (category) => category._id !== id,
-              )
-              setCategories([...newCategories])
-            })
-        }
-      })
-      .catch((err) => {
+      if (input.isConfirmed) {
         Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Something went wrong!',
+          icon: 'success',
+          text: `Category ${name} has been deleted.`,
+          showConfirmButton: false,
         })
-        console.log(err.message)
+        await axiosInstance
+          .delete(`/api/categories/${id}`, {
+            headers: { Authorization: `Bearer ${storedToken}` },
+          })
+        const newCategories = categories.filter((category) => category._id !== id)
+        setCategories([...newCategories])
+      }
+    }
+    catch (err) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong!',
       })
+      console.log(err.message)
+    }
   }
 
   useEffect(() => {
