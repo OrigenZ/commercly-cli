@@ -54,8 +54,8 @@ const ProductsList = (props) => {
         })}
 
         {!data.length && <Col xs={12} className="text-center p-5">No matching products found</Col>}
-
       </Row>
+
       <Row className="pagination">
         <ReactPaginate
           previousLabel={"prev"}

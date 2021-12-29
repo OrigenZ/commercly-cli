@@ -29,39 +29,40 @@ const ManageProducts = () => {
     }
   }
 
-  const handleDelete = (id, name) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Delete",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire({
+  const handleDelete = async (id, name) => {
+    try {
+      const input = await Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Delete",
+      })
+
+      if (input.isConfirmed) {
+        await Swal.fire({
           icon: "success",
           text: `Product ${name} has been deleted.`,
           showConfirmButton: false,
           timer: 1500,
         });
 
-        axiosInstance
-          .delete(`/api/products/${id}`, {
-            headers: { Authorization: `Bearer ${storedToken}` },
-          })
-          .then(() => {
-            const newProducts = products.filter(
-              (product) => product._id !== id
-            );
-            setProducts(newProducts)
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+        await axiosInstance.delete(`/api/products/${id}`, {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        })
+
+        const newProducts = products.filter(
+          (product) => product._id !== id
+        );
+        setProducts(newProducts)
       }
-    });
+
+    } catch (err) {
+      console.log(err.message)
+      //TODO: set proper error handling
+    }
   };
 
   useEffect(() => {
