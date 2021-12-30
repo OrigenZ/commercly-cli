@@ -68,6 +68,7 @@ const UsersListAdmin = (props) => {
           containerClassName={'pagination'}
           subContainerClassName={'pages pagination'}
           activeclassname={'active'}
+          renderOnZeroPageCount={null}
         />
       </Row>
     </Col>

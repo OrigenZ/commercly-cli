@@ -8,15 +8,28 @@ import { Row, Col, Form, Container } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 import './ManageOrders.css'
+import LoadingSpinner from '../../../LoadingSpinner/LoadingSpinner'
 
 const ManageOrders = () => {
   const [orders, setOrders] = useState([])
+  const [data, setData] = useState([]);
   const [offset, setOffset] = useState(0)
-  const [data, setData] = useState([])
   const [perPage] = useState(5)
   const [pageCount, setPageCount] = useState(0)
 
   const storedToken = localStorage.getItem('authToken')
+
+  const getOrders = async () => {
+    try {
+      const response = await axiosInstance.get(`/api/orders`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      setOrders(response.data)
+    } catch (err) {
+      //TODO: set proper error handling
+      console.log(err.message)
+    }
+  }
 
   const formatDate = (date) => {
     const dateObj = new Date(date)
@@ -28,87 +41,41 @@ const ManageOrders = () => {
     setOffset(Math.ceil(selectedPage * perPage))
   }
 
-  const handleChangeStatus = (e, id) => {
-    const status = e.target.value
-    axiosInstance
-      .patch(
+  const handleChangeStatus = async (status, id) => {
+    try {
+      await axiosInstance.patch(
         `/api/orders/${id}`,
         { status },
         {
           headers: { Authorization: `Bearer ${storedToken}` },
         },
       )
-      .then(() => { })
-      .catch((err) => console.log(err.message))
-  }
-
-  const getData = async () => {
-    try {
-      const response = await axiosInstance.get(`/api/orders`, {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      })
-      const data = response.data
-      const slice = data.slice(offset, offset + perPage)
-
-      const postData = slice.map((order) => (
-        <Row key={order._id} className="order-row">
-          <Col xs={12} sm={4} lg={3}>
-            <p>{order._id}</p>
-          </Col>
-          <Col xs={12} sm={4} lg={3}>
-            <p>{formatDate(order.createdAt)}</p>
-          </Col>
-          <Col xs={12} sm={8} lg={2}>
-            <Form.Select
-              onChange={(e) => handleChangeStatus(e, order._id)}
-              defaultValue={order.status}
-            >
-              <option value="Processing">Processing</option>
-              <option value="Shipped">Shipped</option>
-              <option value="Delivered">Delivered</option>
-              <option value="Cancelled">Cancelled</option>
-            </Form.Select>
-          </Col>
-          <Col xs={12} sm={8} lg={2}>
-            <p>{order.customer && order.customer.email}</p>
-          </Col>
-          <Col xs={12} sm={12} lg={2} className="actions-btn">
-            <Link
-              to={`/my-account/admin/order/${order._id}`}
-              className="btn btn-outline-secondary view-btn w-100"
-            >
-              Order details
-            </Link>
-          </Col>
-        </Row>
-      ))
-
-      setData(postData)
-      setPageCount(Math.ceil(data.length / perPage))
     } catch (err) {
       console.log(err.message)
+      //TODO: set proper error handling
     }
   }
 
-  useEffect(() => {
-    getData()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [offset])
+  const getData = () => {
+    setPageCount(Math.ceil(orders.length / perPage));
+    return orders.slice(offset, offset + perPage);
+  }
 
   useEffect(() => {
-    axiosInstance
-      .get(`/api/orders`, {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      })
-      .then((response) => {
-        setOrders(response.data)
-      })
-      .catch((err) => console.log(err.message))
+    setData(getData())
+    console.log('update')
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [offset, orders])
+
+  useEffect(() => {
+    getOrders()
+    console.log('mount')
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  //TODO: create component appart
   return (
-    <Container>
+    data.length ? <Container>
       <Row id="manage-orders">
 
         <Col id="orders-list-admin">
@@ -127,17 +94,43 @@ const ManageOrders = () => {
             </Col>
             <Col xs={12} sm={12} lg={2} />
           </Row>
+          {console.log('render')}
+          <Col xs={12}>
+            {data.map((order) => (
+              <Row key={order._id} className="order-row">
+                <Col xs={12} sm={4} lg={3}>
+                  <p>{order._id}</p>
+                </Col>
+                <Col xs={12} sm={4} lg={3}>
+                  <p>{formatDate(order.createdAt)}</p>
+                </Col>
+                <Col xs={12} sm={8} lg={2}>
+                  <Form.Select
+                    onChange={(e) => handleChangeStatus(e.target.value, order._id)}
+                    defaultValue={order.status}
+                  >
+                    <option value="Processing">Processing</option>
+                    <option value="Shipped">Shipped</option>
+                    <option value="Delivered">Delivered</option>
+                    <option value="Cancelled">Cancelled</option>
+                  </Form.Select>
+                </Col>
+                <Col xs={12} sm={8} lg={2}>
+                  <p>{order.customer && order.customer.email}</p>
+                </Col>
+                <Col xs={12} sm={12} lg={2} className="actions-btn">
+                  <Link
+                    to={`/my-account/admin/order/${order._id}`}
+                    className="btn btn-outline-secondary view-btn w-100"
+                  >
+                    Order details
+                  </Link>
+                </Col>
+              </Row>
+            ))}
 
-
-          {!orders.length ? (
-            <Row className="text-center p-5">
-              <p>No orders found</p>
-            </Row>
-          ) : (
-            <Col xs={12}>
-              {data}
-            </Col>
-          )}
+            {!data.length && <Col xs={12} className="text-center p-5">No orders found</Col>}
+          </Col>
 
           <Row className="pagination">
             <ReactPaginate
@@ -152,14 +145,15 @@ const ManageOrders = () => {
               containerClassName={'pagination'}
               subContainerClassName={'pages pagination'}
               activeclassname={'active'}
+              renderOnZeroPageCount={null}
             />
           </Row>
 
         </Col>
       </Row>
-    </Container>
+    </Container> :
+      <LoadingSpinner />
   )
 }
-
 
 export default ManageOrders
