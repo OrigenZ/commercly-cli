@@ -32,13 +32,15 @@ const ProductsList = (props) => {
   useEffect(() => {
     setData(getData());
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [offset, results, reset, products]);
+  }, [offset, products]);
 
   useEffect(() => {
+    setData(getData());
     setOffset(0)
     setPage(0)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [results]);
+  }, [results, reset]);
+
 
 
   return (

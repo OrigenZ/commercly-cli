@@ -32,13 +32,14 @@ function ProductsListAdmin(props) {
   useEffect(() => {
     setData(getData());
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [offset, results, reset, products, handleDelete]);
+  }, [offset, products, handleDelete]);
 
   useEffect(() => {
+    setData(getData());
     setOffset(0)
     setPage(0)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [results]);
+  }, [results, reset]);
 
   return (
     <>

@@ -29,7 +29,7 @@ const ShopPage = () => {
 
   useEffect(() => {
     if (currentCategory) {
-      const filteredByCategory = products.filter((product) => {
+      const filteredByCategory = [...products].filter((product) => {
         return product.category._id === currentCategory
       })
       setResults(filteredByCategory)
@@ -37,7 +37,7 @@ const ShopPage = () => {
     }
 
     if (currentSearch) {
-      const productsFound = products.filter((product) => {
+      const productsFound = [...products].filter((product) => {
         const regex = new RegExp(currentSearch, 'i')
         const nameFound = product.name.match(regex)
         const brandFound = product.brand.match(regex)
