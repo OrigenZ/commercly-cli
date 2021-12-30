@@ -1,24 +1,24 @@
-#create-category{
-    margin: 3rem auto;
-}
-
-#create-category .form-label{
-    color: #6d757d;
+#create-category {
+  margin: 2.8rem auto 5rem auto;
 }
 
 #create-category input.form-control,
 #create-category select.form-select,
-#create-category select.form-control ,
+#create-category select.form-control,
 #create-category textarea.form-control,
 #create-category button.btn.btn-outline-success {
-    border-radius: 0px;
+  border-radius: 0px;
+}
+
+#create-category button.btn.btn-outline-success {
+  margin-top: 1rem;
+  min-width: 30%;
+}
+
+#create-category .form-label {
+  color: #6d757d;
 }
 
 #create-category textarea.form-control {
-    min-height: 20vh;
-}
-
-#create-category button.btn.btn-outline-success {
-    margin-top: 1rem;
-
+  min-height: 20vh;
 }

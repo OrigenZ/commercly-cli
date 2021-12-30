@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import { Form, Row, Col, Button } from "react-bootstrap";
-import axiosInstance from "../../../../../common/http";
+import { useState } from "react";
+import { Form, Row, Col, Button, Container } from "react-bootstrap";
 import Swal from "sweetalert2/src/sweetalert2";
+
+import axiosInstance from "../../../../../common/http";
 
 import "./NewCategory.css";
 
@@ -38,44 +39,41 @@ const NewCategory = (props) => {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = findFormErrors();
-
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
-    } else {
-      const body = { ...form };
+      return
+    }
+    const body = { ...form }
 
-      axiosInstance
+    try {
+      await axiosInstance
         .post(`/api/categories/create`, body, {
           headers: { Authorization: `Bearer ${storedToken}` },
         })
-        .then(() => {
-          e.target.reset();
-          Swal.fire({
-            icon: "success",
-            text: "Category edited successfully",
-            showConfirmButton: false,
-          });
-        })
-        .catch((err) => {
-          console.log(err.message);
-          Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Something went wrong!",
-          });
-        });
+      e.target.reset();
+      Swal.fire({
+        icon: "success",
+        text: "Category edited successfully",
+        showConfirmButton: false,
+      })
+    } catch (err) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: err.message,
+      });
     }
-  };
+  }
 
   return (
-    <section
-      className="d-flex justify-content-center align-items-center container"
+    <Container
+      className="d-flex justify-content-center align-items-center"
       id="create-category"
     >
-      <Col xs={12} sm={6} lg={4} className="edit-category-wrapper">
+      <Col sm={12} md={9} lg={7} xl={6} className="edit-category-wrapper">
         <h3 className="text-center text-muted text-uppercase">
           Create category
         </h3>
@@ -117,7 +115,7 @@ const NewCategory = (props) => {
           </Form>
         </div>
       </Col>
-    </section>
+    </Container>
   );
 };
 

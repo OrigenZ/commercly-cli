@@ -1,17 +1,15 @@
-#account-details{
-    margin: 1rem auto;
+#account-details {
+  margin: 2.8rem auto 5rem auto;
 }
 
-#account-details .form-label{
-    color: #6d757d;
-}
-
-
-#account-details button.btn.btn-outline-success {
-    border-radius: 0px;
+#account-details .form-label {
+  color: #6d757d;
 }
 
 #account-details button.btn.btn-outline-success {
-    margin-top: 1rem;
+  border-radius: 0px;
+}
 
+#account-details button.btn.btn-outline-success {
+  margin-top: 1rem;
 }

@@ -1,101 +1,108 @@
 // import { AuthContext } from "../../../common/context/Auth.context";
-import { Form, Row, Col, Button } from "react-bootstrap";
-import React, { useState, useEffect } from "react";
-import axiosInstance from "../../../../../common/http";
-import Swal from "sweetalert2/src/sweetalert2";
+import { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import { Form, Row, Col, Button } from 'react-bootstrap'
+import Swal from 'sweetalert2/src/sweetalert2'
 
-import "./EditCategory.css";
-import { useParams } from "react-router-dom";
+import axiosInstance from '../../../../../common/http'
 
-const EditCategory = (props) => {
-  const [form, setForm] = useState({});
-  const [errors, setErrors] = useState({});
+import './EditCategory.css'
 
-  const storedToken = localStorage.getItem("authToken");
+const EditCategory = () => {
+  const [form, setForm] = useState({})
+  const [errors, setErrors] = useState({})
+
   const { id } = useParams()
+  const storedToken = localStorage.getItem('authToken')
 
   const setField = (field, value) => {
     setForm({
       ...form,
       [field]: value,
-    });
+    })
 
     if (!!errors[field])
       setErrors({
         ...errors,
         [field]: null,
-      });
-  };
+      })
+  }
 
   const findFormErrors = () => {
-    const { name } = form;
-    const newErrors = {};
+    const { name } = form
+    const newErrors = {}
 
     // name errors
-    if (!name || name === "") newErrors.name = "This field cannot be blank.";
+    if (!name || name === '') newErrors.name = 'This field cannot be blank.'
     else if (name.length < 3)
-      newErrors.name = "Name cannot be less than 3 characters long.";
+      newErrors.name = 'Name cannot be less than 3 characters long.'
     else if (name.length > 50)
-      newErrors.name = "Name cannot be more than 50 characters long.";
+      newErrors.name = 'Name cannot be more than 50 characters long.'
 
-    return newErrors;
-  };
+    return newErrors
+  }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const newErrors = findFormErrors();
-
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-    } else {
-      const body = { ...form };
-
-      axiosInstance
-        .patch(`/api/categories/${id}`, body, {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        })
-        .then(() => {
-          e.target.reset();
-          Swal.fire({
-            icon: "success",
-            text: "Category edited successfully",
-            showConfirmButton: false,
-          });
-        })
-        .catch((err) => {
-          Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Something went wrong!",
-          });
-        });
-    }
-  };
-
-  useEffect(() => {
-    const storedToken = localStorage.getItem("authToken");
-
-    axiosInstance
-      .get(`/api/categories/${id}`, {
+  const getData = async () => {
+    try {
+      const response = await axiosInstance.get(`/api/categories/${id}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
-      .then((response) => {
-        const foundCategory = response.data;
-        setForm({
-          name: foundCategory.name,
-          description: foundCategory.description,
-        });
+
+      const foundCategory = response.data
+      setForm({
+        name: foundCategory.name,
+        description: foundCategory.description,
       })
-      .catch((error) => { });
+    } catch (err) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: err.message,
+      })
+    }
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const newErrors = findFormErrors()
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors)
+      return
+    }
+
+    const body = { ...form }
+    try {
+      await axiosInstance.patch(`/api/categories/${id}`, body, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+
+      e.target.reset()
+      Swal.fire({
+        icon: 'success',
+        text: 'Category edited successfully',
+        showConfirmButton: false,
+      })
+
+    } catch (err) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: err.message,
+      })
+    }
+  }
+
+  useEffect(() => {
+    getData()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 
   return (
     <section
       className="d-flex justify-content-center align-items-center container"
       id="edit-category"
     >
-      <Col xs={12} sm={6} lg={4} className="edit-category-wrapper">
+      <Col sm={12} md={9} lg={7} xl={6} className="edit-category-wrapper">
         <h3 className="text-center text-muted text-uppercase">Edit category</h3>
 
         <div className="edit-category-container">
@@ -105,8 +112,8 @@ const EditCategory = (props) => {
                 <Form.Label>Name</Form.Label>
                 <Form.Control
                   type="text"
-                  onChange={(e) => setField("name", e.target.value)}
-                  value={form.name || ""}
+                  onChange={(e) => setField('name', e.target.value)}
+                  value={form.name || ''}
                   isInvalid={!!errors.name}
                 />
                 <Form.Control.Feedback type="invalid">
@@ -121,8 +128,8 @@ const EditCategory = (props) => {
                 <Form.Control
                   as="textarea"
                   type="text"
-                  onChange={(e) => setField("description", e.target.value)}
-                  value={form.description || ""}
+                  onChange={(e) => setField('description', e.target.value)}
+                  value={form.description || ''}
                   isInvalid={!!errors.description}
                 />
                 <Form.Control.Feedback type="invalid">
@@ -138,7 +145,7 @@ const EditCategory = (props) => {
         </div>
       </Col>
     </section>
-  );
-};
+  )
+}
 
-export default EditCategory;
+export default EditCategory

@@ -135,7 +135,7 @@ const NewProduct = () => {
       className="container d-flex flex-column justify-content-center align-items-center"
       id="create-product"
     >
-      <div className="create-product-wrapper">
+      <Col sm={12} md={9} lg={7} xl={6} className="create-product-wrapper">
         <h3 className="text-center text-muted text-uppercase">New product</h3>
 
         <div className="create-product-container">
@@ -205,10 +205,6 @@ const NewProduct = () => {
                 </Form.Control.Feedback>
               </Form.Group>
             </Row>
-
-            <Row className="mb-3"></Row>
-
-            <Row className="mb-3"></Row>
 
             <Row className="mb-3">
               <Form.Group as={Col}>
@@ -312,7 +308,7 @@ const NewProduct = () => {
             </Button>
           </Form>
         </div>
-      </div>
+      </Col>
     </section>
   )
 }

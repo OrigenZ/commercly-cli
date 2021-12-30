@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import { Form, Row, Col, Button } from 'react-bootstrap'
-import axiosInstance from '../../../../../common/http/index'
 import Swal from 'sweetalert2/src/sweetalert2'
 import ReactQuill from 'react-quill'
+
+import axiosInstance from '../../../../../common/http/index'
+
 import 'react-quill/dist/quill.snow.css'
 import './EditProduct.css'
-import { useParams } from 'react-router-dom'
 
 const EditProduct = () => {
   const [form, setForm] = useState({})
@@ -70,71 +72,61 @@ const EditProduct = () => {
     return newErrors
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     const newErrors = findFormErrors()
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors)
-    } else {
-      const body = { ...form }
-
-      axiosInstance
-        .patch(`/api/products/${id}`, body, {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        })
-        .then(() => {
-          //  e.target.reset()
-          Swal.fire({
-            icon: 'success',
-            text: 'Product edited successfully',
-            showConfirmButton: false,
-          })
-        })
-        .catch((err) => {
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Something went wrong!',
-          })
-        })
-      //TODO: Set proper error handling
+      return
+    }
+    const body = { ...form }
+    try {
+      await axiosInstance.patch(`/api/products/${id}`, body, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      Swal.fire({
+        icon: 'success',
+        text: 'Product edited successfully',
+        showConfirmButton: false,
+      })
+    } catch (err) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: err.message,
+      })
     }
   }
 
   const getData = async () => {
     try {
-      await axiosInstance
-        .get(`/api/products/${id}`, {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        })
-        .then((response) => {
-          const foundProduct = response.data
-          setForm({
-            sku: foundProduct.sku,
-            quantity: foundProduct.quantity,
-            name: foundProduct.name,
-            price: foundProduct.price,
-            tax: foundProduct.tax,
-            brand: foundProduct.brand,
-            description: foundProduct.description,
-            category: foundProduct.category._id,
-            image: foundProduct.image,
-          })
-        })
+      const prodsResponse = await axiosInstance.get(`/api/products/${id}`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
 
-      await axiosInstance
-        .get('/api/categories', {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        })
-        .then((response) => {
-          setCategories(response.data)
-        })
+      const foundProduct = prodsResponse.data
+      setForm({
+        sku: foundProduct.sku,
+        quantity: foundProduct.quantity,
+        name: foundProduct.name,
+        price: foundProduct.price,
+        tax: foundProduct.tax,
+        brand: foundProduct.brand,
+        description: foundProduct.description,
+        category: foundProduct.category._id,
+        image: foundProduct.image,
+      })
+
+      const catsResponse = await axiosInstance.get('/api/categories', {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      setCategories(catsResponse.data)
     } catch (err) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'Something went wrong!',
+        text: err.message,
       })
     }
   }
@@ -149,7 +141,7 @@ const EditProduct = () => {
       className="container d-flex flex-column justify-content-center align-items-center"
       id="edit-product"
     >
-      <div className="edit-product-wrapper">
+      <Col sm={12} md={9} lg={7} xl={6} className="edit-product-wrapper">
         <h3 className="text-center text-muted text-uppercase">Edit product</h3>
 
         <div className="edit-product-container">
@@ -224,10 +216,6 @@ const EditProduct = () => {
                 </Form.Control.Feedback>
               </Form.Group>
             </Row>
-
-            <Row className="mb-3"></Row>
-
-            <Row className="mb-3"></Row>
             <Row className="mb-3">
               <Form.Group as={Col}>
                 <Form.Label>Brand</Form.Label>
@@ -285,7 +273,6 @@ const EditProduct = () => {
                     'align',
                   ]}
                 />
-
                 <Form.Control.Feedback type="invalid">
                   {errors.description}
                 </Form.Control.Feedback>
@@ -302,11 +289,7 @@ const EditProduct = () => {
                   value={form.category || ''}
                 >
                   {categories.map((category) => {
-                    return category._id === form.category ? (
-                      <option key={category._id} value={category._id}>
-                        {category.name}
-                      </option>
-                    ) : (
+                    return (
                       <option key={category._id} value={category._id}>
                         {category.name}
                       </option>
@@ -337,7 +320,7 @@ const EditProduct = () => {
             </Button>
           </Form>
         </div>
-      </div>
+      </Col>
     </section>
   )
 }

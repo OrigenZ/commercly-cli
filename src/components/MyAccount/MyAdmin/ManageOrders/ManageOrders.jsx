@@ -12,7 +12,7 @@ import LoadingSpinner from '../../../LoadingSpinner/LoadingSpinner'
 
 const ManageOrders = () => {
   const [orders, setOrders] = useState([])
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([])
   const [offset, setOffset] = useState(0)
   const [perPage] = useState(5)
   const [pageCount, setPageCount] = useState(0)
@@ -46,9 +46,7 @@ const ManageOrders = () => {
       await axiosInstance.patch(
         `/api/orders/${id}`,
         { status },
-        {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        },
+        { headers: { Authorization: `Bearer ${storedToken}` } },
       )
     } catch (err) {
       console.log(err.message)
@@ -57,27 +55,24 @@ const ManageOrders = () => {
   }
 
   const getData = () => {
-    setPageCount(Math.ceil(orders.length / perPage));
-    return orders.slice(offset, offset + perPage);
+    setPageCount(Math.ceil(orders.length / perPage))
+    return orders.slice(offset, offset + perPage)
   }
 
   useEffect(() => {
     setData(getData())
-    console.log('update')
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [offset, orders])
 
   useEffect(() => {
     getOrders()
-    console.log('mount')
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   //TODO: create component appart
-  return (
-    data.length ? <Container>
+  return data.length ? (
+    <Container>
       <Row id="manage-orders">
-
         <Col id="orders-list-admin">
           <Row id="head-orders-list">
             <Col xs={12} sm={4} lg={3}>
@@ -94,7 +89,6 @@ const ManageOrders = () => {
             </Col>
             <Col xs={12} sm={12} lg={2} />
           </Row>
-          {console.log('render')}
           <Col xs={12}>
             {data.map((order) => (
               <Row key={order._id} className="order-row">
@@ -104,9 +98,16 @@ const ManageOrders = () => {
                 <Col xs={12} sm={4} lg={2}>
                   <p>{formatDate(order.createdAt)}</p>
                 </Col>
-                <Col xs={12} sm={8} lg={2} className="d-flex justify-content-center">
+                <Col
+                  xs={12}
+                  sm={8}
+                  lg={2}
+                  className="d-flex justify-content-center"
+                >
                   <Form.Select
-                    onChange={(e) => handleChangeStatus(e.target.value, order._id)}
+                    onChange={(e) =>
+                      handleChangeStatus(e.target.value, order._id)
+                    }
                     defaultValue={order.status}
                     className="text-center"
                   >
@@ -121,7 +122,7 @@ const ManageOrders = () => {
                 </Col>
                 <Col xs={12} sm={12} lg={2} className="actions-btn">
                   <Link
-                    to={`/my-account/admin/order/${order._id}`}
+                    to={`/my-account/admin/order/${order._id}/customer/${order.customer._id}`}
                     className="btn btn-outline-secondary view-btn w-100"
                   >
                     Order details
@@ -130,7 +131,11 @@ const ManageOrders = () => {
               </Row>
             ))}
 
-            {!data.length && <Col xs={12} className="text-center p-5">No orders found</Col>}
+            {!data.length && (
+              <Col xs={12} className="text-center p-5">
+                No orders found
+              </Col>
+            )}
           </Col>
 
           <Row className="pagination">
@@ -149,11 +154,11 @@ const ManageOrders = () => {
               renderOnZeroPageCount={null}
             />
           </Row>
-
         </Col>
       </Row>
-    </Container> :
-      <LoadingSpinner />
+    </Container>
+  ) : (
+    <LoadingSpinner />
   )
 }
 

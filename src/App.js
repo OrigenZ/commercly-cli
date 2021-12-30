@@ -86,7 +86,7 @@ const App = () => {
             <Route path="users" element={<ManageUsers />} />
             <Route path="user/edit/:id" element={<UserDetails />} />
             <Route path="orders" element={<ManageOrders />} />
-            <Route path="order/:orderId" element={<ManageOrderDetail />} />
+            <Route path="order/:orderId/customer/:customerId" element={<ManageOrderDetail />} />
             <Route path="account-details" element={<AccountDetails />} />
           </Route>
 

@@ -1,9 +1,5 @@
 #create-product {
-  margin: 3rem auto;
-}
-
-#create-product .form-label {
-  color: #6d757d;
+  margin: 2.8rem auto 5rem auto;
 }
 
 #create-product input.form-control,
@@ -16,6 +12,11 @@
 
 #create-product button.btn.btn-outline-success {
   margin-top: 1rem;
+  min-width: 30%;
+}
+
+#create-product .form-label {
+  color: #6d757d;
 }
 
 #create-product #text-editor .ql-editor {
@@ -26,7 +27,6 @@
   vertical-align: super;
 }
 
-#create-product .ql-editor ul{
+#create-product .ql-editor ul {
   padding-left: 0;
 }
-

@@ -1,24 +1,24 @@
-#edit-category{
-    margin: 3rem auto;
-}
-
-#edit-category .form-label{
-    color: #6d757d;
+#edit-category {
+  margin: 2.8rem auto 5rem auto;
 }
 
 #edit-category input.form-control,
 #edit-category select.form-select,
-#edit-category select.form-control ,
+#edit-category select.form-control,
 #edit-category textarea.form-control,
 #edit-category button.btn.btn-outline-success {
-    border-radius: 0px;
+  border-radius: 0px;
+}
+
+#edit-category button.btn.btn-outline-success {
+  margin-top: 1rem;
+  min-width: 30%;
+}
+
+#edit-category .form-label {
+  color: #6d757d;
 }
 
 #edit-category textarea.form-control {
-    min-height: 20vh;
-}
-
-#edit-category button.btn.btn-outline-success {
-    margin-top: 1rem;
-
+  min-height: 20vh;
 }

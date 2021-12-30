@@ -1,5 +1,5 @@
 #edit-product {
-  margin: 3rem auto;
+  margin: 2.8rem auto 5rem auto;
 }
 
 #edit-product input.form-control,
@@ -12,7 +12,7 @@
 
 #edit-product button.btn.btn-outline-success {
   margin-top: 1rem;
-  width: 30%;
+  min-width: 30%;
 }
 
 #edit-product .form-label {
