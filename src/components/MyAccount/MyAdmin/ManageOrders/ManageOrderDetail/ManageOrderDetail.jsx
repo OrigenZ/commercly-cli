@@ -54,7 +54,7 @@ const ManageOrderDetail = () => {
       className="d-flex flex-column justify-content-center align-items-center"
       id="manage-order-details"
     >
-      <h3 className="text-center text-muted text-uppercase">Order details</h3>
+      <h3 className="text-center text-muted text-uppercase ">Order details</h3>
       <Col sm={12} md={9} lg={7} xl={6} id="manage-order-details-wrapper">
         <div className="d-flex justify-content-between">
           <div className="me-3">
@@ -110,7 +110,10 @@ const ManageOrderDetail = () => {
         <div className="d-flex justify-content-between mt-3 total">
           <span className="text-muted">Total</span>
           <span className="theme-color">
-            {(order.totalOrder + order.shippingFees).toFixed(2)} €
+            {(order.totalOrder + order.shippingFees + order.totalTaxes).toFixed(
+              2,
+            )}{' '}
+            €
           </span>
         </div>
       </Col>

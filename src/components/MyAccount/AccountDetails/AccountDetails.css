@@ -7,9 +7,8 @@
 }
 
 #account-details button.btn.btn-outline-success {
+  min-width: 30%;
+  margin-top: 1rem;
   border-radius: 0px;
 }
 
-#account-details button.btn.btn-outline-success {
-  margin-top: 1rem;
-}
