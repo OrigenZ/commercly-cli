@@ -1,47 +1,68 @@
-#manage-order-details {
+#manage-orders-details {
   margin: 2.8rem auto 5rem auto;
 }
-#manage-order-details-wrapper {
+
+.manage-orders-details-wrapper {
   border: 1px solid #dfe2e6;
   padding: 2rem;
 }
 
-#manage-order-details .theme-color {
+#manage-orders-details .theme-color {
   color: #1559c0;
   margin-top: 1rem;
 }
 
-#manage-order-details .heading {
+#manage-orders-details .heading {
   font-weight: 600;
 }
 
-#manage-order-details .product-name,
-#manage-order-details .total {
+#manage-orders-details .product-name,
+#manage-orders-details .total {
   font-weight: 600;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
-#manage-order-details .product-totalLine {
-  font-size: 1.2rem;
+#manage-orders-details .product-totalLine {
+  font-size: 1rem;
 }
 
-#manage-order-details .address {
+#manage-orders-details .address {
   margin: 1rem 0 1.5rem 0;
 }
 
-#manage-order-details hr {
-  border-top: 2px dashed #fff;
+#manage-orders-details hr {
+  border-top: 2px dashed white;
   margin: 0 0 1.25rem 0;
 }
 
-#manage-order-details h5{
+#manage-orders-details h6 {
   margin-top: 1rem;
   margin-bottom: 0.8rem;
   font-weight: 600;
 }
 
-#manage-order-details h3{
-
+#manage-orders-details h3 {
   margin-bottom: 2rem;
+}
 
+#manage-orders-details .track-btn {
+  color: white;
+  background-color: #1559c0;
+  padding: 0.5rem 3rem;
+  margin: 1.5rem 1rem 0 1rem;
+  border: none;
+}
+
+/* MEDIA QUERIES */
+
+@media (max-width: 600px) {
+  #manage-orders-details .product-name,
+  #manage-orders-details .total {
+    font-weight: 600;
+    font-size: 1rem;
+  }
+  .h5,
+  h5 {
+    font-size: 1rem;
+  }
 }

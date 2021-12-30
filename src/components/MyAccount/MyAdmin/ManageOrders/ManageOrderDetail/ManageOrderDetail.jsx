@@ -52,38 +52,38 @@ const ManageOrderDetail = () => {
   return (
     <Container
       className="d-flex flex-column justify-content-center align-items-center"
-      id="manage-order-details"
+      id="user-order-details"
     >
-      <h3 className="text-center text-muted text-uppercase ">Order details</h3>
-      <Col sm={12} md={9} lg={7} xl={6} id="manage-order-details-wrapper">
-        <div className="d-flex justify-content-between">
+      <h3 className="text-center text-uppercase text-muted">Order details</h3>
+      <Col sm={12} md={9} lg={7} xl={6} className="user-order-details-wrapper">
+        <div className="d-flex flex-wrap justify-content-between">
           <div className="me-3">
-            <span className="text-muted heading">Order ref.</span>
+            <span className="heading product-name">Order ref.</span>
             <br />
-            <span>{order._id}</span>
+            <span className="product-totalLine">{order._id}</span>
           </div>
-          <div xs={3} md={2}>
-            <span className="text-muted heading">Date</span>
+          <div>
+            <span className="heading product-name">Date</span>
             <br />
-            <span>{order?.createdAt}</span>
+            <span className="product-totalLine">{order?.createdAt}</span>
           </div>
         </div>
-        <h5 className="text-uppercase theme-color">Shipping address</h5>
+        <h6 className="text-uppercase theme-color">Shipping address</h6>
         <div className="mb-3">
           <hr />
         </div>
         <div className="address">
-          <p className="fw-bold">
+          <p className="product-name fw-bold">
             {address.shipping?.firstName} {address.shipping?.lastName}
           </p>
-          <p>{address.shipping?.street}</p>
-          <p>{address.shipping?.province}</p>
-          <p>{address.shipping?.zip}</p>
-          <p>{address.shipping?.city}</p>
-          <p>{address.shipping?.country}</p>
-          <p>{address.shipping?.phone}</p>
+          <p className="product-totalLine">{address.shipping?.street}</p>
+          <p className="product-totalLine">{address.shipping?.province}</p>
+          <p className="product-totalLine">{address.shipping?.zip}</p>
+          <p className="product-totalLine">{address.shipping?.city}</p>
+          <p className="product-totalLine">{address.shipping?.country}</p>
+          <p className="product-totalLine">{address.shipping?.phone}</p>
         </div>
-        <h5 className="text-uppercase theme-color">Order details</h5>
+        <h6 className="text-uppercase theme-color">Order details</h6>
         <div className="mb-3">
           <hr />
         </div>
@@ -95,20 +95,27 @@ const ManageOrderDetail = () => {
             <span className="product-totalLine">{orderLine.totalLine} €</span>
           </div>
         ))}
-        <div className="d-flex justify-content-between">
-          <span>Subtotal</span>
-          <span>{parseFloat(order.totalOrder?.toFixed(2))} €</span>
+        <div className="my-3">
+          <hr />
         </div>
         <div className="d-flex justify-content-between">
-          <small>Shipping fee</small> <small>{order.shippingFees}€</small>
+          <span className="product-name">Subtotal</span>
+          <span className="product-totalLine">
+            {parseFloat(order.totalOrder?.toFixed(2))} €
+          </span>
         </div>
         <div className="d-flex justify-content-between">
-          <small>Tax</small>
-          <small> {order.totalTaxes?.toFixed(2)}</small>
+          <span className="product-name">Shipping fee </span>
+          <span className="product-totalLine">{order.shippingFees} €</span>
         </div>
-
+        <div className="d-flex justify-content-between">
+          <span className="product-name">Tax </span>
+          <span className="product-totalLine">
+            {order.totalTaxes?.toFixed(2)} €
+          </span>
+        </div>
         <div className="d-flex justify-content-between mt-3 total">
-          <span className="text-muted">Total</span>
+          <span className="product-name">Total</span>
           <span className="theme-color">
             {(order.totalOrder + order.shippingFees + order.totalTaxes).toFixed(
               2,
@@ -116,6 +123,9 @@ const ManageOrderDetail = () => {
             €
           </span>
         </div>
+        {/* <div className="text-center">
+          <button className="track-btn fw-bold">Track your order</button>
+        </div> */}
       </Col>
     </Container>
   )
