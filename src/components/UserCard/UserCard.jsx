@@ -53,14 +53,14 @@ const UserCard = (props) => {
     <>
       {user?.isAdmin && (
         <Row className="user-row">
-          <Col xs={12} sm={3} lg={3}>
-            <p className="text-muted">{userData.email}</p>
+          <Col xs={12} sm={4} lg={3}>
+            <p className="text-muted">{userData._id}</p>
           </Col>
           <Col xs={12} sm={2} lg={2}>
             <p className="text-center text-muted">{formatDate()}</p>
           </Col>
-          <Col xs={12} sm={4} lg={1}>
-            <Form className="text-center price">
+          <Col xs={12} sm={4} lg={2}>
+            <Form className="text-center ">
               <Form.Group className="before">
                 <Form.Check
                   type="checkbox"
@@ -71,9 +71,10 @@ const UserCard = (props) => {
               </Form.Group>
             </Form>
           </Col>
-          <Col xs={12} sm={4} lg={4}>
-            <p className="text-muted">{userData._id}</p>
+          <Col xs={12} sm={3} lg={3}>
+            <p className="text-muted">{userData.email}</p>
           </Col>
+
 
           <Col xs={12} lg={2} >
             <Row>

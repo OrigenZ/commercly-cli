@@ -33,16 +33,16 @@ const UsersListAdmin = (props) => {
     <Col id="users-list-admin" xs={12}>
       <Row xs={12} id="head-users-list">
         <Col xs={12} sm={3} lg={3}>
-          <p>Email</p>
+          <p>ID</p>
         </Col>
         <Col xs={12} sm={2} lg={2}>
           <p>Created at</p>
         </Col>
-        <Col xs={12} sm={1} lg={1}>
+        <Col xs={12} sm={1} lg={2}>
           <p className="text-center">Admin</p>
         </Col>
-        <Col xs={12} sm={3} lg={4}>
-          <p>ID</p>
+        <Col xs={12} sm={3} lg={3}>
+          <p>Email</p>
         </Col>
         <Col xs={12} sm={3} lg={2} />
       </Row>

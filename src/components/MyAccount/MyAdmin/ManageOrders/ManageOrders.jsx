@@ -83,13 +83,13 @@ const ManageOrders = () => {
             <Col xs={12} sm={4} lg={3}>
               <p>ID</p>
             </Col>
-            <Col xs={12} sm={4} lg={3}>
+            <Col xs={12} sm={4} lg={2}>
               <p>Created at</p>
             </Col>
             <Col xs={12} sm={8} lg={2}>
-              <p>Status</p>
+              <p className="text-center">Status</p>
             </Col>
-            <Col xs={12} sm={8} lg={2}>
+            <Col xs={12} sm={8} lg={3}>
               <p>User email</p>
             </Col>
             <Col xs={12} sm={12} lg={2} />
@@ -101,13 +101,14 @@ const ManageOrders = () => {
                 <Col xs={12} sm={4} lg={3}>
                   <p>{order._id}</p>
                 </Col>
-                <Col xs={12} sm={4} lg={3}>
+                <Col xs={12} sm={4} lg={2}>
                   <p>{formatDate(order.createdAt)}</p>
                 </Col>
-                <Col xs={12} sm={8} lg={2}>
+                <Col xs={12} sm={8} lg={2} className="d-flex justify-content-center">
                   <Form.Select
                     onChange={(e) => handleChangeStatus(e.target.value, order._id)}
                     defaultValue={order.status}
+                    className="text-center"
                   >
                     <option value="Processing">Processing</option>
                     <option value="Shipped">Shipped</option>
@@ -115,7 +116,7 @@ const ManageOrders = () => {
                     <option value="Cancelled">Cancelled</option>
                   </Form.Select>
                 </Col>
-                <Col xs={12} sm={8} lg={2}>
+                <Col xs={12} sm={8} lg={3}>
                   <p>{order.customer && order.customer.email}</p>
                 </Col>
                 <Col xs={12} sm={12} lg={2} className="actions-btn">
