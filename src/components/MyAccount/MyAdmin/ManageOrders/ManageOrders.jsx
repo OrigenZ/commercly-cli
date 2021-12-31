@@ -1,14 +1,14 @@
-import React from 'react'
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { Row, Col, Form, Container } from 'react-bootstrap'
+import Swal from 'sweetalert2/src/sweetalert2'
 import dateFormat from 'dateformat'
+import ReactPaginate from 'react-paginate'
 
 import axiosInstance from '../../../../common/http'
-import ReactPaginate from 'react-paginate'
-import { Row, Col, Form, Container } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import LoadingSpinner from '../../../LoadingSpinner/LoadingSpinner'
 
 import './ManageOrders.css'
-import LoadingSpinner from '../../../LoadingSpinner/LoadingSpinner'
 
 const ManageOrders = () => {
   const [orders, setOrders] = useState([])
@@ -26,8 +26,11 @@ const ManageOrders = () => {
       })
       setOrders(response.data)
     } catch (err) {
-      //TODO: set proper error handling
-      console.log(err.message)
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: err.message,
+      })
     }
   }
 
@@ -49,8 +52,11 @@ const ManageOrders = () => {
         { headers: { Authorization: `Bearer ${storedToken}` } },
       )
     } catch (err) {
-      console.log(err.message)
-      //TODO: set proper error handling
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: err.message,
+      })
     }
   }
 

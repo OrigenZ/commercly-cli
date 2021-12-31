@@ -1,8 +1,10 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHome } from '@fortawesome/free-solid-svg-icons'
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
-import { faPhone } from '@fortawesome/free-solid-svg-icons'
-import { faPrint } from '@fortawesome/free-solid-svg-icons'
+import {
+  faHome,
+  faEnvelope,
+  faPhone,
+  faPrint,
+} from '@fortawesome/free-solid-svg-icons'
 
 const Contact = () => {
   return (

@@ -1,7 +1,9 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBitcoin } from '@fortawesome/free-brands-svg-icons'
-import { faCcVisa } from '@fortawesome/free-brands-svg-icons'
-import { faCcMastercard } from '@fortawesome/free-brands-svg-icons'
+import {
+  faBitcoin,
+  faCcVisa,
+  faCcMastercard,
+} from '@fortawesome/free-brands-svg-icons'
 
 const PaymentMethods = () => {
   return (

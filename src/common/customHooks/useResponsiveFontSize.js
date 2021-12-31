@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 
 const useResponsiveFontSize = () => {
-  const getFontSize = () => (window.innerWidth < 450 ? '14px' : '14px')
+  // const getFontSize = () => (window.innerWidth < 450 ? '14px' : '14px')
+  const getFontSize = () => '14px'
   const [fontSize, setFontSize] = useState(getFontSize)
 
   useEffect(() => {

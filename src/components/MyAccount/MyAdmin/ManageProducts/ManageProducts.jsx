@@ -1,96 +1,100 @@
-import React, { useEffect, useState } from "react";
-import axiosInstance from "../../../../common/http";
+import React, { useEffect, useState } from 'react'
+import { Row, Col, Container } from 'react-bootstrap'
+import Swal from 'sweetalert2/src/sweetalert2'
 
-import CategoriesFilter from "../../../CategoriesFilter/CategoriesFilter";
-import SearchBar from "../../../SearchBar/SearchBar";
-import AddProductButton from "./NewProduct/AddProductButton/AddProductButton";
+import axiosInstance from '../../../../common/http'
+import CategoriesFilter from '../../../CategoriesFilter/CategoriesFilter'
+import SearchBar from '../../../SearchBar/SearchBar'
+import AddProductButton from './NewProduct/AddProductButton/AddProductButton'
+import ProductsListAdmin from './ProductsListAdmin/ProductsListAdmin'
 
-import Swal from "sweetalert2/src/sweetalert2";
-import { Row, Col, Container } from "react-bootstrap";
-import ProductsListAdmin from "./ProductsListAdmin/ProductsListAdmin";
-import "./ManageProducts.css";
+import './ManageProducts.css'
 
 const ManageProducts = () => {
-  const [products, setProducts] = useState([]);
-  const [results, setResults] = useState([]);
-  const [reset, setReset] = useState(true);
-  const [currentCategory, setCurrentCategory] = useState('');
-  const [currentSearch, setCurrentSearch] = useState('');
+  const [products, setProducts] = useState([])
+  const [results, setResults] = useState([])
+  const [reset, setReset] = useState(true)
+  const [currentCategory, setCurrentCategory] = useState('')
+  const [currentSearch, setCurrentSearch] = useState('')
 
-  const storedToken = localStorage.getItem("authToken");
+  const storedToken = localStorage.getItem('authToken')
 
   const getProducts = async () => {
     try {
       const response = await axiosInstance.get(`/api/products`)
       setProducts(response.data.products)
     } catch (err) {
-      console.log(err.message)
-      //TODO: set proper error handling
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: err.message,
+      })
     }
   }
 
   const handleDelete = async (id, name) => {
     try {
       const input = await Swal.fire({
-        title: "Are you sure?",
+        title: 'Are you sure?',
         text: "You won't be able to revert this!",
-        icon: "warning",
+        icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Delete",
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Delete',
       })
 
       if (input.isConfirmed) {
         await Swal.fire({
-          icon: "success",
+          icon: 'success',
           text: `Product ${name} has been deleted.`,
           showConfirmButton: false,
           timer: 1500,
-        });
+        })
 
         await axiosInstance.delete(`/api/products/${id}`, {
           headers: { Authorization: `Bearer ${storedToken}` },
         })
 
-        const newProducts = products.filter(
-          (product) => product._id !== id
-        );
+        const newProducts = products.filter((product) => product._id !== id)
         setProducts(newProducts)
       }
     } catch (err) {
-      console.log(err.message)
-      //TODO: set proper error handling
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: err.message,
+      })
     }
-  };
+  }
 
   useEffect(() => {
     if (currentCategory) {
       const filteredByCategory = products.filter((product) => {
-        return product.category._id === currentCategory;
-      });
-      setResults(filteredByCategory);
-      setCurrentSearch("");
+        return product.category._id === currentCategory
+      })
+      setResults(filteredByCategory)
+      setCurrentSearch('')
     }
 
     if (currentSearch) {
       const productsFound = products.filter((product) => {
-        const regex = new RegExp(currentSearch, "i");
-        const nameFound = product.name.match(regex);
-        const brandFound = product.brand.match(regex);
-        const skuFound = product.sku.match(regex);
-        return nameFound || brandFound || skuFound;
-      });
-      setResults(productsFound);
-      setCurrentCategory("");
+        const regex = new RegExp(currentSearch, 'i')
+        const nameFound = product.name.match(regex)
+        const brandFound = product.brand.match(regex)
+        const skuFound = product.sku.match(regex)
+        return nameFound || brandFound || skuFound
+      })
+      setResults(productsFound)
+      setCurrentCategory('')
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentCategory, currentSearch]);
+  }, [currentCategory, currentSearch])
 
   useEffect(() => {
-    getProducts();
+    getProducts()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 
   return (
     <Container>
@@ -116,7 +120,7 @@ const ManageProducts = () => {
         </Col>
       </Row>
     </Container>
-  );
-};
+  )
+}
 
-export default ManageProducts;
+export default ManageProducts

@@ -1,53 +1,58 @@
-import React, { useContext, useState, useEffect } from "react";
-import { useIsMount } from "../../common/customHooks/useIsMount";
-import { AuthContext } from "../../common/context/Auth.context";
-import axiosInstance from "../../common/http/index";
-import dateFormat from "dateformat";
+import { useContext, useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { Button, Row, Col, Form } from 'react-bootstrap'
+import dateFormat from 'dateformat'
+import Swal from 'sweetalert2/src/sweetalert2'
 
-import { Link } from "react-router-dom";
-import { Button, Row, Col, Form } from "react-bootstrap";
+import { useIsMount } from '../../common/customHooks/useIsMount'
+import { AuthContext } from '../../common/context/Auth.context'
 
-import "./UserCard.css";
+import axiosInstance from '../../common/http/index'
+
+import './UserCard.css'
 
 const UserCard = (props) => {
-  const { user } = useContext(AuthContext);
-  const { userData, handleDelete } = props;
-  const [isAdmin, setIsAdmin] = useState(`${userData.isAdmin}`);
+  const { user } = useContext(AuthContext)
+  const { userData, handleDelete } = props
+  const [isAdmin, setIsAdmin] = useState(`${userData.isAdmin}`)
 
-  const isMount = useIsMount();
-  const storedToken = localStorage.getItem("authToken");
+  const isMount = useIsMount()
+  const storedToken = localStorage.getItem('authToken')
 
   const formatDate = () => {
-    const dateObj = new Date(userData.createdAt);
-    return dateFormat(dateObj, " mmm dd yyyy @ h:MM:ss TT");
-  };
+    const dateObj = new Date(userData.createdAt)
+    return dateFormat(dateObj, ' mmm dd yyyy @ h:MM:ss TT')
+  }
 
   const handleCheckbox = (e) => {
-    const isTrue = e.target.value === "true";
+    const isTrue = e.target.value === 'true'
+    isTrue ? setIsAdmin(false) : setIsAdmin(true)
+  }
 
-    if (isTrue) {
-      setIsAdmin(false);
-    } else {
-      setIsAdmin(true);
-    }
-  };
-
-  useEffect(() => {
+  const editIsAdmin = async () => {
     if (!isMount) {
-      axiosInstance
-        .patch(
+      try {
+        await axiosInstance.patch(
           `/api/users/${userData._id}`,
           { isAdmin: isAdmin },
           {
             headers: { Authorization: `Bearer ${storedToken}` },
-          }
+          },
         )
-        .then((response) => response)
-        .catch((err) => console.log(err.message));
-      //TODO: set proper error handling
+      } catch (err) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: err.message,
+        })
+      }
     }
+  }
+
+  useEffect(() => {
+    editIsAdmin()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isAdmin]);
+  }, [isAdmin])
 
   return (
     <>
@@ -75,8 +80,7 @@ const UserCard = (props) => {
             <p className="text-muted">{userData.email}</p>
           </Col>
 
-
-          <Col xs={12} lg={2} >
+          <Col xs={12} lg={2}>
             <Row>
               <Col xs={6} sm={6} lg={6} className="actions-btn">
                 <Link
@@ -85,7 +89,7 @@ const UserCard = (props) => {
                 >
                   Details
                 </Link>
-              </Col>{" "}
+              </Col>{' '}
               <Col xs={6} sm={6} lg={6} className="actions-btn">
                 <Button
                   variant="outline-danger"
@@ -100,7 +104,7 @@ const UserCard = (props) => {
         </Row>
       )}
     </>
-  );
-};
+  )
+}
 
-export default UserCard;
+export default UserCard

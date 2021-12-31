@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 
 import "./App.css";
 
-import MyNavbar from "./components/Layout/Navbar/Navbar";
+import NavBar from "./components/Layout/NavBar/NavBar";
 import Footer from "./components/Layout/Footer/Footer";
 
 import AnonRoute from "./components/AnonRoute/AnonRoute";
@@ -42,7 +42,7 @@ import Notfound from "./pages/Errors/NotFound/NotFound";
 const App = () => {
   return (
     <>
-      <MyNavbar />
+      <NavBar />
       <main>
         <Routes>
 

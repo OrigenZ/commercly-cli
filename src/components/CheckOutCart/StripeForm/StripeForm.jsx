@@ -14,7 +14,7 @@ import useResponsiveFontSize from '../../../common/customHooks/useResponsiveFont
 
 const useOptions = () => {
   const fontSize = useResponsiveFontSize()
-  const options = useMemo(
+  return useMemo(
     () => ({
       style: {
         base: {
@@ -33,8 +33,6 @@ const useOptions = () => {
     }),
     [fontSize],
   )
-
-  return options
 }
 
 const StripeForm = (props) => {

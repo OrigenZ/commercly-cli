@@ -1,16 +1,15 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Card, Button } from "react-bootstrap";
-import { useContext } from "react";
-import { AuthContext } from "../../common/context/Auth.context";
-
-import './ProductCard.css'
+import { Link } from 'react-router-dom'
+import { Card, Button } from 'react-bootstrap'
+import { useContext } from 'react'
+import { AuthContext } from '../../common/context/Auth.context'
 
 import defaultImage from '../../images/img-default.jpg'
 
+import './ProductCard.css'
+
 const ProductCard = (props) => {
-  const { user } = useContext(AuthContext);
-  const { product, handleDelete, isShop } = props;
+  const { user } = useContext(AuthContext)
+  const { product, handleDelete, isShop } = props
 
   return (
     <>
@@ -23,10 +22,11 @@ const ProductCard = (props) => {
               className="w-100"
               alt={product.name}
             />
-
           </div>
           <Card.Body className="prod-text">
-            <Card.Title className="text-center product-name">{product.name}</Card.Title>
+            <Card.Title className="text-center product-name">
+              {product.name}
+            </Card.Title>
             <Card.Text>
               <span className="text-center product-brand">{product.brand}</span>
             </Card.Text>
@@ -45,7 +45,8 @@ const ProductCard = (props) => {
               Edit
             </Link>
 
-            <Button variant="outline-danger"
+            <Button
+              variant="outline-danger"
               onClick={() => handleDelete(product._id, product.name)}
               className="delete-btn w-100"
             >
@@ -55,7 +56,7 @@ const ProductCard = (props) => {
         )}
       </Card>
     </>
-  );
-};
+  )
+}
 
-export default ProductCard;
+export default ProductCard

@@ -6,7 +6,7 @@ import { AuthContext } from '../../../common/context/Auth.context'
 import './Navbar.css'
 import { useContext } from 'react'
 
-const MyNavbar = () => {
+const NavBar = () => {
   const { user } = useContext(AuthContext)
 
   const isShowCart = () => {
@@ -36,4 +36,4 @@ const MyNavbar = () => {
   )
 }
 
-export default MyNavbar
+export default NavBar

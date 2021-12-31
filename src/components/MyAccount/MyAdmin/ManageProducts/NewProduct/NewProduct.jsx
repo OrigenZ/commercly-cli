@@ -14,6 +14,23 @@ const NewProduct = () => {
 
   const storedToken = localStorage.getItem('authToken')
 
+  const getCategories = async () => {
+    try {
+      const response = await axiosInstance.get('/api/categories', {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      setCategories(response.data)
+      form.category = response.data[0]._id
+      setForm({ ...form })
+    } catch (err) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: err.message,
+      })
+    }
+  }
+
   const setField = (field, value) => {
     setForm({
       ...form,
@@ -69,63 +86,45 @@ const NewProduct = () => {
     return newErrors
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     const newErrors = findFormErrors()
-
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors)
-    } else {
-      const body = new FormData()
+      return
+    }
 
-      body.append('sku', form.sku)
-      body.append('quantity', form.quantity)
-      body.append('name', form.name)
-      body.append('price', form.price)
-      body.append('tax', form.tax)
-      body.append('brand', form.brand)
-      body.append('description', form.description)
-      body.append('category', form.category)
-      body.append('imageUrl', form.image)
+    const body = new FormData()
+    body.append('sku', form.sku)
+    body.append('quantity', form.quantity)
+    body.append('name', form.name)
+    body.append('price', form.price)
+    body.append('tax', form.tax)
+    body.append('brand', form.brand)
+    body.append('description', form.description)
+    body.append('category', form.category)
+    body.append('imageUrl', form.image)
 
-      axiosInstance
-        .post(`/api/products/create`, body, {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        })
-        .then((result) => {
-          e.target.reset()
-          Swal.fire({
-            icon: 'success',
-            text: 'Product created successfully',
-            showConfirmButton: false,
-          })
-        })
-        .catch((err) => {
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Something went wrong!',
-          })
-        })
-      //TODO: Set proper error handling
+    try {
+      await axiosInstance.post(`/api/products/create`, body, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      e.target.reset()
+      Swal.fire({
+        icon: 'success',
+        text: 'Product created successfully',
+        showConfirmButton: false,
+      })
+    } catch (err) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: err.message,
+      })
     }
   }
 
   useEffect(() => {
-    const storedToken = localStorage.getItem('authToken')
-
-    const getCategories = () => {
-      axiosInstance
-        .get('/api/categories', {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        })
-        .then((response) => {
-          setCategories(response.data)
-          form.category = response.data[0]._id
-          setForm({ ...form })
-        })
-        .catch((err) => {})
-    }
     getCategories()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])

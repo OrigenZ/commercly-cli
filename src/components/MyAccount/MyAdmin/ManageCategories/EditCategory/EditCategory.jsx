@@ -1,4 +1,3 @@
-// import { AuthContext } from "../../../common/context/Auth.context";
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { Form, Row, Col, Button } from 'react-bootstrap'
@@ -82,7 +81,6 @@ const EditCategory = () => {
         text: 'Category edited successfully',
         showConfirmButton: false,
       })
-
     } catch (err) {
       Swal.fire({
         icon: 'error',

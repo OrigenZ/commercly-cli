@@ -4,7 +4,7 @@ import { AuthContext } from '../../../../common/context/Auth.context'
 
 import './DashboardAdmin.css'
 
-const Dashboard = () => {
+const DashboardAdmin = () => {
   const { user, logOutUser } = useContext(AuthContext)
   return (
     <div id="dashboard-admin" className="container">
@@ -35,4 +35,4 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default DashboardAdmin

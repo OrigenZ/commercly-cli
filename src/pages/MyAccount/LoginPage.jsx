@@ -13,7 +13,7 @@ const LoginPage = () => {
   const [errors, setErrors] = useState({})
   const passwordInput = useRef(null)
 
-  const { logInUser} = useContext(AuthContext)
+  const { logInUser } = useContext(AuthContext)
   const navigate = useNavigate()
 
   const setField = (field, value) => {
@@ -50,8 +50,9 @@ const LoginPage = () => {
 
       logInUser(authToken)
 
-      isAdmin ? navigate('/my-account/admin/dashboard') : navigate('/my-account/customer/dashboard')
-
+      isAdmin
+        ? navigate('/my-account/admin/dashboard')
+        : navigate('/my-account/customer/dashboard')
     } catch (err) {
       setErrors({ unauthorized: err.response.data })
     }
@@ -132,7 +133,11 @@ const LoginPage = () => {
 
             <div className="d-flex justify-content-between">
               <div className="show-password">
-                <Form.Group className="mb-3" controlId="formBasicCheckbox" onClick={hideShowPassword}>
+                <Form.Group
+                  className="mb-3"
+                  controlId="formBasicCheckbox"
+                  onClick={hideShowPassword}
+                >
                   <Form.Check type="checkbox" label="Show password" />
                 </Form.Group>
               </div>
@@ -142,9 +147,7 @@ const LoginPage = () => {
               </div>
             </div>
 
-            <div className="credentials-error">
-              {errors.unauthorized} {/* TODO: make it pretty like you */}
-            </div>
+            <div className="credentials-error">{errors.unauthorized}</div>
 
             <Button
               variant="outline-secondary"

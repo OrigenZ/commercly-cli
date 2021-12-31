@@ -68,17 +68,12 @@ button.btn.btn-outline-dark {
   margin: -1px 0px !important;
   padding: 1px !important;
   font-size: 1rem !important;
-
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-
   border-radius: 0px;
-  border: 0px;
   color: #757e86;
-
-  width: 40%;
   border: 1px solid #b4babe;
 }
 
@@ -185,10 +180,6 @@ button.btn.btn-outline-dark {
   padding: 0 1rem;
 }
 
-#cart .card a {
-  padding: 0;
-}
-
 #cart .card .close {
   margin-left: auto;
   font-size: 0.8rem;
@@ -235,10 +226,6 @@ button.btn.btn-outline-dark {
   background-color: #fff;
 }
 
-#cart .card input:focus::input-placeholder {
-  color: transparent;
-}
-
 #cart .card .btn {
   margin-top: 1rem;
   padding: 0.5rem;
@@ -248,9 +235,7 @@ button.btn.btn-outline-dark {
 #cart .card .btn:focus {
   box-shadow: none;
   outline: none;
-  box-shadow: none;
   color: white;
-  box-shadow: none;
   user-select: none;
   transition: none;
 }
@@ -263,6 +248,7 @@ button.btn.btn-outline-dark {
   color: black;
   text-decoration: none;
   font-weight: bold;
+  padding: 0;
 }
 
 #cart .border {

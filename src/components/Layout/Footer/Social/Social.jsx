@@ -1,7 +1,9 @@
-import { faFacebook } from '@fortawesome/free-brands-svg-icons'
-import { faTwitter } from '@fortawesome/free-brands-svg-icons'
-import { faGoogle } from '@fortawesome/free-brands-svg-icons'
-import { faInstagram } from '@fortawesome/free-brands-svg-icons'
+import {
+  faTwitter,
+  faInstagram,
+  faGoogle,
+  faFacebook,
+} from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Social = () => {

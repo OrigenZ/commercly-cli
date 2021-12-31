@@ -6,6 +6,7 @@ button.btn.btn-outline-dark {
   align-items: center;
   justify-content: center;
   margin-bottom: 0.5em;
+  border-radius: 0px;
 }
 
 .popup-cart {
@@ -39,8 +40,4 @@ button.btn.btn-outline-dark {
   justify-content: center;
   font-size: 2.2em;
   color: #28b071;
-}
-
-button.btn.btn-outline-dark {
-  border-radius: 0px;
 }

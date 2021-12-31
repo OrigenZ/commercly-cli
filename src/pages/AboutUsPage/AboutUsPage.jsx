@@ -1,6 +1,5 @@
 import { Row, Col, Container, Card } from 'react-bootstrap'
-import { faGithubSquare } from '@fortawesome/free-brands-svg-icons'
-import { faLinkedin } from '@fortawesome/free-brands-svg-icons'
+import { faGithubSquare, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Sherab from '../../images/aboutUs/Sherab.jpg'
 import Laura from '../../images/aboutUs/Laura.jfif'

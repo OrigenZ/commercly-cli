@@ -5,7 +5,6 @@ import { AuthContext } from '../../common/context/Auth.context'
 import { Col, Button, Row } from 'react-bootstrap'
 import axiosInstance from '../../common/http'
 
-
 import './ShoppingCart.css'
 
 const ShoppingCart = () => {
@@ -33,7 +32,7 @@ const ShoppingCart = () => {
           isLoggedIn &&
           checkOutDetails.products.map((line) => (
             <Row
-              key={`${line.product._id}${Math.random() * 1000}`}
+              key={line.product._id}
               className="p-3 border-bottom popup-cart"
             >
               <Col xs={1} md={1} lg={1} className="p-0">
