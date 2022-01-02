@@ -12,7 +12,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  
+
   height: 40px;
   line-height: 40px;
   padding: 0 14px;
@@ -48,7 +48,7 @@
   font-size: 1em;
 
   box-shadow: #6d757d2a 0px 1px 3px;
-  font-family: "AzoSans", Helvetica, Arial, sans-serif!important;
+  font-family: 'AzoSans', Helvetica, Arial, sans-serif !important;
   border: 0;
   outline: 0;
   border-radius: 0px;
@@ -58,7 +58,6 @@
 #stripeForm input::placeholder {
   color: #aab7c4;
 }
-
 
 .StripeElement.IdealBankElement,
 .StripeElement.FpxBankElement,
@@ -73,10 +72,17 @@
 div#stripeForm {
   display: flex;
   flex-direction: column;
-
 }
 
-.ElementsApp, .ElementsApp .InputElement,
-.ElementsApp input{
-  font-family: "AzoSans", Helvetica, Arial, sans-serif!important;
+.ElementsApp,
+.ElementsApp .InputElement,
+.ElementsApp input {
+  font-family: 'AzoSans', Helvetica, Arial, sans-serif !important;
+}
+
+.error-feedback {
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 0.875em;
+  color: #dc3545;
 }

@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import { useEffect, useState } from 'react'
 import {
   useStripe,
   useElements,
@@ -6,121 +6,111 @@ import {
   CardCvcElement,
   CardExpiryElement,
 } from '@stripe/react-stripe-js'
-
 import { Button, Form } from 'react-bootstrap'
+
+// import useResponsiveFontSize from '../../../common/customHooks/useResponsiveFontSize'
 import './Stripeform.css'
 
-import useResponsiveFontSize from '../../../common/customHooks/useResponsiveFontSize'
-
-const useOptions = () => {
-  const fontSize = useResponsiveFontSize()
-  return useMemo(
-    () => ({
-      style: {
-        base: {
-          fontSize,
-          color: '#424770',
-          letterSpacing: '0.025em',
-          fontFamily: 'AzoSans, Helvetica, Arial, sans-serif',
-          '::placeholder': {
-            color: '#aab7c4',
-          },
-        },
-        invalid: {
-          color: '#9e2146',
-        },
-      },
-    }),
-    [fontSize],
-  )
-}
-
 const StripeForm = (props) => {
+  const [isDisabled, setDisabled] = useState(false)
+  const [errorMsg, setErrorMsg] = useState('')
   const stripe = useStripe()
   const elements = useElements()
-  const options = useOptions()
 
-  const { handleSubmit } = props
+  const { handleSubmit, checkoutDetails, form } = props
 
-  const handleSubSubmit = async (e) => {
+  const baseStripeElementOptions = {
+    style: {
+      base: {
+        fontSize: '14px',
+        color: '#424770',
+        letterSpacing: '0.025em',
+        fontFamily: 'AzoSans, Helvetica, Arial, sans-serif',
+        '::placeholder': {
+          color: '#aab7c4',
+        },
+      },
+      invalid: {
+        color: '#dc3545',
+      },
+    },
+  }
+
+  const handleStripeSubmit = async (e) => {
     e.preventDefault()
 
-    const orderDetails = await handleSubmit()
-
-    console.log(orderDetails)
-
-    if (!stripe || !elements) {
-      // Stripe.js has not loaded yet. Make sure to disable
-      // form submission until Stripe.js has loaded.
+    if (!stripe || !elements || !checkoutDetails.products.length) {
+      setDisabled(true)
       return
     }
 
-    // const payload = await stripe.createPaymentMethod({
-    //   type: 'card',
-    //   card: elements.getElement(CardNumberElement),
-    // })
-    // console.log('[PaymentMethod]', payload)
+    //stripe.redirectToCheckout(options?)
+    //this is a mockup, only creates a payment method, does not process the payment
+    const payload = await stripe.createPaymentMethod({
+      type: 'card',
+      card: elements.getElement(CardNumberElement),
+      billing_details: {
+        address: {
+          city: form.city || null,
+          // country: 'ES' || null,
+          line1: form.street || null,
+          postal_code: form.zip || null,
+          state: form.province || null,
+        },
+        name: form.firstName + ' ' + form.lastName || null,
+        phone: form.phone || null,
+      },
+    })
+
+    if (payload.error) {
+      setErrorMsg(payload.error.message)
+      return
+    }
+    handleSubmit()
+    console.log('createPaymentMethod', payload)
   }
 
+  useEffect(() => {
+    if (!stripe || !elements || !checkoutDetails.products.length) {
+      setDisabled(true)
+    } else {
+      setDisabled(false)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [form, checkoutDetails.products])
+
   return (
-    <Form onSubmit={handleSubSubmit}>
+    <Form onSubmit={handleStripeSubmit}>
       <div id="stripeForm">
         <label>
           Card number
           <CardNumberElement
-            options={options}
-            onReady={() => {
-              console.log('CardNumberElement [ready]')
-            }}
-            onChange={(event) => {
-              console.log('CardNumberElement [change]', event)
-            }}
-            onBlur={() => {
-              console.log('CardNumberElement [blur]')
-            }}
+            options={baseStripeElementOptions}
             onFocus={() => {
-              console.log('CardNumberElement [focus]')
+              setErrorMsg('')
             }}
           />
         </label>
         <label>
           Expiration date
           <CardExpiryElement
-            options={options}
-            onReady={() => {
-              console.log('CardNumberElement [ready]')
-            }}
-            onChange={(event) => {
-              console.log('CardNumberElement [change]', event)
-            }}
-            onBlur={() => {
-              console.log('CardNumberElement [blur]')
-            }}
+            options={baseStripeElementOptions}
             onFocus={() => {
-              console.log('CardNumberElement [focus]')
+              setErrorMsg('')
             }}
           />
         </label>
         <label>
           CVC
           <CardCvcElement
-            options={options}
-            onReady={() => {
-              console.log('CardNumberElement [ready]')
-            }}
-            onChange={(event) => {
-              console.log('CardNumberElement [change]', event)
-            }}
-            onBlur={() => {
-              console.log('CardNumberElement [blur]')
-            }}
+            options={baseStripeElementOptions}
             onFocus={() => {
-              console.log('CardNumberElement [focus]')
+              setErrorMsg('')
             }}
           />
         </label>
-
-        <Button variant="outline-secondary" type="submit">
+        <div className="error-feedback">{errorMsg}</div>
+        <Button variant="outline-secondary" type="submit" disabled={isDisabled}>
           Checkout
         </Button>
       </div>

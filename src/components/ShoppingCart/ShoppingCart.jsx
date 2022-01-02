@@ -1,8 +1,9 @@
 import React, { useContext } from 'react'
+import { Col, Button, Row } from 'react-bootstrap'
+import Swal from 'sweetalert2/src/sweetalert2'
+
 import { CartContext } from '../../common/context/Cart.context'
 import { AuthContext } from '../../common/context/Auth.context'
-
-import { Col, Button, Row } from 'react-bootstrap'
 import axiosInstance from '../../common/http'
 
 import './ShoppingCart.css'
@@ -12,25 +13,29 @@ const ShoppingCart = () => {
   const { isLoggedIn } = useContext(AuthContext)
   const storedToken = localStorage.getItem('authToken')
 
-  const handleEditItem = (id, operator) => {
+  const handleEditItem = async (id, operator) => {
     const param = operator === '+' ? 'add-item' : 'remove-item'
     const body = { productId: id, cartId: cart._id }
-    axiosInstance
-      .post(`/api/cart/${param}`, body, {
+
+    try {
+      const response = await axiosInstance.post(`/api/cart/${param}`, body, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
-      .then((response) => {
-        setCart(response.data)
+      setCart(response.data)
+    } catch (err) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: err.message,
       })
+    }
   }
 
   return (
     <>
       <div>
-        {checkOutDetails &&
-          checkOutDetails.products &&
-          isLoggedIn &&
-          checkOutDetails.products.map((line) => (
+        {isLoggedIn &&
+          checkOutDetails.products?.map((line) => (
             <Row
               key={line.product._id}
               className="p-3 border-bottom popup-cart"
@@ -67,8 +72,7 @@ const ShoppingCart = () => {
       </div>
       <div>
         <Row className="total-price">
-          Total:{' '}
-          <h3>{(checkOutDetails && checkOutDetails.totalPrice) || 0} €</h3>
+          Total: <h3>{checkOutDetails?.totalPrice || 0} €</h3>
         </Row>
       </div>
     </>

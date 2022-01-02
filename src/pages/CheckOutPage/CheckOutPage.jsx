@@ -1,10 +1,11 @@
+import { Container } from 'react-bootstrap'
 import CheckOutCart from '../../components/CheckOutCart/CheckOutCart'
 
 const CheckOutPage = () => {
   return (
-    <div className="section container text-center">
+    <Container className="section text-center">
       <CheckOutCart />
-    </div>
+    </Container>
   )
 }
 
