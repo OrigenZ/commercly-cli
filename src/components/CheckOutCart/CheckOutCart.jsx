@@ -16,26 +16,20 @@ import axiosInstance from '../../common/http/index'
 import './CheckOutCart.css'
 // import './StripeForm/Stripeform.css'
 
+const PUBLIC_STRIPE_KEY =
+  'pk_test_51KDUd4In8yo4u8x4JfZShJ7B5oK9bRWDVO5iAUAJrxAA8fHhiMZDeqjT3CxbVKMqUss7z9KgCBn8tRhY6HhKaw7m00E0xKWpUf'
+
 const CheckOutCart = () => {
   const [form, setForm] = useState({})
   const [errors, setErrors] = useState({})
   const [shippingFees, setShippingFees] = useState(4)
-  const [stripePromise] = useState(() =>
-    loadStripe(
-      'pk_test_51KDUd4In8yo4u8x4JfZShJ7B5oK9bRWDVO5iAUAJrxAA8fHhiMZDeqjT3CxbVKMqUss7z9KgCBn8tRhY6HhKaw7m00E0xKWpUf',
-    ),
-  )
+  const [stripePromise] = useState(() => loadStripe(PUBLIC_STRIPE_KEY))
 
   const { user } = useContext(AuthContext)
   const { checkOutDetails, cart, setCart, setCount } = useContext(CartContext)
 
   let navigate = useNavigate()
   const storedToken = localStorage.getItem('authToken')
-
-  const options = {
-    //TODO: Read documentation about this being in the server side
-    clientSecret: process.env.REACT_APP_SECRET_KEY,
-  }
 
   const setField = (field, value) => {
     setForm({
@@ -496,7 +490,7 @@ const CheckOutCart = () => {
                 </h5>
               </div>
               <hr />
-              <Elements stripe={stripePromise} options={options}>
+              <Elements stripe={stripePromise}>
                 <StripeForm
                   handleSubmit={handleSubmit}
                   checkoutDetails={checkOutDetails}

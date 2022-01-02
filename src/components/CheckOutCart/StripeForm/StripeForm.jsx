@@ -7,9 +7,28 @@ import {
   CardExpiryElement,
 } from '@stripe/react-stripe-js'
 import { Button, Form } from 'react-bootstrap'
+import Swal from 'sweetalert2/src/sweetalert2'
 
-// import useResponsiveFontSize from '../../../common/customHooks/useResponsiveFontSize'
+import axiosInstance from '../../../common/http'
+
 import './Stripeform.css'
+
+const baseStripeElementOptions = {
+  style: {
+    base: {
+      fontSize: '14px',
+      color: '#424770',
+      letterSpacing: '0.025em',
+      fontFamily: 'AzoSans, Helvetica, Arial, sans-serif',
+      '::placeholder': {
+        color: '#aab7c4',
+      },
+    },
+    invalid: {
+      color: '#dc3545',
+    },
+  },
+}
 
 const StripeForm = (props) => {
   const [isDisabled, setDisabled] = useState(false)
@@ -18,35 +37,13 @@ const StripeForm = (props) => {
   const elements = useElements()
 
   const { handleSubmit, checkoutDetails, form } = props
-
-  const baseStripeElementOptions = {
-    style: {
-      base: {
-        fontSize: '14px',
-        color: '#424770',
-        letterSpacing: '0.025em',
-        fontFamily: 'AzoSans, Helvetica, Arial, sans-serif',
-        '::placeholder': {
-          color: '#aab7c4',
-        },
-      },
-      invalid: {
-        color: '#dc3545',
-      },
-    },
-  }
+  const storedToken = localStorage.getItem('authToken')
 
   const handleStripeSubmit = async (e) => {
     e.preventDefault()
+    setDisabled(true)
 
-    if (!stripe || !elements || !checkoutDetails.products.length) {
-      setDisabled(true)
-      return
-    }
-
-    //stripe.redirectToCheckout(options?)
-    //this is a mockup, only creates a payment method, does not process the payment
-    const payload = await stripe.createPaymentMethod({
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: 'card',
       card: elements.getElement(CardNumberElement),
       billing_details: {
@@ -58,24 +55,49 @@ const StripeForm = (props) => {
           state: form.province || null,
         },
         name: form.firstName + ' ' + form.lastName || null,
-        phone: form.phone || null,
+        phone: form.phone,
       },
     })
 
-    if (payload.error) {
-      setErrorMsg(payload.error.message)
+    if (error) {
+      setErrorMsg(error.message)
       return
     }
-    handleSubmit()
-    console.log('createPaymentMethod', payload)
+
+    try {
+      const { id } = paymentMethod
+      const response = await axiosInstance.post(
+        '/api/payments',
+        {
+          amount: checkoutDetails.totalPrice * 100, //in cents
+          id,
+          currency: 'EUR',
+        },
+        { headers: { Authorization: `Bearer ${storedToken}` } },
+      )
+
+      if (response.data.success) {
+        handleSubmit()
+        console.log(response.data.message)
+        return
+      } else {
+        setErrorMsg(response.data.message)
+      }
+    } catch (err) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong processing your purchase',
+        showConfirmButton: false,
+      })
+    }
   }
 
   useEffect(() => {
-    if (!stripe || !elements || !checkoutDetails.products.length) {
-      setDisabled(true)
-    } else {
-      setDisabled(false)
-    }
+    !stripe || !elements || !checkoutDetails.products.length
+      ? setDisabled(true)
+      : setDisabled(false)
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [form, checkoutDetails.products])
 
@@ -88,6 +110,7 @@ const StripeForm = (props) => {
             options={baseStripeElementOptions}
             onFocus={() => {
               setErrorMsg('')
+              setDisabled(false)
             }}
           />
         </label>
@@ -97,6 +120,7 @@ const StripeForm = (props) => {
             options={baseStripeElementOptions}
             onFocus={() => {
               setErrorMsg('')
+              setDisabled(false)
             }}
           />
         </label>
@@ -106,6 +130,7 @@ const StripeForm = (props) => {
             options={baseStripeElementOptions}
             onFocus={() => {
               setErrorMsg('')
+              setDisabled(false)
             }}
           />
         </label>
